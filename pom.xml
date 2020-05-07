@@ -12,10 +12,10 @@
 	<artifactId>group6</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>group6</name>
-	<description>Group 6 solutions</description>
+	<description>Group 6 solution</description>
 
 	<properties>
-		<java.version>14</java.version>
+		<java.version>1.8</java.version>
 	</properties>
 
 	<dependencies>
