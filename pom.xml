@@ -15,7 +15,7 @@
 	<description>Group 6 solutions</description>
 
 	<properties>
-		<java.version>14</java.version>
+		<java.version>8</java.version>
 	</properties>
 
 	<dependencies>
