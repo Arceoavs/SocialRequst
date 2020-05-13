@@ -9,76 +9,64 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Request {  // extends Topic?
-    /*
-    * Attributes
-    */
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+public class Request {
 
-    @NotBlank(message = "Title required")
-    @Size(min = 1, message = "Title required")
-    private String title;
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private int id;
 
-    private String description;
+  @NotBlank(message = "Title required")
+  @Size(min = 1, message = "Title required")
+  private String title;
 
-    private long[] location = new long[2]; //is this a good solution for the location?
+  private String description;
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private DateTimeAtCreation createdAt; //Todo: test if this works
+  private long[] location = new long[2]; // is this a good solution for the location?
 
-    // private User userID; //User Model required
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private DateTimeAtCreation createdAt; //Todo: test if this works
 
-    /*
-    * Getter and Setter
-    */
-    public int getId(){
-        return this.id;
-    }
+  // private User userId; // User Model required
 
-    public void setId(int id){
-        this.id = id;
-    }
+  public int getId(){
+    return this.id;
+  }
 
-    public String getTitle(){
-        return this.title;
-    }
+  public void setId(int id){
+    this.id = id;
+  }
 
-    public void setTitle(String title){
-        this.title = title;
-    }
-    
-    public String getDescription(){
-        return this.description;
-    }
+  public String getTitle(){
+    return this.title;
+  }
 
-    public void setDescription(String description){
-        this.description = description;
-    }
+  public void setTitle(String title){
+    this.title = title;
+  }
+  
+  public String getDescription(){
+    return this.description;
+  }
 
-    public void setLocation(long longitude, long latitude){
-        this.location[0] = longitude;
-        this.location[1] = latitude;
-    }
+  public void setDescription(String description){
+    this.description = description;
+  }
 
-    public long[] getLocation(){
-        return location;
-    }
+  public void setLocation(long longitude, long latitude){
+    this.location[0] = longitude;
+    this.location[1] = latitude;
+  }
 
-    public DateTimeAtCreation getCreatedAt(){
-        return this.createdAt;
-    }
+  public long[] getLocation(){
+    return location;
+  }
 
-    public void setCreatedAt(DateTimeAtCreation createdAt){
-        this.createdAt = createdAt;
-    }
+  public DateTimeAtCreation getCreatedAt(){
+    return this.createdAt;
+  }
 
-    // private User getUserId()[
-    //     return this.userId();
-    // ]
+  public void setCreatedAt(DateTimeAtCreation createdAt){
+    this.createdAt = createdAt;
+  }
 
-    // private void setUserId(User id){
-    //     this.userId = id;
-    // }
 }
