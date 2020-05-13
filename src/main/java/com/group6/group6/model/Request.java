@@ -30,52 +30,52 @@ public class Request {
 
   // private User userId; // User Model required
 
-  protected Request(){}
+  protected Request() {}
 
-  public Request(String title, String description, long lat, long lng){
-      this.title = title;
-      this.description = description;
-      this.lat = lat;
-      this.lng = lng;
+  public Request(String title, String description, long lat, long lng) {
+    this.title = title;
+    this.description = description;
+    this.lat = lat;
+    this.lng = lng;
   }
 
-  public Long getId(){
+  public Long getId() {
     return this.id;
   }
 
-  public String getTitle(){
+  public String getTitle() {
     return this.title;
   }
 
-  public void setTitle(String title){
+  public void setTitle(String title) {
     this.title = title;
   }
   
-  public String getDescription(){
+  public String getDescription() {
     return this.description;
   }
 
-  public void setDescription(String description){
+  public void setDescription(String description) {
     this.description = description;
   }
 
-  public float getLat(){
-      return this.lat;
+  public float getLat() {
+    return this.lat;
   }
 
-  public void setLat(float lat){
-      this.lat = lat;
+  public void setLat(float lat) {
+    this.lat = lat;
   }
 
-  public float getLng(){
-      return this.lng;
+  public float getLng() {
+    return this.lng;
   }
 
-  public void setLng(float lng){
-      this.lng = lng;
+  public void setLng(float lng) {
+    this.lng = lng;
   }
 
-  public Date getCreatedAt(){
+  public Date getCreatedAt() {
     return this.createdAt;
   }
 
