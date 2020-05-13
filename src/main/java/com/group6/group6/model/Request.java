@@ -13,7 +13,7 @@ public class Request {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private int id;
+  private Long id;
 
   @NotBlank(message = "Title required")
   @Size(min = 1, message = "Title required")
@@ -21,18 +21,28 @@ public class Request {
 
   private String description;
 
-  private long[] location = new long[2]; // is this a good solution for the location?
+  private long lat;
+  private long lng;
 
   @GeneratedValue(strategy = GenerationType.AUTO)
   private DateTimeAtCreation createdAt; //Todo: test if this works
 
   // private User userId; // User Model required
 
-  public int getId(){
+  protected Request(){}
+
+  public Request(String title, String description, long lat, long lng){
+      this.title = title;
+      this.description = description;
+      this.lat = lat;
+      this.lng = lng;
+  }
+
+  public Long getId(){
     return this.id;
   }
 
-  public void setId(int id){
+  public void setId(Long id){
     this.id = id;
   }
 
@@ -52,12 +62,25 @@ public class Request {
     this.description = description;
   }
 
-  public void setLocation(long longitude, long latitude){
-    this.location[0] = longitude;
-    this.location[1] = latitude;
+  public long getLat(){
+      return this.lat;
   }
 
+  public void setLat(long lat){
+      this.lat = lat;
+  }
+
+  public long getLng(){
+      return this.lng;
+  }
+
+  public void setLng(long lng){
+      this.lng = lng;
+  }
+
+  // returns an array consisting of both lng and lat that together form the location of the object
   public long[] getLocation(){
+    long[] location = new long[]{lng, lat};
     return location;
   }
 
@@ -68,5 +91,4 @@ public class Request {
   public void setCreatedAt(DateTimeAtCreation createdAt){
     this.createdAt = createdAt;
   }
-
 }
