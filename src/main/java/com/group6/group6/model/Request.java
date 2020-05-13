@@ -32,7 +32,7 @@ public class Request {
 
   protected Request(){}
 
-  public Request(String title, String description, long lat, long lng){
+  public Request(String title, String description, float lat, float lng){
       this.title = title;
       this.description = description;
       this.lat = lat;
