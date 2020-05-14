@@ -38,7 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
       .authorizeRequests()
         .antMatchers("/images/**", "/css/**", "/js/**").permitAll()
         // Pages that can be accessed by all visitors
-        .antMatchers("/users/login", "/users/register").permitAll()
+        .antMatchers("/users/login", "/users/register", "/h2console/**").permitAll()
         .anyRequest().hasAuthority("ROLE_USER")
         .and()
       // login
@@ -48,7 +48,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .failureUrl("/users/login?error=true")
         .and()
       .logout()
-        .permitAll();
+        .permitAll()
+        .and()
+      // activate frames for h2 console
+      .headers().frameOptions().sameOrigin();
   }
 
   @Bean
