@@ -10,7 +10,7 @@
   <title>Group 6 - SocialRequest</title>
 </head>
 <body>
-  <div th:if="${type != null}" th:replace="~{page/flash_message :: flash_message(${type}, ${message})}" />
+  <div th:replace="~{page/flash_message :: flash_message(${messageType}, ${message})}" />
 
   <div th:replace="~{page/header :: header}" />
   <th:block layout:fragment="content" />

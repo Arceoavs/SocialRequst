@@ -2,7 +2,7 @@
 <html
   lang="en"
   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-  layout:decorate="~{layouts/default}"
+  layout:decorate="~{layouts/default(messageType=${messageType}, message=${message})}"
 >
 <head>
   <title>SocialRequest - Log In</title>
@@ -17,7 +17,7 @@
               <div class="card">
                 <div class="card-content">
                   <div class="content">
-                    <form name="login" action="/login" method="POST">
+                    <form name="login" action="/users/login" method="POST">
                       <div class="field">
                         <label class="label">Username</label>
                         <div class="control has-icons-left">
@@ -41,7 +41,7 @@
                           <button type="submit" name="submit" value="submit" class="button is-link">Log In</button>
                         </div>
                         <div class="control">
-                          <a href="/register" class="button is-link is-light">Register</a>
+                          <a href="/users/register" class="button is-link is-light">Register</a>
                         </div>
                       </div>
                     </form>

@@ -47,12 +47,14 @@ public class UserController {
       userService.registerNewUserAccount(user);
     } catch (DuplicateUserException e) {
       ModelAndView mav = new ModelAndView("user/register", "user", user);
-      redirectAttributes.addFlashAttribute("error", e.getMessage());
+      redirectAttributes.addFlashAttribute("message", e.getMessage());
+      redirectAttributes.addFlashAttribute("messageType", "error");
 
       return mav;
     }
 
-    redirectAttributes.addFlashAttribute("success", "You have successfully registered!");
+    redirectAttributes.addFlashAttribute("message", "You have successfully registered!");
+    redirectAttributes.addFlashAttribute("messageType", "success");
 
     return new ModelAndView("redirect:/users/login");
   }

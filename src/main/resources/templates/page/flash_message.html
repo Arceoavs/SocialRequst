@@ -8,7 +8,11 @@
     <div
       class="flash-message notification"
       th:if="${message != null}"
-      th:classappend="${#strings.equals(type, 'success')} ? is-success : is-danger"
+      th:classappend="|
+        ${#strings.equals(type, 'success') ? 'is-success' : ''}
+        ${#strings.equals(type, 'error') ? 'is-danger' : ''}
+        ${not #strings.equals(type, 'success') and not #strings.equals(type, 'error') ? 'is-info' : ''}
+      |"
       th:text="${message}"
     >
       <button class="delete"></button>

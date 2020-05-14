@@ -2,7 +2,7 @@
 <html
   lang="en"
   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-  layout:decorate="~{layouts/default}"
+  layout:decorate="~{layouts/default(messageType=${messageType}, message=${message})}"
 >
 <head>
   <title>SocialRequest - Register</title>
