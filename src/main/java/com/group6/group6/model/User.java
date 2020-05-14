@@ -29,6 +29,9 @@ public class User {
   @Transient
   private String passwordConfirmation;
 
+  private float lat;
+  private float lng;
+
   public User() {}
 
   public User(String username, String email) {
@@ -70,6 +73,22 @@ public class User {
 
   public void setPasswordConfirmation(String passwordConfirmation) {
     this.passwordConfirmation = passwordConfirmation;
+  }
+
+  public float getLat() {
+    return lat;
+  }
+
+  public void setLat(float lat) {
+    this.lat = lat;
+  }
+
+  public float getLng() {
+    return lng;
+  }
+
+  public void setLng(float lng) {
+    this.lng = lng;
   }
 
 }
