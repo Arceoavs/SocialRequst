@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layouts/default}"
+>
+<head>
+  <title>SocialRequest - Register</title>
+</head>
+<body>
+  <div layout:fragment="content">
+    <section class="hero is-primary is-fullheight-with-navbar">
+      <div class="hero-body">
+        <div class="container">
+          <div class="columns">
+            <div class="column">
+              <div class="card">
+                <div class="card-content">
+                  <div class="content">
+                    <form th:action="@{/users/register}" th:object="${user}" method="POST">
+                      <div class="field">
+                        <label class="label">Username</label>
+                        <div class="control has-icons-left">
+                          <input th:field="${user.username}" class="input" type="text">
+                          <span class="icon is-small is-left">
+                            <i class="fas fa-user"></i>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="field">
+                        <label class="label">Email</label>
+                        <div class="control has-icons-left">
+                          <input th:field="${user.email}" class="input" type="email">
+                          <span class="icon is-small is-left">
+                            <i class="fas fa-at"></i>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="field">
+                        <label class="label">Password</label>
+                        <div class="control has-icons-left">
+                          <input th:field="${user.password}" class="input" type="password">
+                          <span class="icon is-small is-left">
+                            <i class="fas fa-lock"></i>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="field">
+                        <label class="label">Password confirmation</label>
+                        <div class="control has-icons-left">
+                          <input th:field="${user.passwordConfirmation}" class="input" type="password">
+                          <span class="icon is-small is-left">
+                            <i class="fas fa-lock"></i>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="field is-grouped">
+                        <div class="control">
+                          <button type="submit" class="button is-link">Register</button>
+                        </div>
+                        <div class="control">
+                          <a href="javascript:history.back()" class="button is-link is-light">Back</a>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="column" />
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
