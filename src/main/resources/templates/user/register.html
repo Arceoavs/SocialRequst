@@ -37,7 +37,7 @@
                         <div class="control has-icons-left" th:classappend="${#fields.hasErrors('email') ? 'has-icons-right' : ''}">
                           <input th:field="*{email}" class="input" type="email" th:classappend="${#fields.hasErrors('email') ? 'is-danger' : ''}">
                           <span class="icon is-small is-left">
-                            <i class="fas fa-user"></i>
+                            <i class="fas fa-at"></i>
                           </span>
                           <span th:if="${#fields.hasErrors('email')}" class="icon is-small is-right">
                             <i class="fas fa-exclamation-triangle"></i>
@@ -50,7 +50,7 @@
                         <div class="control has-icons-left" th:classappend="${#fields.hasErrors('password') ? 'has-icons-right' : ''}">
                           <input th:field="*{password}" class="input" type="password" th:classappend="${#fields.hasErrors('password') ? 'is-danger' : ''}">
                           <span class="icon is-small is-left">
-                            <i class="fas fa-user"></i>
+                            <i class="fas fa-lock"></i>
                           </span>
                           <span th:if="${#fields.hasErrors('password')}" class="icon is-small is-right">
                             <i class="fas fa-exclamation-triangle"></i>
@@ -63,7 +63,7 @@
                         <div class="control has-icons-left" th:classappend="${#fields.hasErrors('passwordConfirmation') ? 'has-icons-right' : ''}">
                           <input th:field="*{passwordConfirmation}" class="input" type="password" th:classappend="${#fields.hasErrors('passwordConfirmation') ? 'is-danger' : ''}">
                           <span class="icon is-small is-left">
-                            <i class="fas fa-user"></i>
+                            <i class="fas fa-lock"></i>
                           </span>
                           <span th:if="${#fields.hasErrors('passwordConfirmation')}" class="icon is-small is-right">
                             <i class="fas fa-exclamation-triangle"></i>
