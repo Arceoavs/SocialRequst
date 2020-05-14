@@ -21,39 +21,55 @@
                     <form th:action="@{/users/register}" th:object="${user}" method="POST">
                       <div class="field">
                         <label class="label">Username</label>
-                        <div class="control has-icons-left">
-                          <input th:field="${user.username}" class="input" type="text">
+                        <div class="control has-icons-left" th:classappend="${#fields.hasErrors('username') ? 'has-icons-right' : ''}">
+                          <input th:field="*{username}" class="input" type="text" th:classappend="${#fields.hasErrors('username') ? 'is-danger' : ''}">
                           <span class="icon is-small is-left">
                             <i class="fas fa-user"></i>
                           </span>
+                          <span th:if="${#fields.hasErrors('username')}" class="icon is-small is-right">
+                            <i class="fas fa-exclamation-triangle"></i>
+                          </span>
                         </div>
+                        <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="help is-danger" />
                       </div>
                       <div class="field">
                         <label class="label">Email</label>
-                        <div class="control has-icons-left">
-                          <input th:field="${user.email}" class="input" type="email">
+                        <div class="control has-icons-left" th:classappend="${#fields.hasErrors('email') ? 'has-icons-right' : ''}">
+                          <input th:field="*{email}" class="input" type="email" th:classappend="${#fields.hasErrors('email') ? 'is-danger' : ''}">
                           <span class="icon is-small is-left">
-                            <i class="fas fa-at"></i>
+                            <i class="fas fa-user"></i>
+                          </span>
+                          <span th:if="${#fields.hasErrors('email')}" class="icon is-small is-right">
+                            <i class="fas fa-exclamation-triangle"></i>
                           </span>
                         </div>
+                        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="help is-danger" />
                       </div>
                       <div class="field">
                         <label class="label">Password</label>
-                        <div class="control has-icons-left">
-                          <input th:field="${user.password}" class="input" type="password">
+                        <div class="control has-icons-left" th:classappend="${#fields.hasErrors('password') ? 'has-icons-right' : ''}">
+                          <input th:field="*{password}" class="input" type="password" th:classappend="${#fields.hasErrors('password') ? 'is-danger' : ''}">
                           <span class="icon is-small is-left">
-                            <i class="fas fa-lock"></i>
+                            <i class="fas fa-user"></i>
+                          </span>
+                          <span th:if="${#fields.hasErrors('password')}" class="icon is-small is-right">
+                            <i class="fas fa-exclamation-triangle"></i>
                           </span>
                         </div>
+                        <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="help is-danger" />
                       </div>
                       <div class="field">
-                        <label class="label">Password confirmation</label>
-                        <div class="control has-icons-left">
-                          <input th:field="${user.passwordConfirmation}" class="input" type="password">
+                        <label class="label">Password Confirmation</label>
+                        <div class="control has-icons-left" th:classappend="${#fields.hasErrors('passwordConfirmation') ? 'has-icons-right' : ''}">
+                          <input th:field="*{passwordConfirmation}" class="input" type="password" th:classappend="${#fields.hasErrors('passwordConfirmation') ? 'is-danger' : ''}">
                           <span class="icon is-small is-left">
-                            <i class="fas fa-lock"></i>
+                            <i class="fas fa-user"></i>
+                          </span>
+                          <span th:if="${#fields.hasErrors('passwordConfirmation')}" class="icon is-small is-right">
+                            <i class="fas fa-exclamation-triangle"></i>
                           </span>
                         </div>
+                        <p th:if="${#fields.hasErrors('passwordConfirmation')}" th:errors="*{passwordConfirmation}" class="help is-danger" />
                       </div>
                       <div class="field is-grouped">
                         <div class="control">
