@@ -35,4 +35,5 @@ public class RequestTests {
     //assert result
     assertEquals(walkDog.getTitle(), found.getTitle());
     }
+    
 }
