@@ -48,8 +48,11 @@ public class UserController {
     try {
       userService.registerNewUserAccount(user);
     } catch (DuplicateUserException e) {
-      redirectAttributes.addFlashAttribute("message", e.getMessage());
-      redirectAttributes.addFlashAttribute("messageType", "error");
+      if (e.getMessage().contains("username already exists")) {
+        bindingResult.rejectValue("username", "", e.getMessage());
+      } else if (e.getMessage().contains("email already exists")) {
+        bindingResult.rejectValue("email", "", e.getMessage());
+      }
 
       return "user/register";
     }
