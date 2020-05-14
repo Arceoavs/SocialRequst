@@ -18,6 +18,7 @@
                 <div class="card-content">
                   <div class="content">
                     <p class="title has-text-black">Log In</p>
+                    <p th:if="${param.error}" class="help is-danger">Wrong username and/or password.</p>
                     <form name="login" action="/users/login" method="POST">
                       <div class="field">
                         <label class="label">Username</label>
