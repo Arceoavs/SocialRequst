@@ -14,16 +14,16 @@ public class User {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
-  @NotBlank(message = "Topic name required")
+  @NotBlank(message = "Username required")
   @Column(unique = true)
   private String username;
 
-  @NotBlank(message = "Topic name required")
+  @NotBlank(message = "Email required")
   @ValidEmail
   @Column(unique = true)
   private String email;
 
-  @NotBlank(message = "Topic name required")
+  @NotBlank(message = "Password required")
   private String password;
 
   @Transient
