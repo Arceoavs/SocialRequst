@@ -13,9 +13,9 @@
         ${#strings.equals(type, 'error') ? 'is-danger' : ''}
         ${not #strings.equals(type, 'success') and not #strings.equals(type, 'error') ? 'is-info' : ''}
       |"
-      th:text="${message}"
     >
       <button class="delete"></button>
+      <span th:text="${message}" />
     </div>
   </th:block>
 </body>
