@@ -34,9 +34,20 @@ public class User {
 
   public User() {}
 
-  public User(String username, String email) {
+  public User(String username, String email, String password, String passwordConfirmation) {
     this.username = username;
     this.email = email;
+    this.password = password;
+    this.passwordConfirmation = passwordConfirmation;
+  }
+
+  public User(String username, String email, String password, String passwordConfirmation, float lat, float lng) {
+    this.username = username;
+    this.email = email;
+    this.password = password;
+    this.passwordConfirmation = passwordConfirmation;
+    this.lat = lat;
+    this.lng = lng;
   }
 
   public Long getId() {
