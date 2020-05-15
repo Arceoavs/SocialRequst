@@ -38,6 +38,13 @@ public class User {
   @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   private List<Topic> specialties = new ArrayList<Topic>();
 
+  @OneToMany(mappedBy = "user")
+  private List<Request> submittedRequests = new ArrayList<Request>();
+
+  @OneToMany
+  @JoinTable(name = "fulfillment", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "request_id"))
+  private List<Request> fulfilledRequests = new ArrayList<Request>();
+
   public User() {}
 
   public User(String username, String email, String password, String passwordConfirmation) {
@@ -118,6 +125,14 @@ public class User {
 
   public boolean removeSpecialty(Topic specialty) {
     return this.specialties.remove(specialty);
+  }
+
+  public List<Request> getFulfilledRequests() {
+    return this.fulfilledRequests;
+  }
+
+  public List<Request> getSubmittedRequests() {
+    return this.submittedRequests;
   }
 
 }
