@@ -2,10 +2,7 @@ package com.group6.group6.model;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import org.springframework.data.annotation.CreatedDate;
@@ -28,15 +25,22 @@ public class Request {
   @CreatedDate
   private Date createdAt;
 
-  // private User userId; // User Model required
+  @OneToOne(mappedBy = "request")
+  private Fulfillment fulfillment;
+
+  @NotBlank(message = "User required")
+  @ManyToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "user_id", referencedColumnName = "id")
+  private User user;
 
   protected Request() {}
 
-  public Request(String title, String description, float lat, float lng) {
+  public Request(String title, String description, float lat, float lng, User user) {
     this.title = title;
     this.description = description;
     this.lat = lat;
     this.lng = lng;
+    this.user = user;
   }
 
   public Long getId() {
@@ -77,6 +81,26 @@ public class Request {
 
   public Date getCreatedAt() {
     return this.createdAt;
+  }
+
+  public User getUser() {
+    return this.user;
+  }
+
+  public void setUser(User user) {
+    this.user = user;
+  }
+
+  public boolean isFulfilled() {
+    return this.fulfillment != null;
+  }
+
+  public Fulfillment getFulfillment() {
+    return this.fulfillment;
+  }
+
+  public void setFulfillment(Fulfillment fulfillment) {
+    this.fulfillment = fulfillment;
   }
 
 }
