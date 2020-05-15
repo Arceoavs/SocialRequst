@@ -23,7 +23,13 @@
 
         <div class="navbar-end">
           <div class="navbar-item">
-            <div class="buttons">
+            <form sec:authorize="isAuthenticated()" action="/users/logout" method="POST">
+              <button class="button is-text" type="submit">
+                Logout
+              </button>
+            </form>
+
+            <div sec:authorize="isAnonymous()" class="buttons">
               <a href="/users/register" class="button is-primary">
                 <strong>Register</strong>
               </a>

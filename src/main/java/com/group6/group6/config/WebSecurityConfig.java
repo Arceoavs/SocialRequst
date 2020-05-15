@@ -48,6 +48,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .failureUrl("/users/login?error=true")
         .and()
       .logout()
+        .logoutUrl("/users/logout")
+        .logoutSuccessUrl("/")
         .permitAll()
         .and()
       // activate frames for h2 console
