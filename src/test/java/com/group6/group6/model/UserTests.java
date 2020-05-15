@@ -5,7 +5,9 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import javax.validation.ConstraintViolationException;
@@ -59,5 +61,31 @@ public class UserTests {
       entityManager.persist(user);
       entityManager.flush();
     });
+  }
+
+  @Test
+  public void testSpecialties() {
+    User user = new User("john.doe", "john@doe.com", "test123", "test123");
+    entityManager.persist(user);
+    entityManager.flush();
+
+    Topic topic = new Topic("shopping");
+    entityManager.persistAndFlush(topic);
+
+    user.addSpecialty(topic);
+    entityManager.persistAndFlush(user);
+
+    User found = userRepository.findByEmail(user.getEmail());
+
+    assertEquals(user.getId(), found.getId());
+    assertTrue(found.getSpecialties().contains(topic));
+
+    user.removeSpecialty(topic);
+    entityManager.persistAndFlush(user);
+
+    found = userRepository.findByEmail(user.getEmail());
+
+    assertEquals(user.getId(), found.getId());
+    assertFalse(found.getSpecialties().contains(topic));
   }
 }
