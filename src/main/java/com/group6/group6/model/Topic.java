@@ -20,7 +20,7 @@ public class Topic {
   @Column(unique = true)
   private String name;
 
-  @ManyToMany(mappedBy = "assignedTopics")
+  @ManyToMany(mappedBy = "topics")
   private Set<Request> requests;
 
   protected Topic() {}
