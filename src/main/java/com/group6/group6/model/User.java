@@ -38,7 +38,7 @@ public class User {
   @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   private List<Topic> specialties = new ArrayList<Topic>();
 
-  protected User() {}
+  public User() {}
 
   public User(String username, String email, String password, String passwordConfirmation) {
     this.username = username;
