@@ -3,6 +3,9 @@ package com.group6.group6.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.group6.group6.validator.annotation.PasswordMatches;
 import com.group6.group6.validator.annotation.ValidEmail;
 
@@ -32,11 +35,25 @@ public class User {
   private float lat;
   private float lng;
 
-  public User() {}
+  @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  private List<Topic> specialties = new ArrayList<Topic>();
 
-  public User(String username, String email) {
+  protected User() {}
+
+  public User(String username, String email, String password, String passwordConfirmation) {
     this.username = username;
     this.email = email;
+    this.password = password;
+    this.passwordConfirmation = passwordConfirmation;
+  }
+
+  public User(String username, String email, String password, String passwordConfirmation, float lat, float lng) {
+    this.username = username;
+    this.email = email;
+    this.password = password;
+    this.passwordConfirmation = passwordConfirmation;
+    this.lat = lat;
+    this.lng = lng;
   }
 
   public Long getId() {
@@ -89,6 +106,18 @@ public class User {
 
   public void setLng(float lng) {
     this.lng = lng;
+  }
+
+  public List<Topic> getSpecialties() {
+    return this.specialties;
+  }
+
+  public boolean addSpecialty(Topic specialty) {
+    return this.specialties.add(specialty);
+  }
+
+  public boolean removeSpecialty(Topic specialty) {
+    return this.specialties.remove(specialty);
   }
 
 }
