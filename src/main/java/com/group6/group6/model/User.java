@@ -45,7 +45,7 @@ public class User {
   @JoinTable(name = "fulfillment", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "request_id"))
   private List<Request> fulfilledRequests = new ArrayList<Request>();
 
-  public User() {}
+  protected User() {}
 
   public User(String username, String email, String password, String passwordConfirmation) {
     this.username = username;
