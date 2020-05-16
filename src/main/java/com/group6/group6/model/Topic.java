@@ -36,7 +36,4 @@ public class Topic {
     return this.id;
   }
 
-  public void setId(Long id) {
-    this.id = id;
-  }
 }

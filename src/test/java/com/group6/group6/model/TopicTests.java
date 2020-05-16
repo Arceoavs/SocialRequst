@@ -46,7 +46,7 @@ public class TopicTests {
 
   @Test
   public void testPatternConstraint() {
-    assertThrows(ConstraintViolationException.class, () -> { 
+    assertThrows(ConstraintViolationException.class, () -> {
       Topic topic = new Topic("shopping fdafda");
       entityManager.persist(topic);
       entityManager.flush();
