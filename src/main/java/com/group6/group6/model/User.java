@@ -9,8 +9,11 @@ import java.util.List;
 import com.group6.group6.validator.annotation.PasswordMatches;
 import com.group6.group6.validator.annotation.ValidEmail;
 
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 @PasswordMatches
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class User {
 
   @Id
