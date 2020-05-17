@@ -41,8 +41,7 @@ public class User {
   @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   private List<Topic> specialties = new ArrayList<Topic>();
 
-  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-  private List<Request> submittedRequests = new ArrayList<Request>();
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
 
   @OneToMany
   @JoinTable(

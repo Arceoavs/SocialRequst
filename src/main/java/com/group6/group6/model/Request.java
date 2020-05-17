@@ -37,7 +37,7 @@ public class Request {
   @JoinColumn(name = "user_id", referencedColumnName = "id")
   private User user;
 
-  @ManyToMany(cascade = CascadeType.PERSIST)
+  @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
   private Set<Topic> topics;
 
   protected Request() {}
