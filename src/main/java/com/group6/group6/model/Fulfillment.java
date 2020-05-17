@@ -3,12 +3,14 @@ package com.group6.group6.model;
 import java.util.Date;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"request_id", "user_id"}))
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class Fulfillment {
 
   @Id
@@ -18,13 +20,13 @@ public class Fulfillment {
   @CreatedDate
   private Date createdAt;
 
-  @NotBlank(message = "Request required")
-  @OneToOne(cascade = CascadeType.ALL)
+  @NotNull(message = "Request is required")
+  @OneToOne(optional = false)
   @JoinColumn(name = "request_id", referencedColumnName = "id")
   private Request request;
 
-  @NotBlank(message = "User required")
-  @ManyToOne(cascade = CascadeType.ALL)
+  @NotNull(message = "User is required")
+  @ManyToOne(optional = false)
   @JoinColumn(name = "user_id", referencedColumnName = "id")
   private User user;
 

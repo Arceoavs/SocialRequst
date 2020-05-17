@@ -41,14 +41,14 @@ public class User {
   @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   private List<Topic> specialties = new ArrayList<Topic>();
 
-  @OneToMany(mappedBy = "user")
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
   private List<Request> submittedRequests = new ArrayList<Request>();
 
   @OneToMany
   @JoinTable(
     name = "fulfillment",
-    joinColumns = @JoinColumn(name = "user_id"),
-    inverseJoinColumns = @JoinColumn(name = "request_id")
+    joinColumns = {@JoinColumn(name = "user_id")},
+    inverseJoinColumns = {@JoinColumn(name = "request_id")}
   )
   private List<Request> fulfilledRequests = new ArrayList<Request>();
 
