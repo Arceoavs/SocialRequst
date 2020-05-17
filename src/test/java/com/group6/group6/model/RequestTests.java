@@ -1,6 +1,7 @@
 package com.group6.group6.model;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Set;
 import java.util.HashSet;
@@ -30,15 +31,24 @@ public class RequestTests {
   @Test
   public void testRequestCreation() {
     //entity creation
-    Request walkDog = new Request("Walk my dog", "Please take my cute dog for a walk", ((float) 51.975959), ((float) 7.60186));
-    entityManager.persist(walkDog);
-    entityManager.flush();
+    User user = new User("john.doe", "john@doe.com", "test123", "test123");
+    entityManager.persistAndFlush(user);
+    Request request = new Request(
+      "Walk my dog",
+      "Please take my cute dog for a walk",
+      ((float) 51.975959),
+      ((float) 7.60186),
+      user
+    );
+    entityManager.persistAndFlush(request);
 
     //search entry
     Request found = requestRepo.findByTitle("Walk my dog");
+    user = entityManager.refresh(user);
 
     //assert result
-    assertEquals(walkDog.getTitle(), found.getTitle());
+    assertEquals(request.getTitle(), found.getTitle());
+    assertTrue(user.getSubmittedRequests().contains(request));
   }
 
   /**
@@ -46,6 +56,8 @@ public class RequestTests {
    */
   @Test
   public void testRequestCreationWithTopics() {
+    User user = new User("john.doe", "john@doe.com", "test123", "test123");
+    entityManager.persistAndFlush(user);
     Topic[] topicsData = {new Topic("Dog"), new Topic("Walking")};
     Set<Topic> topics = new HashSet<>();
 
@@ -53,7 +65,14 @@ public class RequestTests {
       topics.add(topic);
     }
 
-    Request walkDog = new Request("Walk my dog", "Please take my cute dog for a walk", ((float) 51.975959), ((float) 7.60186), topics);
+    Request walkDog = new Request(
+      "Walk my dog",
+      "Please take my cute dog for a walk",
+      ((float) 51.975959),
+      ((float) 7.60186),
+      user,
+      topics
+    );
     entityManager.persist(walkDog);
     entityManager.flush();
 
