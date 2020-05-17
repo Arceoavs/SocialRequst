@@ -38,8 +38,7 @@ public class User {
   private float lat;
   private float lng;
 
-  @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-  private List<Topic> specialties = new ArrayList<Topic>();
+  @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
 
