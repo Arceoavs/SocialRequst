@@ -125,12 +125,8 @@ public class User {
     return this.specialties;
   }
 
-  public boolean addSpecialty(Topic specialty) {
-    return this.specialties.add(specialty);
-  }
-
-  public boolean removeSpecialty(Topic specialty) {
-    return this.specialties.remove(specialty);
+  public void setSpecialties(Set<Topic> specialties) {
+    this.specialties = specialties;
   }
 
   public Set<Request> getFulfilledRequests() {
