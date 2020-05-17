@@ -3,8 +3,7 @@ package com.group6.group6.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 import com.group6.group6.validator.annotation.PasswordMatches;
 import com.group6.group6.validator.annotation.ValidEmail;
@@ -39,8 +38,10 @@ public class User {
   private float lng;
 
   @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+  private Set<Topic> specialties;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+  private Set<Request> submittedRequests;
 
   @OneToMany
   @JoinTable(
@@ -48,7 +49,7 @@ public class User {
     joinColumns = {@JoinColumn(name = "user_id")},
     inverseJoinColumns = {@JoinColumn(name = "request_id")}
   )
-  private List<Request> fulfilledRequests = new ArrayList<Request>();
+  private Set<Request> fulfilledRequests;
 
   public User() {}
 
@@ -120,7 +121,7 @@ public class User {
     this.lng = lng;
   }
 
-  public List<Topic> getSpecialties() {
+  public Set<Topic> getSpecialties() {
     return this.specialties;
   }
 
@@ -132,11 +133,11 @@ public class User {
     return this.specialties.remove(specialty);
   }
 
-  public List<Request> getFulfilledRequests() {
+  public Set<Request> getFulfilledRequests() {
     return this.fulfilledRequests;
   }
 
-  public List<Request> getSubmittedRequests() {
+  public Set<Request> getSubmittedRequests() {
     return this.submittedRequests;
   }
 
