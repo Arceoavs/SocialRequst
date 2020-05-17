@@ -1,10 +1,10 @@
 package com.group6.group6.model;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -36,6 +36,9 @@ public class Request {
   @JoinColumn(name = "user_id", referencedColumnName = "id")
   private User user;
 
+  @ManyToMany(cascade = CascadeType.PERSIST)
+  private Set<Topic> topics;
+
   protected Request() {}
 
   public Request(String title, String description, float lat, float lng, User user) {
@@ -44,6 +47,14 @@ public class Request {
     this.lat = lat;
     this.lng = lng;
     this.user = user;
+  }
+
+  public Request(String title, String description, float lat, float lng, Set<Topic> topics) {
+    this.title = title;
+    this.description = description;
+    this.lat = lat;
+    this.lng = lng;
+    this.topics = topics;
   }
 
   public Long getId() {
@@ -57,7 +68,7 @@ public class Request {
   public void setTitle(String title) {
     this.title = title;
   }
-  
+
   public String getDescription() {
     return this.description;
   }
@@ -104,6 +115,14 @@ public class Request {
 
   public void setFulfillment(Fulfillment fulfillment) {
     this.fulfillment = fulfillment;
+  }
+
+  public Set<Topic> getTopics() {
+    return this.topics;
+  }
+
+  public void setTopics(Set<Topic> topics) {
+    this.topics = topics;
   }
 
 }

@@ -45,10 +45,14 @@ public class User {
   private List<Request> submittedRequests = new ArrayList<Request>();
 
   @OneToMany
-  @JoinTable(name = "fulfillment", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "request_id"))
+  @JoinTable(
+    name = "fulfillment",
+    joinColumns = @JoinColumn(name = "user_id"),
+    inverseJoinColumns = @JoinColumn(name = "request_id")
+  )
   private List<Request> fulfilledRequests = new ArrayList<Request>();
 
-  protected User() {}
+  public User() {}
 
   public User(String username, String email, String password, String passwordConfirmation) {
     this.username = username;

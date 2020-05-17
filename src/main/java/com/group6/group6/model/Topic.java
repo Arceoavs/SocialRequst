@@ -1,5 +1,7 @@
 package com.group6.group6.model;
 
+import java.util.Set;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -18,10 +20,18 @@ public class Topic {
   @Column(unique = true)
   private String name;
 
+  @ManyToMany(mappedBy = "topics")
+  private Set<Request> requests;
+
   protected Topic() {}
 
   public Topic(String name) {
     this.name = name;
+  }
+
+  public Topic(String name, Set<Request> requests) {
+    this.name = name;
+    this.requests = requests;
   }
 
   public String getName() {
@@ -36,4 +46,11 @@ public class Topic {
     return this.id;
   }
 
+  public Set<Request> getRequests() {
+    return this.requests;
+  }
+
+  public void setRequests(Set<Request> requests) {
+    this.requests = requests;
+  }
 }
