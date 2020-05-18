@@ -18,7 +18,7 @@
                             <form method="get">
                                 <div class="field has-addons">
                                     <div class="control is-expanded">
-                                        <input name="q" class="input" type="text" th:placeholder="${searchQuery}" placeholder="Find a request">
+                                        <input name="q" class="input" type="text" th:placeholder="${searchQuery!= null} ? ${searchQuery} : 'What are you looking for?'" placeholder="Find a request">
                                     </div>
                                     <div class="control">
                                         <button type="submit" class="button is-info" title="Search">
