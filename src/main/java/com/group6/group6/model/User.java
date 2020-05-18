@@ -3,7 +3,9 @@ package com.group6.group6.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
+import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.group6.group6.validator.annotation.PasswordMatches;
 import com.group6.group6.validator.annotation.ValidEmail;
@@ -37,19 +39,14 @@ public class User {
   private float lat;
   private float lng;
 
-  @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+  @ManyToMany(cascade = CascadeType.PERSIST)
   private Set<Topic> specialties;
 
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
   private Set<Request> submittedRequests;
 
-  @OneToMany
-  @JoinTable(
-    name = "fulfillment",
-    joinColumns = {@JoinColumn(name = "user_id")},
-    inverseJoinColumns = {@JoinColumn(name = "request_id")}
-  )
-  private Set<Request> fulfilledRequests;
+  @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+  private Set<Fulfillment> fulfillments = new HashSet<>();
 
   public User() {}
 
@@ -130,7 +127,11 @@ public class User {
   }
 
   public Set<Request> getFulfilledRequests() {
-    return this.fulfilledRequests;
+    return
+      this.fulfillments
+        .stream()
+        .map((fulfillment) -> fulfillment.getRequest())
+        .collect(Collectors.toSet());
   }
 
   public Set<Request> getSubmittedRequests() {
