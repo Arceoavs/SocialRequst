@@ -21,13 +21,12 @@ public class Fulfillment {
   private Date createdAt;
 
   @NotNull(message = "Request is required")
-  @OneToOne(optional = false)
+  @OneToOne
   @JoinColumn(name = "request_id", referencedColumnName = "id")
   private Request request;
 
-  @NotNull(message = "User is required")
-  @ManyToOne(optional = false)
-  @JoinColumn(name = "user_id", referencedColumnName = "id")
+  @ManyToOne(optional = true)
+  @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = true)
   private User user;
 
   public Fulfillment(Request request, User user) {

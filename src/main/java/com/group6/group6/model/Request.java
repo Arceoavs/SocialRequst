@@ -33,11 +33,11 @@ public class Request {
   private Fulfillment fulfillment;
 
   @NotNull(message = "User required")
-  @ManyToOne(optional = false)
-  @JoinColumn(name = "user_id", referencedColumnName = "id")
+  @ManyToOne(optional = false, fetch = FetchType.LAZY)
+  @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
   private User user;
 
-  @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+  @ManyToMany(cascade = CascadeType.PERSIST)
   private Set<Topic> topics;
 
   protected Request() {}
