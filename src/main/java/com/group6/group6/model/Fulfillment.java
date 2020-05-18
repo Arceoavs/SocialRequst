@@ -29,6 +29,8 @@ public class Fulfillment {
   @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = true)
   private User user;
 
+  protected Fulfillment() {}
+
   public Fulfillment(Request request, User user) {
     this.request = request;
     this.user = user;
