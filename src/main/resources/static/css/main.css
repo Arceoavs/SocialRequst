@@ -11,3 +11,7 @@
 .search-page .field.has-addons {
     margin: 2em 0 4em;
 }
+
+.search-page .media-content > p:only-child {
+    margin-top: 10px;
+}

@@ -18,11 +18,11 @@
                 </div>
                 <div class="media-content">
                     <p class="title is-4" th:text="${request.title}">title</p>
-                    <p class="subtitle is-6">@johnsmith</p>
+                    <p sec:authorize="isAuthenticated()" class="subtitle is-6">@johnsmith</p>
                 </div>
             </div>
 
-            <div class="content">
+            <div sec:authorize="isAuthenticated()" class="content">
                 <p th:text="${request.description}">Description</p>
                 <div class="tags is-marginless">
                     <span th:each="topic : ${request.topics}" th:text="${topic.name}" class="tag">Topic X</span>
@@ -52,7 +52,7 @@
                 </div>
             </div>
         </div>
-        <footer class="card-footer">
+        <footer sec:authorize="isAuthenticated()" class="card-footer">
             <a th:href="@{/requests/{id}(id=${request.id})}" href="/requests/" class="card-footer-item">See Details</a>
         </footer>
     </div>
