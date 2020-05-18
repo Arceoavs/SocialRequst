@@ -25,9 +25,7 @@
             <div class="content">
                 <p th:text="${request.description}">Description</p>
                 <div class="tags is-marginless">
-                    <span class="tag">Topic X</span>
-                    <span class="tag">Topic Y</span>
-                    <span class="tag">Topic Z</span>
+                    <span th:each="topic : ${request.topics}" th:text="${topic.name}" class="tag">Topic X</span>
                 </div>
                 <div class="level">
                     <div class="level-left">

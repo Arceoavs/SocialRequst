@@ -15,3 +15,16 @@
     background-color: #00d1b2;
     box-shadow: 0em 0.2em 0.8em 0 rgba(0,0,0,0.1);
 }
+
+/*
+* Max-height for description text
+*/
+.request-card .content p {
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    max-height: 6em;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
