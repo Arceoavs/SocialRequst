@@ -66,6 +66,13 @@ public class User {
     this.lng = lng;
   }
 
+  @PreRemove
+  private void preRemove() {
+    for (Fulfillment fulfillment : fulfillments) {
+      fulfillment.setUser(null);
+    }
+  }
+
   public Long getId() {
     return this.id;
   }
