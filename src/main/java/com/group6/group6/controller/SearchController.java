@@ -24,7 +24,7 @@ public class SearchController {
    * Method to read the request parameter q, task the SearchService with fetching results
    * and rendering the html page with the results.
    *
-   * @param q
+   * @param q the search query string, retrieved from the request
    * @param model
    * @return html location
    */
