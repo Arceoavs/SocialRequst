@@ -1,0 +1,17 @@
+.request-card .level:not(:last-child) {
+    margin-bottom: .5rem;
+}
+
+.request-card .title, .request-card .subtitle {
+    /* must override .hero.is-primary .title */
+    color: #4a4a4a !important;
+}
+
+.request-card figure .icon {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    color: white;
+    background-color: #00d1b2;
+    box-shadow: 0em 0.2em 0.8em 0 rgba(0,0,0,0.1);
+}
