@@ -12,11 +12,12 @@ import org.springframework.web.context.request.WebRequest;
 @RequestMapping("/search")
 public class SearchController {
 
-  @RequestMapping("/search?q={str}")
+  @RequestMapping
   public String showSearchPage(
-          @RequestParam("q") String query,
+          @RequestParam(required = false) String q,
           Model model) {
-    model.addAttribute("msg", query);
-    return "search";
+    model.addAttribute("searchQuery", q);
+    System.out.println(q);
+    return "search/index";
   }
 }
