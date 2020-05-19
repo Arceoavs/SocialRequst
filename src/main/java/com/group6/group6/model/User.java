@@ -3,14 +3,18 @@ package com.group6.group6.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.group6.group6.validator.annotation.PasswordMatches;
 import com.group6.group6.validator.annotation.ValidEmail;
 
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 @PasswordMatches
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class User {
 
   @Id
@@ -35,8 +39,14 @@ public class User {
   private float lat;
   private float lng;
 
-  @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-  private List<Topic> specialties = new ArrayList<Topic>();
+  @ManyToMany(cascade = CascadeType.PERSIST)
+  private Set<Topic> specialties;
+
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+  private Set<Request> submittedRequests;
+
+  @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+  private Set<Fulfillment> fulfillments = new HashSet<>();
 
   public User() {}
 
@@ -54,6 +64,13 @@ public class User {
     this.passwordConfirmation = passwordConfirmation;
     this.lat = lat;
     this.lng = lng;
+  }
+
+  @PreRemove
+  private void preRemove() {
+    for (Fulfillment fulfillment : fulfillments) {
+      fulfillment.setUser(null);
+    }
   }
 
   public Long getId() {
@@ -108,16 +125,24 @@ public class User {
     this.lng = lng;
   }
 
-  public List<Topic> getSpecialties() {
+  public Set<Topic> getSpecialties() {
     return this.specialties;
   }
 
-  public boolean addSpecialty(Topic specialty) {
-    return this.specialties.add(specialty);
+  public void setSpecialties(Set<Topic> specialties) {
+    this.specialties = specialties;
   }
 
-  public boolean removeSpecialty(Topic specialty) {
-    return this.specialties.remove(specialty);
+  public Set<Request> getFulfilledRequests() {
+    return
+      this.fulfillments
+        .stream()
+        .map((fulfillment) -> fulfillment.getRequest())
+        .collect(Collectors.toSet());
+  }
+
+  public Set<Request> getSubmittedRequests() {
+    return this.submittedRequests;
   }
 
 }

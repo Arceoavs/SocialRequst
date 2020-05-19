@@ -10,6 +10,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.Arrays;
+import java.util.HashSet;
+
 import javax.validation.ConstraintViolationException;
 
 import com.group6.group6.repository.UserRepository;
@@ -72,20 +75,24 @@ public class UserTests {
     Topic topic = new Topic("shopping");
     entityManager.persistAndFlush(topic);
 
-    user.addSpecialty(topic);
+    Topic[] specialites = new Topic[]{topic};
+
+    user.setSpecialties(new HashSet<>(Arrays.asList(specialites)));
     entityManager.persistAndFlush(user);
 
     User found = userRepository.findByEmail(user.getEmail());
 
     assertEquals(user.getId(), found.getId());
     assertTrue(found.getSpecialties().contains(topic));
+    assertEquals(found.getSpecialties().size(), 1);
 
-    user.removeSpecialty(topic);
+    user.setSpecialties(new HashSet<>());
     entityManager.persistAndFlush(user);
 
     found = userRepository.findByEmail(user.getEmail());
 
     assertEquals(user.getId(), found.getId());
     assertFalse(found.getSpecialties().contains(topic));
+    assertEquals(found.getSpecialties().size(), 0);
   }
 }
