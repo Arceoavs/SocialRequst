@@ -3,17 +3,15 @@ package com.group6.group6.model;
 import java.util.Date;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class Request {
 
   @Id
@@ -31,23 +29,33 @@ public class Request {
   @CreatedDate
   private Date createdAt;
 
+  @OneToOne(mappedBy = "request", cascade = CascadeType.ALL)
+  private Fulfillment fulfillment;
+
+  @NotNull(message = "User required")
+  @ManyToOne(optional = false, fetch = FetchType.LAZY)
+  @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
+  private User user;
+
   @ManyToMany(cascade = CascadeType.PERSIST)
   private Set<Topic> topics;
 
   protected Request() {}
 
-  public Request(String title, String description, float lat, float lng) {
+  public Request(String title, String description, float lat, float lng, User user) {
     this.title = title;
     this.description = description;
     this.lat = lat;
     this.lng = lng;
+    this.user = user;
   }
 
-  public Request(String title, String description, float lat, float lng, Set<Topic> topics) {
+  public Request(String title, String description, float lat, float lng, User user, Set<Topic> topics) {
     this.title = title;
     this.description = description;
     this.lat = lat;
     this.lng = lng;
+    this.user = user;
     this.topics = topics;
   }
 
@@ -91,6 +99,26 @@ public class Request {
     return this.createdAt;
   }
 
+  public User getUser() {
+    return this.user;
+  }
+
+  public void setUser(User user) {
+    this.user = user;
+  }
+
+  public boolean isFulfilled() {
+    return this.fulfillment != null;
+  }
+
+  public Fulfillment getFulfillment() {
+    return this.fulfillment;
+  }
+
+  public void setFulfillment(Fulfillment fulfillment) {
+    this.fulfillment = fulfillment;
+  }
+
   public Set<Topic> getTopics() {
     return this.topics;
   }
@@ -98,4 +126,5 @@ public class Request {
   public void setTopics(Set<Topic> topics) {
     this.topics = topics;
   }
+
 }
