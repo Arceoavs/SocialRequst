@@ -5,7 +5,6 @@ import javax.validation.constraints.NotBlank;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import com.group6.group6.validator.annotation.PasswordMatches;
 import com.group6.group6.validator.annotation.ValidEmail;
@@ -15,6 +14,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @PasswordMatches
 @Entity
 @EntityListeners(AuditingEntityListener.class)
+@Table(name = "users")
 public class User {
 
   @Id
@@ -40,6 +40,11 @@ public class User {
   private float lng;
 
   @ManyToMany(cascade = CascadeType.PERSIST)
+  @JoinTable(
+    name = "specialties",
+    joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+    inverseJoinColumns = {@JoinColumn(name = "topic_id", referencedColumnName = "id")}
+  )
   private Set<Topic> specialties;
 
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -47,6 +52,14 @@ public class User {
 
   @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
   private Set<Fulfillment> fulfillments = new HashSet<>();
+
+  @OneToMany
+  @JoinTable(
+    name = "fulfillments",
+    joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+    inverseJoinColumns = {@JoinColumn(name = "request_id", referencedColumnName = "id")}
+  )
+  private Set<Request> fulfilledRequests;
 
   public User() {}
 
@@ -134,11 +147,7 @@ public class User {
   }
 
   public Set<Request> getFulfilledRequests() {
-    return
-      this.fulfillments
-        .stream()
-        .map((fulfillment) -> fulfillment.getRequest())
-        .collect(Collectors.toSet());
+    return this.fulfilledRequests;
   }
 
   public Set<Request> getSubmittedRequests() {

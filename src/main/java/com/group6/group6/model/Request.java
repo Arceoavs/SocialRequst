@@ -12,6 +12,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
+@Table(name = "requests")
 public class Request {
 
   @Id
@@ -38,6 +39,11 @@ public class Request {
   private User user;
 
   @ManyToMany(cascade = CascadeType.PERSIST)
+  @JoinTable(
+    name = "requests_topics",
+    joinColumns = {@JoinColumn(name = "request_id", referencedColumnName = "id")},
+    inverseJoinColumns = {@JoinColumn(name = "topic_id", referencedColumnName = "id")}
+  )
   private Set<Topic> topics;
 
   protected Request() {}
