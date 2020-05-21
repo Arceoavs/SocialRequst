@@ -40,7 +40,7 @@ function initializeSearch() {
   $searchForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    $resultsWrapper = document.querySelector('#seach-results-wrapper');
+    $resultsWrapper = document.querySelector('#search-results-wrapper');
 
     // add loading spinner
     $resultsWrapper.innerHTML = `
