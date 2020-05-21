@@ -12,6 +12,31 @@
     <section class="hero is-fullheight-with-navbar">
       <div class="hero-body" style="display: block;">
         <div class="container">
+          <div sec:authorize="isAuthenticated()" class="level">
+            <div class="level-left">
+              <div class="level-item">
+                <a href="/query/near-by" class="button is-link is-light">
+                  <span class="icon is-small"><i class="fas fa-search"></i></span>
+                  <span>Requests in your area!</span>
+                </a>
+              </div>
+              <div class="level-item">
+                <a href="/query/matching-specialties" class="button is-link is-light">
+                  <span class="icon is-small"><i class="fas fa-search"></i></span>
+                  <span>Requests with Your Specialties!</span>
+                </a>
+              </div>
+            </div>
+            <div class="level-right">
+              <div class="level-item">
+                <a href="/request/new" class="button is-success">
+                  <span class="icon is-small"><i class="fa fa-plus"></i></span>
+                  <span>Create Request</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
           <div class="columns is-desktop">
             <div class="column is-half is-offset-one-quarter">
               <form id="search-form" action="/search" method="GET">
