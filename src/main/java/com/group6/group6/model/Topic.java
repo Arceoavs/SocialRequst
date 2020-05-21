@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 public class Topic {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   @Pattern(regexp = "^\\w+$", message = "Only alphernumeric characters without whitespace")
