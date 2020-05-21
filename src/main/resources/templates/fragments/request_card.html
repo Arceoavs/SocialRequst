@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="request_card(request)">
+    <div class="card request-card">
+        <div class="card-content">
+            <div class="media">
+                <div class="media-left">
+                    <figure class="image is-48x48">
+                        <span class="icon">
+                          <i class="fas fa-clipboard"></i>
+                        </span>
+                    </figure>
+                </div>
+                <div class="media-content">
+                    <p class="title is-4" th:text="${request.title}">title</p>
+                    <p sec:authorize="isAuthenticated()" class="subtitle is-6">@johnsmith</p>
+                </div>
+            </div>
+
+            <div sec:authorize="isAuthenticated()" class="content">
+                <p th:text="${request.description}">Description</p>
+                <div class="tags is-marginless">
+                    <span th:each="topic : ${request.topics}" th:text="${topic.name}" class="tag">Topic X</span>
+                </div>
+                <div class="level">
+                    <div class="level-left">
+                        <div class="level-item">
+                            <span class="icon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                            <p>Date of Creation</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="level">
+                    <div class="level-left">
+                        <div class="level-item">
+                            <span class="icon">
+                                <i class="fa fa-map-marker"></i>
+                            </span>
+                            <p>
+                                <span th:text="${request.lat}">lat</span>
+                                <span th:text="${request.lng}">lng</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer sec:authorize="isAuthenticated()" class="card-footer">
+            <a th:href="@{/requests/{id}(id=${request.id})}" href="/requests/" class="card-footer-item">See Details</a>
+        </footer>
+    </div>
+</div>
+</body>
+</html>
