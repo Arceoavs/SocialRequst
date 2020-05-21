@@ -1,5 +1,8 @@
 @import "components/flash-message.css";
 @import "components/footer.css";
+@import "components/header.css";
 @import "components/hero.css";
-@import "components/request_card.css";
+@import "components/request-card.css";
 @import "components/search.css";
+
+@import "lib/spinkit.min.css";

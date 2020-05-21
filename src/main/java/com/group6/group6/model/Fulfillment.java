@@ -8,13 +8,13 @@ import javax.validation.constraints.NotNull;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"request_id", "user_id"}))
+@Table(name = "fulfillments", uniqueConstraints = @UniqueConstraint(columnNames = {"request_id", "user_id"}))
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 public class Fulfillment {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   @CreatedDate
