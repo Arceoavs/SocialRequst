@@ -1,0 +1,34 @@
+.request-card .level:not(:last-child) {
+  margin-bottom: .5rem;
+}
+
+.request-card .media-content > p:only-child {
+  margin-top: 10px;
+}
+
+.request-card .title, .request-card .subtitle {
+  /* must override .hero.is-primary .title */
+  color: #4a4a4a !important;
+}
+
+.request-card figure .icon {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  color: white;
+  background-color: #00d1b2;
+  box-shadow: 0em 0.2em 0.8em 0 rgba(0,0,0,0.1);
+}
+
+/*
+ * Max-height for description text
+ */
+.request-card .content p {
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  max-height: 6em;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}

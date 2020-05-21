@@ -7,11 +7,33 @@
 <head>
   <title>SocialRequest - Home</title>
 </head>
+<body>
   <div layout:fragment="content">
-    <section class="hero is-primary is-fullheight-with-navbar">
+    <section class="hero is-fullheight-with-navbar">
       <div class="hero-body" style="display: block;">
         <div class="container">
-          Homepage
+          <div class="columns is-desktop">
+            <div class="column is-half is-offset-one-quarter">
+              <form id="search-form" action="/search" method="GET">
+                <div class="field has-addons search-field">
+                  <div class="control is-expanded">
+                    <input name="q" class="input is-rounded" type="text" th:placeholder="${searchQuery != null and searchQuery != ''} ? ${searchQuery} : 'What are you looking for?'" placeholder="Find a request">
+                  </div>
+                  <div class="control">
+                    <button type="submit" class="button is-info is-rounded" title="Search">
+                      <span class="icon is-right">
+                        <i class="fas fa-search"></i>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div id="seach-results-wrapper" class="container">
+          <div th:replace="search/result_list :: result_list(results = ${results})" />
         </div>
       </div>
     </section>
