@@ -35,34 +35,52 @@ function initializeFlashMessages() {
 
 function initializeSearch() {
   const $searchForm = document.querySelector('form#search-form');
-  if (!$searchForm) return;
+  const $searchSpecialties = document.querySelector('button#specialties-search');
+  if (!$searchForm || !$searchSpecialties) return;
+
+  let $resultsWrapper = document.querySelector('#search-results-wrapper');
+  // add loading spinner
+  let $spinner = `
+    <div class="sk-circle" style="left: 50%;">
+      <div class="sk-circle-dot"></div>
+      <div class="sk-circle-dot"></div>
+      <div class="sk-circle-dot"></div>
+      <div class="sk-circle-dot"></div>
+      <div class="sk-circle-dot"></div>
+      <div class="sk-circle-dot"></div>
+      <div class="sk-circle-dot"></div>
+      <div class="sk-circle-dot"></div>
+      <div class="sk-circle-dot"></div>
+      <div class="sk-circle-dot"></div>
+      <div class="sk-circle-dot"></div>
+      <div class="sk-circle-dot"></div>
+    </div>
+  `;
 
   $searchForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    $resultsWrapper = document.querySelector('#search-results-wrapper');
-
-    // add loading spinner
-    $resultsWrapper.innerHTML = `
-      <div class="sk-circle" style="left: 50%;">
-        <div class="sk-circle-dot"></div>
-        <div class="sk-circle-dot"></div>
-        <div class="sk-circle-dot"></div>
-        <div class="sk-circle-dot"></div>
-        <div class="sk-circle-dot"></div>
-        <div class="sk-circle-dot"></div>
-        <div class="sk-circle-dot"></div>
-        <div class="sk-circle-dot"></div>
-        <div class="sk-circle-dot"></div>
-        <div class="sk-circle-dot"></div>
-        <div class="sk-circle-dot"></div>
-        <div class="sk-circle-dot"></div>
-      </div>
-    `;
+    $resultsWrapper.innerHTML = $spinner;
 
     let url = new URL($searchForm.action);
+    console.log(url);
     url.search = new URLSearchParams({ q: $searchForm.querySelector('[name="q"]').value });
 
+    try {
+      const response = await fetch(url);
+      $resultsWrapper.innerHTML = await response.text();
+    } catch(error) {
+      console.log('Something went wrong', error);
+      createFlashMessage('error', `Something went wrong: ${error}`)
+    }
+  });
+
+  $searchSpecialties.addEventListener('click', async (e) => {
+    e.preventDefault();
+
+    $resultsWrapper.innerHTML = $spinner;
+
+    let url = new URL("http://localhost:8080/search/matching-specialties");
     try {
       const response = await fetch(url);
       $resultsWrapper.innerHTML = await response.text();

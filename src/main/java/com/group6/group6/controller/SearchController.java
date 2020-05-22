@@ -1,9 +1,11 @@
 package com.group6.group6.controller;
 
 import com.group6.group6.model.Request;
+import com.group6.group6.repository.UserRepository;
 import com.group6.group6.service.SearchService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +34,13 @@ public class SearchController {
     List<Request> results = searchService.getRequests(query);
     model.addAttribute("results", results);
 
+    return "search/results :: results";
+  }
+
+  @GetMapping("/matching-specialties")
+  public String showMatchingSpecialties(Model model) {
+    List<Request> results = searchService.getRequestMatchingTopics();
+    model.addAttribute("results", results);
     return "search/results :: results";
   }
 }
