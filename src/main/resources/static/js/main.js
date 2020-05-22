@@ -80,7 +80,7 @@ function initializeSearch() {
 
 function updateSearchURL (response, query) {
   document.title = response.pageTitle;
-  window.history.pushState({"html":response.html,"pageTitle":response.pageTitle},"", '/search?q=' + query);
+  window.history.pushState({ html: response.html, pageTitle: response.pageTitle }, '', `/search?q=${query}`);
 }
 
 function createFlashMessage(type, message) {
