@@ -18,7 +18,8 @@ INSERT INTO requests (user_id, title, description, lat, lng, created_at) VALUES
   (2, 'Craft a mask', 'I need a mask to go shopping and travel to work. Can someone make me one?', 51.978957, 7.666092, LOCALTIMESTAMP),
   (2, 'I need a cook', 'Can someone be a cook for me? I cannot cook.', 52.978957, 7.666092, LOCALTIMESTAMP),
   (2, 'I need a ride', 'My car broke down. Can someone offer me a daily commute?', 53.978957, 9.666092, LOCALTIMESTAMP),
-  (2, 'Brush my cat', 'I am bad with cats. Can someone brush my cat? She has been losing a lot of hair and it is a mess to clean up.', 54.978957, 5.666092, LOCALTIMESTAMP);
+  (2, 'Brush my cat', 'I am bad with cats. Can someone brush my cat? She has been losing a lot of hair and it is a mess to clean up.', 54.978957, 5.666092, LOCALTIMESTAMP),
+  (2, 'Walk my Cat', 'I am bad with cats. Can someone (except john) walk my cat?', 51.978957, 7.796092, LOCALTIMESTAMP);
 
 -- TOPICS FOR REQUESTS
 INSERT INTO requests_topics (request_id, topic_id) VALUES
