@@ -30,3 +30,8 @@ INSERT INTO requests_topics (request_id, topic_id) VALUES
   (6, 1),
   (7, 5),
   (8, 2);
+
+-- TOPICS FOR USERES
+INSERT INTO specialties (user_id, topic_id) VALUES
+  (1,2),
+  (1,3);
