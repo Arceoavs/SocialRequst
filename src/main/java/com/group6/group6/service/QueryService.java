@@ -47,14 +47,4 @@ public class QueryService {
     return requestRepository.getNearBy(lat, lng);
   }
 
-  /**
-   * Method to get a list of requests, based on coordinates
-   * @param lat
-   * @param lng
-   * @return list of requests
-   */
-  public List<Request> getNearBy(float lat, float lng) {
-    return requestRepository.getNearBy(lat, lng);
-  }
-
 }
