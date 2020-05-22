@@ -24,7 +24,7 @@ public class QueryService {
 
   /**
    * Method Method to get a list of requests, based on the logged in users topics
-   * @return
+   * @return list of requests
    */
   public List<Request> getRequestMatchingTopics(){
     User user = userRepository.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());

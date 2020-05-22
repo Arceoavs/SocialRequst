@@ -18,14 +18,24 @@ public class QueryController {
   @Autowired
   private QueryService queryService;
 
+  /**
+   * Method to display a list of requests near-by the user
+   * @param model
+   * @return html page with list of requests
+   */
   @GetMapping("/near-by")
-  public String index(Model model) {
+  public String showNearBy(Model model) {
     List<Request> results = queryService.getNearByUser();
     model.addAttribute("results", results);
 
     return "query/index";
   }
 
+  /**
+   * Method to display a list of requests with topics, which are specialties for the user
+   * @param model
+   * @return html page with list of requests
+   */
   @GetMapping("/matching-specialties")
   public String showMatchingSpecialties(Model model) {
     List<Request> results = queryService.getRequestMatchingTopics();
