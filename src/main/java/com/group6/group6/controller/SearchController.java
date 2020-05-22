@@ -39,7 +39,8 @@ public class SearchController {
 
   @GetMapping("/matching-specialties")
   public String showMatchingSpecialties(Model model) {
-    model.addAttribute("request", searchService.getRequestMatchingTopics());
-    return "search/specialties";
+    List<Request> results = searchService.getRequestMatchingTopics();
+    model.addAttribute("results", results);
+    return "search/results :: results";
   }
 }
