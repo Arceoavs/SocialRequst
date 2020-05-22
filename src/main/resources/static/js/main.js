@@ -62,10 +62,30 @@ function initializeSearch() {
 
     $resultsWrapper.innerHTML = $spinner;
 
+  $searchForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    $resultsWrapper.innerHTML = $spinner;
+
     let url = new URL($searchForm.action);
     console.log(url);
     url.search = new URLSearchParams({ q: $searchForm.querySelector('[name="q"]').value });
 
+    try {
+      const response = await fetch(url);
+      $resultsWrapper.innerHTML = await response.text();
+    } catch(error) {
+      console.log('Something went wrong', error);
+      createFlashMessage('error', `Something went wrong: ${error}`)
+    }
+  });
+
+  $searchSpecialties.addEventListener('click', async (e) => {
+    e.preventDefault();
+
+    $resultsWrapper.innerHTML = $spinner;
+
+    let url = new URL("http://localhost:8080/search/matching-specialties");
     try {
       const response = await fetch(url);
       $resultsWrapper.innerHTML = await response.text();
