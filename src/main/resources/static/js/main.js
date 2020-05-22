@@ -64,7 +64,7 @@ function initializeSearch() {
 
     let url = new URL($searchForm.action);
     let query = $searchForm.querySelector('[name="q"]').value;
-    console.log(url);
+    
     url.search = new URLSearchParams({ q: query , raw: 'true'});
 
     try {
