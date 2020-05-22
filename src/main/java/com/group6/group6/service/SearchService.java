@@ -33,11 +33,4 @@ public class SearchService {
 
     return requestRepository.search(query);
   }
-
-  public List<Request> getRequestMatchingTopics(){
-    User user = userRepository.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
-    Set<Topic> specialties = user.getSpecialties();
-    return requestRepository.findByTopicsInOrderByCreatedAtDesc(specialties);
-  }
-
 }

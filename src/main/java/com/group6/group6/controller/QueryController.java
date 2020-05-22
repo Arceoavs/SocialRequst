@@ -25,4 +25,12 @@ public class QueryController {
 
     return "query/index";
   }
+
+  @GetMapping("/matching-specialties")
+  public String showMatchingSpecialties(Model model) {
+    List<Request> results = queryService.getRequestMatchingTopics();
+    model.addAttribute("results", results);
+
+    return "query/index";
+  }
 }
