@@ -30,10 +30,15 @@ public class SearchController {
    * @return html location
    */
   @GetMapping
-  public String showSearchPage(@RequestParam(required = false, name = "q") String query, Model model) {
+  public String showSearchPage(@RequestParam(required = false, name = "q") String query, @RequestParam(required = false, name = "raw") String raw, Model model) {
     List<Request> results = searchService.getRequests(query);
     model.addAttribute("results", results);
 
-    return "search/results :: results";
+    if (raw != null) {
+      return "search/results :: results";
+    } else {
+      return "home/index";
+    }
+
   }
 }

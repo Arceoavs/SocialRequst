@@ -35,8 +35,8 @@ function initializeFlashMessages() {
 
 function initializeSearch() {
   const $searchForm = document.querySelector('form#search-form');
-  const $searchSpecialties = document.querySelector('button#specialties-search');
-  if (!$searchForm || !$searchSpecialties) return;
+
+  if (!$searchForm) return;
 
   let $resultsWrapper = document.querySelector('#search-results-wrapper');
   // add loading spinner
@@ -62,53 +62,25 @@ function initializeSearch() {
 
     $resultsWrapper.innerHTML = $spinner;
 
-  $searchForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    $resultsWrapper.innerHTML = $spinner;
-
     let url = new URL($searchForm.action);
+    let query = $searchForm.querySelector('[name="q"]').value;
     console.log(url);
-    url.search = new URLSearchParams({ q: $searchForm.querySelector('[name="q"]').value });
+    url.search = new URLSearchParams({ q: query , raw: 'true'});
 
     try {
       const response = await fetch(url);
       $resultsWrapper.innerHTML = await response.text();
+      updateSearchURL(response, query);
     } catch(error) {
       console.log('Something went wrong', error);
       createFlashMessage('error', `Something went wrong: ${error}`)
     }
   });
+}
 
-  $searchSpecialties.addEventListener('click', async (e) => {
-    e.preventDefault();
-
-    $resultsWrapper.innerHTML = $spinner;
-
-    let url = new URL("http://localhost:8080/search/matching-specialties");
-    try {
-      const response = await fetch(url);
-      $resultsWrapper.innerHTML = await response.text();
-    } catch(error) {
-      console.log('Something went wrong', error);
-      createFlashMessage('error', `Something went wrong: ${error}`)
-    }
-  });
-
-  $searchSpecialties.addEventListener('click', async (e) => {
-    e.preventDefault();
-
-    $resultsWrapper.innerHTML = $spinner;
-
-    let url = new URL("http://localhost:8080/search/matching-specialties");
-    try {
-      const response = await fetch(url);
-      $resultsWrapper.innerHTML = await response.text();
-    } catch(error) {
-      console.log('Something went wrong', error);
-      createFlashMessage('error', `Something went wrong: ${error}`)
-    }
-  });
+function updateSearchURL (response, query) {
+  document.title = response.pageTitle;
+  window.history.pushState({"html":response.html,"pageTitle":response.pageTitle},"", '/search?q=' + query);
 }
 
 function createFlashMessage(type, message) {
