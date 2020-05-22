@@ -37,7 +37,7 @@ public class SearchService {
   public List<Request> getRequestMatchingTopics(){
     User user = userRepository.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
     Set<Topic> specialties = user.getSpecialties();
-    return requestRepository.findByTopicsIn(specialties);
+    return requestRepository.findByTopicsInOrderByCreatedAtDesc(specialties);
   }
 
 }
