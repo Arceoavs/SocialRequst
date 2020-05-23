@@ -6,13 +6,14 @@
 >
   <head>
     <script type="text/javascript" src="/js/selectTopics.js"></script>
-    <title>SocialRequest - Create Request</title>
+    <title>SocialRequest - Create a Request</title>
   </head>
   <body>
     <div layout:fragment="content">
       <section class="hero is-fullheight-with-navbar">
         <div class="hero-body" style="display: block;">
           <div class="container">
+            <h1 class="is-1">Create a Request</h1>
             <form action="#" th:action="@{/requests}" th:object="${request}" method="post">
               <div class="columns">
                 <div class="column">
