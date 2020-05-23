@@ -6,22 +6,14 @@ import com.group6.group6.lib.UniversalGetter;
 import com.group6.group6.validator.annotation.PasswordMatches;
 
 @PasswordMatches(
-  message = "Old password does not match",
-  passwordField = "oldPassword",
-  passwordConfirmationField = "oldPasswordInput",
-  encrypted = true
-)
-@PasswordMatches(
   message = "New passwords do not match",
   passwordField = "newPassword",
   passwordConfirmationField = "newPasswordConfirmation"
 )
 public class UpdatePasswordForm implements UniversalGetter {
 
-  private String oldPassword;
-
   @NotBlank(message = "Old password required")
-  private String oldPasswordInput;
+  private String oldPassword;
 
   @NotBlank(message = "Password required")
   private String newPassword;
@@ -30,18 +22,11 @@ public class UpdatePasswordForm implements UniversalGetter {
 
   public UpdatePasswordForm() {}
 
-  public UpdatePasswordForm(String oldPassword) {
-    this.oldPassword = oldPassword;
-  }
-
   @Override
   public Object get(String field) {
     switch (field) {
       case "oldPassword":
         return this.oldPassword;
-
-      case "oldPasswordInput":
-        return this.oldPasswordInput;
 
       case "newPassword":
         return this.newPassword;
@@ -80,20 +65,6 @@ public class UpdatePasswordForm implements UniversalGetter {
    */
   public void setOldPassword(String oldPassword) {
     this.oldPassword = oldPassword;
-  }
-
-  /**
-   * @return the oldPasswordInput
-   */
-  public String getOldPasswordInput() {
-    return oldPasswordInput;
-  }
-
-  /**
-   * @param oldPasswordInput the oldPasswordInput to set
-   */
-  public void setOldPasswordInput(String oldPasswordInput) {
-    this.oldPasswordInput = oldPasswordInput;
   }
 
   /**
