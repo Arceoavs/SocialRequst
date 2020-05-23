@@ -64,7 +64,7 @@ function initializeSearch() {
 
     let url = new URL($searchForm.action);
     let query = $searchForm.querySelector('[name="q"]').value;
-    
+
     url.search = new URLSearchParams({ q: query , raw: 'true'});
 
     try {
@@ -79,8 +79,12 @@ function initializeSearch() {
 }
 
 function updateSearchURL (response, query) {
-  document.title = response.pageTitle;
-  window.history.pushState({ html: response.html, pageTitle: response.pageTitle }, '', `/search?q=${query}`);
+  let pageTitle = response.pageTitle;
+  if (pageTitle === undefined) {
+    pageTitle = `Search: ${query} - Social Request`;
+  }
+  window.document.title = pageTitle;
+  window.history.pushState({ html: response.html, pageTitle: pageTitle }, pageTitle, `/search?q=${query}`);
 }
 
 function createFlashMessage(type, message) {
