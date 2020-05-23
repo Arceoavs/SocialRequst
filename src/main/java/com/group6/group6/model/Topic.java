@@ -1,5 +1,6 @@
 package com.group6.group6.model;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -9,7 +10,9 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "topics")
-public class Topic {
+public class Topic implements Serializable {
+
+  private static final long serialVersionUID = -881990671040233496L;
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
