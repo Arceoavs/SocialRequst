@@ -37,7 +37,7 @@ public class FulfillmentTests {
 
   @Test
   public void testARequestStaysFulfilledWhenUserIsDeleted() {
-    User user = new User("john.doe", "john@doe.com", "test123", "test123");
+    User user = new User("john.doe", "john@doe.com", "test123");
     entityManager.persistAndFlush(user);
 
     Request request = new Request(
@@ -49,7 +49,7 @@ public class FulfillmentTests {
     );
     entityManager.persistAndFlush(request);
 
-    User fulfillingUser = new User("jane.doe", "jane@doe.com", "test123", "test123");
+    User fulfillingUser = new User("jane.doe", "jane@doe.com", "test123");
     entityManager.persistAndFlush(fulfillingUser);
 
     entityManager.persistAndFlush(new Fulfillment(request, fulfillingUser));

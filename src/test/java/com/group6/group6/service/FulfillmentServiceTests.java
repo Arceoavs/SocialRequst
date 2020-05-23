@@ -52,7 +52,7 @@ public class FulfillmentServiceTests {
   @Test
   public void testFulfillingARequest() {
     // create request
-    User user = new User("john.doe", "john@doe.com", "test123", "test123");
+    User user = new User("john.doe", "john@doe.com", "test123");
     entityManager.persistAndFlush(user);
     Request request = new Request(
       "Walk my dog",
@@ -64,7 +64,7 @@ public class FulfillmentServiceTests {
     entityManager.persistAndFlush(request);
 
     // create fulfilling user
-    User anotherUser = new User("jane.doe", "jane@doe.com", "test123", "test123");
+    User anotherUser = new User("jane.doe", "jane@doe.com", "test123");
     entityManager.persistAndFlush(anotherUser);
 
     Mockito
@@ -85,7 +85,7 @@ public class FulfillmentServiceTests {
   public void testThrowingAnExceptionWhenFulfillingAFulfilledRequest() {
     assertThrows(RequestAlreadyFulfilledException.class, () -> {
       // create request
-      User user = new User("john.doe", "john@doe.com", "test123", "test123");
+      User user = new User("john.doe", "john@doe.com", "test123");
       entityManager.persistAndFlush(user);
       Request request = new Request(
         "Walk my dog",
@@ -97,7 +97,7 @@ public class FulfillmentServiceTests {
       entityManager.persistAndFlush(request);
 
       // create fulfilling user
-      User anotherUser = new User("jane.doe", "jane@doe.com", "test123", "test123");
+      User anotherUser = new User("jane.doe", "jane@doe.com", "test123");
       entityManager.persistAndFlush(anotherUser);
 
       entityManager.persistAndFlush(new Fulfillment(request, anotherUser));

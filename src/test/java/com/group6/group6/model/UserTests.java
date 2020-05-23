@@ -38,9 +38,9 @@ public class UserTests {
    * the database
    */
   @Test
-  public void testCreationOfTopic() {
+  public void testCreationOfUser() {
     // create entry
-    User user = new User("john.doe", "john@doe.com", "test123", "test123");
+    User user = new User("john.doe", "john@doe.com", "test123");
     entityManager.persist(user);
     entityManager.flush();
 
@@ -54,13 +54,7 @@ public class UserTests {
   @Test
   public void testValidations() {
     assertThrows(ConstraintViolationException.class, () -> {
-      User user = new User("john.doe", "john@doe", "test123", "test123");
-      entityManager.persist(user);
-      entityManager.flush();
-    });
-
-    assertThrows(ConstraintViolationException.class, () -> {
-      User user = new User("john.doe", "john@doe", "test123", "test");
+      User user = new User("john.doe", "john@doe", "test123");
       entityManager.persist(user);
       entityManager.flush();
     });
@@ -68,7 +62,7 @@ public class UserTests {
 
   @Test
   public void testSpecialties() {
-    User user = new User("john.doe", "john@doe.com", "test123", "test123");
+    User user = new User("john.doe", "john@doe.com", "test123");
     entityManager.persist(user);
     entityManager.flush();
 
@@ -95,4 +89,5 @@ public class UserTests {
     assertFalse(found.getSpecialties().contains(topic));
     assertEquals(found.getSpecialties().size(), 0);
   }
+
 }
