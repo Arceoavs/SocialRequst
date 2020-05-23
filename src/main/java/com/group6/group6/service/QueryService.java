@@ -31,7 +31,7 @@ public class QueryService {
 
     Set<Topic> specialties = user.getSpecialties();
 
-    return requestRepository.findByTopicsInOrderByCreatedAtDesc(specialties);
+    return requestRepository.findByTopicsInAndFulfillmentIsNullOrderByCreatedAtDesc(specialties);
   }
 
   /**

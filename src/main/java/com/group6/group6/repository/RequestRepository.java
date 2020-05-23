@@ -24,6 +24,6 @@ public interface RequestRepository extends JpaRepository<Request, Long> {
     "ORDER BY r.createdAt DESC")
   public List<Request> getNearBy(@Param("lat") float lat, @Param("lng") float lng);
 
-  public List<Request> findByTopicsInOrderByCreatedAtDesc(Set<Topic> topics);
+  public List<Request> findByTopicsInAndFulfillmentIsNullOrderByCreatedAtDesc(Set<Topic> topics);
 
 }
