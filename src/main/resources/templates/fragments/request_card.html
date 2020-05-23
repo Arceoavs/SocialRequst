@@ -18,7 +18,7 @@
           </div>
           <div class="media-content">
             <p class="title is-5" th:text="${request.title}">title</p>
-            <p th:if="${request.user != null}" th:text="${'@' + request.user.username}" sec:authorize="isAuthenticated()" class="subtitle is-6">@johnsmith</p>
+            <p sec:authorize="isAuthenticated()" th:text="'@' + ${request.user.username}" class="subtitle is-6">@johnsmith</p>
           </div>
         </div>
 
