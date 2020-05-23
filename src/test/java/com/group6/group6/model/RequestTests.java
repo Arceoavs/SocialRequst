@@ -31,7 +31,7 @@ public class RequestTests {
   @Test
   public void testRequestCreation() {
     //entity creation
-    User user = new User("john.doe", "john@doe.com", "test123", "test123");
+    User user = new User("john.doe", "john@doe.com", "test123");
     entityManager.persistAndFlush(user);
     Request request = new Request(
       "Walk my dog",
@@ -56,7 +56,7 @@ public class RequestTests {
    */
   @Test
   public void testRequestCreationWithTopics() {
-    User user = new User("john.doe", "john@doe.com", "test123", "test123");
+    User user = new User("john.doe", "john@doe.com", "test123");
     entityManager.persistAndFlush(user);
     Topic[] topicsData = {new Topic("Dog"), new Topic("Walking")};
     Set<Topic> topics = new HashSet<>();

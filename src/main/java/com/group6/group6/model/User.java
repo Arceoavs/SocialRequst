@@ -7,12 +7,10 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.group6.group6.validator.annotation.PasswordMatches;
 import com.group6.group6.validator.annotation.ValidEmail;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-@PasswordMatches
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "users")
@@ -35,9 +33,6 @@ public class User implements Serializable {
 
   @NotBlank(message = "Password required")
   private String password;
-
-  @Transient
-  private String passwordConfirmation;
 
   private float lat;
   private float lng;
@@ -66,18 +61,16 @@ public class User implements Serializable {
 
   public User() {}
 
-  public User(String username, String email, String password, String passwordConfirmation) {
+  public User(String username, String email, String password) {
     this.username = username;
     this.email = email;
     this.password = password;
-    this.passwordConfirmation = passwordConfirmation;
   }
 
-  public User(String username, String email, String password, String passwordConfirmation, float lat, float lng) {
+  public User(String username, String email, String password, float lat, float lng) {
     this.username = username;
     this.email = email;
     this.password = password;
-    this.passwordConfirmation = passwordConfirmation;
     this.lat = lat;
     this.lng = lng;
   }
@@ -91,6 +84,10 @@ public class User implements Serializable {
 
   public Long getId() {
     return this.id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
   }
 
   public String getUsername() {
@@ -115,14 +112,6 @@ public class User implements Serializable {
 
   public void setPassword(String password) {
     this.password = password;
-  }
-
-  public String getPasswordConfirmation() {
-    return passwordConfirmation;
-  }
-
-  public void setPasswordConfirmation(String passwordConfirmation) {
-    this.passwordConfirmation = passwordConfirmation;
   }
 
   public float getLat() {

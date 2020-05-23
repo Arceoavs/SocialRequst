@@ -7,4 +7,5 @@
   margin-bottom: 0 !important;
   padding: 3rem !important;
   text-align: center;
+  z-index: 9999;
 }

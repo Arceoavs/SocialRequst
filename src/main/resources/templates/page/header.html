@@ -23,6 +23,15 @@
           <div class="navbar-start"></div>
 
           <div class="navbar-end">
+            <div sec:authorize="isAuthenticated()" class="navbar-item">
+              <a href="/users/me" class="button is-text">
+                <span class="icon is-medium has-background-grey-light" style="border-radius: 4rem;">
+                  <i class="far fa-user"></i>
+                </span>
+                <span th:text="'@' + ${#authentication.name}"></span>
+              </a>
+            </div>
+
             <div class="navbar-item">
               <form sec:authorize="isAuthenticated()" action="/users/logout" method="POST">
                 <button class="button is-text" type="submit">
