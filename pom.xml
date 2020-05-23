@@ -8,11 +8,11 @@
     <version>2.2.6.RELEASE</version>
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
-  <groupId>com.group.6</groupId>
-  <artifactId>group6</artifactId>
+  <groupId>de.wwu.acse.group6</groupId>
+  <artifactId>socialrequest</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>group6</name>
-  <description>Group 6 solution</description>
+  <name>SocialRequest</name>
+  <description>A platform to create and fulfill social requests. Based on the Spring Framework.</description>
 
   <properties>
     <java.version>1.8</java.version>
