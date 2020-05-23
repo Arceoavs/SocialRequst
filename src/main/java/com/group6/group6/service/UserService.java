@@ -60,7 +60,7 @@ public class UserService {
     user.setEmail(userForm.getEmail());
     user.setSpecialties(userForm.getSpecialties());
     user.setLat(userForm.getLat());
-    user.setLat(userForm.getLng());
+    user.setLng(userForm.getLng());
 
     userRepository.save(user);
     authenticationService.reloadUserAuthentication(user.getUsername(), user.getPassword());
