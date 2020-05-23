@@ -11,8 +11,6 @@ import com.group6.group6.service.UserAuthenticationService;
 import com.group6.group6.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -139,13 +137,7 @@ public class UserController extends ApplicationController {
       return "user/me";
     }
 
-    // isAuthenticated() is false. It has to be true
-    // this is necessary, so the username is reloaded in case it was changed by the form
-    Authentication authentication = new UsernamePasswordAuthenticationToken(
-      authenticationService.loadUserByUsername(userForm.getUsername()),
-      currentUser.getPassword()
-    );
-    SecurityContextHolder.getContext().setAuthentication(authentication);
+    authenticationService.reloadUserAuthentication(userForm.getUsername(), currentUser.getPassword());
 
     redirectAttributes.addFlashAttribute("message", "You have successfully updated your account!");
     redirectAttributes.addFlashAttribute("messageType", "success");
