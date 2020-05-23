@@ -20,10 +20,12 @@ public class Request {
   private Long id;
 
   @NotBlank(message = "Title required")
-  @Size(min = 1, message = "Title required")
+  @Size(min = 1, message = "Title too short")
   private String title;
 
+  @NotBlank(message = "Description required")
   private String description;
+
   private float lat;
   private float lng;
 
@@ -46,7 +48,7 @@ public class Request {
   )
   private Set<Topic> topics;
 
-  protected Request() {}
+  public Request() {}
 
   public Request(String title, String description, float lat, float lng, User user) {
     this.title = title;

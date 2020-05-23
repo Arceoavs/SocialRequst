@@ -38,7 +38,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
       .authorizeRequests()
         .antMatchers("/images/**", "/css/**", "/js/**").permitAll()
         // Pages that can be accessed by all visitors
-        .antMatchers("/", "/search", "/users/login", "/users/register", "/h2console/**").permitAll()
+        .antMatchers("/", "/search", "/users/register", "/h2console/**").permitAll()
+        .antMatchers("/users/login").anonymous()
         .anyRequest().hasAuthority("ROLE_USER")
         .and()
       // login

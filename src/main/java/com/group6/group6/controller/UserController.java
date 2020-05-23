@@ -18,7 +18,7 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/users")
-public class UserController {
+public class UserController extends ApplicationController {
 
   @Autowired
   private UserService userService;
@@ -27,7 +27,13 @@ public class UserController {
    * Deliver registration page
    */
   @GetMapping("/register")
-  public String showRegistrationForm(WebRequest request, Model model) {
+  public String showRegistrationForm(WebRequest request, Model model, RedirectAttributes redirectAttributes) {
+    if (userIsLoggedIn()) {
+      redirectAttributes.addFlashAttribute("message", "You are already logged in.");
+      redirectAttributes.addFlashAttribute("messageType", "error");
+      return redirectToBack(request).orElse("redirect:/");
+    }
+
     model.addAttribute("user", new User());
     return "user/register";
   }

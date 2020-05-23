@@ -1,0 +1,7 @@
+.help-list {
+  list-style-type: disc;
+}
+
+.help-list li {
+  margin-left: 1.5rem;
+}

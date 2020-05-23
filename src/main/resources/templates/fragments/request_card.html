@@ -17,15 +17,20 @@
             </figure>
           </div>
           <div class="media-content">
+<<<<<<< HEAD
+            <p class="title is-4" th:text="${request.title}">title</p>
+            <p sec:authorize="isAuthenticated()" th:text="'@' + ${request.user.username}" class="subtitle is-6">@johnsmith</p>
+=======
             <p class="title is-5" th:text="${request.title}">title</p>
             <p th:if="${request.user != null}" th:text="${'@' + request.user.username}" sec:authorize="isAuthenticated()" class="subtitle is-6">@johnsmith</p>
+>>>>>>> develop
           </div>
         </div>
 
         <div sec:authorize="isAuthenticated()" class="content">
           <p th:text="${request.description}">Description</p>
-          <div class="tags is-marginless">
-            <span th:each="topic : ${request.topics}" th:text="${topic.name}" class="tag">Topic X</span>
+          <div class="tags">
+            <span th:each="topic : ${request.topics}" th:text="${topic.name}" class="tag is-rounded is-info is-light">Topic X</span>
           </div>
           <div class="level">
             <div class="level-left">

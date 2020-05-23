@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/")
-public class HomeController {
+public class HomeController extends ApplicationController {
 
   @Autowired
   private RequestRepository requestRepository;
@@ -25,5 +25,4 @@ public class HomeController {
 
     return "home/index";
   }
-
 }

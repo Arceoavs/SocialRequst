@@ -1,5 +1,6 @@
 package com.group6.group6.service;
 
+import com.group6.group6.auth.CurrentUser;
 import com.group6.group6.model.User;
 import com.group6.group6.repository.UserRepository;
 
@@ -38,14 +39,15 @@ public class UserAuthenticationService implements UserDetailsService {
      * Otherwise we could let our User Class extend the User Details Object and just return it i found
      * However, I think it is cleaner to split data persistence and functionality
      */
-    return new org.springframework.security.core.userdetails.User(
+    return new CurrentUser(
       user.getUsername(),
       user.getPassword(),
       true,
       true,
       true,
       true,
-      getAuthorities()
+      getAuthorities(),
+      user
     );
   }
 

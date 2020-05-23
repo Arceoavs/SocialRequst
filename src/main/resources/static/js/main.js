@@ -85,7 +85,7 @@ function updateSearchURL (response, query) {
 
 function createFlashMessage(type, message) {
   let flashMessage = document.createElement('div');
-  flashMessage.classList.add(['flash-message', 'notification']);
+  flashMessage.classList.add(['flash-message', 'notification', 'is-size-5']);
   switch (type) {
     case 'success':
       flashMessage.classList.add('is-success');

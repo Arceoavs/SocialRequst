@@ -53,14 +53,18 @@ function getDeviceLocation() {
     return;
   }
 
+  document.querySelector('#geolocator').classList.add('is-loading');
+
   function success(position) {
     var latitude  = position.coords.latitude;
     var longitude = position.coords.longitude;
 
     movePinToCoordinates(L.latLng(latitude, longitude), panToCoordinates = true);
+    document.querySelector('#geolocator').classList.remove('is-loading');
   };
 
   function error() {
+    document.querySelector('#geolocator').classList.remove('is-loading');
     console.log("Device localisation was not possible.");
   };
 
