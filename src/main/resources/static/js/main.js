@@ -35,42 +35,52 @@ function initializeFlashMessages() {
 
 function initializeSearch() {
   const $searchForm = document.querySelector('form#search-form');
+
   if (!$searchForm) return;
+
+  let $resultsWrapper = document.querySelector('#search-results-wrapper');
+  // add loading spinner
+  let $spinner = `
+    <div class="sk-circle" style="left: 50%;">
+      <div class="sk-circle-dot"></div>
+      <div class="sk-circle-dot"></div>
+      <div class="sk-circle-dot"></div>
+      <div class="sk-circle-dot"></div>
+      <div class="sk-circle-dot"></div>
+      <div class="sk-circle-dot"></div>
+      <div class="sk-circle-dot"></div>
+      <div class="sk-circle-dot"></div>
+      <div class="sk-circle-dot"></div>
+      <div class="sk-circle-dot"></div>
+      <div class="sk-circle-dot"></div>
+      <div class="sk-circle-dot"></div>
+    </div>
+  `;
 
   $searchForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    $resultsWrapper = document.querySelector('#search-results-wrapper');
-
-    // add loading spinner
-    $resultsWrapper.innerHTML = `
-      <div class="sk-circle" style="left: 50%;">
-        <div class="sk-circle-dot"></div>
-        <div class="sk-circle-dot"></div>
-        <div class="sk-circle-dot"></div>
-        <div class="sk-circle-dot"></div>
-        <div class="sk-circle-dot"></div>
-        <div class="sk-circle-dot"></div>
-        <div class="sk-circle-dot"></div>
-        <div class="sk-circle-dot"></div>
-        <div class="sk-circle-dot"></div>
-        <div class="sk-circle-dot"></div>
-        <div class="sk-circle-dot"></div>
-        <div class="sk-circle-dot"></div>
-      </div>
-    `;
+    $resultsWrapper.innerHTML = $spinner;
 
     let url = new URL($searchForm.action);
-    url.search = new URLSearchParams({ q: $searchForm.querySelector('[name="q"]').value });
+    let query = $searchForm.querySelector('[name="q"]').value;
+    
+    url.search = new URLSearchParams({ q: query , raw: 'true'});
 
     try {
       const response = await fetch(url);
       $resultsWrapper.innerHTML = await response.text();
+      updateSearchURL(response, query);
     } catch(error) {
       console.log('Something went wrong', error);
       createFlashMessage('error', `Something went wrong: ${error}`)
     }
   });
+}
+
+function updateSearchURL (response, query) {
+  document.title = response.pageTitle;
+  window.history.pushState({ html: response.html, pageTitle: response.pageTitle }, '', `/search?q=${query}`);
 }
 
 function createFlashMessage(type, message) {
