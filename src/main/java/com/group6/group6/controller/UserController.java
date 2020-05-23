@@ -158,7 +158,7 @@ public class UserController extends ApplicationController {
     Model model,
     RedirectAttributes redirectAttributes
   ) {
-    String oldPassword = (String) SecurityContextHolder.getContext().getAuthentication().getCredentials();
+    String oldPassword = ((CurrentUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser().getPassword();
     if (!passwordEncoder.matches(passwordForm.getOldPassword(), oldPassword)) {
       bindingResult.rejectValue("oldPassword", "", "Old password is not correct");
     }
