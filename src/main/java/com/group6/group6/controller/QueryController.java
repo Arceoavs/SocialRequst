@@ -1,7 +1,6 @@
 package com.group6.group6.controller;
 
 import com.group6.group6.model.Request;
-import com.group6.group6.model.User;
 import com.group6.group6.service.QueryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

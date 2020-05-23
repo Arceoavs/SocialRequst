@@ -1,13 +1,10 @@
 package com.group6.group6.service;
 
 import com.group6.group6.model.Request;
-import com.group6.group6.model.Topic;
-import com.group6.group6.model.User;
 import com.group6.group6.repository.RequestRepository;
 import com.group6.group6.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
