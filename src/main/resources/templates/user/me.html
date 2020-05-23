@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layouts/default(messageType=${messageType}, message=${message})}"
+>
+<head>
+  <script type="text/javascript" src="/js/selectSpecialties.js"></script>
+
+  <title>SocialRequest - Your Profile</title>
+</head>
+<body>
+  <div layout:fragment="content">
+    <section class="hero is-fullheight-with-navbar">
+      <div class="hero-body" style="display: block;">
+        <section class="section">
+          <div class="container">
+            <h1 class="title is-1">Your Profile</h1>
+            <form action="/users/me" th:object="${userForm}" method="POST">
+              <div class="columns">
+                <div class="column">
+                  <input type="hidden" th:field="*{id}">
+                  <div class="field">
+                    <label class="label">Username</label>
+                    <div class="control has-icons-left" th:classappend="${#fields.hasErrors('username') ? 'has-icons-right' : ''}">
+                      <input th:field="*{username}" class="input" type="text" th:classappend="${#fields.hasErrors('username') ? 'is-danger' : ''}">
+                      <span class="icon is-small is-left">
+                        <i class="fas fa-user"></i>
+                      </span>
+                      <span th:if="${#fields.hasErrors('username')}" class="icon is-small is-right">
+                        <i class="fas fa-exclamation-triangle"></i>
+                      </span>
+                    </div>
+                    <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="help is-danger"></p>
+                  </div>
+                  <div class="field">
+                    <label class="label">Email</label>
+                    <div class="control has-icons-left" th:classappend="${#fields.hasErrors('email') ? 'has-icons-right' : ''}">
+                      <input th:field="*{email}" class="input" type="email" th:classappend="${#fields.hasErrors('email') ? 'is-danger' : ''}">
+                      <span class="icon is-small is-left">
+                        <i class="fas fa-at"></i>
+                      </span>
+                      <span th:if="${#fields.hasErrors('email')}" class="icon is-small is-right">
+                        <i class="fas fa-exclamation-triangle"></i>
+                      </span>
+                    </div>
+                    <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="help is-danger"></p>
+                  </div>
+                  <div class="field">
+                      <label class="label">Topics</label>
+                      <div class="control">
+                        <select id="select-specialties" th:field="*{specialties}" multiple>
+                          <option
+                            th:each="topic : ${availableTopics}"
+                            th:value="${topic.id}"
+                            th:text="${topic.name}"
+                          >
+                            topic X
+                          </option>
+                        </select>
+                      </div>
+                      <p th:if="${#fields.hasErrors('specialties')}" th:errors="*{specialties}" class="help is-danger"></p>
+                    </div>
+                </div>
+
+                <div class="column">
+                  <div th:replace="fragments/location_input :: location_input"></div>
+                </div>
+              </div>
+
+              <div class="field">
+                <div class="control">
+                  <button type="submit" class="button is-success">Update Profile</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="container">
+            <h3 class="title is-3">Your Submitted Requests</h3>
+            <div th:if="${user.submittedRequests == null or user.submittedRequests.empty}">None (yet).</div>
+            <div th:replace="search/result_list :: result_list(results = ${user.submittedRequests})"></div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="container">
+            <h3 class="title is-3">Your Fulfilled Requests</h3>
+            <div th:if="${user.fulfilledRequests == null or user.fulfilledRequests.empty}">None (yet).</div>
+            <div th:replace="search/result_list :: result_list(results = ${user.fulfilledRequests})"></div>
+          </div>
+        </section>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
