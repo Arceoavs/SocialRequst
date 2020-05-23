@@ -19,12 +19,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Autowired
   private UserAuthenticationService userAuthenticationService;
-  
+
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
     auth.authenticationProvider(authenticationProvider());
   }
-  
+
   /*
    * Configure which sites can be accessed by which user roles
    * Info on how to create antMatcher Patterns: https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/util/AntPathMatcher.html
