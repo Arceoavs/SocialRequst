@@ -17,6 +17,6 @@ public interface RequestRepository extends JpaRepository<Request, Long> {
   @Query("SELECT r from Request r LEFT JOIN r.fulfillment f WHERE f.id IS NULL AND (LOWER(r.title) LIKE LOWER(CONCAT('%', :query, '%')) OR LOWER(r.description) LIKE LOWER(CONCAT('%', :query, '%'))) ORDER BY r.createdAt DESC")
   public List<Request> search(@Param("query") String query);
 
-  public List<Request> findByTopicsInOrderByCreatedAtDesc(Set<Topic> topics);
+  public List<Request> findByTopicsInAndFulfillmentIsNullOrderByCreatedAtDesc(Set<Topic> topics);
 
 }

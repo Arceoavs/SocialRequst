@@ -63,7 +63,6 @@ function initializeSearch() {
     $resultsWrapper.innerHTML = $spinner;
 
     let url = new URL($searchForm.action);
-    console.log(url);
     url.search = new URLSearchParams({ q: $searchForm.querySelector('[name="q"]').value });
 
     try {
