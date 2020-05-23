@@ -20,6 +20,9 @@ public class UserService {
   @Autowired
   private UserRepository userRepository;
 
+  @Autowired
+  private UserAuthenticationService authenticationService;
+
   @Transactional
   public User registerNewUserAccount(RegisterUserForm userForm) throws DuplicateUserException {
     if (emailExists(userForm.getEmail())) {
@@ -59,7 +62,11 @@ public class UserService {
     user.setLat(userForm.getLat());
     user.setLat(userForm.getLng());
 
-    return userRepository.save(user);
+    userRepository.save(user);
+    authenticationService.reloadUserAuthentication(user.getUsername(), user.getPassword());
+
+    return user;
+  }
   }
 
   private boolean emailExists(String email) {

@@ -3,15 +3,16 @@ package com.group6.group6.controller;
 import com.group6.group6.auth.CurrentUser;
 import com.group6.group6.exception.DuplicateUserException;
 import com.group6.group6.form.RegisterUserForm;
+import com.group6.group6.form.UpdatePasswordForm;
 import com.group6.group6.form.UserProfileForm;
 import com.group6.group6.model.User;
 import com.group6.group6.repository.UserRepository;
 import com.group6.group6.service.TopicService;
-import com.group6.group6.service.UserAuthenticationService;
 import com.group6.group6.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -38,7 +39,7 @@ public class UserController extends ApplicationController {
   private TopicService topicService;
 
   @Autowired
-  private UserAuthenticationService authenticationService;
+  private PasswordEncoder passwordEncoder;
 
   /*
    * Deliver registration page
@@ -136,8 +137,6 @@ public class UserController extends ApplicationController {
 
       return "user/me";
     }
-
-    authenticationService.reloadUserAuthentication(userForm.getUsername(), currentUser.getPassword());
 
     redirectAttributes.addFlashAttribute("message", "You have successfully updated your account!");
     redirectAttributes.addFlashAttribute("messageType", "success");
