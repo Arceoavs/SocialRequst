@@ -29,7 +29,7 @@
             </div>
             <div class="level-right">
               <div class="level-item">
-                <a href="/request/new" class="button is-success">
+                <a href="/requests/new" class="button is-success">
                   <span class="icon is-small"><i class="fa fa-plus"></i></span>
                   <span>Create Request</span>
                 </a>
@@ -58,7 +58,7 @@
         </div>
 
         <div id="search-results-wrapper" class="container">
-          <div th:replace="search/result_list :: result_list(results = ${results})" />
+          <div th:replace="search/result_list :: result_list(results = ${results})"></div>
         </div>
       </div>
     </section>

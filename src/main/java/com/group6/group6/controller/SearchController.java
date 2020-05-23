@@ -14,7 +14,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/search")
-public class SearchController {
+public class SearchController extends ApplicationController {
 
   @Autowired
   private SearchService searchService;

@@ -73,7 +73,7 @@ public class FulfillmentServiceTests {
 
     assertFalse(request.isFulfilled());
 
-    fulfillmentService.fulfilRequest(request, anotherUser);
+    fulfillmentService.fulfillRequest(request, anotherUser);
     request = entityManager.refresh(request);
     anotherUser = entityManager.refresh(anotherUser);
 
@@ -107,7 +107,7 @@ public class FulfillmentServiceTests {
       assertTrue(request.isFulfilled());
       assertTrue(anotherUser.getFulfilledRequests().contains(request));
 
-      fulfillmentService.fulfilRequest(request, anotherUser);
+      fulfillmentService.fulfillRequest(request, anotherUser);
     });
   }
 

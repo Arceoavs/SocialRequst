@@ -6,7 +6,7 @@
 <body>
   <th:block th:fragment="flash_message(type, message)">
     <div
-      class="flash-message notification"
+      class="flash-message notification is-size-5"
       th:if="${message != null}"
       th:classappend="|
         ${#strings.equals(type, 'success') ? 'is-success' : ''}
@@ -15,7 +15,7 @@
       |"
     >
       <button class="delete"></button>
-      <span th:text="${message}" />
+      <span th:text="${message}"></span>
     </div>
   </th:block>
 </body>

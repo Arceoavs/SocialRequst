@@ -3,6 +3,7 @@ package com.group6.group6.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,7 +16,9 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "users")
-public class User {
+public class User implements Serializable {
+
+  private static final long serialVersionUID = -1956519973875122971L;
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

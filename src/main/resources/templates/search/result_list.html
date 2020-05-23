@@ -8,7 +8,7 @@
   <div th:fragment="result_list(results)">
     <div class="columns is-multiline">
       <div th:each="request : ${results}" class="column is-one-quarter">
-        <div th:replace="fragments/request_card :: request_card(request = ${request})" />
+        <div th:replace="fragments/request_card :: request_card(request = ${request})"></div>
       </div>
     </div>
   </div>
