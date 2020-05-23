@@ -67,6 +67,13 @@ public class UserService {
 
     return user;
   }
+
+  public void updatePassword(String username, String rawPassword) {
+    String encryptedPassword = passwordEncoder.encode(rawPassword);
+    User user = userRepository.findByUsername(username);
+    user.setPassword(encryptedPassword);
+    userRepository.save(user);
+    authenticationService.reloadUserAuthentication(username, encryptedPassword);
   }
 
   private boolean emailExists(String email) {

@@ -144,17 +144,36 @@ public class UserController extends ApplicationController {
     return "redirect:/users/me";
   }
 
-  // @PostMapping("/update-password")
-  // @ResponseBody
-  // public Map<String, Object> updatePassword(
-  //   @Valid UpdatePasswordForm passwordForm,
-  //   BindingResult bindingResult
-  // ) {
-  //   User currentUser = userRepository.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
-  //   model.addAttribute("passwordForm", new UpdatePasswordForm(currentUser.getPassword()));
-  //   Map<String, Object> responseJson = new LinkedHashMap<>();
+  @GetMapping("/update-password")
+  public String showUpdatePasswordForm(Model model) {
+    model.addAttribute("passwordForm", new UpdatePasswordForm());
 
-  //   return "";
-  // }
+    return "user/update_password";
+  }
+
+  @PostMapping("/update-password")
+  public String updatePassword(
+    @ModelAttribute("passwordForm") @Valid UpdatePasswordForm passwordForm,
+    BindingResult bindingResult,
+    Model model,
+    RedirectAttributes redirectAttributes
+  ) {
+    String oldPassword = (String) SecurityContextHolder.getContext().getAuthentication().getCredentials();
+    if (!passwordEncoder.matches(passwordForm.getOldPassword(), oldPassword)) {
+      bindingResult.rejectValue("oldPassword", "", "Old password is not correct");
+    }
+
+    if (bindingResult.hasErrors()) {
+      return "user/update_password";
+    }
+
+    String username = SecurityContextHolder.getContext().getAuthentication().getName();
+    userService.updatePassword(username, passwordForm.getNewPassword());
+
+    redirectAttributes.addFlashAttribute("message", "You have successfully updated your password!");
+    redirectAttributes.addFlashAttribute("messageType", "success");
+
+    return "redirect:/users/me";
+  }
 
 }
