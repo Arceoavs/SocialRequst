@@ -45,7 +45,6 @@ public class UserService {
     return userRepository.save(user);
   }
 
-  @Transactional
   public User updateUser(UserProfileForm userForm) throws DuplicateUserException {
     if (emailExists(userForm.getEmail(), userForm.getId())) {
       throw new DuplicateUserException("An account with that email already exists: " + userForm.getEmail());
@@ -54,6 +53,11 @@ public class UserService {
     if (usernameExists(userForm.getUsername(), userForm.getId())) {
       throw new DuplicateUserException("An account with that username already exists: " + userForm.getUsername());
     }
+    return persistUser(userForm);
+  }
+
+  @Transactional
+  private User persistUser(UserProfileForm userForm) {
 
     User user = userRepository.getOne(userForm.getId());
     user.setUsername(userForm.getUsername());
