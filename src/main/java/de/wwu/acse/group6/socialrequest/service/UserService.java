@@ -53,11 +53,11 @@ public class UserService {
     if (usernameExists(userForm.getUsername(), userForm.getId())) {
       throw new DuplicateUserException("An account with that username already exists: " + userForm.getUsername());
     }
-    return updateUserInner(userForm);
+    return persistUser(userForm);
   }
 
   @Transactional
-  private User updateUserInner(UserProfileForm userForm) {
+  private User persistUser(UserProfileForm userForm) {
 
     User user = userRepository.getOne(userForm.getId());
     user.setUsername(userForm.getUsername());
