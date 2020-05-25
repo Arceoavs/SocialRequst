@@ -9,6 +9,9 @@ import de.wwu.acse.group6.socialrequest.validator.annotation.PasswordMatches;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+/**
+ * Validates if a password and its confirmation match
+ */
 public class PasswordMatchesValidator implements ConstraintValidator<PasswordMatches, Object> {
 
   @Autowired
@@ -27,6 +30,7 @@ public class PasswordMatchesValidator implements ConstraintValidator<PasswordMat
     boolean isValid = isValid(passwordObject);
 
     if (!isValid) {
+      // Binds the constraint validation to the password confirmation field
       context
         .buildConstraintViolationWithTemplate(constraintAnnotation.message())
         .addPropertyNode(constraintAnnotation.passwordConfirmationField())
