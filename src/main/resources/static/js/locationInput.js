@@ -1,10 +1,15 @@
 var map;
 var pin;
+var lat;
+var lng;
 var tilesURL = 'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png';
 var mapAttrib = '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>';
 var mapCoordinates = [51.962944,7.628694];
 
 document.addEventListener('DOMContentLoaded', () => {
+  lat = document.querySelector('#latitude').value;
+  lng = document.querySelector('#longitude').value;
+  if (lat && lng) mapCoordinates = [lat, lng];
   createMap();
   initializeMapEventListeners();
 });
@@ -25,6 +30,8 @@ function createMap() {
     attribution: mapAttrib,
     maxZoom: 19
   }).addTo(map);
+
+  if (lat && lng) movePinToCoordinates(L.latLng(lat, lng), panToCoordinates = true);
 }
 
 function movePinToCoordinates (latlng, panToCoordinates = false) {
@@ -53,14 +60,18 @@ function getDeviceLocation() {
     return;
   }
 
+  document.querySelector('#geolocator').classList.add('is-loading');
+
   function success(position) {
     var latitude  = position.coords.latitude;
     var longitude = position.coords.longitude;
 
     movePinToCoordinates(L.latLng(latitude, longitude), panToCoordinates = true);
+    document.querySelector('#geolocator').classList.remove('is-loading');
   };
 
   function error() {
+    document.querySelector('#geolocator').classList.remove('is-loading');
     console.log("Device localisation was not possible.");
   };
 

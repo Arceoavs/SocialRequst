@@ -11,7 +11,7 @@
     <section class="hero is-primary is-fullheight-with-navbar">
       <div class="hero-body">
         <div class="container">
-          <form th:action="@{/users/register}" th:object="${user}" method="POST">
+          <form th:action="@{/users/register}" th:object="${userForm}" method="POST">
             <div class="columns">
               <div class="column">
                 <div class="card">
@@ -29,7 +29,7 @@
                               <i class="fas fa-exclamation-triangle"></i>
                             </span>
                           </div>
-                          <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="help is-danger" />
+                          <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="help is-danger"></p>
                         </div>
                         <div class="field">
                           <label class="label">Email</label>
@@ -42,7 +42,7 @@
                               <i class="fas fa-exclamation-triangle"></i>
                             </span>
                           </div>
-                          <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="help is-danger" />
+                          <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="help is-danger"></p>
                         </div>
                         <div class="field">
                           <label class="label">Password</label>
@@ -55,7 +55,7 @@
                               <i class="fas fa-exclamation-triangle"></i>
                             </span>
                           </div>
-                          <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="help is-danger" />
+                          <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="help is-danger"></p>
                         </div>
                         <div class="field">
                           <label class="label">Password Confirmation</label>
@@ -68,7 +68,7 @@
                               <i class="fas fa-exclamation-triangle"></i>
                             </span>
                           </div>
-                          <p th:if="${#fields.hasErrors('passwordConfirmation')}" th:errors="*{passwordConfirmation}" class="help is-danger" />
+                          <p th:if="${#fields.hasErrors('passwordConfirmation')}" th:errors="*{passwordConfirmation}" class="help is-danger"></p>
                         </div>
                         <div class="field is-grouped">
                           <div class="control">

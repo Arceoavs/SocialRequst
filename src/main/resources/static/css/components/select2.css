@@ -1,0 +1,97 @@
+.select2-container .select2-selection--single,
+.select2-container .select2-selection--multiple {
+  transition: border-color 86ms;
+  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  min-height: 2.285em !important;
+  height: auto !important;
+  font-size: 1rem;
+  outline: none !important;
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  border-color: #dbdbdb;
+  border-radius: 4px;
+  box-shadow: inset 0 0.0625em 0.125em rgba(10, 10, 10, .05);
+}
+
+.select2-container--focus .select2-selection--multiple {
+  border-color: #3273dc !important;
+  box-shadow: 0 0 0 0.125em rgba(50,115,220,.25);
+}
+
+.select2-container .select2-search__field::placeholder,
+.select2-container .select2-search__field::-moz-placeholder,
+.select2-container .select2-search__field::-ms-input-placeholder {
+  color: rgba(54, 54, 54, 0.3) !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover {
+  color: inherit !important;
+  background-color: inherit !important;
+}
+
+.select2-container .select2-selection__choice__display {
+  font-size: 1rem;
+}
+
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+  border-color: #3273dc !important;
+}
+
+.select2-container .select2-results__option--highlighted {
+  background-color: #3273dc !important;
+}
+
+.select2-container .select2-selection--multiple:focus {
+  border-color: #3273dc !important;
+}
+
+.select2-container .select2-selection--single:hover,
+.select2-container .select2-selection--multiple:hover {
+  border-color: #b5b5b5;
+}
+
+.select2-container .select2-selection--single .select2-selection__rendered,
+.select2-container .select2-selection--multiple .select2-selection__rendered {
+  padding-left: 0;
+  padding-right: 0.15em;
+  line-height: 1.5em;
+}
+
+.select2-container .select2-selection--single .select2-selection__arrow
+.select2-container .select2-selection--multiple .select2-selection__arrow {
+  height: 2.3em;
+  top: 0px;
+}
+
+.select2-container .select2-dropdown {
+  border-color: #3273dc;
+}
+
+.select2-container .select2-dropdown .select2-search {
+  margin: 10px;
+}
+
+.select2-container .select2-dropdown .select2-search .select2-search__field {
+  border-radius: 4px !important;
+}
+
+.select2-container .select2-dropdown .select2-results__options {
+  max-height: 210px;
+}
+
+.select2-container .select2-dropdown .select2-results__options .select2-results__option {
+  padding: 0.75em;
+  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font-size: 1rem;
+}
+
+.select2-container .select2-dropdown .select2-results__options .select2-results__option.select2-results__option--highlighted {
+  background: #3273dc;
+}
+
+.select2-container--open .select2-selection--single,
+.select2-container--open .select2-selection--multiple {
+  border-color: #3273dc;
+}
+
