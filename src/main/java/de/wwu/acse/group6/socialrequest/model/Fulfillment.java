@@ -1,5 +1,6 @@
 package de.wwu.acse.group6.socialrequest.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.*;
@@ -11,7 +12,9 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Table(name = "fulfillments", uniqueConstraints = @UniqueConstraint(columnNames = {"request_id", "user_id"}))
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class Fulfillment {
+public class Fulfillment implements Serializable {
+
+  private static final long serialVersionUID = 6087808644310117815L;
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
