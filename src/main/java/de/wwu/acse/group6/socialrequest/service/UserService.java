@@ -23,6 +23,13 @@ public class UserService {
   @Autowired
   private UserAuthenticationService authenticationService;
 
+  /**
+   * Registers a new user account.
+   * Makes sure that the username and mail do not exist before
+   * @param userForm data transfer object for the new user
+   * @return the newly persisted user
+   * @throws DuplicateUserException when a user with the same username or mail already exists
+   */
   @Transactional
   public User registerNewUserAccount(RegisterUserForm userForm) throws DuplicateUserException {
     if (emailExists(userForm.getEmail())) {
@@ -45,6 +52,13 @@ public class UserService {
     return userRepository.save(user);
   }
 
+  /**
+   * Updates basic user data (except password)
+   * Makes sure that the username and mail do not exist before
+   * @param userForm data transfer object for the user
+   * @return updated user
+   * @throws DuplicateUserException when a user with the same username or mail already exists
+   */
   public User updateUser(UserProfileForm userForm) throws DuplicateUserException {
     if (emailExists(userForm.getEmail(), userForm.getId())) {
       throw new DuplicateUserException("An account with that email already exists: " + userForm.getEmail());
@@ -56,8 +70,13 @@ public class UserService {
     return persistUser(userForm);
   }
 
+  /**
+   * Persists existing user
+   * @param userForm data transfer object for the user
+   * @return persisted user entity
+   */
   @Transactional
-  private User persistUser(UserProfileForm userForm) {
+  protected User persistUser(UserProfileForm userForm) {
 
     User user = userRepository.getOne(userForm.getId());
     user.setUsername(userForm.getUsername());
@@ -72,6 +91,11 @@ public class UserService {
     return user;
   }
 
+  /**
+   * Updates the user's password
+   * @param username username of the user
+   * @param rawPassword new password
+   */
   public void updatePassword(String username, String rawPassword) {
     String encryptedPassword = passwordEncoder.encode(rawPassword);
     User user = userRepository.findByUsername(username);

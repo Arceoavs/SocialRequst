@@ -38,7 +38,7 @@ public class UserAuthenticationService implements UserDetailsService {
     }
 
     /*
-     * Here we return a new userdetails.User object
+     * Here we return a new userdetails. User object
      * Otherwise we could let our User Class extend the User Details Object and just return it i found
      * However, I think it is cleaner to split data persistence and functionality
      */
