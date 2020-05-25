@@ -30,6 +30,8 @@ public class RequestServiceImpl implements RequestService {
   public Request createRequest(Request request, String[] topics) {
     if (topics == null) topics = new String[]{};
 
+    // if a new topic is given in the list of topics, then the reuqest does not have any topic assigned
+    // thus the request has to be assigned to all the topics in the list
     if(request.getTopics() == null || topics.length != request.getTopics().size()) {
       Set<Topic> requestTopics = new HashSet<>();
       for(String topic : topics) {
