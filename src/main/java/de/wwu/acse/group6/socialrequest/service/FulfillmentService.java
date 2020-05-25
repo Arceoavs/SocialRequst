@@ -16,7 +16,14 @@ public class FulfillmentService {
   @Autowired
   private FulfillmentRepository fulfillmentRepository;
 
-  public void fulfillRequest(Request request, User user) throws RequestAlreadyFulfilledException {
+  /**
+   * Fulfills the request and sets the user as the "fulfiller"
+   * @param request the request to be fulfilled
+   * @param user the user that fulfills the request
+   * @throws RequestAlreadyFulfilledException if the request is already fulfilled
+   * @throws RequestCannotBeFulfilledBySameUser if the creator of the request wants to fulfill their own request
+   */
+  public void fulfillRequest(Request request, User user) throws RequestAlreadyFulfilledException, RequestCannotBeFulfilledBySameUser {
     if (request.isFulfilled()) {
       throw new RequestAlreadyFulfilledException();
     } else if (request.getUser().getId() == user.getId()) {
