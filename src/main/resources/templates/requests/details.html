@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head('SocialRequest - Request details')"></head>
+<body>
+<nav th:replace="layout :: nav('requests')"></nav>
+
+<main role="main" class="container" th:object="${request}">
+    <h1 class="mb-4" th:text="*{title}">Title</h1>
+
+    <div class="row">
+        <div class="col-sm-2"><strong>Latitude:</strong></div>
+        <div class="col-sm-10" th:text="*{latitude}">Latitude</div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-2"><strong>Longitude:</strong></div>
+        <div class="col-sm-10" th:text="*{longitude}">Longitude</div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-2"><strong>Topics:</strong></div>
+        <div class="col-sm-10">
+            <div th:each="topic : *{topics}" th:text="${topic.name}" class="badge badge-info">Topic</div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-2"><strong>Fulfilled:</strong></div>
+        <div class="col-sm-10">
+            <span th:if="*{fulfillment} == null" class="badge badge-danger">No</span>
+            <span th:if="*{fulfillment} != null" class="badge badge-success">Yes</span>
+        </div>
+    </div>
+
+    <div th:if="*{fulfillment} != null" class="row">
+        <div class="col-sm-2"><strong>Fulfilled by:</strong></div>
+        <div class="col-sm-10" th:text="*{fulfillment.user.username}">Username</div>
+    </div>
+
+    <div th:if="*{fulfillment} != null" class="row">
+        <div class="col-sm-2"><strong>Fulfilled at:</strong></div>
+        <div class="col-sm-10" th:text="${#dates.format(request.fulfillment.createdAt, 'dd-MM-yyyy HH:mm')}">Date</div>
+    </div>
+
+    <div class="mt-4">
+        <p th:each="line : ${#strings.arraySplit(request.description, T(java.lang.System).getProperty('line.separator'))}"
+           th:text="${line}">Description</p>
+    </div>
+</main>
+
+<footer th:replace="layout :: footer"></footer>
+</body>
+</html>

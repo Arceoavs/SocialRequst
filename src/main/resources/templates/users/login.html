@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head('SocialRequest - Login')"></head>
+<body>
+<nav th:replace="layout :: nav('login')"></nav>
+
+<main role="main" class="container">
+    <form class="mx-auto col-md-4" th:action="@{/users/login}" method="post">
+        <h1 class="mb-4">Login</h1>
+
+        <div th:if="${param.error}" class="alert alert-danger" role="alert">
+            Username or password is incorrect
+        </div>
+
+        <div th:if="${param.logout}" class="alert alert-success">
+            You have been logged out.
+        </div>
+
+        <div class="form-group">
+            <label for="username" class="sr-only">Username</label>
+            <input type="text" id="username" name="username" placeholder="Username" class="form-control"
+                   autocomplete="username" required autofocus>
+        </div>
+
+        <div class="form-group">
+            <label for="password" class="sr-only">Password</label>
+            <input type="password" id="password" name="password" placeholder="Password" class="form-control"
+                   autocomplete="current-password" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary float-right">Login</button>
+    </form>
+</main>
+
+<footer th:replace="layout :: footer"></footer>
+</body>
+</html>
