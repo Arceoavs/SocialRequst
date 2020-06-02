@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head('SocialRequest - Profile')"></head>
+<body>
+<nav th:replace="layout :: nav('profile')"></nav>
+
+<main role="main" class="container">
+    <div th:object="${user}">
+        <div class="row">
+            <h1 th:text="*{username}">Username</h1>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-sm-2"><strong>E-Mail:</strong></div>
+            <div class="col-sm-10" th:text="*{email}">E-Mail</div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2"><strong>Latitude:</strong></div>
+            <div class="col-sm-10" th:text="*{latitude}">Latitude</div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2"><strong>Longitude:</strong></div>
+            <div class="col-sm-10" th:text="*{longitude}">Longitude</div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2"><strong>Specialties:</strong></div>
+            <div class="col-sm-10">
+                <div th:each="specialty : *{specialties}" th:text="${specialty.name}" class="badge badge-info">
+                    Specialty
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <a class="btn btn-primary" th:href="@{/users/me/edit}" role="button">Edit</a>
+        </div>
+    </div>
+
+    <div class="mt-5 row">
+        <h2 class="mb-5">My Requests</h2>
+
+        <p th:if="${#lists.isEmpty(requests)}" class="table">You have currently no requests</p>
+        <table th:unless="${#lists.isEmpty(requests)}" class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Latitude</th>
+                <th scope="col">Longitude</th>
+                <th scope="col">Created At</th>
+                <th scope="col">Fulfilled</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="request : ${requests}">
+                <td th:text="${request.id}" scope="row">ID</td>
+                <td><a th:text="${request.title}" th:href="@{/requests/} + ${request.id}">Title</a></td>
+                <td th:text="${request.latitude}">Latitude</td>
+                <td th:text="${request.longitude}">Longitude</td>
+                <td th:text="${#dates.format(request.createdAt, 'dd-MM-yyyy HH:mm')}">CreatedAt</td>
+                <td th:if="${request.fulfillment} == null"><span class="badge badge-danger">No</span></td>
+                <td th:if="${request.fulfillment} != null"><span class="badge badge-success">Yes</span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-5 row">
+        <h2 class="mb-5">Fulfilled Requests</h2>
+
+        <p th:if="${#lists.isEmpty(fulfillments)}" class="table">You have currently not fulfilled any requests</p>
+        <table th:unless="${#lists.isEmpty(fulfillments)}" class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Latitude</th>
+                <th scope="col">Longitude</th>
+                <th scope="col">Created At</th>
+                <th scope="col">Fulfilled At</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="fulfillment : ${fulfillments}">
+                <td th:text="${fulfillment.request.id}" scope="row">ID</td>
+                <td><a th:text="${fulfillment.request.title}"
+                       th:href="@{/requests/} + ${fulfillment.request.id}">Title</a></td>
+                <td th:text="${fulfillment.request.latitude}">Latitude</td>
+                <td th:text="${fulfillment.request.longitude}">Longitude</td>
+                <td th:text="${#dates.format(fulfillment.request.createdAt, 'dd-MM-yyyy HH:mm')}">CreatedAt</td>
+                <td th:text="${#dates.format(fulfillment.createdAt, 'dd-MM-yyyy HH:mm')}">CreatedAt</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<footer th:replace="layout :: footer"></footer>
+</body>
+</html>

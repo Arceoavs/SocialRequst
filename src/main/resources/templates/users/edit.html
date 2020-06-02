@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head('SocialRequest - Profile')"></head>
+<body>
+<nav th:replace="layout :: nav('profile')"></nav>
+
+<main role="main" class="container">
+    <form class="mt-4 mx-auto col-sm-10" th:object="${user}" th:action="@{/users/me/edit}" method="post">
+        <h1 class="mb-4">Edit Profile</h1>
+
+        <div th:if="${#fields.hasErrors('global')}"
+             th:each="error : ${#fields.errors('global')}"
+             th:text="${error}"
+             class="alert alert-danger" role="alert">
+            global error
+        </div>
+
+        <div class="form-group row">
+            <label for="username" class="col-sm-2 col-form-label">Username</label>
+            <input type="text"
+                   id="username"
+                   th:field="*{username}"
+                   placeholder="Username"
+                   class="form-control col-sm-10"
+                   th:classappend="${#fields.hasErrors('username')} ? is-invalid : ''"
+                   autocomplete="username"
+                   required autofocus>
+            <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="invalid-feedback">error
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="rawPassword" class="col-sm-2 col-form-label">Password</label>
+            <input type="password"
+                   id="rawPassword"
+                   th:field="*{rawPassword}"
+                   placeholder="Password"
+                   class="form-control col-sm-10"
+                   th:classappend="${#fields.hasErrors('rawPassword')} ? is-invalid : ''"
+                   autocomplete="new-password">
+            <div th:if="${#fields.hasErrors('rawPassword')}" th:errors="*{rawPassword}" class="invalid-feedback">
+                error
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="email" class="col-sm-2 col-form-label">E-Mail</label>
+            <input type="email"
+                   id="email"
+                   th:field="*{email}"
+                   placeholder="E-Mail"
+                   class="form-control col-sm-10"
+                   th:classappend="${#fields.hasErrors('email')} ? is-invalid : ''"
+                   required>
+            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="invalid-feedback">error</div>
+        </div>
+
+        <div class="form-group row">
+            <label for="latitude" class="col-sm-2 col-form-label">Latitude</label>
+            <input type="number"
+                   step="0.0000001"
+                   min="-90"
+                   max="90"
+                   id="latitude"
+                   th:field="*{latitude}"
+                   placeholder="Latitude"
+                   class="form-control col-sm-10"
+                   th:classappend="${#fields.hasErrors('latitude')} ? is-invalid : ''"
+                   required>
+            <div th:if="${#fields.hasErrors('latitude')}" th:errors="*{latitude}" class="invalid-feedback">error
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="latitude" class="col-sm-2 col-form-label">Longitude</label>
+            <input type="number"
+                   step="0.0000001"
+                   min="-180"
+                   max="180"
+                   id="longitude"
+                   th:field="*{longitude}"
+                   placeholder="Longitude"
+                   class="form-control col-sm-10"
+                   th:classappend="${#fields.hasErrors('longitude')} ? is-invalid : ''"
+                   required>
+            <div th:if="${#fields.hasErrors('longitude')}" th:errors="*{longitude}" class="invalid-feedback">error
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="specialties" class="col-sm-2 col-form-label">Specialities (comma separated)</label>
+            <input type="text"
+                   id="specialties"
+                   th:field="*{specialties}"
+                   placeholder="Specialties"
+                   class="form-control col-sm-10"
+                   th:classappend="${#fields.hasErrors('specialties')} ? is-invalid : ''">
+            <div th:if="${#fields.hasErrors('specialties')}" th:errors="*{specialties}" class="invalid-feedback">error
+            </div>
+        </div>
+
+        <div class="form-group row float-right">
+            <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+    </form>
+</main>
+
+<footer th:replace="layout :: footer"></footer>
+</body>
+</html>

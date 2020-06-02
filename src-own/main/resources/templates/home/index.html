@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layouts/default(messageType=${messageType}, message=${message})}"
+>
+<head>
+  <title>SocialRequest - Home</title>
+</head>
+<body>
+  <div layout:fragment="content">
+    <section class="hero is-fullheight-with-navbar">
+      <div class="hero-body" style="display: block;">
+        <div class="container">
+
+          <div th:replace="search/header :: header(isLiveSearch = true)" />
+
+        </div>
+
+        <div id="search-results-wrapper" class="container">
+          <div th:replace="search/result_list :: result_list(results = ${results})"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
