@@ -1,0 +1,9 @@
+grammar org.xtext.example.mydsl.SocialRequest with org.eclipse.xtext.common.Terminals
+
+generate socialRequest "http://www.xtext.org/example/mydsl/SocialRequest"
+
+Model:
+	greetings+=Greeting*;
+	
+Greeting:
+	'Hello' name=ID '!';
