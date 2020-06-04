@@ -2,6 +2,7 @@ package de.wwu.acse2020.socialrequest.data.repo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -9,36 +10,24 @@ import de.wwu.acse2020.socialrequest.data.model.Request;
 import de.wwu.acse2020.socialrequest.data.model.User;
 
 public interface RequestRepository extends JpaRepository<Request, Long> {
-  List<Request> findAllByFulfillmentIsNullOrderByCreatedAtDesc();
+        List<Request> findAllByFulfillmentIsNullOrderByCreatedAtDesc();
 
-  List<Request> findAllByUserOrderByCreatedAtDesc(User user);
+        List<Request> findAllByUserOrderByCreatedAtDesc(User user);
 
-  @Query("SELECT r "
-          + "FROM Request r "
-          + "LEFT OUTER JOIN Fulfillment f ON r = f.request "
-          + "WHERE (LOWER(r.title) LIKE LOWER(CONCAT('%', ?1, '%')) "
-          + "   OR  LOWER(r.description) LIKE LOWER(CONCAT('%', ?1, '%'))) "
-          + "  AND f.id IS NULL "
-          + "ORDER BY r.createdAt DESC")
-  List<Request> fullTextSearchUnfulfilled(String query);
+        @Query("SELECT r " + "FROM Request r " + "LEFT OUTER JOIN Fulfillment f ON r = f.request "
+                        + "WHERE (LOWER(r.title) LIKE LOWER(CONCAT('%', :query, '%')) "
+                        + "   OR  LOWER(r.description) LIKE LOWER(CONCAT('%', :query, '%'))) " + "  AND f.id IS NULL "
+                        + "ORDER BY r.createdAt DESC")
+        List<Request> fullTextSearchUnfulfilled(@Param("query") String query);
 
-  @Query(value = "SELECT DISTINCT r.* "
-          + "FROM Request r "
-          + "LEFT OUTER JOIN Fulfillment f ON (r.id = f.request_id) "
-          + "CROSS JOIN User u "
-          + "WHERE f.id IS NULL "
-          + "  AND u.id = ?1 "
-          + "  AND 6371 * SQRT(POWER((u.longitude*PI()/180 - r.longitude*PI()/180) * COS((r.latitude*PI()/180 + u.latitude*PI()/180)/2), 2) + POWER(u.latitude*PI()/180 - r.latitude*PI()/180, 2)) < 10 "
-          + "ORDER BY r.created_at DESC",
-          nativeQuery = true)
-  List<Request> nearByUser(long userId);
+        @Query("SELECT r from Request r LEFT JOIN r.fulfillment f WHERE f.id IS NULL"
+                        + " AND 6371 * SQRT(POWER((radians(r.lng) - radians(:lng)) * COS((radians(:lat) + radians(r.lat))/2), 2) + POWER(radians(r.lat) - radians(:lat), 2)) <= 10"
+                        + "ORDER BY r.createdAt DESC")
+        List<Request> nearByUser(@Param("lat") float lat, @Param("lng") float lng);
 
-  @Query("SELECT DISTINCT r "
-          + "FROM Request r "
-          + "JOIN r.topics t "
-          + "LEFT OUTER JOIN Fulfillment f ON r = f.request "
-          + "WHERE f.id IS NULL "
-          + "  AND t.name IN (SELECT t.name FROM Topic t JOIN t.users u WHERE u = ?1) "
-          + "ORDER BY r.createdAt DESC")
-  List<Request> matchingSpecialtiesOfUser(User user);
+        @Query("SELECT DISTINCT r " + "FROM Request r " + "JOIN r.topics t "
+                        + "LEFT OUTER JOIN Fulfillment f ON r = f.request " + "WHERE f.id IS NULL "
+                        + "  AND t.name IN (SELECT t.name FROM Topic t JOIN t.users u WHERE u = :user) "
+                        + "ORDER BY r.createdAt DESC")
+        List<Request> matchingSpecialtiesOfUser(@Param("user") User user);
 }

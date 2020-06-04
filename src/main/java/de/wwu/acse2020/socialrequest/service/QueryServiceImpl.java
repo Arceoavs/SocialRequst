@@ -20,7 +20,7 @@ public class QueryServiceImpl extends AbstractService implements QueryService {
 
   public QueryServiceImpl() {
     queries.put("near-by", new Query("near-by", "Near by", "Near by Requests", "Searches for near by requests",
-            () -> requestRepo.nearByUser(getCurrentUser().getId())));
+            () -> requestRepo.nearByUser(getCurrentUser().getLatitude(), getCurrentUser().getLongitude())));
 
     queries.put("matching-specialties",
             new Query("matching-specialties", "Matching Specialties", "Requests Matching your Specialities",
