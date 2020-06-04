@@ -68,13 +68,22 @@ public interface SocialRequestPackage extends EPackage
   int MODEL = 0;
 
   /**
-   * The feature id for the '<em><b>Greetings</b></em>' containment reference list.
+   * The feature id for the '<em><b>Entities</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MODEL__GREETINGS = 0;
+  int MODEL__ENTITIES = 0;
+
+  /**
+   * The feature id for the '<em><b>Repositories</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MODEL__REPOSITORIES = 1;
 
   /**
    * The number of structural features of the '<em>Model</em>' class.
@@ -83,17 +92,17 @@ public interface SocialRequestPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MODEL_FEATURE_COUNT = 1;
+  int MODEL_FEATURE_COUNT = 2;
 
   /**
-   * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.impl.GreetingImpl <em>Greeting</em>}' class.
+   * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.impl.EntityImpl <em>Entity</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.xtext.example.mydsl.socialRequest.impl.GreetingImpl
-   * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getGreeting()
+   * @see org.xtext.example.mydsl.socialRequest.impl.EntityImpl
+   * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getEntity()
    * @generated
    */
-  int GREETING = 1;
+  int ENTITY = 1;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -102,16 +111,366 @@ public interface SocialRequestPackage extends EPackage
    * @generated
    * @ordered
    */
-  int GREETING__NAME = 0;
+  int ENTITY__NAME = 0;
 
   /**
-   * The number of structural features of the '<em>Greeting</em>' class.
+   * The feature id for the '<em><b>Has User Details</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int GREETING_FEATURE_COUNT = 1;
+  int ENTITY__HAS_USER_DETAILS = 1;
+
+  /**
+   * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENTITY__ATTRIBUTES = 2;
+
+  /**
+   * The number of structural features of the '<em>Entity</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENTITY_FEATURE_COUNT = 3;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.impl.AttributeImpl <em>Attribute</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.socialRequest.impl.AttributeImpl
+   * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getAttribute()
+   * @generated
+   */
+  int ATTRIBUTE = 2;
+
+  /**
+   * The feature id for the '<em><b>Association</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE__ASSOCIATION = 0;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE__NAME = 1;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE__TYPE = 2;
+
+  /**
+   * The feature id for the '<em><b>Modifier</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE__MODIFIER = 3;
+
+  /**
+   * The feature id for the '<em><b>Association Specifications</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE__ASSOCIATION_SPECIFICATIONS = 4;
+
+  /**
+   * The feature id for the '<em><b>Validations</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE__VALIDATIONS = 5;
+
+  /**
+   * The number of structural features of the '<em>Attribute</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE_FEATURE_COUNT = 6;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.impl.ModifierImpl <em>Modifier</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.socialRequest.impl.ModifierImpl
+   * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getModifier()
+   * @generated
+   */
+  int MODIFIER = 3;
+
+  /**
+   * The number of structural features of the '<em>Modifier</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MODIFIER_FEATURE_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.impl.IdentificationImpl <em>Identification</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.socialRequest.impl.IdentificationImpl
+   * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getIdentification()
+   * @generated
+   */
+  int IDENTIFICATION = 4;
+
+  /**
+   * The feature id for the '<em><b>Generation Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IDENTIFICATION__GENERATION_TYPE = MODIFIER_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Identification</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IDENTIFICATION_FEATURE_COUNT = MODIFIER_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.impl.ValidationImpl <em>Validation</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.socialRequest.impl.ValidationImpl
+   * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getValidation()
+   * @generated
+   */
+  int VALIDATION = 5;
+
+  /**
+   * The feature id for the '<em><b>Min</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VALIDATION__MIN = 0;
+
+  /**
+   * The feature id for the '<em><b>Max</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VALIDATION__MAX = 1;
+
+  /**
+   * The feature id for the '<em><b>Regex</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VALIDATION__REGEX = 2;
+
+  /**
+   * The number of structural features of the '<em>Validation</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VALIDATION_FEATURE_COUNT = 3;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.impl.AssociationSpecificationImpl <em>Association Specification</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.socialRequest.impl.AssociationSpecificationImpl
+   * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getAssociationSpecification()
+   * @generated
+   */
+  int ASSOCIATION_SPECIFICATION = 6;
+
+  /**
+   * The feature id for the '<em><b>Mapped By</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSOCIATION_SPECIFICATION__MAPPED_BY = 0;
+
+  /**
+   * The feature id for the '<em><b>Fetch Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSOCIATION_SPECIFICATION__FETCH_TYPE = 1;
+
+  /**
+   * The number of structural features of the '<em>Association Specification</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSOCIATION_SPECIFICATION_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.impl.RepositoryImpl <em>Repository</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.socialRequest.impl.RepositoryImpl
+   * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getRepository()
+   * @generated
+   */
+  int REPOSITORY = 7;
+
+  /**
+   * The feature id for the '<em><b>Entity</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REPOSITORY__ENTITY = 0;
+
+  /**
+   * The feature id for the '<em><b>Queries</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REPOSITORY__QUERIES = 1;
+
+  /**
+   * The number of structural features of the '<em>Repository</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REPOSITORY_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.impl.QueryImpl <em>Query</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.socialRequest.impl.QueryImpl
+   * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getQuery()
+   * @generated
+   */
+  int QUERY = 8;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int QUERY__NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Is List</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int QUERY__IS_LIST = 1;
+
+  /**
+   * The feature id for the '<em><b>Params</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int QUERY__PARAMS = 2;
+
+  /**
+   * The feature id for the '<em><b>Sql Query</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int QUERY__SQL_QUERY = 3;
+
+  /**
+   * The number of structural features of the '<em>Query</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int QUERY_FEATURE_COUNT = 4;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.impl.ParamImpl <em>Param</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.socialRequest.impl.ParamImpl
+   * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getParam()
+   * @generated
+   */
+  int PARAM = 9;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PARAM__NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PARAM__TYPE = 1;
+
+  /**
+   * The number of structural features of the '<em>Param</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PARAM_FEATURE_COUNT = 2;
 
 
   /**
@@ -125,36 +484,369 @@ public interface SocialRequestPackage extends EPackage
   EClass getModel();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.socialRequest.Model#getGreetings <em>Greetings</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.socialRequest.Model#getEntities <em>Entities</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Greetings</em>'.
-   * @see org.xtext.example.mydsl.socialRequest.Model#getGreetings()
+   * @return the meta object for the containment reference list '<em>Entities</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Model#getEntities()
    * @see #getModel()
    * @generated
    */
-  EReference getModel_Greetings();
+  EReference getModel_Entities();
 
   /**
-   * Returns the meta object for class '{@link org.xtext.example.mydsl.socialRequest.Greeting <em>Greeting</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.socialRequest.Model#getRepositories <em>Repositories</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Greeting</em>'.
-   * @see org.xtext.example.mydsl.socialRequest.Greeting
+   * @return the meta object for the containment reference list '<em>Repositories</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Model#getRepositories()
+   * @see #getModel()
    * @generated
    */
-  EClass getGreeting();
+  EReference getModel_Repositories();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.Greeting#getName <em>Name</em>}'.
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.socialRequest.Entity <em>Entity</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Entity</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Entity
+   * @generated
+   */
+  EClass getEntity();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.Entity#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.xtext.example.mydsl.socialRequest.Greeting#getName()
-   * @see #getGreeting()
+   * @see org.xtext.example.mydsl.socialRequest.Entity#getName()
+   * @see #getEntity()
    * @generated
    */
-  EAttribute getGreeting_Name();
+  EAttribute getEntity_Name();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.Entity#isHasUserDetails <em>Has User Details</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Has User Details</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Entity#isHasUserDetails()
+   * @see #getEntity()
+   * @generated
+   */
+  EAttribute getEntity_HasUserDetails();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.socialRequest.Entity#getAttributes <em>Attributes</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Attributes</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Entity#getAttributes()
+   * @see #getEntity()
+   * @generated
+   */
+  EReference getEntity_Attributes();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.socialRequest.Attribute <em>Attribute</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Attribute</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Attribute
+   * @generated
+   */
+  EClass getAttribute();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.Attribute#getAssociation <em>Association</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Association</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Attribute#getAssociation()
+   * @see #getAttribute()
+   * @generated
+   */
+  EAttribute getAttribute_Association();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.Attribute#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Attribute#getName()
+   * @see #getAttribute()
+   * @generated
+   */
+  EAttribute getAttribute_Name();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.socialRequest.Attribute#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Type</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Attribute#getType()
+   * @see #getAttribute()
+   * @generated
+   */
+  EReference getAttribute_Type();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.socialRequest.Attribute#getModifier <em>Modifier</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Modifier</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Attribute#getModifier()
+   * @see #getAttribute()
+   * @generated
+   */
+  EReference getAttribute_Modifier();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.socialRequest.Attribute#getAssociationSpecifications <em>Association Specifications</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Association Specifications</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Attribute#getAssociationSpecifications()
+   * @see #getAttribute()
+   * @generated
+   */
+  EReference getAttribute_AssociationSpecifications();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.socialRequest.Attribute#getValidations <em>Validations</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Validations</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Attribute#getValidations()
+   * @see #getAttribute()
+   * @generated
+   */
+  EReference getAttribute_Validations();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.socialRequest.Modifier <em>Modifier</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Modifier</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Modifier
+   * @generated
+   */
+  EClass getModifier();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.socialRequest.Identification <em>Identification</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Identification</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Identification
+   * @generated
+   */
+  EClass getIdentification();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.Identification#getGenerationType <em>Generation Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Generation Type</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Identification#getGenerationType()
+   * @see #getIdentification()
+   * @generated
+   */
+  EAttribute getIdentification_GenerationType();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.socialRequest.Validation <em>Validation</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Validation</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Validation
+   * @generated
+   */
+  EClass getValidation();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.Validation#getMin <em>Min</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Min</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Validation#getMin()
+   * @see #getValidation()
+   * @generated
+   */
+  EAttribute getValidation_Min();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.Validation#getMax <em>Max</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Max</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Validation#getMax()
+   * @see #getValidation()
+   * @generated
+   */
+  EAttribute getValidation_Max();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.Validation#getRegex <em>Regex</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Regex</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Validation#getRegex()
+   * @see #getValidation()
+   * @generated
+   */
+  EAttribute getValidation_Regex();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.socialRequest.AssociationSpecification <em>Association Specification</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Association Specification</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.AssociationSpecification
+   * @generated
+   */
+  EClass getAssociationSpecification();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.AssociationSpecification#getMappedBy <em>Mapped By</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Mapped By</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.AssociationSpecification#getMappedBy()
+   * @see #getAssociationSpecification()
+   * @generated
+   */
+  EAttribute getAssociationSpecification_MappedBy();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.AssociationSpecification#getFetchType <em>Fetch Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Fetch Type</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.AssociationSpecification#getFetchType()
+   * @see #getAssociationSpecification()
+   * @generated
+   */
+  EAttribute getAssociationSpecification_FetchType();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.socialRequest.Repository <em>Repository</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Repository</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Repository
+   * @generated
+   */
+  EClass getRepository();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.socialRequest.Repository#getEntity <em>Entity</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Entity</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Repository#getEntity()
+   * @see #getRepository()
+   * @generated
+   */
+  EReference getRepository_Entity();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.socialRequest.Repository#getQueries <em>Queries</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Queries</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Repository#getQueries()
+   * @see #getRepository()
+   * @generated
+   */
+  EReference getRepository_Queries();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.socialRequest.Query <em>Query</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Query</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Query
+   * @generated
+   */
+  EClass getQuery();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.Query#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Query#getName()
+   * @see #getQuery()
+   * @generated
+   */
+  EAttribute getQuery_Name();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.Query#isIsList <em>Is List</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Is List</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Query#isIsList()
+   * @see #getQuery()
+   * @generated
+   */
+  EAttribute getQuery_IsList();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.socialRequest.Query#getParams <em>Params</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Params</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Query#getParams()
+   * @see #getQuery()
+   * @generated
+   */
+  EReference getQuery_Params();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.Query#getSqlQuery <em>Sql Query</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Sql Query</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Query#getSqlQuery()
+   * @see #getQuery()
+   * @generated
+   */
+  EAttribute getQuery_SqlQuery();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.socialRequest.Param <em>Param</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Param</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Param
+   * @generated
+   */
+  EClass getParam();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.Param#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Param#getName()
+   * @see #getParam()
+   * @generated
+   */
+  EAttribute getParam_Name();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.socialRequest.Param#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Type</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Param#getType()
+   * @see #getParam()
+   * @generated
+   */
+  EReference getParam_Type();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -190,22 +882,30 @@ public interface SocialRequestPackage extends EPackage
     EClass MODEL = eINSTANCE.getModel();
 
     /**
-     * The meta object literal for the '<em><b>Greetings</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Entities</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference MODEL__GREETINGS = eINSTANCE.getModel_Greetings();
+    EReference MODEL__ENTITIES = eINSTANCE.getModel_Entities();
 
     /**
-     * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.impl.GreetingImpl <em>Greeting</em>}' class.
+     * The meta object literal for the '<em><b>Repositories</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.xtext.example.mydsl.socialRequest.impl.GreetingImpl
-     * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getGreeting()
      * @generated
      */
-    EClass GREETING = eINSTANCE.getGreeting();
+    EReference MODEL__REPOSITORIES = eINSTANCE.getModel_Repositories();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.impl.EntityImpl <em>Entity</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.socialRequest.impl.EntityImpl
+     * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getEntity()
+     * @generated
+     */
+    EClass ENTITY = eINSTANCE.getEntity();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -213,7 +913,263 @@ public interface SocialRequestPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute GREETING__NAME = eINSTANCE.getGreeting_Name();
+    EAttribute ENTITY__NAME = eINSTANCE.getEntity_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Has User Details</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ENTITY__HAS_USER_DETAILS = eINSTANCE.getEntity_HasUserDetails();
+
+    /**
+     * The meta object literal for the '<em><b>Attributes</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ENTITY__ATTRIBUTES = eINSTANCE.getEntity_Attributes();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.impl.AttributeImpl <em>Attribute</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.socialRequest.impl.AttributeImpl
+     * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getAttribute()
+     * @generated
+     */
+    EClass ATTRIBUTE = eINSTANCE.getAttribute();
+
+    /**
+     * The meta object literal for the '<em><b>Association</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ATTRIBUTE__ASSOCIATION = eINSTANCE.getAttribute_Association();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ATTRIBUTE__NAME = eINSTANCE.getAttribute_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ATTRIBUTE__TYPE = eINSTANCE.getAttribute_Type();
+
+    /**
+     * The meta object literal for the '<em><b>Modifier</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ATTRIBUTE__MODIFIER = eINSTANCE.getAttribute_Modifier();
+
+    /**
+     * The meta object literal for the '<em><b>Association Specifications</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ATTRIBUTE__ASSOCIATION_SPECIFICATIONS = eINSTANCE.getAttribute_AssociationSpecifications();
+
+    /**
+     * The meta object literal for the '<em><b>Validations</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ATTRIBUTE__VALIDATIONS = eINSTANCE.getAttribute_Validations();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.impl.ModifierImpl <em>Modifier</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.socialRequest.impl.ModifierImpl
+     * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getModifier()
+     * @generated
+     */
+    EClass MODIFIER = eINSTANCE.getModifier();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.impl.IdentificationImpl <em>Identification</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.socialRequest.impl.IdentificationImpl
+     * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getIdentification()
+     * @generated
+     */
+    EClass IDENTIFICATION = eINSTANCE.getIdentification();
+
+    /**
+     * The meta object literal for the '<em><b>Generation Type</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute IDENTIFICATION__GENERATION_TYPE = eINSTANCE.getIdentification_GenerationType();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.impl.ValidationImpl <em>Validation</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.socialRequest.impl.ValidationImpl
+     * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getValidation()
+     * @generated
+     */
+    EClass VALIDATION = eINSTANCE.getValidation();
+
+    /**
+     * The meta object literal for the '<em><b>Min</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute VALIDATION__MIN = eINSTANCE.getValidation_Min();
+
+    /**
+     * The meta object literal for the '<em><b>Max</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute VALIDATION__MAX = eINSTANCE.getValidation_Max();
+
+    /**
+     * The meta object literal for the '<em><b>Regex</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute VALIDATION__REGEX = eINSTANCE.getValidation_Regex();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.impl.AssociationSpecificationImpl <em>Association Specification</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.socialRequest.impl.AssociationSpecificationImpl
+     * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getAssociationSpecification()
+     * @generated
+     */
+    EClass ASSOCIATION_SPECIFICATION = eINSTANCE.getAssociationSpecification();
+
+    /**
+     * The meta object literal for the '<em><b>Mapped By</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ASSOCIATION_SPECIFICATION__MAPPED_BY = eINSTANCE.getAssociationSpecification_MappedBy();
+
+    /**
+     * The meta object literal for the '<em><b>Fetch Type</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ASSOCIATION_SPECIFICATION__FETCH_TYPE = eINSTANCE.getAssociationSpecification_FetchType();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.impl.RepositoryImpl <em>Repository</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.socialRequest.impl.RepositoryImpl
+     * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getRepository()
+     * @generated
+     */
+    EClass REPOSITORY = eINSTANCE.getRepository();
+
+    /**
+     * The meta object literal for the '<em><b>Entity</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference REPOSITORY__ENTITY = eINSTANCE.getRepository_Entity();
+
+    /**
+     * The meta object literal for the '<em><b>Queries</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference REPOSITORY__QUERIES = eINSTANCE.getRepository_Queries();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.impl.QueryImpl <em>Query</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.socialRequest.impl.QueryImpl
+     * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getQuery()
+     * @generated
+     */
+    EClass QUERY = eINSTANCE.getQuery();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute QUERY__NAME = eINSTANCE.getQuery_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Is List</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute QUERY__IS_LIST = eINSTANCE.getQuery_IsList();
+
+    /**
+     * The meta object literal for the '<em><b>Params</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference QUERY__PARAMS = eINSTANCE.getQuery_Params();
+
+    /**
+     * The meta object literal for the '<em><b>Sql Query</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute QUERY__SQL_QUERY = eINSTANCE.getQuery_SqlQuery();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.impl.ParamImpl <em>Param</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.socialRequest.impl.ParamImpl
+     * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getParam()
+     * @generated
+     */
+    EClass PARAM = eINSTANCE.getParam();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PARAM__NAME = eINSTANCE.getParam_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PARAM__TYPE = eINSTANCE.getParam_Type();
 
   }
 

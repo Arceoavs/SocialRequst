@@ -31,9 +31,54 @@ public class SocialRequestParser extends AbstractContentAssistParser {
 		}
 		
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, SocialRequestGrammarAccess grammarAccess) {
-			builder.put(grammarAccess.getGreetingAccess().getGroup(), "rule__Greeting__Group__0");
-			builder.put(grammarAccess.getModelAccess().getGreetingsAssignment(), "rule__Model__GreetingsAssignment");
-			builder.put(grammarAccess.getGreetingAccess().getNameAssignment_1(), "rule__Greeting__NameAssignment_1");
+			builder.put(grammarAccess.getModifierAccess().getAlternatives(), "rule__Modifier__Alternatives");
+			builder.put(grammarAccess.getValidationAccess().getAlternatives(), "rule__Validation__Alternatives");
+			builder.put(grammarAccess.getAssociationSpecificationAccess().getAlternatives(), "rule__AssociationSpecification__Alternatives");
+			builder.put(grammarAccess.getModelAccess().getGroup(), "rule__Model__Group__0");
+			builder.put(grammarAccess.getEntityAccess().getGroup(), "rule__Entity__Group__0");
+			builder.put(grammarAccess.getAttributeAccess().getGroup(), "rule__Attribute__Group__0");
+			builder.put(grammarAccess.getAttributeAccess().getGroup_5(), "rule__Attribute__Group_5__0");
+			builder.put(grammarAccess.getAttributeAccess().getGroup_5_1_1(), "rule__Attribute__Group_5_1_1__0");
+			builder.put(grammarAccess.getModifierAccess().getGroup_0(), "rule__Modifier__Group_0__0");
+			builder.put(grammarAccess.getIdentificationAccess().getGroup(), "rule__Identification__Group__0");
+			builder.put(grammarAccess.getIdentificationAccess().getGroup_2(), "rule__Identification__Group_2__0");
+			builder.put(grammarAccess.getValidationAccess().getGroup_0(), "rule__Validation__Group_0__0");
+			builder.put(grammarAccess.getValidationAccess().getGroup_1(), "rule__Validation__Group_1__0");
+			builder.put(grammarAccess.getValidationAccess().getGroup_2(), "rule__Validation__Group_2__0");
+			builder.put(grammarAccess.getValidationAccess().getGroup_3(), "rule__Validation__Group_3__0");
+			builder.put(grammarAccess.getValidationAccess().getGroup_4(), "rule__Validation__Group_4__0");
+			builder.put(grammarAccess.getAssociationSpecificationAccess().getGroup_0(), "rule__AssociationSpecification__Group_0__0");
+			builder.put(grammarAccess.getAssociationSpecificationAccess().getGroup_1(), "rule__AssociationSpecification__Group_1__0");
+			builder.put(grammarAccess.getRepositoryAccess().getGroup(), "rule__Repository__Group__0");
+			builder.put(grammarAccess.getQueryAccess().getGroup(), "rule__Query__Group__0");
+			builder.put(grammarAccess.getQueryAccess().getGroup_3(), "rule__Query__Group_3__0");
+			builder.put(grammarAccess.getParamAccess().getGroup(), "rule__Param__Group__0");
+			builder.put(grammarAccess.getModelAccess().getEntitiesAssignment_0(), "rule__Model__EntitiesAssignment_0");
+			builder.put(grammarAccess.getModelAccess().getRepositoriesAssignment_1(), "rule__Model__RepositoriesAssignment_1");
+			builder.put(grammarAccess.getEntityAccess().getNameAssignment_1(), "rule__Entity__NameAssignment_1");
+			builder.put(grammarAccess.getEntityAccess().getHasUserDetailsAssignment_2(), "rule__Entity__HasUserDetailsAssignment_2");
+			builder.put(grammarAccess.getEntityAccess().getAttributesAssignment_4(), "rule__Entity__AttributesAssignment_4");
+			builder.put(grammarAccess.getAttributeAccess().getAssociationAssignment_0(), "rule__Attribute__AssociationAssignment_0");
+			builder.put(grammarAccess.getAttributeAccess().getNameAssignment_1(), "rule__Attribute__NameAssignment_1");
+			builder.put(grammarAccess.getAttributeAccess().getTypeAssignment_3(), "rule__Attribute__TypeAssignment_3");
+			builder.put(grammarAccess.getAttributeAccess().getModifierAssignment_4(), "rule__Attribute__ModifierAssignment_4");
+			builder.put(grammarAccess.getAttributeAccess().getAssociationSpecificationsAssignment_5_1_0(), "rule__Attribute__AssociationSpecificationsAssignment_5_1_0");
+			builder.put(grammarAccess.getAttributeAccess().getValidationsAssignment_5_1_1_1(), "rule__Attribute__ValidationsAssignment_5_1_1_1");
+			builder.put(grammarAccess.getIdentificationAccess().getGenerationTypeAssignment_2_1(), "rule__Identification__GenerationTypeAssignment_2_1");
+			builder.put(grammarAccess.getValidationAccess().getMinAssignment_0_1(), "rule__Validation__MinAssignment_0_1");
+			builder.put(grammarAccess.getValidationAccess().getMaxAssignment_1_1(), "rule__Validation__MaxAssignment_1_1");
+			builder.put(grammarAccess.getValidationAccess().getRegexAssignment_2_1(), "rule__Validation__RegexAssignment_2_1");
+			builder.put(grammarAccess.getAssociationSpecificationAccess().getMappedByAssignment_0_1(), "rule__AssociationSpecification__MappedByAssignment_0_1");
+			builder.put(grammarAccess.getAssociationSpecificationAccess().getFetchTypeAssignment_1_1(), "rule__AssociationSpecification__FetchTypeAssignment_1_1");
+			builder.put(grammarAccess.getRepositoryAccess().getEntityAssignment_1(), "rule__Repository__EntityAssignment_1");
+			builder.put(grammarAccess.getRepositoryAccess().getQueriesAssignment_3(), "rule__Repository__QueriesAssignment_3");
+			builder.put(grammarAccess.getQueryAccess().getNameAssignment_1(), "rule__Query__NameAssignment_1");
+			builder.put(grammarAccess.getQueryAccess().getIsListAssignment_2(), "rule__Query__IsListAssignment_2");
+			builder.put(grammarAccess.getQueryAccess().getParamsAssignment_3_1(), "rule__Query__ParamsAssignment_3_1");
+			builder.put(grammarAccess.getQueryAccess().getSqlQueryAssignment_3_2(), "rule__Query__SqlQueryAssignment_3_2");
+			builder.put(grammarAccess.getParamAccess().getNameAssignment_1(), "rule__Param__NameAssignment_1");
+			builder.put(grammarAccess.getParamAccess().getTypeAssignment_3(), "rule__Param__TypeAssignment_3");
+			builder.put(grammarAccess.getAttributeAccess().getUnorderedGroup_5_1(), "rule__Attribute__UnorderedGroup_5_1");
 		}
 	}
 	

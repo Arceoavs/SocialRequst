@@ -6,27 +6,30 @@ package org.xtext.example.mydsl.socialRequest.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.xtext.example.mydsl.socialRequest.Greeting;
+import org.xtext.example.mydsl.socialRequest.Entity;
+import org.xtext.example.mydsl.socialRequest.Param;
 import org.xtext.example.mydsl.socialRequest.SocialRequestPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Greeting</b></em>'.
+ * An implementation of the model object '<em><b>Param</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.socialRequest.impl.GreetingImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.socialRequest.impl.ParamImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.socialRequest.impl.ParamImpl#getType <em>Type</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class GreetingImpl extends MinimalEObjectImpl.Container implements Greeting
+public class ParamImpl extends MinimalEObjectImpl.Container implements Param
 {
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -49,11 +52,21 @@ public class GreetingImpl extends MinimalEObjectImpl.Container implements Greeti
   protected String name = NAME_EDEFAULT;
 
   /**
+   * The cached value of the '{@link #getType() <em>Type</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getType()
+   * @generated
+   * @ordered
+   */
+  protected Entity type;
+
+  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected GreetingImpl()
+  protected ParamImpl()
   {
     super();
   }
@@ -66,7 +79,7 @@ public class GreetingImpl extends MinimalEObjectImpl.Container implements Greeti
   @Override
   protected EClass eStaticClass()
   {
-    return SocialRequestPackage.Literals.GREETING;
+    return SocialRequestPackage.Literals.PARAM;
   }
 
   /**
@@ -91,7 +104,52 @@ public class GreetingImpl extends MinimalEObjectImpl.Container implements Greeti
     String oldName = name;
     name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, SocialRequestPackage.GREETING__NAME, oldName, name));
+      eNotify(new ENotificationImpl(this, Notification.SET, SocialRequestPackage.PARAM__NAME, oldName, name));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Entity getType()
+  {
+    if (type != null && type.eIsProxy())
+    {
+      InternalEObject oldType = (InternalEObject)type;
+      type = (Entity)eResolveProxy(oldType);
+      if (type != oldType)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, SocialRequestPackage.PARAM__TYPE, oldType, type));
+      }
+    }
+    return type;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Entity basicGetType()
+  {
+    return type;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setType(Entity newType)
+  {
+    Entity oldType = type;
+    type = newType;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, SocialRequestPackage.PARAM__TYPE, oldType, type));
   }
 
   /**
@@ -104,8 +162,11 @@ public class GreetingImpl extends MinimalEObjectImpl.Container implements Greeti
   {
     switch (featureID)
     {
-      case SocialRequestPackage.GREETING__NAME:
+      case SocialRequestPackage.PARAM__NAME:
         return getName();
+      case SocialRequestPackage.PARAM__TYPE:
+        if (resolve) return getType();
+        return basicGetType();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -120,8 +181,11 @@ public class GreetingImpl extends MinimalEObjectImpl.Container implements Greeti
   {
     switch (featureID)
     {
-      case SocialRequestPackage.GREETING__NAME:
+      case SocialRequestPackage.PARAM__NAME:
         setName((String)newValue);
+        return;
+      case SocialRequestPackage.PARAM__TYPE:
+        setType((Entity)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -137,8 +201,11 @@ public class GreetingImpl extends MinimalEObjectImpl.Container implements Greeti
   {
     switch (featureID)
     {
-      case SocialRequestPackage.GREETING__NAME:
+      case SocialRequestPackage.PARAM__NAME:
         setName(NAME_EDEFAULT);
+        return;
+      case SocialRequestPackage.PARAM__TYPE:
+        setType((Entity)null);
         return;
     }
     super.eUnset(featureID);
@@ -154,8 +221,10 @@ public class GreetingImpl extends MinimalEObjectImpl.Container implements Greeti
   {
     switch (featureID)
     {
-      case SocialRequestPackage.GREETING__NAME:
+      case SocialRequestPackage.PARAM__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case SocialRequestPackage.PARAM__TYPE:
+        return type != null;
     }
     return super.eIsSet(featureID);
   }
@@ -177,4 +246,4 @@ public class GreetingImpl extends MinimalEObjectImpl.Container implements Greeti
     return result.toString();
   }
 
-} //GreetingImpl
+} //ParamImpl

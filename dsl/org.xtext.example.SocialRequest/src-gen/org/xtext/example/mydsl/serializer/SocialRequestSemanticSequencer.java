@@ -15,9 +15,17 @@ import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import org.xtext.example.mydsl.services.SocialRequestGrammarAccess;
-import org.xtext.example.mydsl.socialRequest.Greeting;
+import org.xtext.example.mydsl.socialRequest.AssociationSpecification;
+import org.xtext.example.mydsl.socialRequest.Attribute;
+import org.xtext.example.mydsl.socialRequest.Entity;
+import org.xtext.example.mydsl.socialRequest.Identification;
 import org.xtext.example.mydsl.socialRequest.Model;
+import org.xtext.example.mydsl.socialRequest.Modifier;
+import org.xtext.example.mydsl.socialRequest.Param;
+import org.xtext.example.mydsl.socialRequest.Query;
+import org.xtext.example.mydsl.socialRequest.Repository;
 import org.xtext.example.mydsl.socialRequest.SocialRequestPackage;
+import org.xtext.example.mydsl.socialRequest.Validation;
 
 @SuppressWarnings("all")
 public class SocialRequestSemanticSequencer extends AbstractDelegatingSemanticSequencer {
@@ -33,11 +41,35 @@ public class SocialRequestSemanticSequencer extends AbstractDelegatingSemanticSe
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == SocialRequestPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
-			case SocialRequestPackage.GREETING:
-				sequence_Greeting(context, (Greeting) semanticObject); 
+			case SocialRequestPackage.ASSOCIATION_SPECIFICATION:
+				sequence_AssociationSpecification(context, (AssociationSpecification) semanticObject); 
+				return; 
+			case SocialRequestPackage.ATTRIBUTE:
+				sequence_Attribute(context, (Attribute) semanticObject); 
+				return; 
+			case SocialRequestPackage.ENTITY:
+				sequence_Entity(context, (Entity) semanticObject); 
+				return; 
+			case SocialRequestPackage.IDENTIFICATION:
+				sequence_Identification(context, (Identification) semanticObject); 
 				return; 
 			case SocialRequestPackage.MODEL:
 				sequence_Model(context, (Model) semanticObject); 
+				return; 
+			case SocialRequestPackage.MODIFIER:
+				sequence_Modifier(context, (Modifier) semanticObject); 
+				return; 
+			case SocialRequestPackage.PARAM:
+				sequence_Param(context, (Param) semanticObject); 
+				return; 
+			case SocialRequestPackage.QUERY:
+				sequence_Query(context, (Query) semanticObject); 
+				return; 
+			case SocialRequestPackage.REPOSITORY:
+				sequence_Repository(context, (Repository) semanticObject); 
+				return; 
+			case SocialRequestPackage.VALIDATION:
+				sequence_Validation(context, (Validation) semanticObject); 
 				return; 
 			}
 		if (errorAcceptor != null)
@@ -46,19 +78,56 @@ public class SocialRequestSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Contexts:
-	 *     Greeting returns Greeting
+	 *     AssociationSpecification returns AssociationSpecification
 	 *
 	 * Constraint:
-	 *     name=ID
+	 *     (mappedBy=ID | fetchType=FETCH_TYPE)
 	 */
-	protected void sequence_Greeting(ISerializationContext context, Greeting semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SocialRequestPackage.Literals.GREETING__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SocialRequestPackage.Literals.GREETING__NAME));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getGreetingAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.finish();
+	protected void sequence_AssociationSpecification(ISerializationContext context, AssociationSpecification semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Attribute returns Attribute
+	 *
+	 * Constraint:
+	 *     (
+	 *         association=ASSOCIATION? 
+	 *         name=ID 
+	 *         type=[Entity|DATA_TYPE] 
+	 *         modifier=Modifier? 
+	 *         (associationSpecifications+=AssociationSpecification | validations+=Validation)*
+	 *     )
+	 */
+	protected void sequence_Attribute(ISerializationContext context, Attribute semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Entity returns Entity
+	 *
+	 * Constraint:
+	 *     (name=ID hasUserDetails?='implements UserDetails'? attributes+=Attribute+)
+	 */
+	protected void sequence_Entity(ISerializationContext context, Entity semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Modifier returns Identification
+	 *     Identification returns Identification
+	 *
+	 * Constraint:
+	 *     generationType=GENERATION_TYPE?
+	 */
+	protected void sequence_Identification(ISerializationContext context, Identification semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -67,9 +136,78 @@ public class SocialRequestSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *     Model returns Model
 	 *
 	 * Constraint:
-	 *     greetings+=Greeting+
+	 *     ((entities+=Entity+ repositories+=Repository+) | repositories+=Repository+)?
 	 */
 	protected void sequence_Model(ISerializationContext context, Model semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Modifier returns Modifier
+	 *
+	 * Constraint:
+	 *     {Modifier}
+	 */
+	protected void sequence_Modifier(ISerializationContext context, Modifier semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Param returns Param
+	 *
+	 * Constraint:
+	 *     (name=ID type=[Entity|DATA_TYPE])
+	 */
+	protected void sequence_Param(ISerializationContext context, Param semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SocialRequestPackage.Literals.PARAM__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SocialRequestPackage.Literals.PARAM__NAME));
+			if (transientValues.isValueTransient(semanticObject, SocialRequestPackage.Literals.PARAM__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SocialRequestPackage.Literals.PARAM__TYPE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getParamAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getParamAccess().getTypeEntityDATA_TYPETerminalRuleCall_3_0_1(), semanticObject.eGet(SocialRequestPackage.Literals.PARAM__TYPE, false));
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Query returns Query
+	 *
+	 * Constraint:
+	 *     (name=ID isList?=': list'? params+=Param* sqlQuery=SQLQuery?)
+	 */
+	protected void sequence_Query(ISerializationContext context, Query semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Repository returns Repository
+	 *
+	 * Constraint:
+	 *     (entity=[Entity|ID] queries+=Query+)
+	 */
+	protected void sequence_Repository(ISerializationContext context, Repository semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Validation returns Validation
+	 *
+	 * Constraint:
+	 *     (min=POSSIBLY_SIGNED_INT | max=POSSIBLY_SIGNED_INT | regex=STRING)?
+	 */
+	protected void sequence_Validation(ISerializationContext context, Validation semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

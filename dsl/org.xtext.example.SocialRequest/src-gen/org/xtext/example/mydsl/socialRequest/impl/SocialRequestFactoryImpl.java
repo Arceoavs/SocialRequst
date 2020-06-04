@@ -66,7 +66,15 @@ public class SocialRequestFactoryImpl extends EFactoryImpl implements SocialRequ
     switch (eClass.getClassifierID())
     {
       case SocialRequestPackage.MODEL: return createModel();
-      case SocialRequestPackage.GREETING: return createGreeting();
+      case SocialRequestPackage.ENTITY: return createEntity();
+      case SocialRequestPackage.ATTRIBUTE: return createAttribute();
+      case SocialRequestPackage.MODIFIER: return createModifier();
+      case SocialRequestPackage.IDENTIFICATION: return createIdentification();
+      case SocialRequestPackage.VALIDATION: return createValidation();
+      case SocialRequestPackage.ASSOCIATION_SPECIFICATION: return createAssociationSpecification();
+      case SocialRequestPackage.REPOSITORY: return createRepository();
+      case SocialRequestPackage.QUERY: return createQuery();
+      case SocialRequestPackage.PARAM: return createParam();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -90,10 +98,106 @@ public class SocialRequestFactoryImpl extends EFactoryImpl implements SocialRequ
    * @generated
    */
   @Override
-  public Greeting createGreeting()
+  public Entity createEntity()
   {
-    GreetingImpl greeting = new GreetingImpl();
-    return greeting;
+    EntityImpl entity = new EntityImpl();
+    return entity;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Attribute createAttribute()
+  {
+    AttributeImpl attribute = new AttributeImpl();
+    return attribute;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Modifier createModifier()
+  {
+    ModifierImpl modifier = new ModifierImpl();
+    return modifier;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Identification createIdentification()
+  {
+    IdentificationImpl identification = new IdentificationImpl();
+    return identification;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Validation createValidation()
+  {
+    ValidationImpl validation = new ValidationImpl();
+    return validation;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public AssociationSpecification createAssociationSpecification()
+  {
+    AssociationSpecificationImpl associationSpecification = new AssociationSpecificationImpl();
+    return associationSpecification;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Repository createRepository()
+  {
+    RepositoryImpl repository = new RepositoryImpl();
+    return repository;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Query createQuery()
+  {
+    QueryImpl query = new QueryImpl();
+    return query;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Param createParam()
+  {
+    ParamImpl param = new ParamImpl();
+    return param;
   }
 
   /**

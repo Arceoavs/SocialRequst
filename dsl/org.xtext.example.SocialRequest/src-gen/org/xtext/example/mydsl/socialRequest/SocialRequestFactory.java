@@ -33,13 +33,85 @@ public interface SocialRequestFactory extends EFactory
   Model createModel();
 
   /**
-   * Returns a new object of class '<em>Greeting</em>'.
+   * Returns a new object of class '<em>Entity</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Greeting</em>'.
+   * @return a new object of class '<em>Entity</em>'.
    * @generated
    */
-  Greeting createGreeting();
+  Entity createEntity();
+
+  /**
+   * Returns a new object of class '<em>Attribute</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Attribute</em>'.
+   * @generated
+   */
+  Attribute createAttribute();
+
+  /**
+   * Returns a new object of class '<em>Modifier</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Modifier</em>'.
+   * @generated
+   */
+  Modifier createModifier();
+
+  /**
+   * Returns a new object of class '<em>Identification</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Identification</em>'.
+   * @generated
+   */
+  Identification createIdentification();
+
+  /**
+   * Returns a new object of class '<em>Validation</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Validation</em>'.
+   * @generated
+   */
+  Validation createValidation();
+
+  /**
+   * Returns a new object of class '<em>Association Specification</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Association Specification</em>'.
+   * @generated
+   */
+  AssociationSpecification createAssociationSpecification();
+
+  /**
+   * Returns a new object of class '<em>Repository</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Repository</em>'.
+   * @generated
+   */
+  Repository createRepository();
+
+  /**
+   * Returns a new object of class '<em>Query</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Query</em>'.
+   * @generated
+   */
+  Query createQuery();
+
+  /**
+   * Returns a new object of class '<em>Param</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Param</em>'.
+   * @generated
+   */
+  Param createParam();
 
   /**
    * Returns the package supported by this factory.
