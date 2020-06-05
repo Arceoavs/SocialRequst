@@ -47,7 +47,7 @@ terminal GENERATION_TYPE returns ecore::EString:
 ;
 
 AssociationSpecification:
-	('mappedBy:' mappedBy=ID) | ('fetch:' fetchType=FETCH_TYPE)
+	'mappedBy:' mappedBy=ID | 'fetch:' fetchType=FETCH_TYPE
 ;
 
 terminal FETCH_TYPE returns ecore::EString:
@@ -55,7 +55,7 @@ terminal FETCH_TYPE returns ecore::EString:
 ;
 	
 terminal ASSOCIATION returns ecore::EString:
-	'one-to-many' | 'many-to-one' | 'one-to-one' | 'many-to-many'
+	'OneToMany' | 'ManyToOne' | 'OneToOne' | 'ManyToMany'
 ;
 
 terminal DATA_TYPE returns ecore::EString:

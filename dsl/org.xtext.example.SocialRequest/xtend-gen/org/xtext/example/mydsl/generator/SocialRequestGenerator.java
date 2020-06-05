@@ -3,7 +3,9 @@
  */
 package org.xtext.example.mydsl.generator;
 
+import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
@@ -13,6 +15,7 @@ import org.eclipse.xtext.generator.IGeneratorContext;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.xtext.example.mydsl.socialRequest.Attribute;
 import org.xtext.example.mydsl.socialRequest.Entity;
+import org.xtext.example.mydsl.socialRequest.Modifier;
 import org.xtext.example.mydsl.socialRequest.Repository;
 
 /**
@@ -26,23 +29,86 @@ public class SocialRequestGenerator extends AbstractGenerator {
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     Iterable<Entity> _filter = Iterables.<Entity>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Entity.class);
     for (final Entity entity : _filter) {
+      String _name = entity.getName();
+      String _plus = (_name + ".java");
+      fsa.generateFile(_plus, this.generateEntity(entity));
     }
     Iterable<Repository> _filter_1 = Iterables.<Repository>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Repository.class);
     for (final Repository repo : _filter_1) {
+      String _name_1 = repo.getEntity().getName();
+      String _plus_1 = (_name_1 + ".java");
+      fsa.generateFile(_plus_1, this.generateQuery(repo));
     }
   }
   
   private CharSequence generateEntity(final Entity e) {
+    CharSequence output = this.generateImports(e);
+    EList<Attribute> _attributes = e.getAttributes();
+    for (final Attribute attr : _attributes) {
+      String _string = this.generateAttribute(attr).toString();
+      String _plus = (output + _string);
+      output = _plus;
+    }
+    return output;
+  }
+  
+  private CharSequence generateImports(final Entity e) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("\t");
+    _builder.append("package ????");
+    _builder.newLine();
+    _builder.append("import javax.persistence.Entity;");
+    _builder.newLine();
+    {
+      EList<Attribute> _attributes = e.getAttributes();
+      for(final Attribute attr : _attributes) {
+        {
+          Modifier _modifier = attr.getModifier();
+          boolean _equals = Objects.equal(_modifier, "LOB");
+          if (_equals) {
+            _builder.append("import javax.persistence.Lob;");
+            _builder.newLine();
+          }
+        }
+        {
+          Modifier _modifier_1 = attr.getModifier();
+          boolean _equals_1 = Objects.equal(_modifier_1, "LOB");
+          if (_equals_1) {
+            _builder.append("import javax.persistence.Id;");
+            _builder.newLine();
+          }
+        }
+        {
+          String _association = attr.getAssociation();
+          boolean _notEquals = (!Objects.equal(_association, null));
+          if (_notEquals) {
+            _builder.append("import import javax.persistence.");
+            String _association_1 = attr.getAssociation();
+            _builder.append(_association_1);
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    _builder.append("TODO: does not work like that, how we check if already imported");
     _builder.newLine();
     return _builder;
   }
   
   private CharSequence generateAttribute(final Attribute a) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("\t");
-    _builder.newLine();
+    {
+      if (((!Objects.equal(a.getAssociation(), null)) && Objects.equal(a.getAssociationSpecifications(), null))) {
+        _builder.append("@");
+        String _association = a.getAssociation();
+        _builder.append(_association);
+        _builder.newLineIfNotEmpty();
+      } else {
+        if (((!Objects.equal(a.getAssociation(), null)) && Objects.equal(a.getAssociationSpecifications(), null))) {
+          _builder.newLine();
+        }
+      }
+    }
     return _builder;
   }
   
