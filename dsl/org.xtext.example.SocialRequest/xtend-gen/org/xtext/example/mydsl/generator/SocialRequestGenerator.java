@@ -3,10 +3,17 @@
  */
 package org.xtext.example.mydsl.generator;
 
+import com.google.common.collect.Iterables;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.xtext.example.mydsl.socialRequest.Attribute;
+import org.xtext.example.mydsl.socialRequest.Entity;
+import org.xtext.example.mydsl.socialRequest.Repository;
 
 /**
  * Generates code from your model files on save.
@@ -17,5 +24,32 @@ import org.eclipse.xtext.generator.IGeneratorContext;
 public class SocialRequestGenerator extends AbstractGenerator {
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+    Iterable<Entity> _filter = Iterables.<Entity>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Entity.class);
+    for (final Entity entity : _filter) {
+    }
+    Iterable<Repository> _filter_1 = Iterables.<Repository>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Repository.class);
+    for (final Repository repo : _filter_1) {
+    }
+  }
+  
+  private CharSequence generateEntity(final Entity e) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("\t");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  private CharSequence generateAttribute(final Attribute a) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("\t");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  private CharSequence generateQuery(final Repository r) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("\t");
+    _builder.newLine();
+    return _builder;
   }
 }

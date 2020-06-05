@@ -4,9 +4,13 @@
 package org.xtext.example.mydsl.generator
 
 import org.eclipse.emf.ecore.resource.Resource
+
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
+import org.xtext.example.mydsl.socialRequest.Entity
+import org.xtext.example.mydsl.socialRequest.Repository
+import org.xtext.example.mydsl.socialRequest.Attribute
 
 /**
  * Generates code from your model files on save.
@@ -16,10 +20,27 @@ import org.eclipse.xtext.generator.IGeneratorContext
 class SocialRequestGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-//		fsa.generateFile('greetings.txt', 'People to greet: ' + 
-//			resource.allContents
-//				.filter(Greeting)
-//				.map[name]
-//				.join(', '))
+	
+		for(entity : resource.allContents.toIterable.filter(Entity)) {
+			
+		}
+		
+		for(repo : resource.allContents.toIterable.filter(Repository)) {
+			
+		}
+		
+		//fsa.generateFile()
 	}
+	
+	private def generateEntity(Entity e)'''
+	
+	'''
+	
+	private def generateAttribute(Attribute a)'''
+	
+	'''
+	
+	private def generateQuery(Repository r)'''
+	
+	'''
 }
