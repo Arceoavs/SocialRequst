@@ -12,7 +12,9 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.xtext.example.mydsl.socialRequest.AssociationSpecification;
 import org.xtext.example.mydsl.socialRequest.Attribute;
 import org.xtext.example.mydsl.socialRequest.Entity;
 import org.xtext.example.mydsl.socialRequest.Modifier;
@@ -103,12 +105,31 @@ public class SocialRequestGenerator extends AbstractGenerator {
         String _association = a.getAssociation();
         _builder.append(_association);
         _builder.newLineIfNotEmpty();
+        _builder.append("\t\t");
       } else {
-        if (((!Objects.equal(a.getAssociation(), null)) && Objects.equal(a.getAssociationSpecifications(), null))) {
+        if (((!Objects.equal(a.getAssociation(), null)) && (((Object[])Conversions.unwrapArray(a.getAssociationSpecifications(), Object.class)).length == 1))) {
+          _builder.append("  // Wie soll ich das vernünftig machen. Man muss schauen ob mappedBy und");
+          _builder.newLineIfNotEmpty();
+          _builder.append("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t   ");
+          _builder.append("// fetchType gesetzt ist oder nur eins von beiden");
           _builder.newLine();
+        } else {
+          if (((!Objects.equal(a.getAssociation(), null)) && (((Object[])Conversions.unwrapArray(a.getAssociationSpecifications(), Object.class)).length == 2))) {
+            _builder.append("@");
+            String _association_1 = a.getAssociation();
+            _builder.append(_association_1);
+            _builder.append("(mappedBy = ");
+            EList<AssociationSpecification> _associationSpecifications = a.getAssociationSpecifications();
+            _builder.append(_associationSpecifications);
+            _builder.append("\t// Wie bekomme ich hier beides. Die Reihenfolge ist egal, deswegen ist nicht bekannt welcher");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t\t");
+          }
         }
       }
     }
+    _builder.append("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t// Arrayindex mappedBy oder fetchType enthält");
+    _builder.newLineIfNotEmpty();
     return _builder;
   }
   

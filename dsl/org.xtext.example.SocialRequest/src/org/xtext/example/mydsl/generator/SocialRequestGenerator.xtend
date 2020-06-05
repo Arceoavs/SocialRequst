@@ -11,6 +11,7 @@ import org.eclipse.xtext.generator.IGeneratorContext
 import org.xtext.example.mydsl.socialRequest.Entity
 import org.xtext.example.mydsl.socialRequest.Repository
 import org.xtext.example.mydsl.socialRequest.Attribute
+import org.xtext.example.mydsl.socialRequest.AssociationSpecification
 
 /**
  * Generates code from your model files on save.
@@ -58,9 +59,11 @@ class SocialRequestGenerator extends AbstractGenerator {
 	private def generateAttribute(Attribute a)'''
 		«IF a.association != null && a.associationSpecifications == null»
 			@«a.association»
-		«ELSEIF a.association != null && a.associationSpecifications == null»
-		
-		«ENDIF»
+		«ELSEIF a.association != null && a.associationSpecifications.length == 1»  // Wie soll ich das vernünftig machen. Man muss schauen ob mappedBy und
+																				   // fetchType gesetzt ist oder nur eins von beiden
+		«ELSEIF a.association != null && a.associationSpecifications.length == 2»
+			@«a.association»(mappedBy = «a.associationSpecifications»	// Wie bekomme ich hier beides. Die Reihenfolge ist egal, deswegen ist nicht bekannt welcher
+		«ENDIF»															// Arrayindex mappedBy oder fetchType enthält
 	'''
 	
 	private def generateQuery(Repository r)'''
