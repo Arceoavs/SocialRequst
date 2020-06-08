@@ -69,22 +69,13 @@ public interface SocialRequestPackage extends EPackage
   int MODEL = 0;
 
   /**
-   * The feature id for the '<em><b>Entities</b></em>' containment reference list.
+   * The feature id for the '<em><b>Elements</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MODEL__ENTITIES = 0;
-
-  /**
-   * The feature id for the '<em><b>Repositories</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MODEL__REPOSITORIES = 1;
+  int MODEL__ELEMENTS = 0;
 
   /**
    * The number of structural features of the '<em>Model</em>' class.
@@ -93,7 +84,63 @@ public interface SocialRequestPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MODEL_FEATURE_COUNT = 2;
+  int MODEL_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.impl.AbstractElementImpl <em>Abstract Element</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.socialRequest.impl.AbstractElementImpl
+   * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getAbstractElement()
+   * @generated
+   */
+  int ABSTRACT_ELEMENT = 1;
+
+  /**
+   * The number of structural features of the '<em>Abstract Element</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABSTRACT_ELEMENT_FEATURE_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.impl.PackageImpl <em>Package</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.socialRequest.impl.PackageImpl
+   * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getPackage()
+   * @generated
+   */
+  int PACKAGE = 2;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PACKAGE__NAME = ABSTRACT_ELEMENT_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Elements</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PACKAGE__ELEMENTS = ABSTRACT_ELEMENT_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Package</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PACKAGE_FEATURE_COUNT = ABSTRACT_ELEMENT_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.impl.EntityImpl <em>Entity</em>}' class.
@@ -103,7 +150,7 @@ public interface SocialRequestPackage extends EPackage
    * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getEntity()
    * @generated
    */
-  int ENTITY = 1;
+  int ENTITY = 3;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -112,7 +159,7 @@ public interface SocialRequestPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ENTITY__NAME = 0;
+  int ENTITY__NAME = ABSTRACT_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Has User Details</b></em>' attribute.
@@ -121,7 +168,7 @@ public interface SocialRequestPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ENTITY__HAS_USER_DETAILS = 1;
+  int ENTITY__HAS_USER_DETAILS = ABSTRACT_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
@@ -130,7 +177,7 @@ public interface SocialRequestPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ENTITY__ATTRIBUTES = 2;
+  int ENTITY__ATTRIBUTES = ABSTRACT_ELEMENT_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Entity</em>' class.
@@ -139,7 +186,7 @@ public interface SocialRequestPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ENTITY_FEATURE_COUNT = 3;
+  int ENTITY_FEATURE_COUNT = ABSTRACT_ELEMENT_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.impl.AttributeImpl <em>Attribute</em>}' class.
@@ -149,7 +196,7 @@ public interface SocialRequestPackage extends EPackage
    * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getAttribute()
    * @generated
    */
-  int ATTRIBUTE = 2;
+  int ATTRIBUTE = 4;
 
   /**
    * The feature id for the '<em><b>Association</b></em>' attribute.
@@ -231,7 +278,7 @@ public interface SocialRequestPackage extends EPackage
    * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getTypeReference()
    * @generated
    */
-  int TYPE_REFERENCE = 3;
+  int TYPE_REFERENCE = 5;
 
   /**
    * The number of structural features of the '<em>Type Reference</em>' class.
@@ -250,7 +297,7 @@ public interface SocialRequestPackage extends EPackage
    * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getEntityTypeReference()
    * @generated
    */
-  int ENTITY_TYPE_REFERENCE = 4;
+  int ENTITY_TYPE_REFERENCE = 6;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -278,7 +325,7 @@ public interface SocialRequestPackage extends EPackage
    * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getDataTypeReference()
    * @generated
    */
-  int DATA_TYPE_REFERENCE = 5;
+  int DATA_TYPE_REFERENCE = 7;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -306,7 +353,7 @@ public interface SocialRequestPackage extends EPackage
    * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getModifier()
    * @generated
    */
-  int MODIFIER = 6;
+  int MODIFIER = 8;
 
   /**
    * The feature id for the '<em><b>Is LOB</b></em>' attribute.
@@ -361,7 +408,7 @@ public interface SocialRequestPackage extends EPackage
    * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getValidation()
    * @generated
    */
-  int VALIDATION = 7;
+  int VALIDATION = 9;
 
   /**
    * The feature id for the '<em><b>Min</b></em>' attribute.
@@ -425,7 +472,7 @@ public interface SocialRequestPackage extends EPackage
    * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getRepository()
    * @generated
    */
-  int REPOSITORY = 8;
+  int REPOSITORY = 10;
 
   /**
    * The feature id for the '<em><b>Entity</b></em>' reference.
@@ -434,7 +481,7 @@ public interface SocialRequestPackage extends EPackage
    * @generated
    * @ordered
    */
-  int REPOSITORY__ENTITY = 0;
+  int REPOSITORY__ENTITY = ABSTRACT_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Queries</b></em>' containment reference list.
@@ -443,7 +490,7 @@ public interface SocialRequestPackage extends EPackage
    * @generated
    * @ordered
    */
-  int REPOSITORY__QUERIES = 1;
+  int REPOSITORY__QUERIES = ABSTRACT_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Repository</em>' class.
@@ -452,7 +499,7 @@ public interface SocialRequestPackage extends EPackage
    * @generated
    * @ordered
    */
-  int REPOSITORY_FEATURE_COUNT = 2;
+  int REPOSITORY_FEATURE_COUNT = ABSTRACT_ELEMENT_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.impl.QueryImpl <em>Query</em>}' class.
@@ -462,7 +509,7 @@ public interface SocialRequestPackage extends EPackage
    * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getQuery()
    * @generated
    */
-  int QUERY = 9;
+  int QUERY = 11;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -517,7 +564,7 @@ public interface SocialRequestPackage extends EPackage
    * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getParam()
    * @generated
    */
-  int PARAM = 10;
+  int PARAM = 12;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -554,7 +601,7 @@ public interface SocialRequestPackage extends EPackage
    * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getSQLQuery()
    * @generated
    */
-  int SQL_QUERY = 11;
+  int SQL_QUERY = 13;
 
   /**
    * The feature id for the '<em><b>Select</b></em>' containment reference.
@@ -618,7 +665,7 @@ public interface SocialRequestPackage extends EPackage
    * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getSelect()
    * @generated
    */
-  int SELECT = 12;
+  int SELECT = 14;
 
   /**
    * The feature id for the '<em><b>Is Distinct</b></em>' attribute.
@@ -655,7 +702,7 @@ public interface SocialRequestPackage extends EPackage
    * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getFrom()
    * @generated
    */
-  int FROM = 13;
+  int FROM = 15;
 
   /**
    * The feature id for the '<em><b>Entity</b></em>' reference.
@@ -692,7 +739,7 @@ public interface SocialRequestPackage extends EPackage
    * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getJoin()
    * @generated
    */
-  int JOIN = 14;
+  int JOIN = 16;
 
   /**
    * The feature id for the '<em><b>Join Type</b></em>' attribute.
@@ -747,7 +794,7 @@ public interface SocialRequestPackage extends EPackage
    * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getWhere()
    * @generated
    */
-  int WHERE = 15;
+  int WHERE = 17;
 
   /**
    * The feature id for the '<em><b>Condition</b></em>' attribute.
@@ -775,7 +822,7 @@ public interface SocialRequestPackage extends EPackage
    * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getOrder()
    * @generated
    */
-  int ORDER = 16;
+  int ORDER = 18;
 
   /**
    * The feature id for the '<em><b>Order</b></em>' attribute.
@@ -803,7 +850,7 @@ public interface SocialRequestPackage extends EPackage
    * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getDataType()
    * @generated
    */
-  int DATA_TYPE = 17;
+  int DATA_TYPE = 19;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.JoinType <em>Join Type</em>}' enum.
@@ -813,7 +860,7 @@ public interface SocialRequestPackage extends EPackage
    * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getJoinType()
    * @generated
    */
-  int JOIN_TYPE = 18;
+  int JOIN_TYPE = 20;
 
 
   /**
@@ -827,26 +874,57 @@ public interface SocialRequestPackage extends EPackage
   EClass getModel();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.socialRequest.Model#getEntities <em>Entities</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.socialRequest.Model#getElements <em>Elements</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Entities</em>'.
-   * @see org.xtext.example.mydsl.socialRequest.Model#getEntities()
+   * @return the meta object for the containment reference list '<em>Elements</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Model#getElements()
    * @see #getModel()
    * @generated
    */
-  EReference getModel_Entities();
+  EReference getModel_Elements();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.socialRequest.Model#getRepositories <em>Repositories</em>}'.
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.socialRequest.AbstractElement <em>Abstract Element</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Repositories</em>'.
-   * @see org.xtext.example.mydsl.socialRequest.Model#getRepositories()
-   * @see #getModel()
+   * @return the meta object for class '<em>Abstract Element</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.AbstractElement
    * @generated
    */
-  EReference getModel_Repositories();
+  EClass getAbstractElement();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.socialRequest.Package <em>Package</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Package</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Package
+   * @generated
+   */
+  EClass getPackage();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.Package#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Package#getName()
+   * @see #getPackage()
+   * @generated
+   */
+  EAttribute getPackage_Name();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.socialRequest.Package#getElements <em>Elements</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Elements</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Package#getElements()
+   * @see #getPackage()
+   * @generated
+   */
+  EReference getPackage_Elements();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.socialRequest.Entity <em>Entity</em>}'.
@@ -1546,20 +1624,48 @@ public interface SocialRequestPackage extends EPackage
     EClass MODEL = eINSTANCE.getModel();
 
     /**
-     * The meta object literal for the '<em><b>Entities</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Elements</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference MODEL__ENTITIES = eINSTANCE.getModel_Entities();
+    EReference MODEL__ELEMENTS = eINSTANCE.getModel_Elements();
 
     /**
-     * The meta object literal for the '<em><b>Repositories</b></em>' containment reference list feature.
+     * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.impl.AbstractElementImpl <em>Abstract Element</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.socialRequest.impl.AbstractElementImpl
+     * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getAbstractElement()
+     * @generated
+     */
+    EClass ABSTRACT_ELEMENT = eINSTANCE.getAbstractElement();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.impl.PackageImpl <em>Package</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.socialRequest.impl.PackageImpl
+     * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getPackage()
+     * @generated
+     */
+    EClass PACKAGE = eINSTANCE.getPackage();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference MODEL__REPOSITORIES = eINSTANCE.getModel_Repositories();
+    EAttribute PACKAGE__NAME = eINSTANCE.getPackage_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Elements</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PACKAGE__ELEMENTS = eINSTANCE.getPackage_Elements();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.impl.EntityImpl <em>Entity</em>}' class.

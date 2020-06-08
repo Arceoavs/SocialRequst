@@ -1,160 +1,167 @@
-Entity User implements UserDetails {
-  id: long ID(AUTO)
-
-  username: String {
-    validations {
-      NotBlank
-      unique
-    }
-  }
-
-  password: String {
-    validations {
-      NotBlank
-    }
-  }
-
-  rawPassword: String TRANSIENT
-
-  email: String {
-    validations {
-      NotBlank
-      Email
-    }
-  }
-
-  latitude: float {
-    validations {
-      NotNull
-      min: -90
-      max: 90
-    }
-  }
-
-  longitude: float {
-    validations {
-      NotNull
-      min: -180
-      max: 180
-    }
-  }
-
-  OneToMany requests: Request {
-    mappedBy: user
-  }
-
-  OneToMany fulfillments: Fulfillment {
-    mappedBy: user
-  }
-
-  ManyToMany specialties: Topic {
-    fetch: EAGER
-  }
+package de.wwu.acse2020.socialrequest.data {
+	package model {
+		Entity User implements UserDetails {
+		  id: long ID(AUTO)
+		
+		  username: String {
+		    validations {
+		      NotBlank
+		      unique
+		    }
+		  }
+		
+		  password: String {
+		    validations {
+		      NotBlank
+		    }
+		  }
+		
+		  rawPassword: String TRANSIENT
+		
+		  email: String {
+		    validations {
+		      NotBlank
+		      Email
+		    }
+		  }
+		
+		  latitude: float {
+		    validations {
+		      NotNull
+		      min: -90
+		      max: 90
+		    }
+		  }
+		
+		  longitude: float {
+		    validations {
+		      NotNull
+		      min: -180
+		      max: 180
+		    }
+		  }
+		
+		  OneToMany requests: Request {
+		    mappedBy: user
+		  }
+		
+		  OneToMany fulfillments: Fulfillment {
+		    mappedBy: user
+		  }
+		
+		  ManyToMany specialties: Topic {
+		    fetch: EAGER
+		  }
+		}
+		
+		Entity Fulfillment {
+		  id: long ID(AUTO)
+		
+		  createdAt: Date {
+		    validations {
+		      NotNull
+		      Past
+		    }
+		  }
+		
+		  ManyToOne user: User {
+		    validations {
+		      NotNull
+		    }
+		  }
+		
+		  OneToOne request: Request {
+		    validations {
+		      NotNull
+		    }
+		  }
+		}
+		
+		Entity Topic {
+		  name: String ID {
+		    validations {
+		      pattern: "[a-zA-Z0-9]+"
+		    }
+		  }
+		
+		  ManyToMany users: User {
+		    mappedBy: specialties
+		  }
+		
+		  ManyToMany requests: Request {
+		    mappedBy: topics
+		  }
+		}
+		
+		Entity Request {
+		  id: long ID(AUTO)
+		
+		  title: String {
+		    validations {
+		      NotBlank
+		    }
+		  }
+		
+		  description: String LOB {
+		    validations {
+		      NotBlank
+		    }
+		  }
+		
+		  latitude: float {
+		    validations {
+		      NotNull
+		      min: -90
+		      max: 90
+		    }
+		  }
+		
+		  longitude: float {
+		    validations {
+		      NotNull
+		      min: -180
+		      max: 180
+		    }
+		  }
+		
+		  createdAt: Date {
+		    validations {
+		      NotNull
+		      Past
+		    }
+		  }
+		
+		  ManyToOne user: User {
+		    validations {
+		      NotNull
+		    }
+		  }
+		
+		  OneToOne fulfillment: Fulfillment {
+		    mappedBy: request
+		  }
+		
+		  ManyToMany topics: Topic {
+		    fetch: EAGER
+		  }
+		}
+	}
+	package repo {
+		Repository Request {
+		  query nearByUser: list {
+		    params {
+		      lat: float
+		      lng: float
+		    }
+		
+		    SELECT DISTINCT { "r" }
+		    FROM { Request r }
+		    LEFT JOIN { Fulfillment f }
+		    WHERE { "f.id IS NULL NAD 6371 * SQRT(POWER((radians(r.longitude) - radians(:lng)) * COS((radians(:lat) + radians(r.latitude))/2), 2) + POWER(radians(r.latitude) - radians(:lat), 2)) <= 10"}
+		    ORDER BY { "r.createdAt DESC" }
+		  }
+		}
+	}
 }
 
-Entity Fulfillment {
-  id: long ID(AUTO)
 
-  createdAt: Date {
-    validations {
-      NotNull
-      Past
-    }
-  }
-
-  ManyToOne user: User {
-    validations {
-      NotNull
-    }
-  }
-
-  OneToOne request: Request {
-    validations {
-      NotNull
-    }
-  }
-}
-
-Entity Topic {
-  name: String ID {
-    validations {
-      pattern: "[a-zA-Z0-9]+"
-    }
-  }
-
-  ManyToMany users: User {
-    mappedBy: specialties
-  }
-
-  ManyToMany requests: Request {
-    mappedBy: topics
-  }
-}
-
-Entity Request {
-  id: long ID(AUTO)
-
-  title: String {
-    validations {
-      NotBlank
-    }
-  }
-
-  description: String LOB {
-    validations {
-      NotBlank
-    }
-  }
-
-  latitude: float {
-    validations {
-      NotNull
-      min: -90
-      max: 90
-    }
-  }
-
-  longitude: float {
-    validations {
-      NotNull
-      min: -180
-      max: 180
-    }
-  }
-
-  createdAt: Date {
-    validations {
-      NotNull
-      Past
-    }
-  }
-
-  ManyToOne user: User {
-    validations {
-      NotNull
-    }
-  }
-
-  OneToOne fulfillment: Fulfillment {
-    mappedBy: request
-  }
-
-  ManyToMany topics: Topic {
-    fetch: EAGER
-  }
-}
-
-Repository Request {
-  query nearByUser: list {
-    params {
-      lat: float
-      lng: float
-    }
-
-    SELECT DISTINCT { "r" }
-    FROM { Request r }
-    LEFT JOIN { Fulfillment f }
-    WHERE { "f.id IS NULL NAD 6371 * SQRT(POWER((radians(r.longitude) - radians(:lng)) * COS((radians(:lat) + radians(r.latitude))/2), 2) + POWER(radians(r.latitude) - radians(:lat), 2)) <= 10"}
-    ORDER BY { "r.createdAt DESC" }
-  }
-}

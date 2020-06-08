@@ -6,6 +6,7 @@ package org.xtext.example.mydsl.generator;
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import java.math.BigDecimal;
+import javax.inject.Inject;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -13,6 +14,9 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.naming.IQualifiedNameProvider;
+import org.eclipse.xtext.naming.QualifiedName;
+import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.xtext.example.mydsl.socialRequest.Attribute;
@@ -31,26 +35,40 @@ import org.xtext.example.mydsl.socialRequest.Validation;
  */
 @SuppressWarnings("all")
 public class SocialRequestGenerator extends AbstractGenerator {
+  @Inject
+  @Extension
+  private IQualifiedNameProvider _iQualifiedNameProvider;
+  
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     Iterable<Entity> _filter = Iterables.<Entity>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Entity.class);
     for (final Entity entity : _filter) {
-      String _name = entity.getName();
-      String _plus = (_name + ".java");
-      fsa.generateFile(_plus, this.generateEntity(entity));
+      String _string = this._iQualifiedNameProvider.getFullyQualifiedName(entity).toString("/");
+      String _plus = (_string + ".java");
+      fsa.generateFile(_plus, 
+        this.generateEntity(entity));
     }
     Iterable<Repository> _filter_1 = Iterables.<Repository>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Repository.class);
     for (final Repository repo : _filter_1) {
-      String _name_1 = repo.getEntity().getName();
-      String _plus_1 = (_name_1 + ".java");
+      String _name = repo.getEntity().getName();
+      String _plus_1 = (_name + ".java");
       fsa.generateFile(_plus_1, this.generateQuery(repo));
     }
   }
   
   private CharSequence generateEntity(final Entity entity) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package ????");
-    _builder.newLine();
+    {
+      QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(entity.eContainer());
+      boolean _tripleNotEquals = (_fullyQualifiedName != null);
+      if (_tripleNotEquals) {
+        _builder.append("package ");
+        QualifiedName _fullyQualifiedName_1 = this._iQualifiedNameProvider.getFullyQualifiedName(entity.eContainer());
+        _builder.append(_fullyQualifiedName_1);
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+      }
+    }
     _builder.newLine();
     _builder.append("import javax.persistence.*;");
     _builder.newLine();
@@ -63,8 +81,8 @@ public class SocialRequestGenerator extends AbstractGenerator {
     _builder.append(" implements ");
     {
       String _hasUserDetails = entity.getHasUserDetails();
-      boolean _tripleNotEquals = (_hasUserDetails != null);
-      if (_tripleNotEquals) {
+      boolean _tripleNotEquals_1 = (_hasUserDetails != null);
+      if (_tripleNotEquals_1) {
         _builder.append("UserDetails");
       } else {
         _builder.append("Serializable");

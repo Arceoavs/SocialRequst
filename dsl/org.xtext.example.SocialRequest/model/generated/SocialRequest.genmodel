@@ -23,8 +23,12 @@
       <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//JoinType/JOIN"/>
     </genEnums>
     <genClasses ecoreClass="SocialRequest.ecore#//Model">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocialRequest.ecore#//Model/entities"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocialRequest.ecore#//Model/repositories"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocialRequest.ecore#//Model/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="SocialRequest.ecore#//AbstractElement"/>
+    <genClasses ecoreClass="SocialRequest.ecore#//Package">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Package/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocialRequest.ecore#//Package/elements"/>
     </genClasses>
     <genClasses ecoreClass="SocialRequest.ecore#//Entity">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Entity/name"/>

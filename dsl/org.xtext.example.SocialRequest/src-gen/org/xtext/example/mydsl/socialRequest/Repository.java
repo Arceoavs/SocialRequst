@@ -5,8 +5,6 @@ package org.xtext.example.mydsl.socialRequest;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Repository</b></em>'.
@@ -24,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Repository extends EObject
+public interface Repository extends AbstractElement
 {
   /**
    * Returns the value of the '<em><b>Entity</b></em>' reference.

@@ -29,30 +29,109 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public class ModelElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.Model");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cEntitiesAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cEntitiesEntityParserRuleCall_0_0 = (RuleCall)cEntitiesAssignment_0.eContents().get(0);
-		private final Assignment cRepositoriesAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cRepositoriesRepositoryParserRuleCall_1_0 = (RuleCall)cRepositoriesAssignment_1.eContents().get(0);
+		private final Assignment cElementsAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cElementsAbstractElementParserRuleCall_0 = (RuleCall)cElementsAssignment.eContents().get(0);
 		
 		//Model:
-		//	entities+=Entity* repositories+=Repository*;
+		//	elements+=AbstractElement+;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//entities+=Entity* repositories+=Repository*
-		public Group getGroup() { return cGroup; }
+		//elements+=AbstractElement+
+		public Assignment getElementsAssignment() { return cElementsAssignment; }
 		
-		//entities+=Entity*
-		public Assignment getEntitiesAssignment_0() { return cEntitiesAssignment_0; }
+		//AbstractElement
+		public RuleCall getElementsAbstractElementParserRuleCall_0() { return cElementsAbstractElementParserRuleCall_0; }
+	}
+	public class AbstractElementElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.AbstractElement");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cPackageParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cEntityParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cRepositoryParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		
+		//AbstractElement:
+		//	Package | Entity | Repository;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//Package | Entity | Repository
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//Package
+		public RuleCall getPackageParserRuleCall_0() { return cPackageParserRuleCall_0; }
 		
 		//Entity
-		public RuleCall getEntitiesEntityParserRuleCall_0_0() { return cEntitiesEntityParserRuleCall_0_0; }
-		
-		//repositories+=Repository*
-		public Assignment getRepositoriesAssignment_1() { return cRepositoriesAssignment_1; }
+		public RuleCall getEntityParserRuleCall_1() { return cEntityParserRuleCall_1; }
 		
 		//Repository
-		public RuleCall getRepositoriesRepositoryParserRuleCall_1_0() { return cRepositoriesRepositoryParserRuleCall_1_0; }
+		public RuleCall getRepositoryParserRuleCall_2() { return cRepositoryParserRuleCall_2; }
+	}
+	public class PackageElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.Package");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cPackageKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNamePointSeperatedIDParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cElementsAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cElementsAbstractElementParserRuleCall_3_0 = (RuleCall)cElementsAssignment_3.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		
+		//Package:
+		//	'package' name=PointSeperatedID '{'
+		//	elements+=AbstractElement*
+		//	'}';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'package' name=PointSeperatedID '{' elements+=AbstractElement* '}'
+		public Group getGroup() { return cGroup; }
+		
+		//'package'
+		public Keyword getPackageKeyword_0() { return cPackageKeyword_0; }
+		
+		//name=PointSeperatedID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//PointSeperatedID
+		public RuleCall getNamePointSeperatedIDParserRuleCall_1_0() { return cNamePointSeperatedIDParserRuleCall_1_0; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
+		
+		//elements+=AbstractElement*
+		public Assignment getElementsAssignment_3() { return cElementsAssignment_3; }
+		
+		//AbstractElement
+		public RuleCall getElementsAbstractElementParserRuleCall_3_0() { return cElementsAbstractElementParserRuleCall_3_0; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
+	}
+	public class PointSeperatedIDElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.PointSeperatedID");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cIDTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cFullStopKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final RuleCall cIDTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		
+		//PointSeperatedID:
+		//	ID ('.' ID)*;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//ID ('.' ID)*
+		public Group getGroup() { return cGroup; }
+		
+		//ID
+		public RuleCall getIDTerminalRuleCall_0() { return cIDTerminalRuleCall_0; }
+		
+		//('.' ID)*
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//'.'
+		public Keyword getFullStopKeyword_1_0() { return cFullStopKeyword_1_0; }
+		
+		//ID
+		public RuleCall getIDTerminalRuleCall_1_1() { return cIDTerminalRuleCall_1_1; }
 	}
 	public class EntityElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.Entity");
@@ -1036,6 +1115,9 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	private final ModelElements pModel;
+	private final AbstractElementElements pAbstractElement;
+	private final PackageElements pPackage;
+	private final PointSeperatedIDElements pPointSeperatedID;
 	private final EntityElements pEntity;
 	private final AttributeElements pAttribute;
 	private final TypeReferenceElements pTypeReference;
@@ -1070,6 +1152,9 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaTerminals = gaTerminals;
 		this.pModel = new ModelElements();
+		this.pAbstractElement = new AbstractElementElements();
+		this.pPackage = new PackageElements();
+		this.pPointSeperatedID = new PointSeperatedIDElements();
 		this.pEntity = new EntityElements();
 		this.pAttribute = new AttributeElements();
 		this.pTypeReference = new TypeReferenceElements();
@@ -1123,13 +1208,45 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Model:
-	//	entities+=Entity* repositories+=Repository*;
+	//	elements+=AbstractElement+;
 	public ModelElements getModelAccess() {
 		return pModel;
 	}
 	
 	public ParserRule getModelRule() {
 		return getModelAccess().getRule();
+	}
+	
+	//AbstractElement:
+	//	Package | Entity | Repository;
+	public AbstractElementElements getAbstractElementAccess() {
+		return pAbstractElement;
+	}
+	
+	public ParserRule getAbstractElementRule() {
+		return getAbstractElementAccess().getRule();
+	}
+	
+	//Package:
+	//	'package' name=PointSeperatedID '{'
+	//	elements+=AbstractElement*
+	//	'}';
+	public PackageElements getPackageAccess() {
+		return pPackage;
+	}
+	
+	public ParserRule getPackageRule() {
+		return getPackageAccess().getRule();
+	}
+	
+	//PointSeperatedID:
+	//	ID ('.' ID)*;
+	public PointSeperatedIDElements getPointSeperatedIDAccess() {
+		return pPointSeperatedID;
+	}
+	
+	public ParserRule getPointSeperatedIDRule() {
+		return getPointSeperatedIDAccess().getRule();
 	}
 	
 	//Entity:

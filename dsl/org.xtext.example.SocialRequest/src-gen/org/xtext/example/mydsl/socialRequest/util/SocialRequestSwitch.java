@@ -8,7 +8,25 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
-import org.xtext.example.mydsl.socialRequest.*;
+import org.xtext.example.mydsl.socialRequest.AbstractElement;
+import org.xtext.example.mydsl.socialRequest.Attribute;
+import org.xtext.example.mydsl.socialRequest.DataTypeReference;
+import org.xtext.example.mydsl.socialRequest.Entity;
+import org.xtext.example.mydsl.socialRequest.EntityTypeReference;
+import org.xtext.example.mydsl.socialRequest.From;
+import org.xtext.example.mydsl.socialRequest.Join;
+import org.xtext.example.mydsl.socialRequest.Model;
+import org.xtext.example.mydsl.socialRequest.Modifier;
+import org.xtext.example.mydsl.socialRequest.Order;
+import org.xtext.example.mydsl.socialRequest.Param;
+import org.xtext.example.mydsl.socialRequest.Query;
+import org.xtext.example.mydsl.socialRequest.Repository;
+import org.xtext.example.mydsl.socialRequest.SQLQuery;
+import org.xtext.example.mydsl.socialRequest.Select;
+import org.xtext.example.mydsl.socialRequest.SocialRequestPackage;
+import org.xtext.example.mydsl.socialRequest.TypeReference;
+import org.xtext.example.mydsl.socialRequest.Validation;
+import org.xtext.example.mydsl.socialRequest.Where;
 
 /**
  * <!-- begin-user-doc -->
@@ -80,10 +98,26 @@ public class SocialRequestSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case SocialRequestPackage.ABSTRACT_ELEMENT:
+      {
+        AbstractElement abstractElement = (AbstractElement)theEObject;
+        T result = caseAbstractElement(abstractElement);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SocialRequestPackage.PACKAGE:
+      {
+        org.xtext.example.mydsl.socialRequest.Package package_ = (org.xtext.example.mydsl.socialRequest.Package)theEObject;
+        T result = casePackage(package_);
+        if (result == null) result = caseAbstractElement(package_);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case SocialRequestPackage.ENTITY:
       {
         Entity entity = (Entity)theEObject;
         T result = caseEntity(entity);
+        if (result == null) result = caseAbstractElement(entity);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -135,6 +169,7 @@ public class SocialRequestSwitch<T> extends Switch<T>
       {
         Repository repository = (Repository)theEObject;
         T result = caseRepository(repository);
+        if (result == null) result = caseAbstractElement(repository);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -210,6 +245,38 @@ public class SocialRequestSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseModel(Model object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Abstract Element</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Abstract Element</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAbstractElement(AbstractElement object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Package</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Package</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePackage(org.xtext.example.mydsl.socialRequest.Package object)
   {
     return null;
   }

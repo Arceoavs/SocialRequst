@@ -5,8 +5,6 @@ package org.xtext.example.mydsl.socialRequest;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Entity</b></em>'.
@@ -25,7 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Entity extends EObject
+public interface Entity extends AbstractElement
 {
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.

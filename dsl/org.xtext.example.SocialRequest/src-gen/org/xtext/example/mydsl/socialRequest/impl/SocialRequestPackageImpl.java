@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.xtext.example.mydsl.socialRequest.AbstractElement;
 import org.xtext.example.mydsl.socialRequest.Attribute;
 import org.xtext.example.mydsl.socialRequest.DataType;
 import org.xtext.example.mydsl.socialRequest.DataTypeReference;
@@ -47,6 +48,20 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
    * @generated
    */
   private EClass modelEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass abstractElementEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass packageEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -254,7 +269,7 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
    * @generated
    */
   @Override
-  public EReference getModel_Entities()
+  public EReference getModel_Elements()
   {
     return (EReference)modelEClass.getEStructuralFeatures().get(0);
   }
@@ -265,9 +280,42 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
    * @generated
    */
   @Override
-  public EReference getModel_Repositories()
+  public EClass getAbstractElement()
   {
-    return (EReference)modelEClass.getEStructuralFeatures().get(1);
+    return abstractElementEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getPackage()
+  {
+    return packageEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getPackage_Name()
+  {
+    return (EAttribute)packageEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getPackage_Elements()
+  {
+    return (EReference)packageEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -984,8 +1032,13 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
 
     // Create classes and their features
     modelEClass = createEClass(MODEL);
-    createEReference(modelEClass, MODEL__ENTITIES);
-    createEReference(modelEClass, MODEL__REPOSITORIES);
+    createEReference(modelEClass, MODEL__ELEMENTS);
+
+    abstractElementEClass = createEClass(ABSTRACT_ELEMENT);
+
+    packageEClass = createEClass(PACKAGE);
+    createEAttribute(packageEClass, PACKAGE__NAME);
+    createEReference(packageEClass, PACKAGE__ELEMENTS);
 
     entityEClass = createEClass(ENTITY);
     createEAttribute(entityEClass, ENTITY__NAME);
@@ -1097,13 +1150,21 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
     // Set bounds for type parameters
 
     // Add supertypes to classes
+    packageEClass.getESuperTypes().add(this.getAbstractElement());
+    entityEClass.getESuperTypes().add(this.getAbstractElement());
     entityTypeReferenceEClass.getESuperTypes().add(this.getTypeReference());
     dataTypeReferenceEClass.getESuperTypes().add(this.getTypeReference());
+    repositoryEClass.getESuperTypes().add(this.getAbstractElement());
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getModel_Entities(), this.getEntity(), null, "entities", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getModel_Repositories(), this.getRepository(), null, "repositories", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getModel_Elements(), this.getAbstractElement(), null, "elements", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(abstractElementEClass, AbstractElement.class, "AbstractElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(packageEClass, org.xtext.example.mydsl.socialRequest.Package.class, "Package", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getPackage_Name(), ecorePackage.getEString(), "name", null, 0, 1, org.xtext.example.mydsl.socialRequest.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPackage_Elements(), this.getAbstractElement(), null, "elements", null, 0, -1, org.xtext.example.mydsl.socialRequest.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(entityEClass, Entity.class, "Entity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getEntity_Name(), ecorePackage.getEString(), "name", null, 0, 1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -15,6 +15,8 @@ import org.xtext.example.mydsl.socialRequest.EntityTypeReference
 import org.xtext.example.mydsl.socialRequest.Modifier
 import org.xtext.example.mydsl.socialRequest.DataTypeReference
 import org.xtext.example.mydsl.socialRequest.Validation
+import javax.inject.Inject
+import org.eclipse.xtext.naming.IQualifiedNameProvider
 
 /**
  * Generates code from your model files on save.
@@ -22,11 +24,17 @@ import org.xtext.example.mydsl.socialRequest.Validation
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#code-generation
  */
 class SocialRequestGenerator extends AbstractGenerator {
+	
+	// ensures qualified names
+	@Inject extension IQualifiedNameProvider
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 	
 		for(entity : resource.allContents.toIterable.filter(Entity)) {
-			fsa.generateFile(entity.name+".java", generateEntity(entity))
+			fsa.generateFile(
+				entity.fullyQualifiedName.toString("/")+".java",
+				generateEntity(entity)
+			)
 		}
 		
 		for(repo : resource.allContents.toIterable.filter(Repository)) {
@@ -35,7 +43,9 @@ class SocialRequestGenerator extends AbstractGenerator {
 	}
 	
 	private def generateEntity(Entity entity)'''
-		package ????
+		«IF entity.eContainer.fullyQualifiedName !== null»
+			package «entity.eContainer.fullyQualifiedName»;
+        «ENDIF»
 
 		import javax.persistence.*;
 		import javax.validation.constraints.*;

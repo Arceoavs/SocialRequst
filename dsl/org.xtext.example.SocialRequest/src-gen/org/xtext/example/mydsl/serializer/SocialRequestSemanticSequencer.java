@@ -74,6 +74,9 @@ public class SocialRequestSemanticSequencer extends AbstractDelegatingSemanticSe
 			case SocialRequestPackage.ORDER:
 				sequence_Order(context, (Order) semanticObject); 
 				return; 
+			case SocialRequestPackage.PACKAGE:
+				sequence_Package(context, (org.xtext.example.mydsl.socialRequest.Package) semanticObject); 
+				return; 
 			case SocialRequestPackage.PARAM:
 				sequence_Param(context, (Param) semanticObject); 
 				return; 
@@ -152,6 +155,7 @@ public class SocialRequestSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Contexts:
+	 *     AbstractElement returns Entity
 	 *     Entity returns Entity
 	 *
 	 * Constraint:
@@ -200,7 +204,7 @@ public class SocialRequestSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *     Model returns Model
 	 *
 	 * Constraint:
-	 *     ((entities+=Entity+ repositories+=Repository+) | repositories+=Repository+)?
+	 *     elements+=AbstractElement+
 	 */
 	protected void sequence_Model(ISerializationContext context, Model semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -239,6 +243,19 @@ public class SocialRequestSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Contexts:
+	 *     AbstractElement returns Package
+	 *     Package returns Package
+	 *
+	 * Constraint:
+	 *     (name=PointSeperatedID elements+=AbstractElement*)
+	 */
+	protected void sequence_Package(ISerializationContext context, org.xtext.example.mydsl.socialRequest.Package semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Param returns Param
 	 *
 	 * Constraint:
@@ -272,6 +289,7 @@ public class SocialRequestSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Contexts:
+	 *     AbstractElement returns Repository
 	 *     Repository returns Repository
 	 *
 	 * Constraint:

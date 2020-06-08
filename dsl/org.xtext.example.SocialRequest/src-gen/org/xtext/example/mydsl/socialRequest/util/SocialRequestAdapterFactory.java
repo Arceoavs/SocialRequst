@@ -10,7 +10,25 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.xtext.example.mydsl.socialRequest.*;
+import org.xtext.example.mydsl.socialRequest.AbstractElement;
+import org.xtext.example.mydsl.socialRequest.Attribute;
+import org.xtext.example.mydsl.socialRequest.DataTypeReference;
+import org.xtext.example.mydsl.socialRequest.Entity;
+import org.xtext.example.mydsl.socialRequest.EntityTypeReference;
+import org.xtext.example.mydsl.socialRequest.From;
+import org.xtext.example.mydsl.socialRequest.Join;
+import org.xtext.example.mydsl.socialRequest.Model;
+import org.xtext.example.mydsl.socialRequest.Modifier;
+import org.xtext.example.mydsl.socialRequest.Order;
+import org.xtext.example.mydsl.socialRequest.Param;
+import org.xtext.example.mydsl.socialRequest.Query;
+import org.xtext.example.mydsl.socialRequest.Repository;
+import org.xtext.example.mydsl.socialRequest.SQLQuery;
+import org.xtext.example.mydsl.socialRequest.Select;
+import org.xtext.example.mydsl.socialRequest.SocialRequestPackage;
+import org.xtext.example.mydsl.socialRequest.TypeReference;
+import org.xtext.example.mydsl.socialRequest.Validation;
+import org.xtext.example.mydsl.socialRequest.Where;
 
 /**
  * <!-- begin-user-doc -->
@@ -79,6 +97,16 @@ public class SocialRequestAdapterFactory extends AdapterFactoryImpl
       public Adapter caseModel(Model object)
       {
         return createModelAdapter();
+      }
+      @Override
+      public Adapter caseAbstractElement(AbstractElement object)
+      {
+        return createAbstractElementAdapter();
+      }
+      @Override
+      public Adapter casePackage(org.xtext.example.mydsl.socialRequest.Package object)
+      {
+        return createPackageAdapter();
       }
       @Override
       public Adapter caseEntity(Entity object)
@@ -193,6 +221,36 @@ public class SocialRequestAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createModelAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.socialRequest.AbstractElement <em>Abstract Element</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.socialRequest.AbstractElement
+   * @generated
+   */
+  public Adapter createAbstractElementAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.socialRequest.Package <em>Package</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.socialRequest.Package
+   * @generated
+   */
+  public Adapter createPackageAdapter()
   {
     return null;
   }

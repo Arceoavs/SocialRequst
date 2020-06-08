@@ -17,9 +17,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.xtext.example.mydsl.socialRequest.Entity;
+import org.xtext.example.mydsl.socialRequest.AbstractElement;
 import org.xtext.example.mydsl.socialRequest.Model;
-import org.xtext.example.mydsl.socialRequest.Repository;
 import org.xtext.example.mydsl.socialRequest.SocialRequestPackage;
 
 /**
@@ -30,8 +29,7 @@ import org.xtext.example.mydsl.socialRequest.SocialRequestPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.socialRequest.impl.ModelImpl#getEntities <em>Entities</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.socialRequest.impl.ModelImpl#getRepositories <em>Repositories</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.socialRequest.impl.ModelImpl#getElements <em>Elements</em>}</li>
  * </ul>
  *
  * @generated
@@ -39,24 +37,14 @@ import org.xtext.example.mydsl.socialRequest.SocialRequestPackage;
 public class ModelImpl extends MinimalEObjectImpl.Container implements Model
 {
   /**
-   * The cached value of the '{@link #getEntities() <em>Entities</em>}' containment reference list.
+   * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getEntities()
+   * @see #getElements()
    * @generated
    * @ordered
    */
-  protected EList<Entity> entities;
-
-  /**
-   * The cached value of the '{@link #getRepositories() <em>Repositories</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getRepositories()
-   * @generated
-   * @ordered
-   */
-  protected EList<Repository> repositories;
+  protected EList<AbstractElement> elements;
 
   /**
    * <!-- begin-user-doc -->
@@ -85,28 +73,13 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * @generated
    */
   @Override
-  public EList<Entity> getEntities()
+  public EList<AbstractElement> getElements()
   {
-    if (entities == null)
+    if (elements == null)
     {
-      entities = new EObjectContainmentEList<Entity>(Entity.class, this, SocialRequestPackage.MODEL__ENTITIES);
+      elements = new EObjectContainmentEList<AbstractElement>(AbstractElement.class, this, SocialRequestPackage.MODEL__ELEMENTS);
     }
-    return entities;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EList<Repository> getRepositories()
-  {
-    if (repositories == null)
-    {
-      repositories = new EObjectContainmentEList<Repository>(Repository.class, this, SocialRequestPackage.MODEL__REPOSITORIES);
-    }
-    return repositories;
+    return elements;
   }
 
   /**
@@ -119,10 +92,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case SocialRequestPackage.MODEL__ENTITIES:
-        return ((InternalEList<?>)getEntities()).basicRemove(otherEnd, msgs);
-      case SocialRequestPackage.MODEL__REPOSITORIES:
-        return ((InternalEList<?>)getRepositories()).basicRemove(otherEnd, msgs);
+      case SocialRequestPackage.MODEL__ELEMENTS:
+        return ((InternalEList<?>)getElements()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -137,10 +108,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case SocialRequestPackage.MODEL__ENTITIES:
-        return getEntities();
-      case SocialRequestPackage.MODEL__REPOSITORIES:
-        return getRepositories();
+      case SocialRequestPackage.MODEL__ELEMENTS:
+        return getElements();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -156,13 +125,9 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case SocialRequestPackage.MODEL__ENTITIES:
-        getEntities().clear();
-        getEntities().addAll((Collection<? extends Entity>)newValue);
-        return;
-      case SocialRequestPackage.MODEL__REPOSITORIES:
-        getRepositories().clear();
-        getRepositories().addAll((Collection<? extends Repository>)newValue);
+      case SocialRequestPackage.MODEL__ELEMENTS:
+        getElements().clear();
+        getElements().addAll((Collection<? extends AbstractElement>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -178,11 +143,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case SocialRequestPackage.MODEL__ENTITIES:
-        getEntities().clear();
-        return;
-      case SocialRequestPackage.MODEL__REPOSITORIES:
-        getRepositories().clear();
+      case SocialRequestPackage.MODEL__ELEMENTS:
+        getElements().clear();
         return;
     }
     super.eUnset(featureID);
@@ -198,10 +160,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case SocialRequestPackage.MODEL__ENTITIES:
-        return entities != null && !entities.isEmpty();
-      case SocialRequestPackage.MODEL__REPOSITORIES:
-        return repositories != null && !repositories.isEmpty();
+      case SocialRequestPackage.MODEL__ELEMENTS:
+        return elements != null && !elements.isEmpty();
     }
     return super.eIsSet(featureID);
   }

@@ -12,7 +12,28 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import org.xtext.example.mydsl.socialRequest.*;
+import org.xtext.example.mydsl.socialRequest.AbstractElement;
+import org.xtext.example.mydsl.socialRequest.Attribute;
+import org.xtext.example.mydsl.socialRequest.DataType;
+import org.xtext.example.mydsl.socialRequest.DataTypeReference;
+import org.xtext.example.mydsl.socialRequest.Entity;
+import org.xtext.example.mydsl.socialRequest.EntityTypeReference;
+import org.xtext.example.mydsl.socialRequest.From;
+import org.xtext.example.mydsl.socialRequest.Join;
+import org.xtext.example.mydsl.socialRequest.JoinType;
+import org.xtext.example.mydsl.socialRequest.Model;
+import org.xtext.example.mydsl.socialRequest.Modifier;
+import org.xtext.example.mydsl.socialRequest.Order;
+import org.xtext.example.mydsl.socialRequest.Param;
+import org.xtext.example.mydsl.socialRequest.Query;
+import org.xtext.example.mydsl.socialRequest.Repository;
+import org.xtext.example.mydsl.socialRequest.SQLQuery;
+import org.xtext.example.mydsl.socialRequest.Select;
+import org.xtext.example.mydsl.socialRequest.SocialRequestFactory;
+import org.xtext.example.mydsl.socialRequest.SocialRequestPackage;
+import org.xtext.example.mydsl.socialRequest.TypeReference;
+import org.xtext.example.mydsl.socialRequest.Validation;
+import org.xtext.example.mydsl.socialRequest.Where;
 
 /**
  * <!-- begin-user-doc -->
@@ -67,6 +88,8 @@ public class SocialRequestFactoryImpl extends EFactoryImpl implements SocialRequ
     switch (eClass.getClassifierID())
     {
       case SocialRequestPackage.MODEL: return createModel();
+      case SocialRequestPackage.ABSTRACT_ELEMENT: return createAbstractElement();
+      case SocialRequestPackage.PACKAGE: return createPackage();
       case SocialRequestPackage.ENTITY: return createEntity();
       case SocialRequestPackage.ATTRIBUTE: return createAttribute();
       case SocialRequestPackage.TYPE_REFERENCE: return createTypeReference();
@@ -136,6 +159,30 @@ public class SocialRequestFactoryImpl extends EFactoryImpl implements SocialRequ
   {
     ModelImpl model = new ModelImpl();
     return model;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public AbstractElement createAbstractElement()
+  {
+    AbstractElementImpl abstractElement = new AbstractElementImpl();
+    return abstractElement;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public org.xtext.example.mydsl.socialRequest.Package createPackage()
+  {
+    PackageImpl package_ = new PackageImpl();
+    return package_;
   }
 
   /**
