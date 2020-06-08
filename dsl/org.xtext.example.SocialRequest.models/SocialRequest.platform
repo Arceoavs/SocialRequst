@@ -1,0 +1,68 @@
+Entity Topic {
+  name: String ID {
+    validations {
+      pattern: [a-zA-Z0-9]+
+    }
+  }
+
+  ManyToMany users: User {
+    mappedBy: specialties
+  }
+
+  ManyToMany requests: Request {
+    mappedBy: topics
+  }
+}
+
+Entity Request {
+  id: long ID(AUTO)
+
+  title: String {
+    validations {
+      not-blank
+    }
+  }
+
+  description: String LOB {
+    validations {
+      not-blank
+    }
+  }
+
+  latitude: float {
+    validations {
+      not-null
+      min: -90
+      max: 90
+    }
+  }
+
+  longitude: float {
+    validations: {
+      not-null
+      min: -180
+      max: 180
+    }
+  }
+
+  createdAt: Date {
+    validations: {
+      not-null
+      past
+    }
+  }
+
+  ManyToOne user: User {
+    validations {
+      not-null
+    }
+  }
+
+  OneToOne fulfillment: Fulfillment {
+    mappedBy: request
+  }
+
+  ManyToMany topics: Topic {
+    fetch: eager
+  }
+}

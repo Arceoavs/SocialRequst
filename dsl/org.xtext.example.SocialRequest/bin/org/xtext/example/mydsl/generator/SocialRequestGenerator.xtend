@@ -11,7 +11,6 @@ import org.eclipse.xtext.generator.IGeneratorContext
 import org.xtext.example.mydsl.socialRequest.Entity
 import org.xtext.example.mydsl.socialRequest.Repository
 import org.xtext.example.mydsl.socialRequest.Attribute
-import org.xtext.example.mydsl.socialRequest.AssociationSpecification
 
 /**
  * Generates code from your model files on save.

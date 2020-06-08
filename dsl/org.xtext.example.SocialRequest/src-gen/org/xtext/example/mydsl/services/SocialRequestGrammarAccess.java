@@ -956,7 +956,7 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//terminal ASSOCIATION:
-	//	'one-to-many' | 'many-to-one' | 'one-to-one' | 'many-to-many';
+	//	'OneToMany' | 'ManyToOne' | 'OneToOne' | 'ManyToMany';
 	public TerminalRule getASSOCIATIONRule() {
 		return tASSOCIATION;
 	}

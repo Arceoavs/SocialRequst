@@ -3668,7 +3668,7 @@ RULE_GENERATION_TYPE : ('auto'|'table'|'identity'|'sequence');
 
 RULE_FETCH_TYPE : ('eager'|'lazy');
 
-RULE_ASSOCIATION : ('one-to-many'|'many-to-one'|'one-to-one'|'many-to-many');
+RULE_ASSOCIATION : ('OneToMany'|'ManyToOne'|'OneToOne'|'ManyToMany');
 
 RULE_DATA_TYPE : ('String'|'long'|'Long'|'float'|'double'|'char'|'int'|'boolean');
 
