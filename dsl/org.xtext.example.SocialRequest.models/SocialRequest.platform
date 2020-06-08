@@ -1,30 +1,30 @@
 Entity User implements UserDetails {
-  id: long ID(auto)
+  id: long ID(AUTO)
 
-  username: string {
+  username: String {
     validations {
-      unique
+      Unique
     }
   }
 
-  password: string {
+  password: String {
     validations {
-      not-blank
+      NotBlank
     }
   }
 
-  rawPassword: string TRANSIENT
+  rawPassword: String TRANSIENT
 
-  email: string {
+  email: String {
     validations {
-      not-blank
-      valid-email
+      NotBlank
+      Email
     }
   }
 
   latitude: float {
     validations {
-      not-null
+      NotNull
       min: -90
       max: 90
     }
@@ -32,82 +32,82 @@ Entity User implements UserDetails {
 
   longitude: float {
     validations {
-      not-null
+      NotNull
       min: -180
       max: 180
     }
   }
 
-  one-to-many requests: Request {
+  OneToMany requests: Request {
     mappedBy: user
   }
 
-  one-to-many fulfillments: Fulfillment {
+  OneToMany fulfillments: Fulfillment {
     mappedBy: user
   }
 
-  many-to-many specialties: Topic {
-    fetch: eager
+  ManyToMany specialties: Topic {
+    fetch: EAGER
   }
 }
 
 Entity Fulfillment {
-  id: long ID(auto)
+  id: long ID(AUTO)
 
-  createdAt: date {
+  createdAt: Date {
     validations {
-      not-null
-      past
+      NotNull
+      Past
     }
   }
 
-  many-to-one user: User {
+  ManyToOne user: User {
     validations {
-      not-null
+      NotNull
     }
   }
 
-  one-to-one request: Request {
+  OneToOne request: Request {
     validations {
-      not-null
+      NotNull
     }
   }
 }
 
 Entity Topic {
-  name: string ID {
+  name: String ID {
     validations {
       pattern: "[a-zA-Z0-9]+"
     }
   }
 
-  many-to-many users: User {
+  ManyToMany users: User {
     mappedBy: specialties
   }
 
-  many-to-many requests: Request {
+  ManyToMany requests: Request {
     mappedBy: topics
   }
 }
 
 Entity Request {
-  id: long ID(auto)
+  id: long ID(AUTO)
 
-  title: string {
+  title: String {
     validations {
-      not-blank
+      NotBlank
     }
   }
 
-  description: string LOB {
+  description: String LOB {
     validations {
-      not-blank
+      NotBlank
     }
   }
 
   latitude: float {
     validations {
-      not-null
+      NotNull
       min: -90
       max: 90
     }
@@ -115,31 +115,31 @@ Entity Request {
 
   longitude: float {
     validations {
-      not-null
+      NotNull
       min: -180
       max: 180
     }
   }
 
-  createdAt: date {
+  createdAt: Date {
     validations {
-      not-null
-      past
+      NotNull
+      Past
     }
   }
 
-  many-to-one user: User {
+  ManyToOne user: User {
     validations {
-      not-null
+      NotNull
     }
   }
 
-  one-to-one fulfillment: Fulfillment {
+  OneToOne fulfillment: Fulfillment {
     mappedBy: request
   }
 
-  many-to-many topics: Topic {
-    fetch: eager
+  ManyToMany topics: Topic {
+    fetch: EAGER
   }
 }
 
@@ -157,4 +157,3 @@ Repository Request {
     ORDER BY { "r.createdAt DESC" }
   }
 }
-
