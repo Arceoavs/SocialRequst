@@ -203,6 +203,13 @@ public class SocialRequestGenerator extends AbstractGenerator {
             String _regex_1 = validation.getRegex();
             String _plus_2 = ("@Pattern(regexp = \"" + _regex_1);
             _xifexpression_3 = (_plus_2 + "\")");
+          } else {
+            String _xifexpression_4 = null;
+            boolean _isUnique = validation.isUnique();
+            if (_isUnique) {
+              _xifexpression_4 = "@Column(unique = true)";
+            }
+            _xifexpression_3 = _xifexpression_4;
           }
           _xifexpression_2 = _xifexpression_3;
         }

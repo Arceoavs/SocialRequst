@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.xtext.example.mydsl.socialRequest.Validation#getMax <em>Max</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.socialRequest.Validation#getRegex <em>Regex</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.socialRequest.Validation#getValidator <em>Validator</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.socialRequest.Validation#isUnique <em>Unique</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.mydsl.socialRequest.SocialRequestPackage#getValidation()
@@ -115,5 +116,27 @@ public interface Validation extends EObject
    * @generated
    */
   void setValidator(String value);
+
+  /**
+   * Returns the value of the '<em><b>Unique</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Unique</em>' attribute.
+   * @see #setUnique(boolean)
+   * @see org.xtext.example.mydsl.socialRequest.SocialRequestPackage#getValidation_Unique()
+   * @model
+   * @generated
+   */
+  boolean isUnique();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.socialRequest.Validation#isUnique <em>Unique</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Unique</em>' attribute.
+   * @see #isUnique()
+   * @generated
+   */
+  void setUnique(boolean value);
 
 } // Validation

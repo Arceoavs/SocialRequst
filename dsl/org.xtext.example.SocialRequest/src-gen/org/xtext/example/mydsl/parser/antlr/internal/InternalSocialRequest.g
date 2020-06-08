@@ -741,6 +741,21 @@ ruleValidation returns [EObject current=null]
 				}
 			)
 		)
+		    |
+		(
+			(
+				lv_unique_7_0='unique'
+				{
+					newLeafNode(lv_unique_7_0, grammarAccess.getValidationAccess().getUniqueUniqueKeyword_4_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getValidationRule());
+					}
+					setWithLastConsumed($current, "unique", true, "unique");
+				}
+			)
+		)
 	)
 ;
 
@@ -778,16 +793,10 @@ ruleBASICVALIDATION returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRul
 			newLeafNode(kw, grammarAccess.getBASICVALIDATIONAccess().getPastKeyword_2());
 		}
 		    |
-		kw='Unique'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getBASICVALIDATIONAccess().getUniqueKeyword_3());
-		}
-		    |
 		kw='Email'
 		{
 			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getBASICVALIDATIONAccess().getEmailKeyword_4());
+			newLeafNode(kw, grammarAccess.getBASICVALIDATIONAccess().getEmailKeyword_3());
 		}
 	)
 ;

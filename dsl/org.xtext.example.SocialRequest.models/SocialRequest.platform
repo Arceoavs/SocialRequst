@@ -3,7 +3,8 @@ Entity User implements UserDetails {
 
   username: String {
     validations {
-      Unique
+      NotBlank
+      unique
     }
   }
 

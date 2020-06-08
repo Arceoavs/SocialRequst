@@ -96,6 +96,8 @@ class SocialRequestGenerator extends AbstractGenerator {
 			"@Max(" + validation.max + ")"
 		} else if (validation.regex != null) {
 			"@Pattern(regexp = \"" + validation.regex + "\")"
+		} else if (validation.unique) {
+			"@Column(unique = true)"
 		}
 	}
 	

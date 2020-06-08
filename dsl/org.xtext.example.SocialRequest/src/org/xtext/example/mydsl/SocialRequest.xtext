@@ -44,11 +44,11 @@ Modifier:
 
 Validation:
 	'min:' (min=POSSIBLY_SIGNED_INT) | 'max:' (max=POSSIBLY_SIGNED_INT) |
-	  'pattern:' regex=STRING | validator=BASICVALIDATION
+	  'pattern:' regex=STRING | validator=BASICVALIDATION | (unique?='unique')
 ;
 
 BASICVALIDATION:
-	'NotNull' | 'NotBlank' | 'Past' | 'Unique' | 'Email'
+	'NotNull' | 'NotBlank' | 'Past' | 'Email'
 ;
 
 terminal POSSIBLY_SIGNED_INT returns ecore::EBigDecimal:

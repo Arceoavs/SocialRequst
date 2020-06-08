@@ -365,13 +365,16 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRegexSTRINGTerminalRuleCall_2_1_0 = (RuleCall)cRegexAssignment_2_1.eContents().get(0);
 		private final Assignment cValidatorAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
 		private final RuleCall cValidatorBASICVALIDATIONParserRuleCall_3_0 = (RuleCall)cValidatorAssignment_3.eContents().get(0);
+		private final Assignment cUniqueAssignment_4 = (Assignment)cAlternatives.eContents().get(4);
+		private final Keyword cUniqueUniqueKeyword_4_0 = (Keyword)cUniqueAssignment_4.eContents().get(0);
 		
 		//Validation:
 		//	'min:' min=POSSIBLY_SIGNED_INT | 'max:' max=POSSIBLY_SIGNED_INT |
-		//	'pattern:' regex=STRING | validator=BASICVALIDATION;
+		//	'pattern:' regex=STRING | validator=BASICVALIDATION | unique?='unique';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'min:' min=POSSIBLY_SIGNED_INT | 'max:' max=POSSIBLY_SIGNED_INT | 'pattern:' regex=STRING | validator=BASICVALIDATION
+		//'min:' min=POSSIBLY_SIGNED_INT | 'max:' max=POSSIBLY_SIGNED_INT | 'pattern:' regex=STRING | validator=BASICVALIDATION |
+		//unique?='unique'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//'min:' min=POSSIBLY_SIGNED_INT
@@ -415,6 +418,12 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//BASICVALIDATION
 		public RuleCall getValidatorBASICVALIDATIONParserRuleCall_3_0() { return cValidatorBASICVALIDATIONParserRuleCall_3_0; }
+		
+		//unique?='unique'
+		public Assignment getUniqueAssignment_4() { return cUniqueAssignment_4; }
+		
+		//'unique'
+		public Keyword getUniqueUniqueKeyword_4_0() { return cUniqueUniqueKeyword_4_0; }
 	}
 	public class BASICVALIDATIONElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.BASICVALIDATION");
@@ -422,14 +431,13 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cNotNullKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
 		private final Keyword cNotBlankKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
 		private final Keyword cPastKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
-		private final Keyword cUniqueKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
-		private final Keyword cEmailKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
+		private final Keyword cEmailKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
 		
 		//BASICVALIDATION:
-		//	'NotNull' | 'NotBlank' | 'Past' | 'Unique' | 'Email';
+		//	'NotNull' | 'NotBlank' | 'Past' | 'Email';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'NotNull' | 'NotBlank' | 'Past' | 'Unique' | 'Email'
+		//'NotNull' | 'NotBlank' | 'Past' | 'Email'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//'NotNull'
@@ -441,11 +449,8 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		//'Past'
 		public Keyword getPastKeyword_2() { return cPastKeyword_2; }
 		
-		//'Unique'
-		public Keyword getUniqueKeyword_3() { return cUniqueKeyword_3; }
-		
 		//'Email'
-		public Keyword getEmailKeyword_4() { return cEmailKeyword_4; }
+		public Keyword getEmailKeyword_3() { return cEmailKeyword_3; }
 	}
 	public class ASSOCIATIONElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.ASSOCIATION");
@@ -1195,7 +1200,7 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//Validation:
 	//	'min:' min=POSSIBLY_SIGNED_INT | 'max:' max=POSSIBLY_SIGNED_INT |
-	//	'pattern:' regex=STRING | validator=BASICVALIDATION;
+	//	'pattern:' regex=STRING | validator=BASICVALIDATION | unique?='unique';
 	public ValidationElements getValidationAccess() {
 		return pValidation;
 	}
@@ -1205,7 +1210,7 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//BASICVALIDATION:
-	//	'NotNull' | 'NotBlank' | 'Past' | 'Unique' | 'Email';
+	//	'NotNull' | 'NotBlank' | 'Past' | 'Email';
 	public BASICVALIDATIONElements getBASICVALIDATIONAccess() {
 		return pBASICVALIDATION;
 	}

@@ -573,6 +573,17 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
    * @generated
    */
   @Override
+  public EAttribute getValidation_Unique()
+  {
+    return (EAttribute)validationEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getRepository()
   {
     return repositoryEClass;
@@ -1009,6 +1020,7 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
     createEAttribute(validationEClass, VALIDATION__MAX);
     createEAttribute(validationEClass, VALIDATION__REGEX);
     createEAttribute(validationEClass, VALIDATION__VALIDATOR);
+    createEAttribute(validationEClass, VALIDATION__UNIQUE);
 
     repositoryEClass = createEClass(REPOSITORY);
     createEReference(repositoryEClass, REPOSITORY__ENTITY);
@@ -1126,6 +1138,7 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
     initEAttribute(getValidation_Max(), ecorePackage.getEBigDecimal(), "max", null, 0, 1, Validation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getValidation_Regex(), ecorePackage.getEString(), "regex", null, 0, 1, Validation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getValidation_Validator(), ecorePackage.getEString(), "validator", null, 0, 1, Validation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getValidation_Unique(), ecorePackage.getEBoolean(), "unique", null, 0, 1, Validation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(repositoryEClass, Repository.class, "Repository", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRepository_Entity(), this.getEntity(), null, "entity", null, 0, 1, Repository.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

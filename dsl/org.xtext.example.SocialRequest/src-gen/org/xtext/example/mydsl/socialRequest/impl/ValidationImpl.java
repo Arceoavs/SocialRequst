@@ -27,6 +27,7 @@ import org.xtext.example.mydsl.socialRequest.Validation;
  *   <li>{@link org.xtext.example.mydsl.socialRequest.impl.ValidationImpl#getMax <em>Max</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.socialRequest.impl.ValidationImpl#getRegex <em>Regex</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.socialRequest.impl.ValidationImpl#getValidator <em>Validator</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.socialRequest.impl.ValidationImpl#isUnique <em>Unique</em>}</li>
  * </ul>
  *
  * @generated
@@ -112,6 +113,26 @@ public class ValidationImpl extends MinimalEObjectImpl.Container implements Vali
    * @ordered
    */
   protected String validator = VALIDATOR_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #isUnique() <em>Unique</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isUnique()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean UNIQUE_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isUnique() <em>Unique</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isUnique()
+   * @generated
+   * @ordered
+   */
+  protected boolean unique = UNIQUE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -240,6 +261,31 @@ public class ValidationImpl extends MinimalEObjectImpl.Container implements Vali
    * @generated
    */
   @Override
+  public boolean isUnique()
+  {
+    return unique;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setUnique(boolean newUnique)
+  {
+    boolean oldUnique = unique;
+    unique = newUnique;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, SocialRequestPackage.VALIDATION__UNIQUE, oldUnique, unique));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
@@ -252,6 +298,8 @@ public class ValidationImpl extends MinimalEObjectImpl.Container implements Vali
         return getRegex();
       case SocialRequestPackage.VALIDATION__VALIDATOR:
         return getValidator();
+      case SocialRequestPackage.VALIDATION__UNIQUE:
+        return isUnique();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -277,6 +325,9 @@ public class ValidationImpl extends MinimalEObjectImpl.Container implements Vali
         return;
       case SocialRequestPackage.VALIDATION__VALIDATOR:
         setValidator((String)newValue);
+        return;
+      case SocialRequestPackage.VALIDATION__UNIQUE:
+        setUnique((Boolean)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -304,6 +355,9 @@ public class ValidationImpl extends MinimalEObjectImpl.Container implements Vali
       case SocialRequestPackage.VALIDATION__VALIDATOR:
         setValidator(VALIDATOR_EDEFAULT);
         return;
+      case SocialRequestPackage.VALIDATION__UNIQUE:
+        setUnique(UNIQUE_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -326,6 +380,8 @@ public class ValidationImpl extends MinimalEObjectImpl.Container implements Vali
         return REGEX_EDEFAULT == null ? regex != null : !REGEX_EDEFAULT.equals(regex);
       case SocialRequestPackage.VALIDATION__VALIDATOR:
         return VALIDATOR_EDEFAULT == null ? validator != null : !VALIDATOR_EDEFAULT.equals(validator);
+      case SocialRequestPackage.VALIDATION__UNIQUE:
+        return unique != UNIQUE_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -349,6 +405,8 @@ public class ValidationImpl extends MinimalEObjectImpl.Container implements Vali
     result.append(regex);
     result.append(", validator: ");
     result.append(validator);
+    result.append(", unique: ");
+    result.append(unique);
     result.append(')');
     return result.toString();
   }

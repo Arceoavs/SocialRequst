@@ -58,6 +58,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Validation/max"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Validation/regex"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Validation/validator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Validation/unique"/>
     </genClasses>
     <genClasses ecoreClass="SocialRequest.ecore#//Repository">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SocialRequest.ecore#//Repository/entity"/>

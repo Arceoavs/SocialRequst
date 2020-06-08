@@ -400,13 +400,22 @@ public interface SocialRequestPackage extends EPackage
   int VALIDATION__VALIDATOR = 3;
 
   /**
+   * The feature id for the '<em><b>Unique</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VALIDATION__UNIQUE = 4;
+
+  /**
    * The number of structural features of the '<em>Validation</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int VALIDATION_FEATURE_COUNT = 4;
+  int VALIDATION_FEATURE_COUNT = 5;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.impl.RepositoryImpl <em>Repository</em>}' class.
@@ -1130,6 +1139,17 @@ public interface SocialRequestPackage extends EPackage
   EAttribute getValidation_Validator();
 
   /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.Validation#isUnique <em>Unique</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Unique</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Validation#isUnique()
+   * @see #getValidation()
+   * @generated
+   */
+  EAttribute getValidation_Unique();
+
+  /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.socialRequest.Repository <em>Repository</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1770,6 +1790,14 @@ public interface SocialRequestPackage extends EPackage
      * @generated
      */
     EAttribute VALIDATION__VALIDATOR = eINSTANCE.getValidation_Validator();
+
+    /**
+     * The meta object literal for the '<em><b>Unique</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute VALIDATION__UNIQUE = eINSTANCE.getValidation_Unique();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.impl.RepositoryImpl <em>Repository</em>}' class.

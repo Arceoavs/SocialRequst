@@ -311,7 +311,7 @@ public class SocialRequestSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *     Validation returns Validation
 	 *
 	 * Constraint:
-	 *     (min=POSSIBLY_SIGNED_INT | max=POSSIBLY_SIGNED_INT | regex=STRING | validator=BASICVALIDATION)
+	 *     (min=POSSIBLY_SIGNED_INT | max=POSSIBLY_SIGNED_INT | regex=STRING | validator=BASICVALIDATION | unique?='unique')
 	 */
 	protected void sequence_Validation(ISerializationContext context, Validation semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

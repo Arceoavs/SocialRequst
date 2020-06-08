@@ -632,6 +632,12 @@ rule__Validation__Alternatives
 		(rule__Validation__ValidatorAssignment_3)
 		{ after(grammarAccess.getValidationAccess().getValidatorAssignment_3()); }
 	)
+	|
+	(
+		{ before(grammarAccess.getValidationAccess().getUniqueAssignment_4()); }
+		(rule__Validation__UniqueAssignment_4)
+		{ after(grammarAccess.getValidationAccess().getUniqueAssignment_4()); }
+	)
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -661,15 +667,9 @@ rule__BASICVALIDATION__Alternatives
 	)
 	|
 	(
-		{ before(grammarAccess.getBASICVALIDATIONAccess().getUniqueKeyword_3()); }
-		'Unique'
-		{ after(grammarAccess.getBASICVALIDATIONAccess().getUniqueKeyword_3()); }
-	)
-	|
-	(
-		{ before(grammarAccess.getBASICVALIDATIONAccess().getEmailKeyword_4()); }
+		{ before(grammarAccess.getBASICVALIDATIONAccess().getEmailKeyword_3()); }
 		'Email'
-		{ after(grammarAccess.getBASICVALIDATIONAccess().getEmailKeyword_4()); }
+		{ after(grammarAccess.getBASICVALIDATIONAccess().getEmailKeyword_3()); }
 	)
 ;
 finally {
@@ -3785,6 +3785,25 @@ rule__Validation__ValidatorAssignment_3
 		{ before(grammarAccess.getValidationAccess().getValidatorBASICVALIDATIONParserRuleCall_3_0()); }
 		ruleBASICVALIDATION
 		{ after(grammarAccess.getValidationAccess().getValidatorBASICVALIDATIONParserRuleCall_3_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Validation__UniqueAssignment_4
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getValidationAccess().getUniqueUniqueKeyword_4_0()); }
+		(
+			{ before(grammarAccess.getValidationAccess().getUniqueUniqueKeyword_4_0()); }
+			'unique'
+			{ after(grammarAccess.getValidationAccess().getUniqueUniqueKeyword_4_0()); }
+		)
+		{ after(grammarAccess.getValidationAccess().getUniqueUniqueKeyword_4_0()); }
 	)
 ;
 finally {

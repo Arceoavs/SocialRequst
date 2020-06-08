@@ -86,6 +86,7 @@ public class SocialRequestParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getValidationAccess().getMaxAssignment_1_1(), "rule__Validation__MaxAssignment_1_1");
 			builder.put(grammarAccess.getValidationAccess().getRegexAssignment_2_1(), "rule__Validation__RegexAssignment_2_1");
 			builder.put(grammarAccess.getValidationAccess().getValidatorAssignment_3(), "rule__Validation__ValidatorAssignment_3");
+			builder.put(grammarAccess.getValidationAccess().getUniqueAssignment_4(), "rule__Validation__UniqueAssignment_4");
 			builder.put(grammarAccess.getRepositoryAccess().getEntityAssignment_1(), "rule__Repository__EntityAssignment_1");
 			builder.put(grammarAccess.getRepositoryAccess().getQueriesAssignment_3(), "rule__Repository__QueriesAssignment_3");
 			builder.put(grammarAccess.getQueryAccess().getNameAssignment_1(), "rule__Query__NameAssignment_1");
