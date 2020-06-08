@@ -10,7 +10,6 @@ import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AbstractElementAlias;
-import org.eclipse.xtext.serializer.analysis.GrammarAlias.AlternativeAlias;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.GroupAlias;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.TokenAlias;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynNavigable;
@@ -23,17 +22,15 @@ public class SocialRequestSyntacticSequencer extends AbstractSyntacticSequencer 
 
 	protected SocialRequestGrammarAccess grammarAccess;
 	protected AbstractElementAlias match_Attribute___LeftCurlyBracketKeyword_5_0_RightCurlyBracketKeyword_5_2__q;
-	protected AbstractElementAlias match_Attribute___RightCurlyBracketKeyword_5_1_2_2_ValidationsKeyword_5_1_2_0__q;
-	protected AbstractElementAlias match_Query___ParamsKeyword_3_1_0_RightCurlyBracketKeyword_3_1_2__q;
-	protected AbstractElementAlias match_Validation_NotBlankKeyword_4_1_or_NotNullKeyword_3_1;
+	protected AbstractElementAlias match_Attribute___RightCurlyBracketKeyword_5_1_2_3_ValidationsKeyword_5_1_2_0_LeftCurlyBracketKeyword_5_1_2_1__q;
+	protected AbstractElementAlias match_Query___ParamsKeyword_3_1_0_LeftCurlyBracketKeyword_3_1_1_RightCurlyBracketKeyword_3_1_3__q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (SocialRequestGrammarAccess) access;
 		match_Attribute___LeftCurlyBracketKeyword_5_0_RightCurlyBracketKeyword_5_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getAttributeAccess().getLeftCurlyBracketKeyword_5_0()), new TokenAlias(false, false, grammarAccess.getAttributeAccess().getRightCurlyBracketKeyword_5_2()));
-		match_Attribute___RightCurlyBracketKeyword_5_1_2_2_ValidationsKeyword_5_1_2_0__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getAttributeAccess().getRightCurlyBracketKeyword_5_1_2_2()), new TokenAlias(false, false, grammarAccess.getAttributeAccess().getValidationsKeyword_5_1_2_0()));
-		match_Query___ParamsKeyword_3_1_0_RightCurlyBracketKeyword_3_1_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getQueryAccess().getParamsKeyword_3_1_0()), new TokenAlias(false, false, grammarAccess.getQueryAccess().getRightCurlyBracketKeyword_3_1_2()));
-		match_Validation_NotBlankKeyword_4_1_or_NotNullKeyword_3_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getValidationAccess().getNotBlankKeyword_4_1()), new TokenAlias(false, false, grammarAccess.getValidationAccess().getNotNullKeyword_3_1()));
+		match_Attribute___RightCurlyBracketKeyword_5_1_2_3_ValidationsKeyword_5_1_2_0_LeftCurlyBracketKeyword_5_1_2_1__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getAttributeAccess().getRightCurlyBracketKeyword_5_1_2_3()), new TokenAlias(false, false, grammarAccess.getAttributeAccess().getValidationsKeyword_5_1_2_0()), new TokenAlias(false, false, grammarAccess.getAttributeAccess().getLeftCurlyBracketKeyword_5_1_2_1()));
+		match_Query___ParamsKeyword_3_1_0_LeftCurlyBracketKeyword_3_1_1_RightCurlyBracketKeyword_3_1_3__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getQueryAccess().getParamsKeyword_3_1_0()), new TokenAlias(false, false, grammarAccess.getQueryAccess().getLeftCurlyBracketKeyword_3_1_1()), new TokenAlias(false, false, grammarAccess.getQueryAccess().getRightCurlyBracketKeyword_3_1_3()));
 	}
 	
 	@Override
@@ -50,12 +47,10 @@ public class SocialRequestSyntacticSequencer extends AbstractSyntacticSequencer 
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
 			if (match_Attribute___LeftCurlyBracketKeyword_5_0_RightCurlyBracketKeyword_5_2__q.equals(syntax))
 				emit_Attribute___LeftCurlyBracketKeyword_5_0_RightCurlyBracketKeyword_5_2__q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_Attribute___RightCurlyBracketKeyword_5_1_2_2_ValidationsKeyword_5_1_2_0__q.equals(syntax))
-				emit_Attribute___RightCurlyBracketKeyword_5_1_2_2_ValidationsKeyword_5_1_2_0__q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_Query___ParamsKeyword_3_1_0_RightCurlyBracketKeyword_3_1_2__q.equals(syntax))
-				emit_Query___ParamsKeyword_3_1_0_RightCurlyBracketKeyword_3_1_2__q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_Validation_NotBlankKeyword_4_1_or_NotNullKeyword_3_1.equals(syntax))
-				emit_Validation_NotBlankKeyword_4_1_or_NotNullKeyword_3_1(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Attribute___RightCurlyBracketKeyword_5_1_2_3_ValidationsKeyword_5_1_2_0_LeftCurlyBracketKeyword_5_1_2_1__q.equals(syntax))
+				emit_Attribute___RightCurlyBracketKeyword_5_1_2_3_ValidationsKeyword_5_1_2_0_LeftCurlyBracketKeyword_5_1_2_1__q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Query___ParamsKeyword_3_1_0_LeftCurlyBracketKeyword_3_1_1_RightCurlyBracketKeyword_3_1_3__q.equals(syntax))
+				emit_Query___ParamsKeyword_3_1_0_LeftCurlyBracketKeyword_3_1_1_RightCurlyBracketKeyword_3_1_3__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
@@ -66,7 +61,7 @@ public class SocialRequestSyntacticSequencer extends AbstractSyntacticSequencer 
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     modifier=Modifier (ambiguity) (rule end)
-	 *     type=[Entity|DATA_TYPE] (ambiguity) (rule end)
+	 *     typeRef=TypeReference (ambiguity) (rule end)
 	 */
 	protected void emit_Attribute___LeftCurlyBracketKeyword_5_0_RightCurlyBracketKeyword_5_2__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -74,37 +69,26 @@ public class SocialRequestSyntacticSequencer extends AbstractSyntacticSequencer 
 	
 	/**
 	 * Ambiguous syntax:
-	 *     ('}' 'validations {')?
+	 *     ('}' 'validations' '{')?
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     validations+=Validation (ambiguity) validations+=Validation
 	 */
-	protected void emit_Attribute___RightCurlyBracketKeyword_5_1_2_2_ValidationsKeyword_5_1_2_0__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Attribute___RightCurlyBracketKeyword_5_1_2_3_ValidationsKeyword_5_1_2_0_LeftCurlyBracketKeyword_5_1_2_1__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
 	/**
 	 * Ambiguous syntax:
-	 *     ('params {' '}')?
+	 *     ('params' '{' '}')?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     isList?=': list' '{' (ambiguity) '}' (rule end)
-	 *     isList?=': list' '{' (ambiguity) sqlQuery=SQLQuery
+	 *     isList?=':' 'list' '{' (ambiguity) '}' (rule end)
+	 *     isList?=':' 'list' '{' (ambiguity) sqlQuery=SQLQuery
 	 *     name=ID '{' (ambiguity) '}' (rule end)
 	 *     name=ID '{' (ambiguity) sqlQuery=SQLQuery
 	 */
-	protected void emit_Query___ParamsKeyword_3_1_0_RightCurlyBracketKeyword_3_1_2__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     'not-null' | 'not-blank'
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) (rule start)
-	 */
-	protected void emit_Validation_NotBlankKeyword_4_1_or_NotNullKeyword_3_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Query___ParamsKeyword_3_1_0_LeftCurlyBracketKeyword_3_1_1_RightCurlyBracketKeyword_3_1_3__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

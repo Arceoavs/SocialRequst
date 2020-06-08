@@ -4,6 +4,7 @@
 package org.xtext.example.mydsl.socialRequest.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -68,8 +69,10 @@ public class SocialRequestFactoryImpl extends EFactoryImpl implements SocialRequ
       case SocialRequestPackage.MODEL: return createModel();
       case SocialRequestPackage.ENTITY: return createEntity();
       case SocialRequestPackage.ATTRIBUTE: return createAttribute();
+      case SocialRequestPackage.TYPE_REFERENCE: return createTypeReference();
+      case SocialRequestPackage.ENTITY_TYPE_REFERENCE: return createEntityTypeReference();
+      case SocialRequestPackage.DATA_TYPE_REFERENCE: return createDataTypeReference();
       case SocialRequestPackage.MODIFIER: return createModifier();
-      case SocialRequestPackage.IDENTIFICATION: return createIdentification();
       case SocialRequestPackage.VALIDATION: return createValidation();
       case SocialRequestPackage.REPOSITORY: return createRepository();
       case SocialRequestPackage.QUERY: return createQuery();
@@ -82,6 +85,60 @@ public class SocialRequestFactoryImpl extends EFactoryImpl implements SocialRequ
       case SocialRequestPackage.ORDER: return createOrder();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object createFromString(EDataType eDataType, String initialValue)
+  {
+    switch (eDataType.getClassifierID())
+    {
+      case SocialRequestPackage.BASIC_VALIDATION:
+        return createBasicValidationFromString(eDataType, initialValue);
+      case SocialRequestPackage.GENERATION_TYPE:
+        return createGenerationTypeFromString(eDataType, initialValue);
+      case SocialRequestPackage.FETCH_TYPE:
+        return createFetchTypeFromString(eDataType, initialValue);
+      case SocialRequestPackage.ASSOCIATION:
+        return createAssociationFromString(eDataType, initialValue);
+      case SocialRequestPackage.DATA_TYPE:
+        return createDataTypeFromString(eDataType, initialValue);
+      case SocialRequestPackage.JOIN_TYPE:
+        return createJoinTypeFromString(eDataType, initialValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String convertToString(EDataType eDataType, Object instanceValue)
+  {
+    switch (eDataType.getClassifierID())
+    {
+      case SocialRequestPackage.BASIC_VALIDATION:
+        return convertBasicValidationToString(eDataType, instanceValue);
+      case SocialRequestPackage.GENERATION_TYPE:
+        return convertGenerationTypeToString(eDataType, instanceValue);
+      case SocialRequestPackage.FETCH_TYPE:
+        return convertFetchTypeToString(eDataType, instanceValue);
+      case SocialRequestPackage.ASSOCIATION:
+        return convertAssociationToString(eDataType, instanceValue);
+      case SocialRequestPackage.DATA_TYPE:
+        return convertDataTypeToString(eDataType, instanceValue);
+      case SocialRequestPackage.JOIN_TYPE:
+        return convertJoinTypeToString(eDataType, instanceValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
   }
 
@@ -127,10 +184,10 @@ public class SocialRequestFactoryImpl extends EFactoryImpl implements SocialRequ
    * @generated
    */
   @Override
-  public Modifier createModifier()
+  public TypeReference createTypeReference()
   {
-    ModifierImpl modifier = new ModifierImpl();
-    return modifier;
+    TypeReferenceImpl typeReference = new TypeReferenceImpl();
+    return typeReference;
   }
 
   /**
@@ -139,10 +196,34 @@ public class SocialRequestFactoryImpl extends EFactoryImpl implements SocialRequ
    * @generated
    */
   @Override
-  public Identification createIdentification()
+  public EntityTypeReference createEntityTypeReference()
   {
-    IdentificationImpl identification = new IdentificationImpl();
-    return identification;
+    EntityTypeReferenceImpl entityTypeReference = new EntityTypeReferenceImpl();
+    return entityTypeReference;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public DataTypeReference createDataTypeReference()
+  {
+    DataTypeReferenceImpl dataTypeReference = new DataTypeReferenceImpl();
+    return dataTypeReference;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Modifier createModifier()
+  {
+    ModifierImpl modifier = new ModifierImpl();
+    return modifier;
   }
 
   /**
@@ -263,6 +344,138 @@ public class SocialRequestFactoryImpl extends EFactoryImpl implements SocialRequ
   {
     OrderImpl order = new OrderImpl();
     return order;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public BasicValidation createBasicValidationFromString(EDataType eDataType, String initialValue)
+  {
+    BasicValidation result = BasicValidation.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertBasicValidationToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public GenerationType createGenerationTypeFromString(EDataType eDataType, String initialValue)
+  {
+    GenerationType result = GenerationType.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertGenerationTypeToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FetchType createFetchTypeFromString(EDataType eDataType, String initialValue)
+  {
+    FetchType result = FetchType.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertFetchTypeToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Association createAssociationFromString(EDataType eDataType, String initialValue)
+  {
+    Association result = Association.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertAssociationToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DataType createDataTypeFromString(EDataType eDataType, String initialValue)
+  {
+    DataType result = DataType.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertDataTypeToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public JoinType createJoinTypeFromString(EDataType eDataType, String initialValue)
+  {
+    JoinType result = JoinType.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertJoinTypeToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
   }
 
   /**

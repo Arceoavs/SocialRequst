@@ -5,16 +5,24 @@ package org.xtext.example.mydsl.socialRequest.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.xtext.example.mydsl.socialRequest.Association;
 import org.xtext.example.mydsl.socialRequest.Attribute;
+import org.xtext.example.mydsl.socialRequest.BasicValidation;
+import org.xtext.example.mydsl.socialRequest.DataType;
+import org.xtext.example.mydsl.socialRequest.DataTypeReference;
 import org.xtext.example.mydsl.socialRequest.Entity;
+import org.xtext.example.mydsl.socialRequest.EntityTypeReference;
+import org.xtext.example.mydsl.socialRequest.FetchType;
 import org.xtext.example.mydsl.socialRequest.From;
-import org.xtext.example.mydsl.socialRequest.Identification;
+import org.xtext.example.mydsl.socialRequest.GenerationType;
 import org.xtext.example.mydsl.socialRequest.Join;
+import org.xtext.example.mydsl.socialRequest.JoinType;
 import org.xtext.example.mydsl.socialRequest.Model;
 import org.xtext.example.mydsl.socialRequest.Modifier;
 import org.xtext.example.mydsl.socialRequest.Order;
@@ -25,6 +33,7 @@ import org.xtext.example.mydsl.socialRequest.SQLQuery;
 import org.xtext.example.mydsl.socialRequest.Select;
 import org.xtext.example.mydsl.socialRequest.SocialRequestFactory;
 import org.xtext.example.mydsl.socialRequest.SocialRequestPackage;
+import org.xtext.example.mydsl.socialRequest.TypeReference;
 import org.xtext.example.mydsl.socialRequest.Validation;
 import org.xtext.example.mydsl.socialRequest.Where;
 
@@ -62,14 +71,28 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass modifierEClass = null;
+  private EClass typeReferenceEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass identificationEClass = null;
+  private EClass entityTypeReferenceEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass dataTypeReferenceEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass modifierEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -140,6 +163,48 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
    * @generated
    */
   private EClass orderEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum basicValidationEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum generationTypeEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum fetchTypeEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum associationEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum dataTypeEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum joinTypeEEnum = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -320,7 +385,7 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
    * @generated
    */
   @Override
-  public EReference getAttribute_Type()
+  public EReference getAttribute_TypeRef()
   {
     return (EReference)attributeEClass.getEStructuralFeatures().get(2);
   }
@@ -375,6 +440,61 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
    * @generated
    */
   @Override
+  public EClass getTypeReference()
+  {
+    return typeReferenceEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getEntityTypeReference()
+  {
+    return entityTypeReferenceEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getEntityTypeReference_Type()
+  {
+    return (EReference)entityTypeReferenceEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getDataTypeReference()
+  {
+    return dataTypeReferenceEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getDataTypeReference_Type()
+  {
+    return (EAttribute)dataTypeReferenceEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getModifier()
   {
     return modifierEClass;
@@ -386,9 +506,9 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
    * @generated
    */
   @Override
-  public EClass getIdentification()
+  public EAttribute getModifier_IsLOB()
   {
-    return identificationEClass;
+    return (EAttribute)modifierEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -397,9 +517,31 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
    * @generated
    */
   @Override
-  public EAttribute getIdentification_GenerationType()
+  public EAttribute getModifier_IsTransient()
   {
-    return (EAttribute)identificationEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)modifierEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getModifier_IsID()
+  {
+    return (EAttribute)modifierEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getModifier_IDGenerationType()
+  {
+    return (EAttribute)modifierEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -444,6 +586,17 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
   public EAttribute getValidation_Regex()
   {
     return (EAttribute)validationEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getValidation_Validator()
+  {
+    return (EAttribute)validationEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -804,6 +957,72 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
    * @generated
    */
   @Override
+  public EEnum getBasicValidation()
+  {
+    return basicValidationEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EEnum getGenerationType()
+  {
+    return generationTypeEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EEnum getFetchType()
+  {
+    return fetchTypeEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EEnum getAssociation()
+  {
+    return associationEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EEnum getDataType()
+  {
+    return dataTypeEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EEnum getJoinType()
+  {
+    return joinTypeEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public SocialRequestFactory getSocialRequestFactory()
   {
     return (SocialRequestFactory)getEFactoryInstance();
@@ -841,21 +1060,31 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
     attributeEClass = createEClass(ATTRIBUTE);
     createEAttribute(attributeEClass, ATTRIBUTE__ASSOCIATION);
     createEAttribute(attributeEClass, ATTRIBUTE__NAME);
-    createEReference(attributeEClass, ATTRIBUTE__TYPE);
+    createEReference(attributeEClass, ATTRIBUTE__TYPE_REF);
     createEReference(attributeEClass, ATTRIBUTE__MODIFIER);
     createEAttribute(attributeEClass, ATTRIBUTE__MAPPED_BY);
     createEAttribute(attributeEClass, ATTRIBUTE__FETCH_TYPE);
     createEReference(attributeEClass, ATTRIBUTE__VALIDATIONS);
 
-    modifierEClass = createEClass(MODIFIER);
+    typeReferenceEClass = createEClass(TYPE_REFERENCE);
 
-    identificationEClass = createEClass(IDENTIFICATION);
-    createEAttribute(identificationEClass, IDENTIFICATION__GENERATION_TYPE);
+    entityTypeReferenceEClass = createEClass(ENTITY_TYPE_REFERENCE);
+    createEReference(entityTypeReferenceEClass, ENTITY_TYPE_REFERENCE__TYPE);
+
+    dataTypeReferenceEClass = createEClass(DATA_TYPE_REFERENCE);
+    createEAttribute(dataTypeReferenceEClass, DATA_TYPE_REFERENCE__TYPE);
+
+    modifierEClass = createEClass(MODIFIER);
+    createEAttribute(modifierEClass, MODIFIER__IS_LOB);
+    createEAttribute(modifierEClass, MODIFIER__IS_TRANSIENT);
+    createEAttribute(modifierEClass, MODIFIER__IS_ID);
+    createEAttribute(modifierEClass, MODIFIER__ID_GENERATION_TYPE);
 
     validationEClass = createEClass(VALIDATION);
     createEAttribute(validationEClass, VALIDATION__MIN);
     createEAttribute(validationEClass, VALIDATION__MAX);
     createEAttribute(validationEClass, VALIDATION__REGEX);
+    createEAttribute(validationEClass, VALIDATION__VALIDATOR);
 
     repositoryEClass = createEClass(REPOSITORY);
     createEReference(repositoryEClass, REPOSITORY__ENTITY);
@@ -897,6 +1126,14 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
 
     orderEClass = createEClass(ORDER);
     createEAttribute(orderEClass, ORDER__ORDER);
+
+    // Create enums
+    basicValidationEEnum = createEEnum(BASIC_VALIDATION);
+    generationTypeEEnum = createEEnum(GENERATION_TYPE);
+    fetchTypeEEnum = createEEnum(FETCH_TYPE);
+    associationEEnum = createEEnum(ASSOCIATION);
+    dataTypeEEnum = createEEnum(DATA_TYPE);
+    joinTypeEEnum = createEEnum(JOIN_TYPE);
   }
 
   /**
@@ -928,7 +1165,8 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    identificationEClass.getESuperTypes().add(this.getModifier());
+    entityTypeReferenceEClass.getESuperTypes().add(this.getTypeReference());
+    dataTypeReferenceEClass.getESuperTypes().add(this.getTypeReference());
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -941,23 +1179,33 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
     initEReference(getEntity_Attributes(), this.getAttribute(), null, "attributes", null, 0, -1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(attributeEClass, Attribute.class, "Attribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getAttribute_Association(), ecorePackage.getEString(), "association", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAttribute_Association(), this.getAssociation(), "association", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAttribute_Name(), ecorePackage.getEString(), "name", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAttribute_Type(), this.getEntity(), null, "type", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAttribute_TypeRef(), this.getTypeReference(), null, "typeRef", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAttribute_Modifier(), this.getModifier(), null, "modifier", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAttribute_MappedBy(), ecorePackage.getEString(), "mappedBy", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getAttribute_FetchType(), ecorePackage.getEString(), "fetchType", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAttribute_FetchType(), this.getFetchType(), "fetchType", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAttribute_Validations(), this.getValidation(), null, "validations", null, 0, -1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(modifierEClass, Modifier.class, "Modifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(typeReferenceEClass, TypeReference.class, "TypeReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(identificationEClass, Identification.class, "Identification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getIdentification_GenerationType(), ecorePackage.getEString(), "generationType", null, 0, 1, Identification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(entityTypeReferenceEClass, EntityTypeReference.class, "EntityTypeReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getEntityTypeReference_Type(), this.getEntity(), null, "type", null, 0, 1, EntityTypeReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(dataTypeReferenceEClass, DataTypeReference.class, "DataTypeReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getDataTypeReference_Type(), this.getDataType(), "type", null, 0, 1, DataTypeReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(modifierEClass, Modifier.class, "Modifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getModifier_IsLOB(), ecorePackage.getEBoolean(), "isLOB", null, 0, 1, Modifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getModifier_IsTransient(), ecorePackage.getEBoolean(), "isTransient", null, 0, 1, Modifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getModifier_IsID(), ecorePackage.getEBoolean(), "isID", null, 0, 1, Modifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getModifier_IDGenerationType(), this.getGenerationType(), "IDGenerationType", null, 0, 1, Modifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(validationEClass, Validation.class, "Validation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getValidation_Min(), ecorePackage.getEBigDecimal(), "min", null, 0, 1, Validation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getValidation_Max(), ecorePackage.getEBigDecimal(), "max", null, 0, 1, Validation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getValidation_Regex(), ecorePackage.getEString(), "regex", null, 0, 1, Validation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getValidation_Validator(), this.getBasicValidation(), "validator", null, 0, 1, Validation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(repositoryEClass, Repository.class, "Repository", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRepository_Entity(), this.getEntity(), null, "entity", null, 0, 1, Repository.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -971,7 +1219,7 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
 
     initEClass(paramEClass, Param.class, "Param", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getParam_Name(), ecorePackage.getEString(), "name", null, 0, 1, Param.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getParam_Type(), this.getEntity(), null, "type", null, 0, 1, Param.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getParam_Type(), this.getTypeReference(), null, "type", null, 0, 1, Param.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(sqlQueryEClass, SQLQuery.class, "SQLQuery", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getSQLQuery_Select(), this.getSelect(), null, "select", null, 0, 1, SQLQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -989,7 +1237,7 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
     initEAttribute(getFrom_Alias(), ecorePackage.getEString(), "alias", null, 0, 1, From.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(joinEClass, Join.class, "Join", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getJoin_JoinType(), ecorePackage.getEString(), "joinType", null, 0, 1, Join.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getJoin_JoinType(), this.getJoinType(), "joinType", null, 0, 1, Join.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getJoin_Entity(), this.getEntity(), null, "entity", null, 0, 1, Join.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getJoin_Alias(), ecorePackage.getEString(), "alias", null, 0, 1, Join.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getJoin_JoinCondition(), ecorePackage.getEString(), "joinCondition", null, 0, 1, Join.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -999,6 +1247,46 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
 
     initEClass(orderEClass, Order.class, "Order", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getOrder_Order(), ecorePackage.getEString(), "order", null, 0, 1, Order.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    // Initialize enums and add enum literals
+    initEEnum(basicValidationEEnum, BasicValidation.class, "BasicValidation");
+    addEEnumLiteral(basicValidationEEnum, BasicValidation.NOT_NULL);
+    addEEnumLiteral(basicValidationEEnum, BasicValidation.NOT_BLANK);
+    addEEnumLiteral(basicValidationEEnum, BasicValidation.PAST);
+    addEEnumLiteral(basicValidationEEnum, BasicValidation.UNIQUE);
+    addEEnumLiteral(basicValidationEEnum, BasicValidation.EMAIL);
+
+    initEEnum(generationTypeEEnum, GenerationType.class, "GenerationType");
+    addEEnumLiteral(generationTypeEEnum, GenerationType.AUTO);
+    addEEnumLiteral(generationTypeEEnum, GenerationType.TABLE);
+    addEEnumLiteral(generationTypeEEnum, GenerationType.IDENTITY);
+    addEEnumLiteral(generationTypeEEnum, GenerationType.SEQUENCE);
+
+    initEEnum(fetchTypeEEnum, FetchType.class, "FetchType");
+    addEEnumLiteral(fetchTypeEEnum, FetchType.EAGER);
+    addEEnumLiteral(fetchTypeEEnum, FetchType.LAZY);
+
+    initEEnum(associationEEnum, Association.class, "Association");
+    addEEnumLiteral(associationEEnum, Association.ONE_TO_MANY);
+    addEEnumLiteral(associationEEnum, Association.MANY_TO_ONE);
+    addEEnumLiteral(associationEEnum, Association.ONE_TO_ONE);
+    addEEnumLiteral(associationEEnum, Association.MANY_TO_MANY);
+
+    initEEnum(dataTypeEEnum, DataType.class, "DataType");
+    addEEnumLiteral(dataTypeEEnum, DataType.STRING);
+    addEEnumLiteral(dataTypeEEnum, DataType.LONG);
+    addEEnumLiteral(dataTypeEEnum, DataType.FLOAT);
+    addEEnumLiteral(dataTypeEEnum, DataType.DOUBLE);
+    addEEnumLiteral(dataTypeEEnum, DataType.CHAR);
+    addEEnumLiteral(dataTypeEEnum, DataType.INT);
+    addEEnumLiteral(dataTypeEEnum, DataType.BOOLEAN);
+    addEEnumLiteral(dataTypeEEnum, DataType.DATE);
+
+    initEEnum(joinTypeEEnum, JoinType.class, "JoinType");
+    addEEnumLiteral(joinTypeEEnum, JoinType.LEFT_JOIN);
+    addEEnumLiteral(joinTypeEEnum, JoinType.LEFT_OUTER_JOIN);
+    addEEnumLiteral(joinTypeEEnum, JoinType.CROSS_JOIN);
+    addEEnumLiteral(joinTypeEEnum, JoinType.JOIN);
 
     // Create resource
     createResource(eNS_URI);

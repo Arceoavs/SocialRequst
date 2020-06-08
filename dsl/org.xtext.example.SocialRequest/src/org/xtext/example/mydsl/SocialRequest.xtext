@@ -1,4 +1,4 @@
-grammar org.xtext.example.mydsl.SocialRequest with org.eclipse.xtext.common.Terminals
+grammar org.xtext.example.mydsl.SocialRequest with org.eclipse.xtext.common.Terminals hidden(WS)
 
 generate socialRequest "http://www.xtext.org/example/mydsl/SocialRequest"
 
@@ -9,54 +9,66 @@ Model:
 ;
 	
 Entity:
-	'Entity' name=ID (hasUserDetails?='implements UserDetails')? '{'
+	'Entity' name=ID (hasUserDetails?='implements' 'UserDetails')? '{'
 		attributes+=Attribute+
 	'}'
 ;
 
 Attribute:
-	(association=ASSOCIATION)? name=ID':' type=[Entity|DATA_TYPE] (modifier=Modifier)? ('{'
+	(association=Association)? name=ID ':' typeRef=TypeReference (modifier=Modifier)? ('{'
 			(
 				('mappedBy:' mappedBy=ID)? &
-				('fetch:' fetchType=FETCH_TYPE)? &
-				('validations {'
+				('fetch:' fetchType=FetchType)? &
+				('validations' '{'
 					validations+=Validation+
 				'}')?
 			)
 	'}')?
 ;
 
-Modifier:
-	{Modifier} 'LOB' | Identification
+TypeReference:
+	EntityTypeReference | DataTypeReference
 ;
 
-Identification:
-	{Identification} 'ID'('('generationType=GENERATION_TYPE')')?
+EntityTypeReference:
+	type=[Entity]
+;
+
+DataTypeReference:
+	type=DataType
+;
+
+Modifier:
+	isLOB?='LOB' | isTransient?='TRANSIENT' | isID?='ID'('('IDGenerationType=GenerationType')')?
 ;
 
 Validation:
 	'min:' (min=POSSIBLY_SIGNED_INT) | 'max:' (max=POSSIBLY_SIGNED_INT) |
-	  'pattern:' regex=STRING | {Validation} 'not-null' | {Validation} 'not-blank'
+	  'pattern:' regex=STRING | validator=BasicValidation
+;
+
+enum BasicValidation:
+	NOT_NULL='not-null' | NOT_BLANK='not-blank' | PAST='past' | UNIQUE='unique' | EMAIL='valid-email'
 ;
 
 terminal POSSIBLY_SIGNED_INT returns ecore::EBigDecimal:
 	'-'?INT
 ;
 
-terminal GENERATION_TYPE returns ecore::EString:
-	'auto' | 'table' | 'identity' | 'sequence'
+enum GenerationType:
+	AUTO='auto' | TABLE='table' | IDENTITY='identity' | SEQUENCE='sequence'
 ;
 
-terminal FETCH_TYPE returns ecore::EString:
-	'eager' | 'lazy'
+enum FetchType:
+	EAGER='eager' | LAZY='lazy'
 ;
 	
-terminal ASSOCIATION returns ecore::EString:
-	'OneToMany' | 'ManyToOne' | 'OneToOne' | 'ManyToMany'
+enum Association:
+	ONE_TO_MANY='one-to-many' | MANY_TO_ONE='many-to-one' | ONE_TO_ONE='one-to-one' | MANY_TO_MANY='many-to-many'
 ;
 
-terminal DATA_TYPE returns ecore::EString:
-	'String' | 'long' | 'Long' | 'float' | 'double' | 'char' | 'int' | 'boolean'
+enum DataType:
+	STRING='string' | LONG='long' | FLOAT='float' | DOUBLE='double' | CHAR='char' | INT='int' | BOOLEAN='boolean' | DATE='date'
 ;
 
 // Repository
@@ -68,8 +80,8 @@ Repository:
 ;
 
 Query:
-	'query' name=ID(isList?=': list')? ('{'
-		('params {'
+	'query' name=ID(isList?=':' 'list')? ('{'
+		('params' '{'
 			params+=Param*
 		'}')?
 		
@@ -78,7 +90,7 @@ Query:
 ;
 
 Param:
-	name=ID':' type=[Entity|DATA_TYPE]
+	name=ID':' type=TypeReference
 ;
 
 SQLQuery:
@@ -94,21 +106,21 @@ Select:
 ;
 
 From:
-	'FROM {' entity=[Entity] alias=STRING '}'
+	'FROM' '{' entity=[Entity] alias=ID '}'
 ;
 
 Join:
-	joinType=JOIN_TYPE '{' entity=[Entity] alias=STRING '}' ('ON {' joinCondition=STRING '}')?
+	joinType=JoinType '{' entity=[Entity] alias=ID '}' ('ON' '{' joinCondition=STRING '}')?
 ;
 
-terminal JOIN_TYPE returns ecore::EString:
-	'LEFT JOIN' | 'LEFT OUTER JOIN' | 'CROSS JOIN' | 'JOIN'
+enum JoinType:
+	LEFT_JOIN='LEFT JOIN' | LEFT_OUTER_JOIN='LEFT OUTER JOIN' | CROSS_JOIN='CROSS JOIN' | JOIN='JOIN'
 ;
 
 Where:
-	'WHERE {' condition=STRING '}'
+	'WHERE' '{' condition=STRING '}'
 ;
 
 Order:
-	'ORDER BY {' order=STRING '}' 
+	'ORDER BY' '{' order=STRING '}' 
 ;

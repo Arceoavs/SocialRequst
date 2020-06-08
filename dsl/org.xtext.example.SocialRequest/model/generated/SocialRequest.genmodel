@@ -6,6 +6,45 @@
     complianceLevel="8.0" copyrightFields="false" runtimeVersion="2.20">
   <genPackages prefix="SocialRequest" basePackage="org.xtext.example.mydsl" disposableProviderFactory="true"
       fileExtensions="platform" ecorePackage="SocialRequest.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="SocialRequest.ecore#//BasicValidation">
+      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//BasicValidation/NOT_NULL"/>
+      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//BasicValidation/NOT_BLANK"/>
+      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//BasicValidation/PAST"/>
+      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//BasicValidation/UNIQUE"/>
+      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//BasicValidation/EMAIL"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="SocialRequest.ecore#//GenerationType">
+      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//GenerationType/AUTO"/>
+      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//GenerationType/TABLE"/>
+      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//GenerationType/IDENTITY"/>
+      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//GenerationType/SEQUENCE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="SocialRequest.ecore#//FetchType">
+      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//FetchType/EAGER"/>
+      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//FetchType/LAZY"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="SocialRequest.ecore#//Association">
+      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//Association/ONE_TO_MANY"/>
+      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//Association/MANY_TO_ONE"/>
+      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//Association/ONE_TO_ONE"/>
+      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//Association/MANY_TO_MANY"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="SocialRequest.ecore#//DataType">
+      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//DataType/STRING"/>
+      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//DataType/LONG"/>
+      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//DataType/FLOAT"/>
+      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//DataType/DOUBLE"/>
+      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//DataType/CHAR"/>
+      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//DataType/INT"/>
+      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//DataType/BOOLEAN"/>
+      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//DataType/DATE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="SocialRequest.ecore#//JoinType">
+      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//JoinType/LEFT_JOIN"/>
+      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//JoinType/LEFT_OUTER_JOIN"/>
+      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//JoinType/CROSS_JOIN"/>
+      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//JoinType/JOIN"/>
+    </genEnums>
     <genClasses ecoreClass="SocialRequest.ecore#//Model">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocialRequest.ecore#//Model/entities"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocialRequest.ecore#//Model/repositories"/>
@@ -18,20 +57,30 @@
     <genClasses ecoreClass="SocialRequest.ecore#//Attribute">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Attribute/association"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Attribute/name"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SocialRequest.ecore#//Attribute/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocialRequest.ecore#//Attribute/typeRef"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocialRequest.ecore#//Attribute/modifier"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Attribute/mappedBy"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Attribute/fetchType"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocialRequest.ecore#//Attribute/validations"/>
     </genClasses>
-    <genClasses ecoreClass="SocialRequest.ecore#//Modifier"/>
-    <genClasses ecoreClass="SocialRequest.ecore#//Identification">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Identification/generationType"/>
+    <genClasses ecoreClass="SocialRequest.ecore#//TypeReference"/>
+    <genClasses ecoreClass="SocialRequest.ecore#//EntityTypeReference">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SocialRequest.ecore#//EntityTypeReference/type"/>
+    </genClasses>
+    <genClasses ecoreClass="SocialRequest.ecore#//DataTypeReference">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//DataTypeReference/type"/>
+    </genClasses>
+    <genClasses ecoreClass="SocialRequest.ecore#//Modifier">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Modifier/isLOB"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Modifier/isTransient"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Modifier/isID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Modifier/IDGenerationType"/>
     </genClasses>
     <genClasses ecoreClass="SocialRequest.ecore#//Validation">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Validation/min"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Validation/max"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Validation/regex"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Validation/validator"/>
     </genClasses>
     <genClasses ecoreClass="SocialRequest.ecore#//Repository">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SocialRequest.ecore#//Repository/entity"/>
@@ -45,7 +94,7 @@
     </genClasses>
     <genClasses ecoreClass="SocialRequest.ecore#//Param">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Param/name"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SocialRequest.ecore#//Param/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocialRequest.ecore#//Param/type"/>
     </genClasses>
     <genClasses ecoreClass="SocialRequest.ecore#//SQLQuery">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocialRequest.ecore#//SQLQuery/select"/>

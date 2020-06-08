@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.xtext.example.mydsl.socialRequest.Validation#getMin <em>Min</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.socialRequest.Validation#getMax <em>Max</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.socialRequest.Validation#getRegex <em>Regex</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.socialRequest.Validation#getValidator <em>Validator</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.mydsl.socialRequest.SocialRequestPackage#getValidation()
@@ -92,5 +93,30 @@ public interface Validation extends EObject
    * @generated
    */
   void setRegex(String value);
+
+  /**
+   * Returns the value of the '<em><b>Validator</b></em>' attribute.
+   * The literals are from the enumeration {@link org.xtext.example.mydsl.socialRequest.BasicValidation}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Validator</em>' attribute.
+   * @see org.xtext.example.mydsl.socialRequest.BasicValidation
+   * @see #setValidator(BasicValidation)
+   * @see org.xtext.example.mydsl.socialRequest.SocialRequestPackage#getValidation_Validator()
+   * @model
+   * @generated
+   */
+  BasicValidation getValidator();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.socialRequest.Validation#getValidator <em>Validator</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Validator</em>' attribute.
+   * @see org.xtext.example.mydsl.socialRequest.BasicValidation
+   * @see #getValidator()
+   * @generated
+   */
+  void setValidator(BasicValidation value);
 
 } // Validation

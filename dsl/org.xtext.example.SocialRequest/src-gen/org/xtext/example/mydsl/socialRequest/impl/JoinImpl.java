@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.xtext.example.mydsl.socialRequest.Entity;
 import org.xtext.example.mydsl.socialRequest.Join;
+import org.xtext.example.mydsl.socialRequest.JoinType;
 import org.xtext.example.mydsl.socialRequest.SocialRequestPackage;
 
 /**
@@ -41,7 +42,7 @@ public class JoinImpl extends MinimalEObjectImpl.Container implements Join
    * @generated
    * @ordered
    */
-  protected static final String JOIN_TYPE_EDEFAULT = null;
+  protected static final JoinType JOIN_TYPE_EDEFAULT = JoinType.LEFT_JOIN;
 
   /**
    * The cached value of the '{@link #getJoinType() <em>Join Type</em>}' attribute.
@@ -51,7 +52,7 @@ public class JoinImpl extends MinimalEObjectImpl.Container implements Join
    * @generated
    * @ordered
    */
-  protected String joinType = JOIN_TYPE_EDEFAULT;
+  protected JoinType joinType = JOIN_TYPE_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getEntity() <em>Entity</em>}' reference.
@@ -130,7 +131,7 @@ public class JoinImpl extends MinimalEObjectImpl.Container implements Join
    * @generated
    */
   @Override
-  public String getJoinType()
+  public JoinType getJoinType()
   {
     return joinType;
   }
@@ -141,10 +142,10 @@ public class JoinImpl extends MinimalEObjectImpl.Container implements Join
    * @generated
    */
   @Override
-  public void setJoinType(String newJoinType)
+  public void setJoinType(JoinType newJoinType)
   {
-    String oldJoinType = joinType;
-    joinType = newJoinType;
+    JoinType oldJoinType = joinType;
+    joinType = newJoinType == null ? JOIN_TYPE_EDEFAULT : newJoinType;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, SocialRequestPackage.JOIN__JOIN_TYPE, oldJoinType, joinType));
   }
@@ -278,7 +279,7 @@ public class JoinImpl extends MinimalEObjectImpl.Container implements Join
     switch (featureID)
     {
       case SocialRequestPackage.JOIN__JOIN_TYPE:
-        setJoinType((String)newValue);
+        setJoinType((JoinType)newValue);
         return;
       case SocialRequestPackage.JOIN__ENTITY:
         setEntity((Entity)newValue);
@@ -330,7 +331,7 @@ public class JoinImpl extends MinimalEObjectImpl.Container implements Join
     switch (featureID)
     {
       case SocialRequestPackage.JOIN__JOIN_TYPE:
-        return JOIN_TYPE_EDEFAULT == null ? joinType != null : !JOIN_TYPE_EDEFAULT.equals(joinType);
+        return joinType != JOIN_TYPE_EDEFAULT;
       case SocialRequestPackage.JOIN__ENTITY:
         return entity != null;
       case SocialRequestPackage.JOIN__ALIAS:

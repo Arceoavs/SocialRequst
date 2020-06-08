@@ -10,6 +10,15 @@ import org.eclipse.emf.ecore.EObject;
  * A representation of the model object '<em><b>Modifier</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link org.xtext.example.mydsl.socialRequest.Modifier#isIsLOB <em>Is LOB</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.socialRequest.Modifier#isIsTransient <em>Is Transient</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.socialRequest.Modifier#isIsID <em>Is ID</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.socialRequest.Modifier#getIDGenerationType <em>ID Generation Type</em>}</li>
+ * </ul>
  *
  * @see org.xtext.example.mydsl.socialRequest.SocialRequestPackage#getModifier()
  * @model
@@ -17,4 +26,95 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Modifier extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>Is LOB</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Is LOB</em>' attribute.
+   * @see #setIsLOB(boolean)
+   * @see org.xtext.example.mydsl.socialRequest.SocialRequestPackage#getModifier_IsLOB()
+   * @model
+   * @generated
+   */
+  boolean isIsLOB();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.socialRequest.Modifier#isIsLOB <em>Is LOB</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Is LOB</em>' attribute.
+   * @see #isIsLOB()
+   * @generated
+   */
+  void setIsLOB(boolean value);
+
+  /**
+   * Returns the value of the '<em><b>Is Transient</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Is Transient</em>' attribute.
+   * @see #setIsTransient(boolean)
+   * @see org.xtext.example.mydsl.socialRequest.SocialRequestPackage#getModifier_IsTransient()
+   * @model
+   * @generated
+   */
+  boolean isIsTransient();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.socialRequest.Modifier#isIsTransient <em>Is Transient</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Is Transient</em>' attribute.
+   * @see #isIsTransient()
+   * @generated
+   */
+  void setIsTransient(boolean value);
+
+  /**
+   * Returns the value of the '<em><b>Is ID</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Is ID</em>' attribute.
+   * @see #setIsID(boolean)
+   * @see org.xtext.example.mydsl.socialRequest.SocialRequestPackage#getModifier_IsID()
+   * @model
+   * @generated
+   */
+  boolean isIsID();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.socialRequest.Modifier#isIsID <em>Is ID</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Is ID</em>' attribute.
+   * @see #isIsID()
+   * @generated
+   */
+  void setIsID(boolean value);
+
+  /**
+   * Returns the value of the '<em><b>ID Generation Type</b></em>' attribute.
+   * The literals are from the enumeration {@link org.xtext.example.mydsl.socialRequest.GenerationType}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>ID Generation Type</em>' attribute.
+   * @see org.xtext.example.mydsl.socialRequest.GenerationType
+   * @see #setIDGenerationType(GenerationType)
+   * @see org.xtext.example.mydsl.socialRequest.SocialRequestPackage#getModifier_IDGenerationType()
+   * @model
+   * @generated
+   */
+  GenerationType getIDGenerationType();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.socialRequest.Modifier#getIDGenerationType <em>ID Generation Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>ID Generation Type</em>' attribute.
+   * @see org.xtext.example.mydsl.socialRequest.GenerationType
+   * @see #getIDGenerationType()
+   * @generated
+   */
+  void setIDGenerationType(GenerationType value);
+
 } // Modifier

@@ -23,7 +23,7 @@ class SocialRequestStandaloneGenerator {
 
 		logger.info("Start standalone SocialRequest generator.")
 		val MusketGenerator = new SocialRequestGenerator();
-		val injector = new SocialRequestStandaloneSetup().createInjectorAndDoEMFRegistration()
+		val injector = new SocialRequestStandaloneSetup().createInjectorAndDoEMFRegistration();
 
 		// obtain a resourceset from the injector
 		val resourceSet = injector.getInstance(XtextResourceSet)

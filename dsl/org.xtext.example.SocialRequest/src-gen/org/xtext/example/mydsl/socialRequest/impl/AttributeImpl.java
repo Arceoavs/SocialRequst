@@ -19,10 +19,12 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.xtext.example.mydsl.socialRequest.Association;
 import org.xtext.example.mydsl.socialRequest.Attribute;
-import org.xtext.example.mydsl.socialRequest.Entity;
+import org.xtext.example.mydsl.socialRequest.FetchType;
 import org.xtext.example.mydsl.socialRequest.Modifier;
 import org.xtext.example.mydsl.socialRequest.SocialRequestPackage;
+import org.xtext.example.mydsl.socialRequest.TypeReference;
 import org.xtext.example.mydsl.socialRequest.Validation;
 
 /**
@@ -35,7 +37,7 @@ import org.xtext.example.mydsl.socialRequest.Validation;
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.socialRequest.impl.AttributeImpl#getAssociation <em>Association</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.socialRequest.impl.AttributeImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.socialRequest.impl.AttributeImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.socialRequest.impl.AttributeImpl#getTypeRef <em>Type Ref</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.socialRequest.impl.AttributeImpl#getModifier <em>Modifier</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.socialRequest.impl.AttributeImpl#getMappedBy <em>Mapped By</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.socialRequest.impl.AttributeImpl#getFetchType <em>Fetch Type</em>}</li>
@@ -54,7 +56,7 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
    * @generated
    * @ordered
    */
-  protected static final String ASSOCIATION_EDEFAULT = null;
+  protected static final Association ASSOCIATION_EDEFAULT = Association.ONE_TO_MANY;
 
   /**
    * The cached value of the '{@link #getAssociation() <em>Association</em>}' attribute.
@@ -64,7 +66,7 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
    * @generated
    * @ordered
    */
-  protected String association = ASSOCIATION_EDEFAULT;
+  protected Association association = ASSOCIATION_EDEFAULT;
 
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -87,14 +89,14 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' reference.
+   * The cached value of the '{@link #getTypeRef() <em>Type Ref</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getType()
+   * @see #getTypeRef()
    * @generated
    * @ordered
    */
-  protected Entity type;
+  protected TypeReference typeRef;
 
   /**
    * The cached value of the '{@link #getModifier() <em>Modifier</em>}' containment reference.
@@ -134,7 +136,7 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
    * @generated
    * @ordered
    */
-  protected static final String FETCH_TYPE_EDEFAULT = null;
+  protected static final FetchType FETCH_TYPE_EDEFAULT = FetchType.EAGER;
 
   /**
    * The cached value of the '{@link #getFetchType() <em>Fetch Type</em>}' attribute.
@@ -144,7 +146,7 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
    * @generated
    * @ordered
    */
-  protected String fetchType = FETCH_TYPE_EDEFAULT;
+  protected FetchType fetchType = FETCH_TYPE_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getValidations() <em>Validations</em>}' containment reference list.
@@ -183,7 +185,7 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
    * @generated
    */
   @Override
-  public String getAssociation()
+  public Association getAssociation()
   {
     return association;
   }
@@ -194,10 +196,10 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
    * @generated
    */
   @Override
-  public void setAssociation(String newAssociation)
+  public void setAssociation(Association newAssociation)
   {
-    String oldAssociation = association;
-    association = newAssociation;
+    Association oldAssociation = association;
+    association = newAssociation == null ? ASSOCIATION_EDEFAULT : newAssociation;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, SocialRequestPackage.ATTRIBUTE__ASSOCIATION, oldAssociation, association));
   }
@@ -233,19 +235,9 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
    * @generated
    */
   @Override
-  public Entity getType()
+  public TypeReference getTypeRef()
   {
-    if (type != null && type.eIsProxy())
-    {
-      InternalEObject oldType = (InternalEObject)type;
-      type = (Entity)eResolveProxy(oldType);
-      if (type != oldType)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, SocialRequestPackage.ATTRIBUTE__TYPE, oldType, type));
-      }
-    }
-    return type;
+    return typeRef;
   }
 
   /**
@@ -253,9 +245,16 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
    * <!-- end-user-doc -->
    * @generated
    */
-  public Entity basicGetType()
+  public NotificationChain basicSetTypeRef(TypeReference newTypeRef, NotificationChain msgs)
   {
-    return type;
+    TypeReference oldTypeRef = typeRef;
+    typeRef = newTypeRef;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SocialRequestPackage.ATTRIBUTE__TYPE_REF, oldTypeRef, newTypeRef);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
   }
 
   /**
@@ -264,12 +263,20 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
    * @generated
    */
   @Override
-  public void setType(Entity newType)
+  public void setTypeRef(TypeReference newTypeRef)
   {
-    Entity oldType = type;
-    type = newType;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, SocialRequestPackage.ATTRIBUTE__TYPE, oldType, type));
+    if (newTypeRef != typeRef)
+    {
+      NotificationChain msgs = null;
+      if (typeRef != null)
+        msgs = ((InternalEObject)typeRef).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SocialRequestPackage.ATTRIBUTE__TYPE_REF, null, msgs);
+      if (newTypeRef != null)
+        msgs = ((InternalEObject)newTypeRef).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SocialRequestPackage.ATTRIBUTE__TYPE_REF, null, msgs);
+      msgs = basicSetTypeRef(newTypeRef, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, SocialRequestPackage.ATTRIBUTE__TYPE_REF, newTypeRef, newTypeRef));
   }
 
   /**
@@ -353,7 +360,7 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
    * @generated
    */
   @Override
-  public String getFetchType()
+  public FetchType getFetchType()
   {
     return fetchType;
   }
@@ -364,10 +371,10 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
    * @generated
    */
   @Override
-  public void setFetchType(String newFetchType)
+  public void setFetchType(FetchType newFetchType)
   {
-    String oldFetchType = fetchType;
-    fetchType = newFetchType;
+    FetchType oldFetchType = fetchType;
+    fetchType = newFetchType == null ? FETCH_TYPE_EDEFAULT : newFetchType;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, SocialRequestPackage.ATTRIBUTE__FETCH_TYPE, oldFetchType, fetchType));
   }
@@ -397,6 +404,8 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
   {
     switch (featureID)
     {
+      case SocialRequestPackage.ATTRIBUTE__TYPE_REF:
+        return basicSetTypeRef(null, msgs);
       case SocialRequestPackage.ATTRIBUTE__MODIFIER:
         return basicSetModifier(null, msgs);
       case SocialRequestPackage.ATTRIBUTE__VALIDATIONS:
@@ -419,9 +428,8 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
         return getAssociation();
       case SocialRequestPackage.ATTRIBUTE__NAME:
         return getName();
-      case SocialRequestPackage.ATTRIBUTE__TYPE:
-        if (resolve) return getType();
-        return basicGetType();
+      case SocialRequestPackage.ATTRIBUTE__TYPE_REF:
+        return getTypeRef();
       case SocialRequestPackage.ATTRIBUTE__MODIFIER:
         return getModifier();
       case SocialRequestPackage.ATTRIBUTE__MAPPED_BY:
@@ -446,13 +454,13 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
     switch (featureID)
     {
       case SocialRequestPackage.ATTRIBUTE__ASSOCIATION:
-        setAssociation((String)newValue);
+        setAssociation((Association)newValue);
         return;
       case SocialRequestPackage.ATTRIBUTE__NAME:
         setName((String)newValue);
         return;
-      case SocialRequestPackage.ATTRIBUTE__TYPE:
-        setType((Entity)newValue);
+      case SocialRequestPackage.ATTRIBUTE__TYPE_REF:
+        setTypeRef((TypeReference)newValue);
         return;
       case SocialRequestPackage.ATTRIBUTE__MODIFIER:
         setModifier((Modifier)newValue);
@@ -461,7 +469,7 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
         setMappedBy((String)newValue);
         return;
       case SocialRequestPackage.ATTRIBUTE__FETCH_TYPE:
-        setFetchType((String)newValue);
+        setFetchType((FetchType)newValue);
         return;
       case SocialRequestPackage.ATTRIBUTE__VALIDATIONS:
         getValidations().clear();
@@ -487,8 +495,8 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
       case SocialRequestPackage.ATTRIBUTE__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case SocialRequestPackage.ATTRIBUTE__TYPE:
-        setType((Entity)null);
+      case SocialRequestPackage.ATTRIBUTE__TYPE_REF:
+        setTypeRef((TypeReference)null);
         return;
       case SocialRequestPackage.ATTRIBUTE__MODIFIER:
         setModifier((Modifier)null);
@@ -517,17 +525,17 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
     switch (featureID)
     {
       case SocialRequestPackage.ATTRIBUTE__ASSOCIATION:
-        return ASSOCIATION_EDEFAULT == null ? association != null : !ASSOCIATION_EDEFAULT.equals(association);
+        return association != ASSOCIATION_EDEFAULT;
       case SocialRequestPackage.ATTRIBUTE__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case SocialRequestPackage.ATTRIBUTE__TYPE:
-        return type != null;
+      case SocialRequestPackage.ATTRIBUTE__TYPE_REF:
+        return typeRef != null;
       case SocialRequestPackage.ATTRIBUTE__MODIFIER:
         return modifier != null;
       case SocialRequestPackage.ATTRIBUTE__MAPPED_BY:
         return MAPPED_BY_EDEFAULT == null ? mappedBy != null : !MAPPED_BY_EDEFAULT.equals(mappedBy);
       case SocialRequestPackage.ATTRIBUTE__FETCH_TYPE:
-        return FETCH_TYPE_EDEFAULT == null ? fetchType != null : !FETCH_TYPE_EDEFAULT.equals(fetchType);
+        return fetchType != FETCH_TYPE_EDEFAULT;
       case SocialRequestPackage.ATTRIBUTE__VALIDATIONS:
         return validations != null && !validations.isEmpty();
     }

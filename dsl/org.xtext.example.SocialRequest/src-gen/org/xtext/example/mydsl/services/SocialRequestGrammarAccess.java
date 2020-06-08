@@ -6,10 +6,11 @@ package org.xtext.example.mydsl.services;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import java.util.List;
-import org.eclipse.xtext.Action;
 import org.eclipse.xtext.Alternatives;
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.CrossReference;
+import org.eclipse.xtext.EnumLiteralDeclaration;
+import org.eclipse.xtext.EnumRule;
 import org.eclipse.xtext.Grammar;
 import org.eclipse.xtext.GrammarUtil;
 import org.eclipse.xtext.Group;
@@ -19,6 +20,7 @@ import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.TerminalRule;
 import org.eclipse.xtext.UnorderedGroup;
 import org.eclipse.xtext.common.services.TerminalsGrammarAccess;
+import org.eclipse.xtext.service.AbstractElementFinder.AbstractEnumRuleElementFinder;
 import org.eclipse.xtext.service.AbstractElementFinder.AbstractGrammarElementFinder;
 import org.eclipse.xtext.service.GrammarProvider;
 
@@ -58,20 +60,22 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cEntityKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Assignment cHasUserDetailsAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Keyword cHasUserDetailsImplementsUserDetailsKeyword_2_0 = (Keyword)cHasUserDetailsAssignment_2.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Assignment cHasUserDetailsAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
+		private final Keyword cHasUserDetailsImplementsKeyword_2_0_0 = (Keyword)cHasUserDetailsAssignment_2_0.eContents().get(0);
+		private final Keyword cUserDetailsKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
 		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cAttributesAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cAttributesAttributeParserRuleCall_4_0 = (RuleCall)cAttributesAssignment_4.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//Entity:
-		//	'Entity' name=ID hasUserDetails?='implements UserDetails'? '{'
+		//	'Entity' name=ID (hasUserDetails?='implements' 'UserDetails')? '{'
 		//	attributes+=Attribute+
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Entity' name=ID hasUserDetails?='implements UserDetails'? '{' attributes+=Attribute+ '}'
+		//'Entity' name=ID (hasUserDetails?='implements' 'UserDetails')? '{' attributes+=Attribute+ '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'Entity'
@@ -83,11 +87,17 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 		
-		//hasUserDetails?='implements UserDetails'?
-		public Assignment getHasUserDetailsAssignment_2() { return cHasUserDetailsAssignment_2; }
+		//(hasUserDetails?='implements' 'UserDetails')?
+		public Group getGroup_2() { return cGroup_2; }
 		
-		//'implements UserDetails'
-		public Keyword getHasUserDetailsImplementsUserDetailsKeyword_2_0() { return cHasUserDetailsImplementsUserDetailsKeyword_2_0; }
+		//hasUserDetails?='implements'
+		public Assignment getHasUserDetailsAssignment_2_0() { return cHasUserDetailsAssignment_2_0; }
+		
+		//'implements'
+		public Keyword getHasUserDetailsImplementsKeyword_2_0_0() { return cHasUserDetailsImplementsKeyword_2_0_0; }
+		
+		//'UserDetails'
+		public Keyword getUserDetailsKeyword_2_1() { return cUserDetailsKeyword_2_1; }
 		
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
@@ -105,13 +115,12 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.Attribute");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cAssociationAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cAssociationASSOCIATIONTerminalRuleCall_0_0 = (RuleCall)cAssociationAssignment_0.eContents().get(0);
+		private final RuleCall cAssociationAssociationEnumRuleCall_0_0 = (RuleCall)cAssociationAssignment_0.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cTypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final CrossReference cTypeEntityCrossReference_3_0 = (CrossReference)cTypeAssignment_3.eContents().get(0);
-		private final RuleCall cTypeEntityDATA_TYPETerminalRuleCall_3_0_1 = (RuleCall)cTypeEntityCrossReference_3_0.eContents().get(1);
+		private final Assignment cTypeRefAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cTypeRefTypeReferenceParserRuleCall_3_0 = (RuleCall)cTypeRefAssignment_3.eContents().get(0);
 		private final Assignment cModifierAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cModifierModifierParserRuleCall_4_0 = (RuleCall)cModifierAssignment_4.eContents().get(0);
 		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
@@ -124,31 +133,32 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_5_1_1 = (Group)cUnorderedGroup_5_1.eContents().get(1);
 		private final Keyword cFetchKeyword_5_1_1_0 = (Keyword)cGroup_5_1_1.eContents().get(0);
 		private final Assignment cFetchTypeAssignment_5_1_1_1 = (Assignment)cGroup_5_1_1.eContents().get(1);
-		private final RuleCall cFetchTypeFETCH_TYPETerminalRuleCall_5_1_1_1_0 = (RuleCall)cFetchTypeAssignment_5_1_1_1.eContents().get(0);
+		private final RuleCall cFetchTypeFetchTypeEnumRuleCall_5_1_1_1_0 = (RuleCall)cFetchTypeAssignment_5_1_1_1.eContents().get(0);
 		private final Group cGroup_5_1_2 = (Group)cUnorderedGroup_5_1.eContents().get(2);
 		private final Keyword cValidationsKeyword_5_1_2_0 = (Keyword)cGroup_5_1_2.eContents().get(0);
-		private final Assignment cValidationsAssignment_5_1_2_1 = (Assignment)cGroup_5_1_2.eContents().get(1);
-		private final RuleCall cValidationsValidationParserRuleCall_5_1_2_1_0 = (RuleCall)cValidationsAssignment_5_1_2_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_5_1_2_2 = (Keyword)cGroup_5_1_2.eContents().get(2);
+		private final Keyword cLeftCurlyBracketKeyword_5_1_2_1 = (Keyword)cGroup_5_1_2.eContents().get(1);
+		private final Assignment cValidationsAssignment_5_1_2_2 = (Assignment)cGroup_5_1_2.eContents().get(2);
+		private final RuleCall cValidationsValidationParserRuleCall_5_1_2_2_0 = (RuleCall)cValidationsAssignment_5_1_2_2.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_5_1_2_3 = (Keyword)cGroup_5_1_2.eContents().get(3);
 		private final Keyword cRightCurlyBracketKeyword_5_2 = (Keyword)cGroup_5.eContents().get(2);
 		
 		//Attribute:
-		//	association=ASSOCIATION? name=ID ':' type=[Entity|DATA_TYPE] modifier=Modifier? ('{' (('mappedBy:' mappedBy=ID)? &
-		//	('fetch:' fetchType=FETCH_TYPE)? & ('validations {'
+		//	association=Association? name=ID ':' typeRef=TypeReference modifier=Modifier? ('{' (('mappedBy:' mappedBy=ID)? &
+		//	('fetch:' fetchType=FetchType)? & ('validations' '{'
 		//	validations+=Validation+
 		//	'}')?)
 		//	'}')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//association=ASSOCIATION? name=ID ':' type=[Entity|DATA_TYPE] modifier=Modifier? ('{' (('mappedBy:' mappedBy=ID)? &
-		//('fetch:' fetchType=FETCH_TYPE)? & ('validations {' validations+=Validation+ '}')?) '}')?
+		//association=Association? name=ID ':' typeRef=TypeReference modifier=Modifier? ('{' (('mappedBy:' mappedBy=ID)? &
+		//('fetch:' fetchType=FetchType)? & ('validations' '{' validations+=Validation+ '}')?) '}')?
 		public Group getGroup() { return cGroup; }
 		
-		//association=ASSOCIATION?
+		//association=Association?
 		public Assignment getAssociationAssignment_0() { return cAssociationAssignment_0; }
 		
-		//ASSOCIATION
-		public RuleCall getAssociationASSOCIATIONTerminalRuleCall_0_0() { return cAssociationASSOCIATIONTerminalRuleCall_0_0; }
+		//Association
+		public RuleCall getAssociationAssociationEnumRuleCall_0_0() { return cAssociationAssociationEnumRuleCall_0_0; }
 		
 		//name=ID
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
@@ -159,14 +169,11 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		//':'
 		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
 		
-		//type=[Entity|DATA_TYPE]
-		public Assignment getTypeAssignment_3() { return cTypeAssignment_3; }
+		//typeRef=TypeReference
+		public Assignment getTypeRefAssignment_3() { return cTypeRefAssignment_3; }
 		
-		//[Entity|DATA_TYPE]
-		public CrossReference getTypeEntityCrossReference_3_0() { return cTypeEntityCrossReference_3_0; }
-		
-		//DATA_TYPE
-		public RuleCall getTypeEntityDATA_TYPETerminalRuleCall_3_0_1() { return cTypeEntityDATA_TYPETerminalRuleCall_3_0_1; }
+		//TypeReference
+		public RuleCall getTypeRefTypeReferenceParserRuleCall_3_0() { return cTypeRefTypeReferenceParserRuleCall_3_0; }
 		
 		//modifier=Modifier?
 		public Assignment getModifierAssignment_4() { return cModifierAssignment_4; }
@@ -174,14 +181,14 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		//Modifier
 		public RuleCall getModifierModifierParserRuleCall_4_0() { return cModifierModifierParserRuleCall_4_0; }
 		
-		//('{' (('mappedBy:' mappedBy=ID)? & ('fetch:' fetchType=FETCH_TYPE)? & ('validations {' validations+=Validation+ '}')?)
+		//('{' (('mappedBy:' mappedBy=ID)? & ('fetch:' fetchType=FetchType)? & ('validations' '{' validations+=Validation+ '}')?)
 		//'}')?
 		public Group getGroup_5() { return cGroup_5; }
 		
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_5_0() { return cLeftCurlyBracketKeyword_5_0; }
 		
-		//(('mappedBy:' mappedBy=ID)? & ('fetch:' fetchType=FETCH_TYPE)? & ('validations {' validations+=Validation+ '}')?)
+		//(('mappedBy:' mappedBy=ID)? & ('fetch:' fetchType=FetchType)? & ('validations' '{' validations+=Validation+ '}')?)
 		public UnorderedGroup getUnorderedGroup_5_1() { return cUnorderedGroup_5_1; }
 		
 		//('mappedBy:' mappedBy=ID)?
@@ -196,101 +203,150 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getMappedByIDTerminalRuleCall_5_1_0_1_0() { return cMappedByIDTerminalRuleCall_5_1_0_1_0; }
 		
-		//('fetch:' fetchType=FETCH_TYPE)?
+		//('fetch:' fetchType=FetchType)?
 		public Group getGroup_5_1_1() { return cGroup_5_1_1; }
 		
 		//'fetch:'
 		public Keyword getFetchKeyword_5_1_1_0() { return cFetchKeyword_5_1_1_0; }
 		
-		//fetchType=FETCH_TYPE
+		//fetchType=FetchType
 		public Assignment getFetchTypeAssignment_5_1_1_1() { return cFetchTypeAssignment_5_1_1_1; }
 		
-		//FETCH_TYPE
-		public RuleCall getFetchTypeFETCH_TYPETerminalRuleCall_5_1_1_1_0() { return cFetchTypeFETCH_TYPETerminalRuleCall_5_1_1_1_0; }
+		//FetchType
+		public RuleCall getFetchTypeFetchTypeEnumRuleCall_5_1_1_1_0() { return cFetchTypeFetchTypeEnumRuleCall_5_1_1_1_0; }
 		
-		//('validations {' validations+=Validation+ '}')?
+		//('validations' '{' validations+=Validation+ '}')?
 		public Group getGroup_5_1_2() { return cGroup_5_1_2; }
 		
-		//'validations {'
+		//'validations'
 		public Keyword getValidationsKeyword_5_1_2_0() { return cValidationsKeyword_5_1_2_0; }
 		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_5_1_2_1() { return cLeftCurlyBracketKeyword_5_1_2_1; }
+		
 		//validations+=Validation+
-		public Assignment getValidationsAssignment_5_1_2_1() { return cValidationsAssignment_5_1_2_1; }
+		public Assignment getValidationsAssignment_5_1_2_2() { return cValidationsAssignment_5_1_2_2; }
 		
 		//Validation
-		public RuleCall getValidationsValidationParserRuleCall_5_1_2_1_0() { return cValidationsValidationParserRuleCall_5_1_2_1_0; }
+		public RuleCall getValidationsValidationParserRuleCall_5_1_2_2_0() { return cValidationsValidationParserRuleCall_5_1_2_2_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_5_1_2_2() { return cRightCurlyBracketKeyword_5_1_2_2; }
+		public Keyword getRightCurlyBracketKeyword_5_1_2_3() { return cRightCurlyBracketKeyword_5_1_2_3; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_5_2() { return cRightCurlyBracketKeyword_5_2; }
 	}
+	public class TypeReferenceElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.TypeReference");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cEntityTypeReferenceParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cDataTypeReferenceParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//TypeReference:
+		//	EntityTypeReference | DataTypeReference;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//EntityTypeReference | DataTypeReference
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//EntityTypeReference
+		public RuleCall getEntityTypeReferenceParserRuleCall_0() { return cEntityTypeReferenceParserRuleCall_0; }
+		
+		//DataTypeReference
+		public RuleCall getDataTypeReferenceParserRuleCall_1() { return cDataTypeReferenceParserRuleCall_1; }
+	}
+	public class EntityTypeReferenceElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.EntityTypeReference");
+		private final Assignment cTypeAssignment = (Assignment)rule.eContents().get(1);
+		private final CrossReference cTypeEntityCrossReference_0 = (CrossReference)cTypeAssignment.eContents().get(0);
+		private final RuleCall cTypeEntityIDTerminalRuleCall_0_1 = (RuleCall)cTypeEntityCrossReference_0.eContents().get(1);
+		
+		//EntityTypeReference:
+		//	type=[Entity];
+		@Override public ParserRule getRule() { return rule; }
+		
+		//type=[Entity]
+		public Assignment getTypeAssignment() { return cTypeAssignment; }
+		
+		//[Entity]
+		public CrossReference getTypeEntityCrossReference_0() { return cTypeEntityCrossReference_0; }
+		
+		//ID
+		public RuleCall getTypeEntityIDTerminalRuleCall_0_1() { return cTypeEntityIDTerminalRuleCall_0_1; }
+	}
+	public class DataTypeReferenceElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.DataTypeReference");
+		private final Assignment cTypeAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cTypeDataTypeEnumRuleCall_0 = (RuleCall)cTypeAssignment.eContents().get(0);
+		
+		//DataTypeReference:
+		//	type=DataType;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//type=DataType
+		public Assignment getTypeAssignment() { return cTypeAssignment; }
+		
+		//DataType
+		public RuleCall getTypeDataTypeEnumRuleCall_0() { return cTypeDataTypeEnumRuleCall_0; }
+	}
 	public class ModifierElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.Modifier");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Action cModifierAction_0_0 = (Action)cGroup_0.eContents().get(0);
-		private final Keyword cLOBKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
-		private final RuleCall cIdentificationParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final Assignment cIsLOBAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final Keyword cIsLOBLOBKeyword_0_0 = (Keyword)cIsLOBAssignment_0.eContents().get(0);
+		private final Assignment cIsTransientAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
+		private final Keyword cIsTransientTRANSIENTKeyword_1_0 = (Keyword)cIsTransientAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
+		private final Assignment cIsIDAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
+		private final Keyword cIsIDIDKeyword_2_0_0 = (Keyword)cIsIDAssignment_2_0.eContents().get(0);
+		private final Group cGroup_2_1 = (Group)cGroup_2.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_2_1_0 = (Keyword)cGroup_2_1.eContents().get(0);
+		private final Assignment cIDGenerationTypeAssignment_2_1_1 = (Assignment)cGroup_2_1.eContents().get(1);
+		private final RuleCall cIDGenerationTypeGenerationTypeEnumRuleCall_2_1_1_0 = (RuleCall)cIDGenerationTypeAssignment_2_1_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_2_1_2 = (Keyword)cGroup_2_1.eContents().get(2);
 		
 		//Modifier:
-		//	{Modifier} 'LOB' | Identification;
+		//	isLOB?='LOB' | isTransient?='TRANSIENT' | isID?='ID' ('(' IDGenerationType=GenerationType ')')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{Modifier} 'LOB' | Identification
+		//isLOB?='LOB' | isTransient?='TRANSIENT' | isID?='ID' ('(' IDGenerationType=GenerationType ')')?
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//{Modifier} 'LOB'
-		public Group getGroup_0() { return cGroup_0; }
-		
-		//{Modifier}
-		public Action getModifierAction_0_0() { return cModifierAction_0_0; }
+		//isLOB?='LOB'
+		public Assignment getIsLOBAssignment_0() { return cIsLOBAssignment_0; }
 		
 		//'LOB'
-		public Keyword getLOBKeyword_0_1() { return cLOBKeyword_0_1; }
+		public Keyword getIsLOBLOBKeyword_0_0() { return cIsLOBLOBKeyword_0_0; }
 		
-		//Identification
-		public RuleCall getIdentificationParserRuleCall_1() { return cIdentificationParserRuleCall_1; }
-	}
-	public class IdentificationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.Identification");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cIdentificationAction_0 = (Action)cGroup.eContents().get(0);
-		private final Keyword cIDKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Keyword cLeftParenthesisKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cGenerationTypeAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cGenerationTypeGENERATION_TYPETerminalRuleCall_2_1_0 = (RuleCall)cGenerationTypeAssignment_2_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_2_2 = (Keyword)cGroup_2.eContents().get(2);
+		//isTransient?='TRANSIENT'
+		public Assignment getIsTransientAssignment_1() { return cIsTransientAssignment_1; }
 		
-		//Identification:
-		//	{Identification} 'ID' ('(' generationType=GENERATION_TYPE ')')?;
-		@Override public ParserRule getRule() { return rule; }
+		//'TRANSIENT'
+		public Keyword getIsTransientTRANSIENTKeyword_1_0() { return cIsTransientTRANSIENTKeyword_1_0; }
 		
-		//{Identification} 'ID' ('(' generationType=GENERATION_TYPE ')')?
-		public Group getGroup() { return cGroup; }
-		
-		//{Identification}
-		public Action getIdentificationAction_0() { return cIdentificationAction_0; }
-		
-		//'ID'
-		public Keyword getIDKeyword_1() { return cIDKeyword_1; }
-		
-		//('(' generationType=GENERATION_TYPE ')')?
+		//isID?='ID' ('(' IDGenerationType=GenerationType ')')?
 		public Group getGroup_2() { return cGroup_2; }
 		
+		//isID?='ID'
+		public Assignment getIsIDAssignment_2_0() { return cIsIDAssignment_2_0; }
+		
+		//'ID'
+		public Keyword getIsIDIDKeyword_2_0_0() { return cIsIDIDKeyword_2_0_0; }
+		
+		//('(' IDGenerationType=GenerationType ')')?
+		public Group getGroup_2_1() { return cGroup_2_1; }
+		
 		//'('
-		public Keyword getLeftParenthesisKeyword_2_0() { return cLeftParenthesisKeyword_2_0; }
+		public Keyword getLeftParenthesisKeyword_2_1_0() { return cLeftParenthesisKeyword_2_1_0; }
 		
-		//generationType=GENERATION_TYPE
-		public Assignment getGenerationTypeAssignment_2_1() { return cGenerationTypeAssignment_2_1; }
+		//IDGenerationType=GenerationType
+		public Assignment getIDGenerationTypeAssignment_2_1_1() { return cIDGenerationTypeAssignment_2_1_1; }
 		
-		//GENERATION_TYPE
-		public RuleCall getGenerationTypeGENERATION_TYPETerminalRuleCall_2_1_0() { return cGenerationTypeGENERATION_TYPETerminalRuleCall_2_1_0; }
+		//GenerationType
+		public RuleCall getIDGenerationTypeGenerationTypeEnumRuleCall_2_1_1_0() { return cIDGenerationTypeGenerationTypeEnumRuleCall_2_1_1_0; }
 		
 		//')'
-		public Keyword getRightParenthesisKeyword_2_2() { return cRightParenthesisKeyword_2_2; }
+		public Keyword getRightParenthesisKeyword_2_1_2() { return cRightParenthesisKeyword_2_1_2; }
 	}
 	public class ValidationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.Validation");
@@ -307,20 +363,15 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cPatternKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
 		private final Assignment cRegexAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
 		private final RuleCall cRegexSTRINGTerminalRuleCall_2_1_0 = (RuleCall)cRegexAssignment_2_1.eContents().get(0);
-		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
-		private final Action cValidationAction_3_0 = (Action)cGroup_3.eContents().get(0);
-		private final Keyword cNotNullKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
-		private final Group cGroup_4 = (Group)cAlternatives.eContents().get(4);
-		private final Action cValidationAction_4_0 = (Action)cGroup_4.eContents().get(0);
-		private final Keyword cNotBlankKeyword_4_1 = (Keyword)cGroup_4.eContents().get(1);
+		private final Assignment cValidatorAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
+		private final RuleCall cValidatorBasicValidationEnumRuleCall_3_0 = (RuleCall)cValidatorAssignment_3.eContents().get(0);
 		
 		//Validation:
 		//	'min:' min=POSSIBLY_SIGNED_INT | 'max:' max=POSSIBLY_SIGNED_INT |
-		//	'pattern:' regex=STRING | {Validation} 'not-null' | {Validation} 'not-blank';
+		//	'pattern:' regex=STRING | validator=BasicValidation;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'min:' min=POSSIBLY_SIGNED_INT | 'max:' max=POSSIBLY_SIGNED_INT | 'pattern:' regex=STRING | {Validation} 'not-null' |
-		//{Validation} 'not-blank'
+		//'min:' min=POSSIBLY_SIGNED_INT | 'max:' max=POSSIBLY_SIGNED_INT | 'pattern:' regex=STRING | validator=BasicValidation
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//'min:' min=POSSIBLY_SIGNED_INT
@@ -359,23 +410,11 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		//STRING
 		public RuleCall getRegexSTRINGTerminalRuleCall_2_1_0() { return cRegexSTRINGTerminalRuleCall_2_1_0; }
 		
-		//{Validation} 'not-null'
-		public Group getGroup_3() { return cGroup_3; }
+		//validator=BasicValidation
+		public Assignment getValidatorAssignment_3() { return cValidatorAssignment_3; }
 		
-		//{Validation}
-		public Action getValidationAction_3_0() { return cValidationAction_3_0; }
-		
-		//'not-null'
-		public Keyword getNotNullKeyword_3_1() { return cNotNullKeyword_3_1; }
-		
-		//{Validation} 'not-blank'
-		public Group getGroup_4() { return cGroup_4; }
-		
-		//{Validation}
-		public Action getValidationAction_4_0() { return cValidationAction_4_0; }
-		
-		//'not-blank'
-		public Keyword getNotBlankKeyword_4_1() { return cNotBlankKeyword_4_1; }
+		//BasicValidation
+		public RuleCall getValidatorBasicValidationEnumRuleCall_3_0() { return cValidatorBasicValidationEnumRuleCall_3_0; }
 	}
 	public class RepositoryElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.Repository");
@@ -429,28 +468,31 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cQueryKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Assignment cIsListAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Keyword cIsListListKeyword_2_0 = (Keyword)cIsListAssignment_2.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Assignment cIsListAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
+		private final Keyword cIsListColonKeyword_2_0_0 = (Keyword)cIsListAssignment_2_0.eContents().get(0);
+		private final Keyword cListKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final Keyword cLeftCurlyBracketKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
 		private final Group cGroup_3_1 = (Group)cGroup_3.eContents().get(1);
 		private final Keyword cParamsKeyword_3_1_0 = (Keyword)cGroup_3_1.eContents().get(0);
-		private final Assignment cParamsAssignment_3_1_1 = (Assignment)cGroup_3_1.eContents().get(1);
-		private final RuleCall cParamsParamParserRuleCall_3_1_1_0 = (RuleCall)cParamsAssignment_3_1_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_3_1_2 = (Keyword)cGroup_3_1.eContents().get(2);
+		private final Keyword cLeftCurlyBracketKeyword_3_1_1 = (Keyword)cGroup_3_1.eContents().get(1);
+		private final Assignment cParamsAssignment_3_1_2 = (Assignment)cGroup_3_1.eContents().get(2);
+		private final RuleCall cParamsParamParserRuleCall_3_1_2_0 = (RuleCall)cParamsAssignment_3_1_2.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_3_1_3 = (Keyword)cGroup_3_1.eContents().get(3);
 		private final Assignment cSqlQueryAssignment_3_2 = (Assignment)cGroup_3.eContents().get(2);
 		private final RuleCall cSqlQuerySQLQueryParserRuleCall_3_2_0 = (RuleCall)cSqlQueryAssignment_3_2.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_3_3 = (Keyword)cGroup_3.eContents().get(3);
 		
 		//Query:
-		//	'query' name=ID isList?=': list'? ('{' ('params {'
+		//	'query' name=ID (isList?=':' 'list')? ('{' ('params' '{'
 		//	params+=Param*
 		//	'}')?
 		//	sqlQuery=SQLQuery?
 		//	'}');
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'query' name=ID isList?=': list'? ('{' ('params {' params+=Param* '}')? sqlQuery=SQLQuery? '}')
+		//'query' name=ID (isList?=':' 'list')? ('{' ('params' '{' params+=Param* '}')? sqlQuery=SQLQuery? '}')
 		public Group getGroup() { return cGroup; }
 		
 		//'query'
@@ -462,32 +504,41 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 		
-		//isList?=': list'?
-		public Assignment getIsListAssignment_2() { return cIsListAssignment_2; }
+		//(isList?=':' 'list')?
+		public Group getGroup_2() { return cGroup_2; }
 		
-		//': list'
-		public Keyword getIsListListKeyword_2_0() { return cIsListListKeyword_2_0; }
+		//isList?=':'
+		public Assignment getIsListAssignment_2_0() { return cIsListAssignment_2_0; }
 		
-		//('{' ('params {' params+=Param* '}')? sqlQuery=SQLQuery? '}')
+		//':'
+		public Keyword getIsListColonKeyword_2_0_0() { return cIsListColonKeyword_2_0_0; }
+		
+		//'list'
+		public Keyword getListKeyword_2_1() { return cListKeyword_2_1; }
+		
+		//('{' ('params' '{' params+=Param* '}')? sqlQuery=SQLQuery? '}')
 		public Group getGroup_3() { return cGroup_3; }
 		
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_3_0() { return cLeftCurlyBracketKeyword_3_0; }
 		
-		//('params {' params+=Param* '}')?
+		//('params' '{' params+=Param* '}')?
 		public Group getGroup_3_1() { return cGroup_3_1; }
 		
-		//'params {'
+		//'params'
 		public Keyword getParamsKeyword_3_1_0() { return cParamsKeyword_3_1_0; }
 		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_3_1_1() { return cLeftCurlyBracketKeyword_3_1_1; }
+		
 		//params+=Param*
-		public Assignment getParamsAssignment_3_1_1() { return cParamsAssignment_3_1_1; }
+		public Assignment getParamsAssignment_3_1_2() { return cParamsAssignment_3_1_2; }
 		
 		//Param
-		public RuleCall getParamsParamParserRuleCall_3_1_1_0() { return cParamsParamParserRuleCall_3_1_1_0; }
+		public RuleCall getParamsParamParserRuleCall_3_1_2_0() { return cParamsParamParserRuleCall_3_1_2_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_3_1_2() { return cRightCurlyBracketKeyword_3_1_2; }
+		public Keyword getRightCurlyBracketKeyword_3_1_3() { return cRightCurlyBracketKeyword_3_1_3; }
 		
 		//sqlQuery=SQLQuery?
 		public Assignment getSqlQueryAssignment_3_2() { return cSqlQueryAssignment_3_2; }
@@ -505,14 +556,13 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNameIDTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
 		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final CrossReference cTypeEntityCrossReference_2_0 = (CrossReference)cTypeAssignment_2.eContents().get(0);
-		private final RuleCall cTypeEntityDATA_TYPETerminalRuleCall_2_0_1 = (RuleCall)cTypeEntityCrossReference_2_0.eContents().get(1);
+		private final RuleCall cTypeTypeReferenceParserRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
 		
 		//Param:
-		//	name=ID ':' type=[Entity|DATA_TYPE];
+		//	name=ID ':' type=TypeReference;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//name=ID ':' type=[Entity|DATA_TYPE]
+		//name=ID ':' type=TypeReference
 		public Group getGroup() { return cGroup; }
 		
 		//name=ID
@@ -524,14 +574,11 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		//':'
 		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
 		
-		//type=[Entity|DATA_TYPE]
+		//type=TypeReference
 		public Assignment getTypeAssignment_2() { return cTypeAssignment_2; }
 		
-		//[Entity|DATA_TYPE]
-		public CrossReference getTypeEntityCrossReference_2_0() { return cTypeEntityCrossReference_2_0; }
-		
-		//DATA_TYPE
-		public RuleCall getTypeEntityDATA_TYPETerminalRuleCall_2_0_1() { return cTypeEntityDATA_TYPETerminalRuleCall_2_0_1; }
+		//TypeReference
+		public RuleCall getTypeTypeReferenceParserRuleCall_2_0() { return cTypeTypeReferenceParserRuleCall_2_0; }
 	}
 	public class SQLQueryElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.SQLQuery");
@@ -631,71 +678,23 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.From");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cFROMKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cEntityAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cEntityEntityCrossReference_1_0 = (CrossReference)cEntityAssignment_1.eContents().get(0);
-		private final RuleCall cEntityEntityIDTerminalRuleCall_1_0_1 = (RuleCall)cEntityEntityCrossReference_1_0.eContents().get(1);
-		private final Assignment cAliasAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cAliasSTRINGTerminalRuleCall_2_0 = (RuleCall)cAliasAssignment_2.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		
-		//From:
-		//	'FROM {' entity=[Entity] alias=STRING '}';
-		@Override public ParserRule getRule() { return rule; }
-		
-		//'FROM {' entity=[Entity] alias=STRING '}'
-		public Group getGroup() { return cGroup; }
-		
-		//'FROM {'
-		public Keyword getFROMKeyword_0() { return cFROMKeyword_0; }
-		
-		//entity=[Entity]
-		public Assignment getEntityAssignment_1() { return cEntityAssignment_1; }
-		
-		//[Entity]
-		public CrossReference getEntityEntityCrossReference_1_0() { return cEntityEntityCrossReference_1_0; }
-		
-		//ID
-		public RuleCall getEntityEntityIDTerminalRuleCall_1_0_1() { return cEntityEntityIDTerminalRuleCall_1_0_1; }
-		
-		//alias=STRING
-		public Assignment getAliasAssignment_2() { return cAliasAssignment_2; }
-		
-		//STRING
-		public RuleCall getAliasSTRINGTerminalRuleCall_2_0() { return cAliasSTRINGTerminalRuleCall_2_0; }
-		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
-	}
-	public class JoinElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.Join");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cJoinTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cJoinTypeJOIN_TYPETerminalRuleCall_0_0 = (RuleCall)cJoinTypeAssignment_0.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cEntityAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final CrossReference cEntityEntityCrossReference_2_0 = (CrossReference)cEntityAssignment_2.eContents().get(0);
 		private final RuleCall cEntityEntityIDTerminalRuleCall_2_0_1 = (RuleCall)cEntityEntityCrossReference_2_0.eContents().get(1);
 		private final Assignment cAliasAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cAliasSTRINGTerminalRuleCall_3_0 = (RuleCall)cAliasAssignment_3.eContents().get(0);
+		private final RuleCall cAliasIDTerminalRuleCall_3_0 = (RuleCall)cAliasAssignment_3.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final Keyword cONKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
-		private final Assignment cJoinConditionAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cJoinConditionSTRINGTerminalRuleCall_5_1_0 = (RuleCall)cJoinConditionAssignment_5_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_5_2 = (Keyword)cGroup_5.eContents().get(2);
 		
-		//Join:
-		//	joinType=JOIN_TYPE '{' entity=[Entity] alias=STRING '}' ('ON {' joinCondition=STRING '}')?;
+		//From:
+		//	'FROM' '{' entity=[Entity] alias=ID '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//joinType=JOIN_TYPE '{' entity=[Entity] alias=STRING '}' ('ON {' joinCondition=STRING '}')?
+		//'FROM' '{' entity=[Entity] alias=ID '}'
 		public Group getGroup() { return cGroup; }
 		
-		//joinType=JOIN_TYPE
-		public Assignment getJoinTypeAssignment_0() { return cJoinTypeAssignment_0; }
-		
-		//JOIN_TYPE
-		public RuleCall getJoinTypeJOIN_TYPETerminalRuleCall_0_0() { return cJoinTypeJOIN_TYPETerminalRuleCall_0_0; }
+		//'FROM'
+		public Keyword getFROMKeyword_0() { return cFROMKeyword_0; }
 		
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
@@ -709,97 +708,448 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getEntityEntityIDTerminalRuleCall_2_0_1() { return cEntityEntityIDTerminalRuleCall_2_0_1; }
 		
-		//alias=STRING
+		//alias=ID
 		public Assignment getAliasAssignment_3() { return cAliasAssignment_3; }
 		
-		//STRING
-		public RuleCall getAliasSTRINGTerminalRuleCall_3_0() { return cAliasSTRINGTerminalRuleCall_3_0; }
+		//ID
+		public RuleCall getAliasIDTerminalRuleCall_3_0() { return cAliasIDTerminalRuleCall_3_0; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
+	}
+	public class JoinElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.Join");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cJoinTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cJoinTypeJoinTypeEnumRuleCall_0_0 = (RuleCall)cJoinTypeAssignment_0.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cEntityAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final CrossReference cEntityEntityCrossReference_2_0 = (CrossReference)cEntityAssignment_2.eContents().get(0);
+		private final RuleCall cEntityEntityIDTerminalRuleCall_2_0_1 = (RuleCall)cEntityEntityCrossReference_2_0.eContents().get(1);
+		private final Assignment cAliasAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cAliasIDTerminalRuleCall_3_0 = (RuleCall)cAliasAssignment_3.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final Keyword cONKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_5_1 = (Keyword)cGroup_5.eContents().get(1);
+		private final Assignment cJoinConditionAssignment_5_2 = (Assignment)cGroup_5.eContents().get(2);
+		private final RuleCall cJoinConditionSTRINGTerminalRuleCall_5_2_0 = (RuleCall)cJoinConditionAssignment_5_2.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_5_3 = (Keyword)cGroup_5.eContents().get(3);
+		
+		//Join:
+		//	joinType=JoinType '{' entity=[Entity] alias=ID '}' ('ON' '{' joinCondition=STRING '}')?;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//joinType=JoinType '{' entity=[Entity] alias=ID '}' ('ON' '{' joinCondition=STRING '}')?
+		public Group getGroup() { return cGroup; }
+		
+		//joinType=JoinType
+		public Assignment getJoinTypeAssignment_0() { return cJoinTypeAssignment_0; }
+		
+		//JoinType
+		public RuleCall getJoinTypeJoinTypeEnumRuleCall_0_0() { return cJoinTypeJoinTypeEnumRuleCall_0_0; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
+		
+		//entity=[Entity]
+		public Assignment getEntityAssignment_2() { return cEntityAssignment_2; }
+		
+		//[Entity]
+		public CrossReference getEntityEntityCrossReference_2_0() { return cEntityEntityCrossReference_2_0; }
+		
+		//ID
+		public RuleCall getEntityEntityIDTerminalRuleCall_2_0_1() { return cEntityEntityIDTerminalRuleCall_2_0_1; }
+		
+		//alias=ID
+		public Assignment getAliasAssignment_3() { return cAliasAssignment_3; }
+		
+		//ID
+		public RuleCall getAliasIDTerminalRuleCall_3_0() { return cAliasIDTerminalRuleCall_3_0; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
 		
-		//('ON {' joinCondition=STRING '}')?
+		//('ON' '{' joinCondition=STRING '}')?
 		public Group getGroup_5() { return cGroup_5; }
 		
-		//'ON {'
+		//'ON'
 		public Keyword getONKeyword_5_0() { return cONKeyword_5_0; }
 		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_5_1() { return cLeftCurlyBracketKeyword_5_1; }
+		
 		//joinCondition=STRING
-		public Assignment getJoinConditionAssignment_5_1() { return cJoinConditionAssignment_5_1; }
+		public Assignment getJoinConditionAssignment_5_2() { return cJoinConditionAssignment_5_2; }
 		
 		//STRING
-		public RuleCall getJoinConditionSTRINGTerminalRuleCall_5_1_0() { return cJoinConditionSTRINGTerminalRuleCall_5_1_0; }
+		public RuleCall getJoinConditionSTRINGTerminalRuleCall_5_2_0() { return cJoinConditionSTRINGTerminalRuleCall_5_2_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_5_2() { return cRightCurlyBracketKeyword_5_2; }
+		public Keyword getRightCurlyBracketKeyword_5_3() { return cRightCurlyBracketKeyword_5_3; }
 	}
 	public class WhereElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.Where");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cWHEREKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cConditionAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cConditionSTRINGTerminalRuleCall_1_0 = (RuleCall)cConditionAssignment_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cConditionAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cConditionSTRINGTerminalRuleCall_2_0 = (RuleCall)cConditionAssignment_2.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//Where:
-		//	'WHERE {' condition=STRING '}';
+		//	'WHERE' '{' condition=STRING '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'WHERE {' condition=STRING '}'
+		//'WHERE' '{' condition=STRING '}'
 		public Group getGroup() { return cGroup; }
 		
-		//'WHERE {'
+		//'WHERE'
 		public Keyword getWHEREKeyword_0() { return cWHEREKeyword_0; }
 		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
+		
 		//condition=STRING
-		public Assignment getConditionAssignment_1() { return cConditionAssignment_1; }
+		public Assignment getConditionAssignment_2() { return cConditionAssignment_2; }
 		
 		//STRING
-		public RuleCall getConditionSTRINGTerminalRuleCall_1_0() { return cConditionSTRINGTerminalRuleCall_1_0; }
+		public RuleCall getConditionSTRINGTerminalRuleCall_2_0() { return cConditionSTRINGTerminalRuleCall_2_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_2() { return cRightCurlyBracketKeyword_2; }
+		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
 	}
 	public class OrderElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.Order");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cORDERBYKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cOrderAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cOrderSTRINGTerminalRuleCall_1_0 = (RuleCall)cOrderAssignment_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cOrderAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cOrderSTRINGTerminalRuleCall_2_0 = (RuleCall)cOrderAssignment_2.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//Order:
-		//	'ORDER BY {' order=STRING '}';
+		//	'ORDER BY' '{' order=STRING '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'ORDER BY {' order=STRING '}'
+		//'ORDER BY' '{' order=STRING '}'
 		public Group getGroup() { return cGroup; }
 		
-		//'ORDER BY {'
+		//'ORDER BY'
 		public Keyword getORDERBYKeyword_0() { return cORDERBYKeyword_0; }
 		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
+		
 		//order=STRING
-		public Assignment getOrderAssignment_1() { return cOrderAssignment_1; }
+		public Assignment getOrderAssignment_2() { return cOrderAssignment_2; }
 		
 		//STRING
-		public RuleCall getOrderSTRINGTerminalRuleCall_1_0() { return cOrderSTRINGTerminalRuleCall_1_0; }
+		public RuleCall getOrderSTRINGTerminalRuleCall_2_0() { return cOrderSTRINGTerminalRuleCall_2_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_2() { return cRightCurlyBracketKeyword_2; }
+		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
 	}
 	
+	public class BasicValidationElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.BasicValidation");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cNOT_NULLEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cNOT_NULLNotNullKeyword_0_0 = (Keyword)cNOT_NULLEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cNOT_BLANKEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cNOT_BLANKNotBlankKeyword_1_0 = (Keyword)cNOT_BLANKEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cPASTEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cPASTPastKeyword_2_0 = (Keyword)cPASTEnumLiteralDeclaration_2.eContents().get(0);
+		private final EnumLiteralDeclaration cUNIQUEEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
+		private final Keyword cUNIQUEUniqueKeyword_3_0 = (Keyword)cUNIQUEEnumLiteralDeclaration_3.eContents().get(0);
+		private final EnumLiteralDeclaration cEMAILEnumLiteralDeclaration_4 = (EnumLiteralDeclaration)cAlternatives.eContents().get(4);
+		private final Keyword cEMAILValidEmailKeyword_4_0 = (Keyword)cEMAILEnumLiteralDeclaration_4.eContents().get(0);
+		
+		//enum BasicValidation:
+		//	NOT_NULL='not-null' | NOT_BLANK='not-blank' | PAST='past' | UNIQUE='unique' | EMAIL='valid-email';
+		public EnumRule getRule() { return rule; }
+		
+		//NOT_NULL='not-null' | NOT_BLANK='not-blank' | PAST='past' | UNIQUE='unique' | EMAIL='valid-email'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//NOT_NULL='not-null'
+		public EnumLiteralDeclaration getNOT_NULLEnumLiteralDeclaration_0() { return cNOT_NULLEnumLiteralDeclaration_0; }
+		
+		//'not-null'
+		public Keyword getNOT_NULLNotNullKeyword_0_0() { return cNOT_NULLNotNullKeyword_0_0; }
+		
+		//NOT_BLANK='not-blank'
+		public EnumLiteralDeclaration getNOT_BLANKEnumLiteralDeclaration_1() { return cNOT_BLANKEnumLiteralDeclaration_1; }
+		
+		//'not-blank'
+		public Keyword getNOT_BLANKNotBlankKeyword_1_0() { return cNOT_BLANKNotBlankKeyword_1_0; }
+		
+		//PAST='past'
+		public EnumLiteralDeclaration getPASTEnumLiteralDeclaration_2() { return cPASTEnumLiteralDeclaration_2; }
+		
+		//'past'
+		public Keyword getPASTPastKeyword_2_0() { return cPASTPastKeyword_2_0; }
+		
+		//UNIQUE='unique'
+		public EnumLiteralDeclaration getUNIQUEEnumLiteralDeclaration_3() { return cUNIQUEEnumLiteralDeclaration_3; }
+		
+		//'unique'
+		public Keyword getUNIQUEUniqueKeyword_3_0() { return cUNIQUEUniqueKeyword_3_0; }
+		
+		//EMAIL='valid-email'
+		public EnumLiteralDeclaration getEMAILEnumLiteralDeclaration_4() { return cEMAILEnumLiteralDeclaration_4; }
+		
+		//'valid-email'
+		public Keyword getEMAILValidEmailKeyword_4_0() { return cEMAILValidEmailKeyword_4_0; }
+	}
+	public class GenerationTypeElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.GenerationType");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cAUTOEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cAUTOAutoKeyword_0_0 = (Keyword)cAUTOEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cTABLEEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cTABLETableKeyword_1_0 = (Keyword)cTABLEEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cIDENTITYEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cIDENTITYIdentityKeyword_2_0 = (Keyword)cIDENTITYEnumLiteralDeclaration_2.eContents().get(0);
+		private final EnumLiteralDeclaration cSEQUENCEEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
+		private final Keyword cSEQUENCESequenceKeyword_3_0 = (Keyword)cSEQUENCEEnumLiteralDeclaration_3.eContents().get(0);
+		
+		//enum GenerationType:
+		//	AUTO='auto' | TABLE='table' | IDENTITY='identity' | SEQUENCE='sequence';
+		public EnumRule getRule() { return rule; }
+		
+		//AUTO='auto' | TABLE='table' | IDENTITY='identity' | SEQUENCE='sequence'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//AUTO='auto'
+		public EnumLiteralDeclaration getAUTOEnumLiteralDeclaration_0() { return cAUTOEnumLiteralDeclaration_0; }
+		
+		//'auto'
+		public Keyword getAUTOAutoKeyword_0_0() { return cAUTOAutoKeyword_0_0; }
+		
+		//TABLE='table'
+		public EnumLiteralDeclaration getTABLEEnumLiteralDeclaration_1() { return cTABLEEnumLiteralDeclaration_1; }
+		
+		//'table'
+		public Keyword getTABLETableKeyword_1_0() { return cTABLETableKeyword_1_0; }
+		
+		//IDENTITY='identity'
+		public EnumLiteralDeclaration getIDENTITYEnumLiteralDeclaration_2() { return cIDENTITYEnumLiteralDeclaration_2; }
+		
+		//'identity'
+		public Keyword getIDENTITYIdentityKeyword_2_0() { return cIDENTITYIdentityKeyword_2_0; }
+		
+		//SEQUENCE='sequence'
+		public EnumLiteralDeclaration getSEQUENCEEnumLiteralDeclaration_3() { return cSEQUENCEEnumLiteralDeclaration_3; }
+		
+		//'sequence'
+		public Keyword getSEQUENCESequenceKeyword_3_0() { return cSEQUENCESequenceKeyword_3_0; }
+	}
+	public class FetchTypeElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.FetchType");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cEAGEREnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cEAGEREagerKeyword_0_0 = (Keyword)cEAGEREnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cLAZYEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cLAZYLazyKeyword_1_0 = (Keyword)cLAZYEnumLiteralDeclaration_1.eContents().get(0);
+		
+		//enum FetchType:
+		//	EAGER='eager' | LAZY='lazy';
+		public EnumRule getRule() { return rule; }
+		
+		//EAGER='eager' | LAZY='lazy'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//EAGER='eager'
+		public EnumLiteralDeclaration getEAGEREnumLiteralDeclaration_0() { return cEAGEREnumLiteralDeclaration_0; }
+		
+		//'eager'
+		public Keyword getEAGEREagerKeyword_0_0() { return cEAGEREagerKeyword_0_0; }
+		
+		//LAZY='lazy'
+		public EnumLiteralDeclaration getLAZYEnumLiteralDeclaration_1() { return cLAZYEnumLiteralDeclaration_1; }
+		
+		//'lazy'
+		public Keyword getLAZYLazyKeyword_1_0() { return cLAZYLazyKeyword_1_0; }
+	}
+	public class AssociationElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.Association");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cONE_TO_MANYEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cONE_TO_MANYOneToManyKeyword_0_0 = (Keyword)cONE_TO_MANYEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cMANY_TO_ONEEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cMANY_TO_ONEManyToOneKeyword_1_0 = (Keyword)cMANY_TO_ONEEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cONE_TO_ONEEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cONE_TO_ONEOneToOneKeyword_2_0 = (Keyword)cONE_TO_ONEEnumLiteralDeclaration_2.eContents().get(0);
+		private final EnumLiteralDeclaration cMANY_TO_MANYEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
+		private final Keyword cMANY_TO_MANYManyToManyKeyword_3_0 = (Keyword)cMANY_TO_MANYEnumLiteralDeclaration_3.eContents().get(0);
+		
+		//enum Association:
+		//	ONE_TO_MANY='one-to-many' | MANY_TO_ONE='many-to-one' | ONE_TO_ONE='one-to-one' | MANY_TO_MANY='many-to-many';
+		public EnumRule getRule() { return rule; }
+		
+		//ONE_TO_MANY='one-to-many' | MANY_TO_ONE='many-to-one' | ONE_TO_ONE='one-to-one' | MANY_TO_MANY='many-to-many'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//ONE_TO_MANY='one-to-many'
+		public EnumLiteralDeclaration getONE_TO_MANYEnumLiteralDeclaration_0() { return cONE_TO_MANYEnumLiteralDeclaration_0; }
+		
+		//'one-to-many'
+		public Keyword getONE_TO_MANYOneToManyKeyword_0_0() { return cONE_TO_MANYOneToManyKeyword_0_0; }
+		
+		//MANY_TO_ONE='many-to-one'
+		public EnumLiteralDeclaration getMANY_TO_ONEEnumLiteralDeclaration_1() { return cMANY_TO_ONEEnumLiteralDeclaration_1; }
+		
+		//'many-to-one'
+		public Keyword getMANY_TO_ONEManyToOneKeyword_1_0() { return cMANY_TO_ONEManyToOneKeyword_1_0; }
+		
+		//ONE_TO_ONE='one-to-one'
+		public EnumLiteralDeclaration getONE_TO_ONEEnumLiteralDeclaration_2() { return cONE_TO_ONEEnumLiteralDeclaration_2; }
+		
+		//'one-to-one'
+		public Keyword getONE_TO_ONEOneToOneKeyword_2_0() { return cONE_TO_ONEOneToOneKeyword_2_0; }
+		
+		//MANY_TO_MANY='many-to-many'
+		public EnumLiteralDeclaration getMANY_TO_MANYEnumLiteralDeclaration_3() { return cMANY_TO_MANYEnumLiteralDeclaration_3; }
+		
+		//'many-to-many'
+		public Keyword getMANY_TO_MANYManyToManyKeyword_3_0() { return cMANY_TO_MANYManyToManyKeyword_3_0; }
+	}
+	public class DataTypeElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.DataType");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cSTRINGEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cSTRINGStringKeyword_0_0 = (Keyword)cSTRINGEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cLONGEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cLONGLongKeyword_1_0 = (Keyword)cLONGEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cFLOATEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cFLOATFloatKeyword_2_0 = (Keyword)cFLOATEnumLiteralDeclaration_2.eContents().get(0);
+		private final EnumLiteralDeclaration cDOUBLEEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
+		private final Keyword cDOUBLEDoubleKeyword_3_0 = (Keyword)cDOUBLEEnumLiteralDeclaration_3.eContents().get(0);
+		private final EnumLiteralDeclaration cCHAREnumLiteralDeclaration_4 = (EnumLiteralDeclaration)cAlternatives.eContents().get(4);
+		private final Keyword cCHARCharKeyword_4_0 = (Keyword)cCHAREnumLiteralDeclaration_4.eContents().get(0);
+		private final EnumLiteralDeclaration cINTEnumLiteralDeclaration_5 = (EnumLiteralDeclaration)cAlternatives.eContents().get(5);
+		private final Keyword cINTIntKeyword_5_0 = (Keyword)cINTEnumLiteralDeclaration_5.eContents().get(0);
+		private final EnumLiteralDeclaration cBOOLEANEnumLiteralDeclaration_6 = (EnumLiteralDeclaration)cAlternatives.eContents().get(6);
+		private final Keyword cBOOLEANBooleanKeyword_6_0 = (Keyword)cBOOLEANEnumLiteralDeclaration_6.eContents().get(0);
+		private final EnumLiteralDeclaration cDATEEnumLiteralDeclaration_7 = (EnumLiteralDeclaration)cAlternatives.eContents().get(7);
+		private final Keyword cDATEDateKeyword_7_0 = (Keyword)cDATEEnumLiteralDeclaration_7.eContents().get(0);
+		
+		//enum DataType:
+		//	STRING='string' | LONG='long' | FLOAT='float' | DOUBLE='double' | CHAR='char' | INT='int' | BOOLEAN='boolean' |
+		//	DATE='date';
+		public EnumRule getRule() { return rule; }
+		
+		//STRING='string' | LONG='long' | FLOAT='float' | DOUBLE='double' | CHAR='char' | INT='int' | BOOLEAN='boolean' |
+		//DATE='date'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//STRING='string'
+		public EnumLiteralDeclaration getSTRINGEnumLiteralDeclaration_0() { return cSTRINGEnumLiteralDeclaration_0; }
+		
+		//'string'
+		public Keyword getSTRINGStringKeyword_0_0() { return cSTRINGStringKeyword_0_0; }
+		
+		//LONG='long'
+		public EnumLiteralDeclaration getLONGEnumLiteralDeclaration_1() { return cLONGEnumLiteralDeclaration_1; }
+		
+		//'long'
+		public Keyword getLONGLongKeyword_1_0() { return cLONGLongKeyword_1_0; }
+		
+		//FLOAT='float'
+		public EnumLiteralDeclaration getFLOATEnumLiteralDeclaration_2() { return cFLOATEnumLiteralDeclaration_2; }
+		
+		//'float'
+		public Keyword getFLOATFloatKeyword_2_0() { return cFLOATFloatKeyword_2_0; }
+		
+		//DOUBLE='double'
+		public EnumLiteralDeclaration getDOUBLEEnumLiteralDeclaration_3() { return cDOUBLEEnumLiteralDeclaration_3; }
+		
+		//'double'
+		public Keyword getDOUBLEDoubleKeyword_3_0() { return cDOUBLEDoubleKeyword_3_0; }
+		
+		//CHAR='char'
+		public EnumLiteralDeclaration getCHAREnumLiteralDeclaration_4() { return cCHAREnumLiteralDeclaration_4; }
+		
+		//'char'
+		public Keyword getCHARCharKeyword_4_0() { return cCHARCharKeyword_4_0; }
+		
+		//INT='int'
+		public EnumLiteralDeclaration getINTEnumLiteralDeclaration_5() { return cINTEnumLiteralDeclaration_5; }
+		
+		//'int'
+		public Keyword getINTIntKeyword_5_0() { return cINTIntKeyword_5_0; }
+		
+		//BOOLEAN='boolean'
+		public EnumLiteralDeclaration getBOOLEANEnumLiteralDeclaration_6() { return cBOOLEANEnumLiteralDeclaration_6; }
+		
+		//'boolean'
+		public Keyword getBOOLEANBooleanKeyword_6_0() { return cBOOLEANBooleanKeyword_6_0; }
+		
+		//DATE='date'
+		public EnumLiteralDeclaration getDATEEnumLiteralDeclaration_7() { return cDATEEnumLiteralDeclaration_7; }
+		
+		//'date'
+		public Keyword getDATEDateKeyword_7_0() { return cDATEDateKeyword_7_0; }
+	}
+	public class JoinTypeElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.JoinType");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cLEFT_JOINEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cLEFT_JOINLEFTJOINKeyword_0_0 = (Keyword)cLEFT_JOINEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cLEFT_OUTER_JOINEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cLEFT_OUTER_JOINLEFTOUTERJOINKeyword_1_0 = (Keyword)cLEFT_OUTER_JOINEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cCROSS_JOINEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cCROSS_JOINCROSSJOINKeyword_2_0 = (Keyword)cCROSS_JOINEnumLiteralDeclaration_2.eContents().get(0);
+		private final EnumLiteralDeclaration cJOINEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
+		private final Keyword cJOINJOINKeyword_3_0 = (Keyword)cJOINEnumLiteralDeclaration_3.eContents().get(0);
+		
+		//enum JoinType:
+		//	LEFT_JOIN='LEFT JOIN' | LEFT_OUTER_JOIN='LEFT OUTER JOIN' | CROSS_JOIN='CROSS JOIN' | JOIN;
+		public EnumRule getRule() { return rule; }
+		
+		//LEFT_JOIN='LEFT JOIN' | LEFT_OUTER_JOIN='LEFT OUTER JOIN' | CROSS_JOIN='CROSS JOIN' | JOIN
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//LEFT_JOIN='LEFT JOIN'
+		public EnumLiteralDeclaration getLEFT_JOINEnumLiteralDeclaration_0() { return cLEFT_JOINEnumLiteralDeclaration_0; }
+		
+		//'LEFT JOIN'
+		public Keyword getLEFT_JOINLEFTJOINKeyword_0_0() { return cLEFT_JOINLEFTJOINKeyword_0_0; }
+		
+		//LEFT_OUTER_JOIN='LEFT OUTER JOIN'
+		public EnumLiteralDeclaration getLEFT_OUTER_JOINEnumLiteralDeclaration_1() { return cLEFT_OUTER_JOINEnumLiteralDeclaration_1; }
+		
+		//'LEFT OUTER JOIN'
+		public Keyword getLEFT_OUTER_JOINLEFTOUTERJOINKeyword_1_0() { return cLEFT_OUTER_JOINLEFTOUTERJOINKeyword_1_0; }
+		
+		//CROSS_JOIN='CROSS JOIN'
+		public EnumLiteralDeclaration getCROSS_JOINEnumLiteralDeclaration_2() { return cCROSS_JOINEnumLiteralDeclaration_2; }
+		
+		//'CROSS JOIN'
+		public Keyword getCROSS_JOINCROSSJOINKeyword_2_0() { return cCROSS_JOINCROSSJOINKeyword_2_0; }
+		
+		//JOIN
+		public EnumLiteralDeclaration getJOINEnumLiteralDeclaration_3() { return cJOINEnumLiteralDeclaration_3; }
+		
+		//'JOIN'
+		public Keyword getJOINJOINKeyword_3_0() { return cJOINJOINKeyword_3_0; }
+	}
 	
 	private final ModelElements pModel;
 	private final EntityElements pEntity;
 	private final AttributeElements pAttribute;
+	private final TypeReferenceElements pTypeReference;
+	private final EntityTypeReferenceElements pEntityTypeReference;
+	private final DataTypeReferenceElements pDataTypeReference;
 	private final ModifierElements pModifier;
-	private final IdentificationElements pIdentification;
 	private final ValidationElements pValidation;
+	private final BasicValidationElements eBasicValidation;
 	private final TerminalRule tPOSSIBLY_SIGNED_INT;
-	private final TerminalRule tGENERATION_TYPE;
-	private final TerminalRule tFETCH_TYPE;
-	private final TerminalRule tASSOCIATION;
-	private final TerminalRule tDATA_TYPE;
+	private final GenerationTypeElements eGenerationType;
+	private final FetchTypeElements eFetchType;
+	private final AssociationElements eAssociation;
+	private final DataTypeElements eDataType;
 	private final RepositoryElements pRepository;
 	private final QueryElements pQuery;
 	private final ParamElements pParam;
@@ -807,7 +1157,7 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 	private final SelectElements pSelect;
 	private final FromElements pFrom;
 	private final JoinElements pJoin;
-	private final TerminalRule tJOIN_TYPE;
+	private final JoinTypeElements eJoinType;
 	private final WhereElements pWhere;
 	private final OrderElements pOrder;
 	
@@ -823,14 +1173,17 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		this.pModel = new ModelElements();
 		this.pEntity = new EntityElements();
 		this.pAttribute = new AttributeElements();
+		this.pTypeReference = new TypeReferenceElements();
+		this.pEntityTypeReference = new EntityTypeReferenceElements();
+		this.pDataTypeReference = new DataTypeReferenceElements();
 		this.pModifier = new ModifierElements();
-		this.pIdentification = new IdentificationElements();
 		this.pValidation = new ValidationElements();
+		this.eBasicValidation = new BasicValidationElements();
 		this.tPOSSIBLY_SIGNED_INT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.POSSIBLY_SIGNED_INT");
-		this.tGENERATION_TYPE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.GENERATION_TYPE");
-		this.tFETCH_TYPE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.FETCH_TYPE");
-		this.tASSOCIATION = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.ASSOCIATION");
-		this.tDATA_TYPE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.DATA_TYPE");
+		this.eGenerationType = new GenerationTypeElements();
+		this.eFetchType = new FetchTypeElements();
+		this.eAssociation = new AssociationElements();
+		this.eDataType = new DataTypeElements();
 		this.pRepository = new RepositoryElements();
 		this.pQuery = new QueryElements();
 		this.pParam = new ParamElements();
@@ -838,7 +1191,7 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		this.pSelect = new SelectElements();
 		this.pFrom = new FromElements();
 		this.pJoin = new JoinElements();
-		this.tJOIN_TYPE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.JOIN_TYPE");
+		this.eJoinType = new JoinTypeElements();
 		this.pWhere = new WhereElements();
 		this.pOrder = new OrderElements();
 	}
@@ -881,7 +1234,7 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Entity:
-	//	'Entity' name=ID hasUserDetails?='implements UserDetails'? '{'
+	//	'Entity' name=ID (hasUserDetails?='implements' 'UserDetails')? '{'
 	//	attributes+=Attribute+
 	//	'}';
 	public EntityElements getEntityAccess() {
@@ -893,8 +1246,8 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Attribute:
-	//	association=ASSOCIATION? name=ID ':' type=[Entity|DATA_TYPE] modifier=Modifier? ('{' (('mappedBy:' mappedBy=ID)? &
-	//	('fetch:' fetchType=FETCH_TYPE)? & ('validations {'
+	//	association=Association? name=ID ':' typeRef=TypeReference modifier=Modifier? ('{' (('mappedBy:' mappedBy=ID)? &
+	//	('fetch:' fetchType=FetchType)? & ('validations' '{'
 	//	validations+=Validation+
 	//	'}')?)
 	//	'}')?;
@@ -906,8 +1259,38 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		return getAttributeAccess().getRule();
 	}
 	
+	//TypeReference:
+	//	EntityTypeReference | DataTypeReference;
+	public TypeReferenceElements getTypeReferenceAccess() {
+		return pTypeReference;
+	}
+	
+	public ParserRule getTypeReferenceRule() {
+		return getTypeReferenceAccess().getRule();
+	}
+	
+	//EntityTypeReference:
+	//	type=[Entity];
+	public EntityTypeReferenceElements getEntityTypeReferenceAccess() {
+		return pEntityTypeReference;
+	}
+	
+	public ParserRule getEntityTypeReferenceRule() {
+		return getEntityTypeReferenceAccess().getRule();
+	}
+	
+	//DataTypeReference:
+	//	type=DataType;
+	public DataTypeReferenceElements getDataTypeReferenceAccess() {
+		return pDataTypeReference;
+	}
+	
+	public ParserRule getDataTypeReferenceRule() {
+		return getDataTypeReferenceAccess().getRule();
+	}
+	
 	//Modifier:
-	//	{Modifier} 'LOB' | Identification;
+	//	isLOB?='LOB' | isTransient?='TRANSIENT' | isID?='ID' ('(' IDGenerationType=GenerationType ')')?;
 	public ModifierElements getModifierAccess() {
 		return pModifier;
 	}
@@ -916,19 +1299,9 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		return getModifierAccess().getRule();
 	}
 	
-	//Identification:
-	//	{Identification} 'ID' ('(' generationType=GENERATION_TYPE ')')?;
-	public IdentificationElements getIdentificationAccess() {
-		return pIdentification;
-	}
-	
-	public ParserRule getIdentificationRule() {
-		return getIdentificationAccess().getRule();
-	}
-	
 	//Validation:
 	//	'min:' min=POSSIBLY_SIGNED_INT | 'max:' max=POSSIBLY_SIGNED_INT |
-	//	'pattern:' regex=STRING | {Validation} 'not-null' | {Validation} 'not-blank';
+	//	'pattern:' regex=STRING | validator=BasicValidation;
 	public ValidationElements getValidationAccess() {
 		return pValidation;
 	}
@@ -937,34 +1310,61 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		return getValidationAccess().getRule();
 	}
 	
+	//enum BasicValidation:
+	//	NOT_NULL='not-null' | NOT_BLANK='not-blank' | PAST='past' | UNIQUE='unique' | EMAIL='valid-email';
+	public BasicValidationElements getBasicValidationAccess() {
+		return eBasicValidation;
+	}
+	
+	public EnumRule getBasicValidationRule() {
+		return getBasicValidationAccess().getRule();
+	}
+	
 	//terminal POSSIBLY_SIGNED_INT returns ecore::EBigDecimal:
 	//	'-'? INT;
 	public TerminalRule getPOSSIBLY_SIGNED_INTRule() {
 		return tPOSSIBLY_SIGNED_INT;
 	}
 	
-	//terminal GENERATION_TYPE:
-	//	'auto' | 'table' | 'identity' | 'sequence';
-	public TerminalRule getGENERATION_TYPERule() {
-		return tGENERATION_TYPE;
+	//enum GenerationType:
+	//	AUTO='auto' | TABLE='table' | IDENTITY='identity' | SEQUENCE='sequence';
+	public GenerationTypeElements getGenerationTypeAccess() {
+		return eGenerationType;
 	}
 	
-	//terminal FETCH_TYPE:
-	//	'eager' | 'lazy';
-	public TerminalRule getFETCH_TYPERule() {
-		return tFETCH_TYPE;
+	public EnumRule getGenerationTypeRule() {
+		return getGenerationTypeAccess().getRule();
 	}
 	
-	//terminal ASSOCIATION:
-	//	'OneToMany' | 'ManyToOne' | 'OneToOne' | 'ManyToMany';
-	public TerminalRule getASSOCIATIONRule() {
-		return tASSOCIATION;
+	//enum FetchType:
+	//	EAGER='eager' | LAZY='lazy';
+	public FetchTypeElements getFetchTypeAccess() {
+		return eFetchType;
 	}
 	
-	//terminal DATA_TYPE:
-	//	'String' | 'long' | 'Long' | 'float' | 'double' | 'char' | 'int' | 'boolean';
-	public TerminalRule getDATA_TYPERule() {
-		return tDATA_TYPE;
+	public EnumRule getFetchTypeRule() {
+		return getFetchTypeAccess().getRule();
+	}
+	
+	//enum Association:
+	//	ONE_TO_MANY='one-to-many' | MANY_TO_ONE='many-to-one' | ONE_TO_ONE='one-to-one' | MANY_TO_MANY='many-to-many';
+	public AssociationElements getAssociationAccess() {
+		return eAssociation;
+	}
+	
+	public EnumRule getAssociationRule() {
+		return getAssociationAccess().getRule();
+	}
+	
+	//enum DataType:
+	//	STRING='string' | LONG='long' | FLOAT='float' | DOUBLE='double' | CHAR='char' | INT='int' | BOOLEAN='boolean' |
+	//	DATE='date';
+	public DataTypeElements getDataTypeAccess() {
+		return eDataType;
+	}
+	
+	public EnumRule getDataTypeRule() {
+		return getDataTypeAccess().getRule();
 	}
 	
 	//// Repository
@@ -981,7 +1381,7 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Query:
-	//	'query' name=ID isList?=': list'? ('{' ('params {'
+	//	'query' name=ID (isList?=':' 'list')? ('{' ('params' '{'
 	//	params+=Param*
 	//	'}')?
 	//	sqlQuery=SQLQuery?
@@ -995,7 +1395,7 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Param:
-	//	name=ID ':' type=[Entity|DATA_TYPE];
+	//	name=ID ':' type=TypeReference;
 	public ParamElements getParamAccess() {
 		return pParam;
 	}
@@ -1029,7 +1429,7 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//From:
-	//	'FROM {' entity=[Entity] alias=STRING '}';
+	//	'FROM' '{' entity=[Entity] alias=ID '}';
 	public FromElements getFromAccess() {
 		return pFrom;
 	}
@@ -1039,7 +1439,7 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Join:
-	//	joinType=JOIN_TYPE '{' entity=[Entity] alias=STRING '}' ('ON {' joinCondition=STRING '}')?;
+	//	joinType=JoinType '{' entity=[Entity] alias=ID '}' ('ON' '{' joinCondition=STRING '}')?;
 	public JoinElements getJoinAccess() {
 		return pJoin;
 	}
@@ -1048,14 +1448,18 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		return getJoinAccess().getRule();
 	}
 	
-	//terminal JOIN_TYPE:
-	//	'LEFT JOIN' | 'LEFT OUTER JOIN' | 'CROSS JOIN' | 'JOIN';
-	public TerminalRule getJOIN_TYPERule() {
-		return tJOIN_TYPE;
+	//enum JoinType:
+	//	LEFT_JOIN='LEFT JOIN' | LEFT_OUTER_JOIN='LEFT OUTER JOIN' | CROSS_JOIN='CROSS JOIN' | JOIN;
+	public JoinTypeElements getJoinTypeAccess() {
+		return eJoinType;
+	}
+	
+	public EnumRule getJoinTypeRule() {
+		return getJoinTypeAccess().getRule();
 	}
 	
 	//Where:
-	//	'WHERE {' condition=STRING '}';
+	//	'WHERE' '{' condition=STRING '}';
 	public WhereElements getWhereAccess() {
 		return pWhere;
 	}
@@ -1065,7 +1469,7 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Order:
-	//	'ORDER BY {' order=STRING '}';
+	//	'ORDER BY' '{' order=STRING '}';
 	public OrderElements getOrderAccess() {
 		return pOrder;
 	}

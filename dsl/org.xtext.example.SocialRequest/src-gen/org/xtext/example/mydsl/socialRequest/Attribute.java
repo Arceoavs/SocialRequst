@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.socialRequest.Attribute#getAssociation <em>Association</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.socialRequest.Attribute#getName <em>Name</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.socialRequest.Attribute#getType <em>Type</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.socialRequest.Attribute#getTypeRef <em>Type Ref</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.socialRequest.Attribute#getModifier <em>Modifier</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.socialRequest.Attribute#getMappedBy <em>Mapped By</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.socialRequest.Attribute#getFetchType <em>Fetch Type</em>}</li>
@@ -33,25 +33,28 @@ public interface Attribute extends EObject
 {
   /**
    * Returns the value of the '<em><b>Association</b></em>' attribute.
+   * The literals are from the enumeration {@link org.xtext.example.mydsl.socialRequest.Association}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Association</em>' attribute.
-   * @see #setAssociation(String)
+   * @see org.xtext.example.mydsl.socialRequest.Association
+   * @see #setAssociation(Association)
    * @see org.xtext.example.mydsl.socialRequest.SocialRequestPackage#getAttribute_Association()
    * @model
    * @generated
    */
-  String getAssociation();
+  Association getAssociation();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.socialRequest.Attribute#getAssociation <em>Association</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Association</em>' attribute.
+   * @see org.xtext.example.mydsl.socialRequest.Association
    * @see #getAssociation()
    * @generated
    */
-  void setAssociation(String value);
+  void setAssociation(Association value);
 
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
@@ -76,26 +79,26 @@ public interface Attribute extends EObject
   void setName(String value);
 
   /**
-   * Returns the value of the '<em><b>Type</b></em>' reference.
+   * Returns the value of the '<em><b>Type Ref</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Type</em>' reference.
-   * @see #setType(Entity)
-   * @see org.xtext.example.mydsl.socialRequest.SocialRequestPackage#getAttribute_Type()
-   * @model
+   * @return the value of the '<em>Type Ref</em>' containment reference.
+   * @see #setTypeRef(TypeReference)
+   * @see org.xtext.example.mydsl.socialRequest.SocialRequestPackage#getAttribute_TypeRef()
+   * @model containment="true"
    * @generated
    */
-  Entity getType();
+  TypeReference getTypeRef();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.socialRequest.Attribute#getType <em>Type</em>}' reference.
+   * Sets the value of the '{@link org.xtext.example.mydsl.socialRequest.Attribute#getTypeRef <em>Type Ref</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Type</em>' reference.
-   * @see #getType()
+   * @param value the new value of the '<em>Type Ref</em>' containment reference.
+   * @see #getTypeRef()
    * @generated
    */
-  void setType(Entity value);
+  void setTypeRef(TypeReference value);
 
   /**
    * Returns the value of the '<em><b>Modifier</b></em>' containment reference.
@@ -143,25 +146,28 @@ public interface Attribute extends EObject
 
   /**
    * Returns the value of the '<em><b>Fetch Type</b></em>' attribute.
+   * The literals are from the enumeration {@link org.xtext.example.mydsl.socialRequest.FetchType}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Fetch Type</em>' attribute.
-   * @see #setFetchType(String)
+   * @see org.xtext.example.mydsl.socialRequest.FetchType
+   * @see #setFetchType(FetchType)
    * @see org.xtext.example.mydsl.socialRequest.SocialRequestPackage#getAttribute_FetchType()
    * @model
    * @generated
    */
-  String getFetchType();
+  FetchType getFetchType();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.socialRequest.Attribute#getFetchType <em>Fetch Type</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Fetch Type</em>' attribute.
+   * @see org.xtext.example.mydsl.socialRequest.FetchType
    * @see #getFetchType()
    * @generated
    */
-  void setFetchType(String value);
+  void setFetchType(FetchType value);
 
   /**
    * Returns the value of the '<em><b>Validations</b></em>' containment reference list.

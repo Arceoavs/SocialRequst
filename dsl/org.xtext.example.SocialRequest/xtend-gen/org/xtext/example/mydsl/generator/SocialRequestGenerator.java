@@ -13,9 +13,9 @@ import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.xtext.example.mydsl.socialRequest.Association;
 import org.xtext.example.mydsl.socialRequest.Attribute;
 import org.xtext.example.mydsl.socialRequest.Entity;
-import org.xtext.example.mydsl.socialRequest.Modifier;
 import org.xtext.example.mydsl.socialRequest.Repository;
 
 /**
@@ -58,38 +58,37 @@ public class SocialRequestGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("import javax.persistence.Entity;");
     _builder.newLine();
-    {
-      EList<Attribute> _attributes = e.getAttributes();
-      for(final Attribute attr : _attributes) {
-        {
-          Modifier _modifier = attr.getModifier();
-          boolean _equals = Objects.equal(_modifier, "LOB");
-          if (_equals) {
-            _builder.append("import javax.persistence.Lob;");
-            _builder.newLine();
-          }
-        }
-        {
-          Modifier _modifier_1 = attr.getModifier();
-          boolean _equals_1 = Objects.equal(_modifier_1, "LOB");
-          if (_equals_1) {
-            _builder.append("import javax.persistence.Id;");
-            _builder.newLine();
-          }
-        }
-        {
-          String _association = attr.getAssociation();
-          boolean _notEquals = (!Objects.equal(_association, null));
-          if (_notEquals) {
-            _builder.append("import import javax.persistence.");
-            String _association_1 = attr.getAssociation();
-            _builder.append(_association_1);
-            _builder.append(";");
-            _builder.newLineIfNotEmpty();
-          }
-        }
-      }
-    }
+    _builder.append("�FOR attr : e.attributes �");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("�IF attr.modifier == \"LOB\"�");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("import javax.persistence.Lob;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("�ENDIF�");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("�IF attr.modifier == \"LOB\"�");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("import javax.persistence.Id;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("�ENDIF�");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("�IF attr.association != null�");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("import import javax.persistence.�attr.association�;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("�ENDIF�");
+    _builder.newLine();
+    _builder.append("�ENDFOR�");
+    _builder.newLine();
     _builder.append("TODO: does not work like that, how we check if already imported");
     _builder.newLine();
     return _builder;
@@ -97,7 +96,7 @@ public class SocialRequestGenerator extends AbstractGenerator {
   
   private CharSequence generateAttribute(final Attribute a) {
     CharSequence _xifexpression = null;
-    String _association = a.getAssociation();
+    Association _association = a.getAssociation();
     boolean _equals = Objects.equal(_association, null);
     if (_equals) {
       _xifexpression = null;
@@ -109,58 +108,30 @@ public class SocialRequestGenerator extends AbstractGenerator {
   
   private CharSequence generateAssociationAttribute(final Attribute a) {
     StringConcatenation _builder = new StringConcatenation();
-    {
-      if ((Objects.equal(a.getMappedBy(), null) && Objects.equal(a.getFetchType(), null))) {
-        _builder.append("@");
-        String _association = a.getAssociation();
-        _builder.append(_association);
-        _builder.newLineIfNotEmpty();
-      } else {
-        if (((!Objects.equal(a.getMappedBy(), null)) && (!Objects.equal(a.getFetchType(), null)))) {
-          _builder.append("@");
-          String _association_1 = a.getAssociation();
-          _builder.append(_association_1);
-          _builder.append("(mappedBy = ");
-          String _mappedBy = a.getMappedBy();
-          _builder.append(_mappedBy);
-          _builder.append(", fetch = ");
-          String _fetchType = a.getFetchType();
-          _builder.append(_fetchType);
-          _builder.append(")");
-          _builder.newLineIfNotEmpty();
-        } else {
-          if (((!Objects.equal(a.getMappedBy(), null)) && Objects.equal(a.getFetchType(), null))) {
-            _builder.append("@");
-            String _association_2 = a.getAssociation();
-            _builder.append(_association_2);
-            _builder.append("(mappedBy = ");
-            String _mappedBy_1 = a.getMappedBy();
-            _builder.append(_mappedBy_1);
-            _builder.append(")");
-            _builder.newLineIfNotEmpty();
-          } else {
-            if ((Objects.equal(a.getMappedBy(), null) && (!Objects.equal(a.getFetchType(), null)))) {
-              _builder.append("@");
-              String _association_3 = a.getAssociation();
-              _builder.append(_association_3);
-              _builder.append("(mappedBy = ");
-              String _fetchType_1 = a.getFetchType();
-              _builder.append(_fetchType_1);
-              _builder.append(")");
-              _builder.newLineIfNotEmpty();
-            }
-          }
-        }
-      }
-    }
-    _builder.append("private ");
-    Entity _type = a.getType();
-    _builder.append(_type);
-    _builder.append("  ");
-    String _name = a.getName();
-    _builder.append(_name);
-    _builder.append(";");
-    _builder.newLineIfNotEmpty();
+    _builder.append("�IF a.mappedBy == null && a.fetchType == null�");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("@�a.association�");
+    _builder.newLine();
+    _builder.append("�ELSEIF a.mappedBy != null && a.fetchType != null�");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("@�a.association�(mappedBy = �a.mappedBy�, fetch = �a.fetchType�)");
+    _builder.newLine();
+    _builder.append("�ELSEIF a.mappedBy != null && a.fetchType == null�");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("@�a.association�(mappedBy = �a.mappedBy�)");
+    _builder.newLine();
+    _builder.append("�ELSEIF a.mappedBy == null && a.fetchType != null�");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("@�a.association�(mappedBy = �a.fetchType�)");
+    _builder.newLine();
+    _builder.append("�ENDIF�");
+    _builder.newLine();
+    _builder.append("private �a.type�  �a.name�;");
+    _builder.newLine();
     return _builder;
   }
   
