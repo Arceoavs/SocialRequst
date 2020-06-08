@@ -40,7 +40,7 @@ class SocialRequestGenerator extends AbstractGenerator {
 		import javax.persistence.*;
 		import javax.validation.constraints.*;
 
-		public class «entity.name» implements Serializable «IF entity.hasUserDetails», UserDetails «ENDIF»{
+		public class «entity.name» implements «IF entity.hasUserDetails !== null»UserDetails«ELSE»Serializable«ENDIF» {
 			private static final long serialVersionUID = 1L;
 
 			«FOR attribute : entity.attributes»

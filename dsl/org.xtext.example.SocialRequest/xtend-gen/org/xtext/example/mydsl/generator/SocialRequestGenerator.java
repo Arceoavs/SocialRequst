@@ -59,14 +59,17 @@ public class SocialRequestGenerator extends AbstractGenerator {
     _builder.append("public class ");
     String _name = entity.getName();
     _builder.append(_name);
-    _builder.append(" implements Serializable ");
+    _builder.append(" implements ");
     {
-      boolean _isHasUserDetails = entity.isHasUserDetails();
-      if (_isHasUserDetails) {
-        _builder.append(", UserDetails ");
+      String _hasUserDetails = entity.getHasUserDetails();
+      boolean _tripleNotEquals = (_hasUserDetails != null);
+      if (_tripleNotEquals) {
+        _builder.append("UserDetails");
+      } else {
+        _builder.append("Serializable");
       }
     }
-    _builder.append("{");
+    _builder.append(" {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("private static final long serialVersionUID = 1L;");

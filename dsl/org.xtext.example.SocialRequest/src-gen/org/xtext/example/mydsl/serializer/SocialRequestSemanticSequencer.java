@@ -155,7 +155,7 @@ public class SocialRequestSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *     Entity returns Entity
 	 *
 	 * Constraint:
-	 *     (name=ID hasUserDetails?='implements'? attributes+=Attribute+)
+	 *     (name=ID hasUserDetails='implements'? attributes+=Attribute+)
 	 */
 	protected void sequence_Entity(ISerializationContext context, Entity semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

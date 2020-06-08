@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.socialRequest.Entity#getName <em>Name</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.socialRequest.Entity#isHasUserDetails <em>Has User Details</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.socialRequest.Entity#getHasUserDetails <em>Has User Details</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.socialRequest.Entity#getAttributes <em>Attributes</em>}</li>
  * </ul>
  *
@@ -54,22 +54,22 @@ public interface Entity extends EObject
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Has User Details</em>' attribute.
-   * @see #setHasUserDetails(boolean)
+   * @see #setHasUserDetails(String)
    * @see org.xtext.example.mydsl.socialRequest.SocialRequestPackage#getEntity_HasUserDetails()
    * @model
    * @generated
    */
-  boolean isHasUserDetails();
+  String getHasUserDetails();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.socialRequest.Entity#isHasUserDetails <em>Has User Details</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.example.mydsl.socialRequest.Entity#getHasUserDetails <em>Has User Details</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Has User Details</em>' attribute.
-   * @see #isHasUserDetails()
+   * @see #getHasUserDetails()
    * @generated
    */
-  void setHasUserDetails(boolean value);
+  void setHasUserDetails(String value);
 
   /**
    * Returns the value of the '<em><b>Attributes</b></em>' containment reference list.

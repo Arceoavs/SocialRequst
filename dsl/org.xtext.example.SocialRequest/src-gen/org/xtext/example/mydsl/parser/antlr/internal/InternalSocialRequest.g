@@ -167,7 +167,7 @@ ruleEntity returns [EObject current=null]
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getEntityRule());
 						}
-						setWithLastConsumed($current, "hasUserDetails", true, "implements");
+						setWithLastConsumed($current, "hasUserDetails", lv_hasUserDetails_2_0, "implements");
 					}
 				)
 			)
