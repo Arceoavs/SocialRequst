@@ -21,7 +21,7 @@ public interface RequestRepository extends JpaRepository<Request, Long> {
         List<Request> fullTextSearchUnfulfilled(@Param("query") String query);
 
         @Query("SELECT r from Request r LEFT JOIN r.fulfillment f WHERE f.id IS NULL"
-                        + " AND 6371 * SQRT(POWER((radians(r.lng) - radians(:lng)) * COS((radians(:lat) + radians(r.lat))/2), 2) + POWER(radians(r.lat) - radians(:lat), 2)) <= 10"
+                        + " AND 6371 * SQRT(POWER((radians(r.longitude) - radians(:lng)) * COS((radians(:lat) + radians(r.latitude))/2), 2) + POWER(radians(r.latitude) - radians(:lat), 2)) <= 10"
                         + "ORDER BY r.createdAt DESC")
         List<Request> nearByUser(@Param("lat") float lat, @Param("lng") float lng);
 
