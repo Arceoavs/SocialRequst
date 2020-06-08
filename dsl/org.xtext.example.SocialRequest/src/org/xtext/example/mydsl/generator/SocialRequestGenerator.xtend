@@ -46,6 +46,10 @@ class SocialRequestGenerator extends AbstractGenerator {
 			«FOR attribute : entity.attributes»
 			«generateAttribute(attribute)»
 			«ENDFOR»
+			
+			«FOR attribute : entity.attributes»
+			«generateGettersSetters(attribute)»
+			«ENDFOR»
 
 			«generateToStringMethod(entity)»
 		}
@@ -68,6 +72,17 @@ class SocialRequestGenerator extends AbstractGenerator {
 		«ENDIF»
 		private «attributeType(attribute)» «attribute.name»;
 
+	'''
+	
+	private def generateGettersSetters(Attribute attribute)'''	
+		public «attributeType(attribute)» get«attribute.name.toFirstUpper»() {
+		    return «attribute.name»;
+		}
+		
+		public void set«attribute.name.toFirstUpper»(«attributeType(attribute)» «attribute.name») {
+		    this.«attribute.name» = «attribute.name»;
+		}
+		
 	'''
 
 	

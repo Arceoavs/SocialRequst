@@ -14,6 +14,7 @@ import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.xtext.example.mydsl.socialRequest.Attribute;
 import org.xtext.example.mydsl.socialRequest.DataTypeReference;
 import org.xtext.example.mydsl.socialRequest.Entity;
@@ -84,6 +85,17 @@ public class SocialRequestGenerator extends AbstractGenerator {
         _builder.newLineIfNotEmpty();
       }
     }
+    _builder.append("\t");
+    _builder.newLine();
+    {
+      EList<Attribute> _attributes_1 = entity.getAttributes();
+      for(final Attribute attribute_1 : _attributes_1) {
+        _builder.append("\t");
+        CharSequence _generateGettersSetters = this.generateGettersSetters(attribute_1);
+        _builder.append(_generateGettersSetters, "\t");
+        _builder.newLineIfNotEmpty();
+      }
+    }
     _builder.newLine();
     _builder.append("\t");
     CharSequence _generateToStringMethod = this.generateToStringMethod(entity);
@@ -148,6 +160,51 @@ public class SocialRequestGenerator extends AbstractGenerator {
     _builder.append(_name);
     _builder.append(";");
     _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    return _builder;
+  }
+  
+  private CharSequence generateGettersSetters(final Attribute attribute) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("public ");
+    String _attributeType = this.attributeType(attribute);
+    _builder.append(_attributeType);
+    _builder.append(" get");
+    String _firstUpper = StringExtensions.toFirstUpper(attribute.getName());
+    _builder.append(_firstUpper);
+    _builder.append("() {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    _builder.append("return ");
+    String _name = attribute.getName();
+    _builder.append(_name, "    ");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("public void set");
+    String _firstUpper_1 = StringExtensions.toFirstUpper(attribute.getName());
+    _builder.append(_firstUpper_1);
+    _builder.append("(");
+    String _attributeType_1 = this.attributeType(attribute);
+    _builder.append(_attributeType_1);
+    _builder.append(" ");
+    String _name_1 = attribute.getName();
+    _builder.append(_name_1);
+    _builder.append(") {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    _builder.append("this.");
+    String _name_2 = attribute.getName();
+    _builder.append(_name_2, "    ");
+    _builder.append(" = ");
+    String _name_3 = attribute.getName();
+    _builder.append(_name_3, "    ");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.append("}");
+    _builder.newLine();
     _builder.newLine();
     return _builder;
   }
