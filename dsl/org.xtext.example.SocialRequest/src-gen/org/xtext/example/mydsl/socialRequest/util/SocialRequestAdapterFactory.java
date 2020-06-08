@@ -91,14 +91,24 @@ public class SocialRequestAdapterFactory extends AdapterFactoryImpl
         return createAttributeAdapter();
       }
       @Override
+      public Adapter caseTypeReference(TypeReference object)
+      {
+        return createTypeReferenceAdapter();
+      }
+      @Override
+      public Adapter caseEntityTypeReference(EntityTypeReference object)
+      {
+        return createEntityTypeReferenceAdapter();
+      }
+      @Override
+      public Adapter caseDataTypeReference(DataTypeReference object)
+      {
+        return createDataTypeReferenceAdapter();
+      }
+      @Override
       public Adapter caseModifier(Modifier object)
       {
         return createModifierAdapter();
-      }
-      @Override
-      public Adapter caseIdentification(Identification object)
-      {
-        return createIdentificationAdapter();
       }
       @Override
       public Adapter caseValidation(Validation object)
@@ -218,6 +228,51 @@ public class SocialRequestAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.socialRequest.TypeReference <em>Type Reference</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.socialRequest.TypeReference
+   * @generated
+   */
+  public Adapter createTypeReferenceAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.socialRequest.EntityTypeReference <em>Entity Type Reference</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.socialRequest.EntityTypeReference
+   * @generated
+   */
+  public Adapter createEntityTypeReferenceAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.socialRequest.DataTypeReference <em>Data Type Reference</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.socialRequest.DataTypeReference
+   * @generated
+   */
+  public Adapter createDataTypeReferenceAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.socialRequest.Modifier <em>Modifier</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -228,21 +283,6 @@ public class SocialRequestAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createModifierAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.socialRequest.Identification <em>Identification</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.mydsl.socialRequest.Identification
-   * @generated
-   */
-  public Adapter createIdentificationAdapter()
   {
     return null;
   }

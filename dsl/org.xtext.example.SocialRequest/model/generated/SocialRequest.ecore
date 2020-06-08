@@ -15,24 +15,68 @@
         eType="#//Attribute" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Attribute">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="association" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="association" eType="#//Association"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Entity"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeRef" eType="#//TypeReference"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="modifier" eType="#//Modifier"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mappedBy" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fetchType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fetchType" eType="#//FetchType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="validations" upperBound="-1"
         eType="#//Validation" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Modifier"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Identification" eSuperTypes="#//Modifier">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="generationType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeReference"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EntityTypeReference" eSuperTypes="#//TypeReference">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Entity"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataTypeReference" eSuperTypes="#//TypeReference">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//DataType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Modifier">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isLOB" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isTransient" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="IDGenerationType" eType="#//GenerationType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Validation">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="min" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigDecimal"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="max" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigDecimal"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="regex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="validator" eType="#//BasicValidation"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="BasicValidation">
+    <eLiterals name="NOT_NULL" literal="not-null"/>
+    <eLiterals name="NOT_BLANK" value="1" literal="not-blank"/>
+    <eLiterals name="PAST" value="2" literal="past"/>
+    <eLiterals name="UNIQUE" value="3" literal="unique"/>
+    <eLiterals name="EMAIL" value="4" literal="valid-email"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="GenerationType">
+    <eLiterals name="AUTO" literal="auto"/>
+    <eLiterals name="TABLE" value="1" literal="table"/>
+    <eLiterals name="IDENTITY" value="2" literal="identity"/>
+    <eLiterals name="SEQUENCE" value="3" literal="sequence"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="FetchType">
+    <eLiterals name="EAGER" literal="eager"/>
+    <eLiterals name="LAZY" value="1" literal="lazy"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Association">
+    <eLiterals name="ONE_TO_MANY" literal="one-to-many"/>
+    <eLiterals name="MANY_TO_ONE" value="1" literal="many-to-one"/>
+    <eLiterals name="ONE_TO_ONE" value="2" literal="one-to-one"/>
+    <eLiterals name="MANY_TO_MANY" value="3" literal="many-to-many"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="DataType">
+    <eLiterals name="STRING" literal="string"/>
+    <eLiterals name="LONG" value="1" literal="long"/>
+    <eLiterals name="FLOAT" value="2" literal="float"/>
+    <eLiterals name="DOUBLE" value="3" literal="double"/>
+    <eLiterals name="CHAR" value="4" literal="char"/>
+    <eLiterals name="INT" value="5" literal="int"/>
+    <eLiterals name="BOOLEAN" value="6" literal="boolean"/>
+    <eLiterals name="DATE" value="7" literal="date"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Repository">
     <eStructuralFeatures xsi:type="ecore:EReference" name="entity" eType="#//Entity"/>
@@ -49,7 +93,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Param">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Entity"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//TypeReference"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SQLQuery">
     <eStructuralFeatures xsi:type="ecore:EReference" name="select" eType="#//Select"
@@ -71,10 +116,16 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="alias" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Join">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="joinType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="joinType" eType="#//JoinType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="entity" eType="#//Entity"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="alias" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="joinCondition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="JoinType">
+    <eLiterals name="LEFT_JOIN" literal="LEFT JOIN"/>
+    <eLiterals name="LEFT_OUTER_JOIN" value="1" literal="LEFT OUTER JOIN"/>
+    <eLiterals name="CROSS_JOIN" value="2" literal="CROSS JOIN"/>
+    <eLiterals name="JOIN" value="3" literal="JOIN"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Where">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

@@ -94,18 +94,33 @@ public class SocialRequestSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case SocialRequestPackage.TYPE_REFERENCE:
+      {
+        TypeReference typeReference = (TypeReference)theEObject;
+        T result = caseTypeReference(typeReference);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SocialRequestPackage.ENTITY_TYPE_REFERENCE:
+      {
+        EntityTypeReference entityTypeReference = (EntityTypeReference)theEObject;
+        T result = caseEntityTypeReference(entityTypeReference);
+        if (result == null) result = caseTypeReference(entityTypeReference);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SocialRequestPackage.DATA_TYPE_REFERENCE:
+      {
+        DataTypeReference dataTypeReference = (DataTypeReference)theEObject;
+        T result = caseDataTypeReference(dataTypeReference);
+        if (result == null) result = caseTypeReference(dataTypeReference);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case SocialRequestPackage.MODIFIER:
       {
         Modifier modifier = (Modifier)theEObject;
         T result = caseModifier(modifier);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case SocialRequestPackage.IDENTIFICATION:
-      {
-        Identification identification = (Identification)theEObject;
-        T result = caseIdentification(identification);
-        if (result == null) result = caseModifier(identification);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -232,6 +247,54 @@ public class SocialRequestSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Type Reference</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type Reference</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTypeReference(TypeReference object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Entity Type Reference</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Entity Type Reference</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEntityTypeReference(EntityTypeReference object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Data Type Reference</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Data Type Reference</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDataTypeReference(DataTypeReference object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Modifier</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -243,22 +306,6 @@ public class SocialRequestSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseModifier(Modifier object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Identification</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Identification</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseIdentification(Identification object)
   {
     return null;
   }

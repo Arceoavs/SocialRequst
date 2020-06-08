@@ -4,6 +4,7 @@
 package org.xtext.example.mydsl.socialRequest.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -11,9 +12,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.xtext.example.mydsl.socialRequest.Entity;
 import org.xtext.example.mydsl.socialRequest.Param;
 import org.xtext.example.mydsl.socialRequest.SocialRequestPackage;
+import org.xtext.example.mydsl.socialRequest.TypeReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -52,14 +53,14 @@ public class ParamImpl extends MinimalEObjectImpl.Container implements Param
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' reference.
+   * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getType()
    * @generated
    * @ordered
    */
-  protected Entity type;
+  protected TypeReference type;
 
   /**
    * <!-- begin-user-doc -->
@@ -113,18 +114,8 @@ public class ParamImpl extends MinimalEObjectImpl.Container implements Param
    * @generated
    */
   @Override
-  public Entity getType()
+  public TypeReference getType()
   {
-    if (type != null && type.eIsProxy())
-    {
-      InternalEObject oldType = (InternalEObject)type;
-      type = (Entity)eResolveProxy(oldType);
-      if (type != oldType)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, SocialRequestPackage.PARAM__TYPE, oldType, type));
-      }
-    }
     return type;
   }
 
@@ -133,9 +124,16 @@ public class ParamImpl extends MinimalEObjectImpl.Container implements Param
    * <!-- end-user-doc -->
    * @generated
    */
-  public Entity basicGetType()
+  public NotificationChain basicSetType(TypeReference newType, NotificationChain msgs)
   {
-    return type;
+    TypeReference oldType = type;
+    type = newType;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SocialRequestPackage.PARAM__TYPE, oldType, newType);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
   }
 
   /**
@@ -144,12 +142,36 @@ public class ParamImpl extends MinimalEObjectImpl.Container implements Param
    * @generated
    */
   @Override
-  public void setType(Entity newType)
+  public void setType(TypeReference newType)
   {
-    Entity oldType = type;
-    type = newType;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, SocialRequestPackage.PARAM__TYPE, oldType, type));
+    if (newType != type)
+    {
+      NotificationChain msgs = null;
+      if (type != null)
+        msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SocialRequestPackage.PARAM__TYPE, null, msgs);
+      if (newType != null)
+        msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SocialRequestPackage.PARAM__TYPE, null, msgs);
+      msgs = basicSetType(newType, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, SocialRequestPackage.PARAM__TYPE, newType, newType));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case SocialRequestPackage.PARAM__TYPE:
+        return basicSetType(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -165,8 +187,7 @@ public class ParamImpl extends MinimalEObjectImpl.Container implements Param
       case SocialRequestPackage.PARAM__NAME:
         return getName();
       case SocialRequestPackage.PARAM__TYPE:
-        if (resolve) return getType();
-        return basicGetType();
+        return getType();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -185,7 +206,7 @@ public class ParamImpl extends MinimalEObjectImpl.Container implements Param
         setName((String)newValue);
         return;
       case SocialRequestPackage.PARAM__TYPE:
-        setType((Entity)newValue);
+        setType((TypeReference)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -205,7 +226,7 @@ public class ParamImpl extends MinimalEObjectImpl.Container implements Param
         setName(NAME_EDEFAULT);
         return;
       case SocialRequestPackage.PARAM__TYPE:
-        setType((Entity)null);
+        setType((TypeReference)null);
         return;
     }
     super.eUnset(featureID);

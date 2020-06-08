@@ -51,6 +51,33 @@ public interface SocialRequestFactory extends EFactory
   Attribute createAttribute();
 
   /**
+   * Returns a new object of class '<em>Type Reference</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Type Reference</em>'.
+   * @generated
+   */
+  TypeReference createTypeReference();
+
+  /**
+   * Returns a new object of class '<em>Entity Type Reference</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Entity Type Reference</em>'.
+   * @generated
+   */
+  EntityTypeReference createEntityTypeReference();
+
+  /**
+   * Returns a new object of class '<em>Data Type Reference</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Data Type Reference</em>'.
+   * @generated
+   */
+  DataTypeReference createDataTypeReference();
+
+  /**
    * Returns a new object of class '<em>Modifier</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -58,15 +85,6 @@ public interface SocialRequestFactory extends EFactory
    * @generated
    */
   Modifier createModifier();
-
-  /**
-   * Returns a new object of class '<em>Identification</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Identification</em>'.
-   * @generated
-   */
-  Identification createIdentification();
 
   /**
    * Returns a new object of class '<em>Validation</em>'.

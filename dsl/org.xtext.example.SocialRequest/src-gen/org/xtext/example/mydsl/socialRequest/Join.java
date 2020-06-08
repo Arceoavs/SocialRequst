@@ -28,25 +28,28 @@ public interface Join extends EObject
 {
   /**
    * Returns the value of the '<em><b>Join Type</b></em>' attribute.
+   * The literals are from the enumeration {@link org.xtext.example.mydsl.socialRequest.JoinType}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Join Type</em>' attribute.
-   * @see #setJoinType(String)
+   * @see org.xtext.example.mydsl.socialRequest.JoinType
+   * @see #setJoinType(JoinType)
    * @see org.xtext.example.mydsl.socialRequest.SocialRequestPackage#getJoin_JoinType()
    * @model
    * @generated
    */
-  String getJoinType();
+  JoinType getJoinType();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.socialRequest.Join#getJoinType <em>Join Type</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Join Type</em>' attribute.
+   * @see org.xtext.example.mydsl.socialRequest.JoinType
    * @see #getJoinType()
    * @generated
    */
-  void setJoinType(String value);
+  void setJoinType(JoinType value);
 
   /**
    * Returns the value of the '<em><b>Entity</b></em>' reference.

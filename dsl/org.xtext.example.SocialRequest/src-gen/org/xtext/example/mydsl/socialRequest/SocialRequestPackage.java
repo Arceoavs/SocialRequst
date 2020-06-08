@@ -5,6 +5,7 @@ package org.xtext.example.mydsl.socialRequest;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -169,13 +170,13 @@ public interface SocialRequestPackage extends EPackage
   int ATTRIBUTE__NAME = 1;
 
   /**
-   * The feature id for the '<em><b>Type</b></em>' reference.
+   * The feature id for the '<em><b>Type Ref</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ATTRIBUTE__TYPE = 2;
+  int ATTRIBUTE__TYPE_REF = 2;
 
   /**
    * The feature id for the '<em><b>Modifier</b></em>' containment reference.
@@ -223,6 +224,81 @@ public interface SocialRequestPackage extends EPackage
   int ATTRIBUTE_FEATURE_COUNT = 7;
 
   /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.impl.TypeReferenceImpl <em>Type Reference</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.socialRequest.impl.TypeReferenceImpl
+   * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getTypeReference()
+   * @generated
+   */
+  int TYPE_REFERENCE = 3;
+
+  /**
+   * The number of structural features of the '<em>Type Reference</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPE_REFERENCE_FEATURE_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.impl.EntityTypeReferenceImpl <em>Entity Type Reference</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.socialRequest.impl.EntityTypeReferenceImpl
+   * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getEntityTypeReference()
+   * @generated
+   */
+  int ENTITY_TYPE_REFERENCE = 4;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENTITY_TYPE_REFERENCE__TYPE = TYPE_REFERENCE_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Entity Type Reference</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENTITY_TYPE_REFERENCE_FEATURE_COUNT = TYPE_REFERENCE_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.impl.DataTypeReferenceImpl <em>Data Type Reference</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.socialRequest.impl.DataTypeReferenceImpl
+   * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getDataTypeReference()
+   * @generated
+   */
+  int DATA_TYPE_REFERENCE = 5;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DATA_TYPE_REFERENCE__TYPE = TYPE_REFERENCE_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Data Type Reference</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DATA_TYPE_REFERENCE_FEATURE_COUNT = TYPE_REFERENCE_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.impl.ModifierImpl <em>Modifier</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -230,7 +306,43 @@ public interface SocialRequestPackage extends EPackage
    * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getModifier()
    * @generated
    */
-  int MODIFIER = 3;
+  int MODIFIER = 6;
+
+  /**
+   * The feature id for the '<em><b>Is LOB</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MODIFIER__IS_LOB = 0;
+
+  /**
+   * The feature id for the '<em><b>Is Transient</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MODIFIER__IS_TRANSIENT = 1;
+
+  /**
+   * The feature id for the '<em><b>Is ID</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MODIFIER__IS_ID = 2;
+
+  /**
+   * The feature id for the '<em><b>ID Generation Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MODIFIER__ID_GENERATION_TYPE = 3;
 
   /**
    * The number of structural features of the '<em>Modifier</em>' class.
@@ -239,35 +351,7 @@ public interface SocialRequestPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MODIFIER_FEATURE_COUNT = 0;
-
-  /**
-   * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.impl.IdentificationImpl <em>Identification</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.example.mydsl.socialRequest.impl.IdentificationImpl
-   * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getIdentification()
-   * @generated
-   */
-  int IDENTIFICATION = 4;
-
-  /**
-   * The feature id for the '<em><b>Generation Type</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int IDENTIFICATION__GENERATION_TYPE = MODIFIER_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Identification</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int IDENTIFICATION_FEATURE_COUNT = MODIFIER_FEATURE_COUNT + 1;
+  int MODIFIER_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.impl.ValidationImpl <em>Validation</em>}' class.
@@ -277,7 +361,7 @@ public interface SocialRequestPackage extends EPackage
    * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getValidation()
    * @generated
    */
-  int VALIDATION = 5;
+  int VALIDATION = 7;
 
   /**
    * The feature id for the '<em><b>Min</b></em>' attribute.
@@ -307,13 +391,22 @@ public interface SocialRequestPackage extends EPackage
   int VALIDATION__REGEX = 2;
 
   /**
+   * The feature id for the '<em><b>Validator</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VALIDATION__VALIDATOR = 3;
+
+  /**
    * The number of structural features of the '<em>Validation</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int VALIDATION_FEATURE_COUNT = 3;
+  int VALIDATION_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.impl.RepositoryImpl <em>Repository</em>}' class.
@@ -323,7 +416,7 @@ public interface SocialRequestPackage extends EPackage
    * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getRepository()
    * @generated
    */
-  int REPOSITORY = 6;
+  int REPOSITORY = 8;
 
   /**
    * The feature id for the '<em><b>Entity</b></em>' reference.
@@ -360,7 +453,7 @@ public interface SocialRequestPackage extends EPackage
    * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getQuery()
    * @generated
    */
-  int QUERY = 7;
+  int QUERY = 9;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -415,7 +508,7 @@ public interface SocialRequestPackage extends EPackage
    * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getParam()
    * @generated
    */
-  int PARAM = 8;
+  int PARAM = 10;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -427,7 +520,7 @@ public interface SocialRequestPackage extends EPackage
   int PARAM__NAME = 0;
 
   /**
-   * The feature id for the '<em><b>Type</b></em>' reference.
+   * The feature id for the '<em><b>Type</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -452,7 +545,7 @@ public interface SocialRequestPackage extends EPackage
    * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getSQLQuery()
    * @generated
    */
-  int SQL_QUERY = 9;
+  int SQL_QUERY = 11;
 
   /**
    * The feature id for the '<em><b>Select</b></em>' containment reference.
@@ -516,7 +609,7 @@ public interface SocialRequestPackage extends EPackage
    * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getSelect()
    * @generated
    */
-  int SELECT = 10;
+  int SELECT = 12;
 
   /**
    * The feature id for the '<em><b>Is Distinct</b></em>' attribute.
@@ -553,7 +646,7 @@ public interface SocialRequestPackage extends EPackage
    * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getFrom()
    * @generated
    */
-  int FROM = 11;
+  int FROM = 13;
 
   /**
    * The feature id for the '<em><b>Entity</b></em>' reference.
@@ -590,7 +683,7 @@ public interface SocialRequestPackage extends EPackage
    * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getJoin()
    * @generated
    */
-  int JOIN = 12;
+  int JOIN = 14;
 
   /**
    * The feature id for the '<em><b>Join Type</b></em>' attribute.
@@ -645,7 +738,7 @@ public interface SocialRequestPackage extends EPackage
    * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getWhere()
    * @generated
    */
-  int WHERE = 13;
+  int WHERE = 15;
 
   /**
    * The feature id for the '<em><b>Condition</b></em>' attribute.
@@ -673,7 +766,7 @@ public interface SocialRequestPackage extends EPackage
    * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getOrder()
    * @generated
    */
-  int ORDER = 14;
+  int ORDER = 16;
 
   /**
    * The feature id for the '<em><b>Order</b></em>' attribute.
@@ -692,6 +785,66 @@ public interface SocialRequestPackage extends EPackage
    * @ordered
    */
   int ORDER_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.BasicValidation <em>Basic Validation</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.socialRequest.BasicValidation
+   * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getBasicValidation()
+   * @generated
+   */
+  int BASIC_VALIDATION = 17;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.GenerationType <em>Generation Type</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.socialRequest.GenerationType
+   * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getGenerationType()
+   * @generated
+   */
+  int GENERATION_TYPE = 18;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.FetchType <em>Fetch Type</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.socialRequest.FetchType
+   * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getFetchType()
+   * @generated
+   */
+  int FETCH_TYPE = 19;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.Association <em>Association</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.socialRequest.Association
+   * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getAssociation()
+   * @generated
+   */
+  int ASSOCIATION = 20;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.DataType <em>Data Type</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.socialRequest.DataType
+   * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getDataType()
+   * @generated
+   */
+  int DATA_TYPE = 21;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.JoinType <em>Join Type</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.socialRequest.JoinType
+   * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getJoinType()
+   * @generated
+   */
+  int JOIN_TYPE = 22;
 
 
   /**
@@ -802,15 +955,15 @@ public interface SocialRequestPackage extends EPackage
   EAttribute getAttribute_Name();
 
   /**
-   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.socialRequest.Attribute#getType <em>Type</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.socialRequest.Attribute#getTypeRef <em>Type Ref</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Type</em>'.
-   * @see org.xtext.example.mydsl.socialRequest.Attribute#getType()
+   * @return the meta object for the containment reference '<em>Type Ref</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Attribute#getTypeRef()
    * @see #getAttribute()
    * @generated
    */
-  EReference getAttribute_Type();
+  EReference getAttribute_TypeRef();
 
   /**
    * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.socialRequest.Attribute#getModifier <em>Modifier</em>}'.
@@ -857,6 +1010,58 @@ public interface SocialRequestPackage extends EPackage
   EReference getAttribute_Validations();
 
   /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.socialRequest.TypeReference <em>Type Reference</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Type Reference</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.TypeReference
+   * @generated
+   */
+  EClass getTypeReference();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.socialRequest.EntityTypeReference <em>Entity Type Reference</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Entity Type Reference</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.EntityTypeReference
+   * @generated
+   */
+  EClass getEntityTypeReference();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.socialRequest.EntityTypeReference#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Type</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.EntityTypeReference#getType()
+   * @see #getEntityTypeReference()
+   * @generated
+   */
+  EReference getEntityTypeReference_Type();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.socialRequest.DataTypeReference <em>Data Type Reference</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Data Type Reference</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.DataTypeReference
+   * @generated
+   */
+  EClass getDataTypeReference();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.DataTypeReference#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Type</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.DataTypeReference#getType()
+   * @see #getDataTypeReference()
+   * @generated
+   */
+  EAttribute getDataTypeReference_Type();
+
+  /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.socialRequest.Modifier <em>Modifier</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -867,25 +1072,48 @@ public interface SocialRequestPackage extends EPackage
   EClass getModifier();
 
   /**
-   * Returns the meta object for class '{@link org.xtext.example.mydsl.socialRequest.Identification <em>Identification</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.Modifier#isIsLOB <em>Is LOB</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Identification</em>'.
-   * @see org.xtext.example.mydsl.socialRequest.Identification
+   * @return the meta object for the attribute '<em>Is LOB</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Modifier#isIsLOB()
+   * @see #getModifier()
    * @generated
    */
-  EClass getIdentification();
+  EAttribute getModifier_IsLOB();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.Identification#getGenerationType <em>Generation Type</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.Modifier#isIsTransient <em>Is Transient</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Generation Type</em>'.
-   * @see org.xtext.example.mydsl.socialRequest.Identification#getGenerationType()
-   * @see #getIdentification()
+   * @return the meta object for the attribute '<em>Is Transient</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Modifier#isIsTransient()
+   * @see #getModifier()
    * @generated
    */
-  EAttribute getIdentification_GenerationType();
+  EAttribute getModifier_IsTransient();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.Modifier#isIsID <em>Is ID</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Is ID</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Modifier#isIsID()
+   * @see #getModifier()
+   * @generated
+   */
+  EAttribute getModifier_IsID();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.Modifier#getIDGenerationType <em>ID Generation Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>ID Generation Type</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Modifier#getIDGenerationType()
+   * @see #getModifier()
+   * @generated
+   */
+  EAttribute getModifier_IDGenerationType();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.socialRequest.Validation <em>Validation</em>}'.
@@ -929,6 +1157,17 @@ public interface SocialRequestPackage extends EPackage
    * @generated
    */
   EAttribute getValidation_Regex();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.Validation#getValidator <em>Validator</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Validator</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Validation#getValidator()
+   * @see #getValidation()
+   * @generated
+   */
+  EAttribute getValidation_Validator();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.socialRequest.Repository <em>Repository</em>}'.
@@ -1038,10 +1277,10 @@ public interface SocialRequestPackage extends EPackage
   EAttribute getParam_Name();
 
   /**
-   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.socialRequest.Param#getType <em>Type</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.socialRequest.Param#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Type</em>'.
+   * @return the meta object for the containment reference '<em>Type</em>'.
    * @see org.xtext.example.mydsl.socialRequest.Param#getType()
    * @see #getParam()
    * @generated
@@ -1274,6 +1513,66 @@ public interface SocialRequestPackage extends EPackage
   EAttribute getOrder_Order();
 
   /**
+   * Returns the meta object for enum '{@link org.xtext.example.mydsl.socialRequest.BasicValidation <em>Basic Validation</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>Basic Validation</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.BasicValidation
+   * @generated
+   */
+  EEnum getBasicValidation();
+
+  /**
+   * Returns the meta object for enum '{@link org.xtext.example.mydsl.socialRequest.GenerationType <em>Generation Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>Generation Type</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.GenerationType
+   * @generated
+   */
+  EEnum getGenerationType();
+
+  /**
+   * Returns the meta object for enum '{@link org.xtext.example.mydsl.socialRequest.FetchType <em>Fetch Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>Fetch Type</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.FetchType
+   * @generated
+   */
+  EEnum getFetchType();
+
+  /**
+   * Returns the meta object for enum '{@link org.xtext.example.mydsl.socialRequest.Association <em>Association</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>Association</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Association
+   * @generated
+   */
+  EEnum getAssociation();
+
+  /**
+   * Returns the meta object for enum '{@link org.xtext.example.mydsl.socialRequest.DataType <em>Data Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>Data Type</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.DataType
+   * @generated
+   */
+  EEnum getDataType();
+
+  /**
+   * Returns the meta object for enum '{@link org.xtext.example.mydsl.socialRequest.JoinType <em>Join Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>Join Type</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.JoinType
+   * @generated
+   */
+  EEnum getJoinType();
+
+  /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1383,12 +1682,12 @@ public interface SocialRequestPackage extends EPackage
     EAttribute ATTRIBUTE__NAME = eINSTANCE.getAttribute_Name();
 
     /**
-     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Type Ref</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference ATTRIBUTE__TYPE = eINSTANCE.getAttribute_Type();
+    EReference ATTRIBUTE__TYPE_REF = eINSTANCE.getAttribute_TypeRef();
 
     /**
      * The meta object literal for the '<em><b>Modifier</b></em>' containment reference feature.
@@ -1423,6 +1722,52 @@ public interface SocialRequestPackage extends EPackage
     EReference ATTRIBUTE__VALIDATIONS = eINSTANCE.getAttribute_Validations();
 
     /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.impl.TypeReferenceImpl <em>Type Reference</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.socialRequest.impl.TypeReferenceImpl
+     * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getTypeReference()
+     * @generated
+     */
+    EClass TYPE_REFERENCE = eINSTANCE.getTypeReference();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.impl.EntityTypeReferenceImpl <em>Entity Type Reference</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.socialRequest.impl.EntityTypeReferenceImpl
+     * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getEntityTypeReference()
+     * @generated
+     */
+    EClass ENTITY_TYPE_REFERENCE = eINSTANCE.getEntityTypeReference();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ENTITY_TYPE_REFERENCE__TYPE = eINSTANCE.getEntityTypeReference_Type();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.impl.DataTypeReferenceImpl <em>Data Type Reference</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.socialRequest.impl.DataTypeReferenceImpl
+     * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getDataTypeReference()
+     * @generated
+     */
+    EClass DATA_TYPE_REFERENCE = eINSTANCE.getDataTypeReference();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DATA_TYPE_REFERENCE__TYPE = eINSTANCE.getDataTypeReference_Type();
+
+    /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.impl.ModifierImpl <em>Modifier</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1433,22 +1778,36 @@ public interface SocialRequestPackage extends EPackage
     EClass MODIFIER = eINSTANCE.getModifier();
 
     /**
-     * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.impl.IdentificationImpl <em>Identification</em>}' class.
+     * The meta object literal for the '<em><b>Is LOB</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.xtext.example.mydsl.socialRequest.impl.IdentificationImpl
-     * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getIdentification()
      * @generated
      */
-    EClass IDENTIFICATION = eINSTANCE.getIdentification();
+    EAttribute MODIFIER__IS_LOB = eINSTANCE.getModifier_IsLOB();
 
     /**
-     * The meta object literal for the '<em><b>Generation Type</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Is Transient</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute IDENTIFICATION__GENERATION_TYPE = eINSTANCE.getIdentification_GenerationType();
+    EAttribute MODIFIER__IS_TRANSIENT = eINSTANCE.getModifier_IsTransient();
+
+    /**
+     * The meta object literal for the '<em><b>Is ID</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MODIFIER__IS_ID = eINSTANCE.getModifier_IsID();
+
+    /**
+     * The meta object literal for the '<em><b>ID Generation Type</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MODIFIER__ID_GENERATION_TYPE = eINSTANCE.getModifier_IDGenerationType();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.impl.ValidationImpl <em>Validation</em>}' class.
@@ -1483,6 +1842,14 @@ public interface SocialRequestPackage extends EPackage
      * @generated
      */
     EAttribute VALIDATION__REGEX = eINSTANCE.getValidation_Regex();
+
+    /**
+     * The meta object literal for the '<em><b>Validator</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute VALIDATION__VALIDATOR = eINSTANCE.getValidation_Validator();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.impl.RepositoryImpl <em>Repository</em>}' class.
@@ -1571,7 +1938,7 @@ public interface SocialRequestPackage extends EPackage
     EAttribute PARAM__NAME = eINSTANCE.getParam_Name();
 
     /**
-     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1757,6 +2124,66 @@ public interface SocialRequestPackage extends EPackage
      * @generated
      */
     EAttribute ORDER__ORDER = eINSTANCE.getOrder_Order();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.BasicValidation <em>Basic Validation</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.socialRequest.BasicValidation
+     * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getBasicValidation()
+     * @generated
+     */
+    EEnum BASIC_VALIDATION = eINSTANCE.getBasicValidation();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.GenerationType <em>Generation Type</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.socialRequest.GenerationType
+     * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getGenerationType()
+     * @generated
+     */
+    EEnum GENERATION_TYPE = eINSTANCE.getGenerationType();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.FetchType <em>Fetch Type</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.socialRequest.FetchType
+     * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getFetchType()
+     * @generated
+     */
+    EEnum FETCH_TYPE = eINSTANCE.getFetchType();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.Association <em>Association</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.socialRequest.Association
+     * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getAssociation()
+     * @generated
+     */
+    EEnum ASSOCIATION = eINSTANCE.getAssociation();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.DataType <em>Data Type</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.socialRequest.DataType
+     * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getDataType()
+     * @generated
+     */
+    EEnum DATA_TYPE = eINSTANCE.getDataType();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.JoinType <em>Join Type</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.socialRequest.JoinType
+     * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getJoinType()
+     * @generated
+     */
+    EEnum JOIN_TYPE = eINSTANCE.getJoinType();
 
   }
 
