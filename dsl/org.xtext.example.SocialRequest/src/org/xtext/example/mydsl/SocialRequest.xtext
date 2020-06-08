@@ -48,7 +48,7 @@ Validation:
 ;
 
 enum BasicValidation:
-	NOT_NULL='not-null' | NOT_BLANK='not-blank' | PAST='past' | UNIQUE='unique' | EMAIL='valid-email'
+	NOT_NULL='NotNull' | NOT_BLANK='NotBlank' | PAST='Past' | UNIQUE='Unique' | EMAIL='Email'
 ;
 
 terminal POSSIBLY_SIGNED_INT returns ecore::EBigDecimal:
@@ -56,19 +56,19 @@ terminal POSSIBLY_SIGNED_INT returns ecore::EBigDecimal:
 ;
 
 enum GenerationType:
-	AUTO='auto' | TABLE='table' | IDENTITY='identity' | SEQUENCE='sequence'
+	AUTO='AUTO' | TABLE='TABLE' | IDENTITY='IDENTITY' | SEQUENCE='SEQUENCE'
 ;
 
 enum FetchType:
-	EAGER='eager' | LAZY='lazy'
+	EAGER='EAGER' | LAZY='LAZY'
 ;
 	
 enum Association:
-	ONE_TO_MANY='one-to-many' | MANY_TO_ONE='many-to-one' | ONE_TO_ONE='one-to-one' | MANY_TO_MANY='many-to-many'
+	ONE_TO_MANY='OneToMany' | MANY_TO_ONE='ManyToOne' | ONE_TO_ONE='OneToOne' | MANY_TO_MANY='ManyToMany'
 ;
 
 enum DataType:
-	STRING='string' | LONG='long' | FLOAT='float' | DOUBLE='double' | CHAR='char' | INT='int' | BOOLEAN='boolean' | DATE='date'
+	STRING='String' | LONG='long' | FLOAT='float' | DOUBLE='double' | CHAR='char' | INT='int' | BOOLEAN='boolean' | DATE='Date'
 ;
 
 // Repository

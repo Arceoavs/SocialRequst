@@ -658,31 +658,31 @@ rule__BasicValidation__Alternatives
 :
 	(
 		{ before(grammarAccess.getBasicValidationAccess().getNOT_NULLEnumLiteralDeclaration_0()); }
-		('not-null')
+		('NotNull')
 		{ after(grammarAccess.getBasicValidationAccess().getNOT_NULLEnumLiteralDeclaration_0()); }
 	)
 	|
 	(
 		{ before(grammarAccess.getBasicValidationAccess().getNOT_BLANKEnumLiteralDeclaration_1()); }
-		('not-blank')
+		('NotBlank')
 		{ after(grammarAccess.getBasicValidationAccess().getNOT_BLANKEnumLiteralDeclaration_1()); }
 	)
 	|
 	(
 		{ before(grammarAccess.getBasicValidationAccess().getPASTEnumLiteralDeclaration_2()); }
-		('past')
+		('Past')
 		{ after(grammarAccess.getBasicValidationAccess().getPASTEnumLiteralDeclaration_2()); }
 	)
 	|
 	(
 		{ before(grammarAccess.getBasicValidationAccess().getUNIQUEEnumLiteralDeclaration_3()); }
-		('unique')
+		('Unique')
 		{ after(grammarAccess.getBasicValidationAccess().getUNIQUEEnumLiteralDeclaration_3()); }
 	)
 	|
 	(
 		{ before(grammarAccess.getBasicValidationAccess().getEMAILEnumLiteralDeclaration_4()); }
-		('valid-email')
+		('Email')
 		{ after(grammarAccess.getBasicValidationAccess().getEMAILEnumLiteralDeclaration_4()); }
 	)
 ;
@@ -697,25 +697,25 @@ rule__GenerationType__Alternatives
 :
 	(
 		{ before(grammarAccess.getGenerationTypeAccess().getAUTOEnumLiteralDeclaration_0()); }
-		('auto')
+		('AUTO')
 		{ after(grammarAccess.getGenerationTypeAccess().getAUTOEnumLiteralDeclaration_0()); }
 	)
 	|
 	(
 		{ before(grammarAccess.getGenerationTypeAccess().getTABLEEnumLiteralDeclaration_1()); }
-		('table')
+		('TABLE')
 		{ after(grammarAccess.getGenerationTypeAccess().getTABLEEnumLiteralDeclaration_1()); }
 	)
 	|
 	(
 		{ before(grammarAccess.getGenerationTypeAccess().getIDENTITYEnumLiteralDeclaration_2()); }
-		('identity')
+		('IDENTITY')
 		{ after(grammarAccess.getGenerationTypeAccess().getIDENTITYEnumLiteralDeclaration_2()); }
 	)
 	|
 	(
 		{ before(grammarAccess.getGenerationTypeAccess().getSEQUENCEEnumLiteralDeclaration_3()); }
-		('sequence')
+		('SEQUENCE')
 		{ after(grammarAccess.getGenerationTypeAccess().getSEQUENCEEnumLiteralDeclaration_3()); }
 	)
 ;
@@ -730,13 +730,13 @@ rule__FetchType__Alternatives
 :
 	(
 		{ before(grammarAccess.getFetchTypeAccess().getEAGEREnumLiteralDeclaration_0()); }
-		('eager')
+		('EAGER')
 		{ after(grammarAccess.getFetchTypeAccess().getEAGEREnumLiteralDeclaration_0()); }
 	)
 	|
 	(
 		{ before(grammarAccess.getFetchTypeAccess().getLAZYEnumLiteralDeclaration_1()); }
-		('lazy')
+		('LAZY')
 		{ after(grammarAccess.getFetchTypeAccess().getLAZYEnumLiteralDeclaration_1()); }
 	)
 ;
@@ -751,25 +751,25 @@ rule__Association__Alternatives
 :
 	(
 		{ before(grammarAccess.getAssociationAccess().getONE_TO_MANYEnumLiteralDeclaration_0()); }
-		('one-to-many')
+		('OneToMany')
 		{ after(grammarAccess.getAssociationAccess().getONE_TO_MANYEnumLiteralDeclaration_0()); }
 	)
 	|
 	(
 		{ before(grammarAccess.getAssociationAccess().getMANY_TO_ONEEnumLiteralDeclaration_1()); }
-		('many-to-one')
+		('ManyToOne')
 		{ after(grammarAccess.getAssociationAccess().getMANY_TO_ONEEnumLiteralDeclaration_1()); }
 	)
 	|
 	(
 		{ before(grammarAccess.getAssociationAccess().getONE_TO_ONEEnumLiteralDeclaration_2()); }
-		('one-to-one')
+		('OneToOne')
 		{ after(grammarAccess.getAssociationAccess().getONE_TO_ONEEnumLiteralDeclaration_2()); }
 	)
 	|
 	(
 		{ before(grammarAccess.getAssociationAccess().getMANY_TO_MANYEnumLiteralDeclaration_3()); }
-		('many-to-many')
+		('ManyToMany')
 		{ after(grammarAccess.getAssociationAccess().getMANY_TO_MANYEnumLiteralDeclaration_3()); }
 	)
 ;
@@ -784,7 +784,7 @@ rule__DataType__Alternatives
 :
 	(
 		{ before(grammarAccess.getDataTypeAccess().getSTRINGEnumLiteralDeclaration_0()); }
-		('string')
+		('String')
 		{ after(grammarAccess.getDataTypeAccess().getSTRINGEnumLiteralDeclaration_0()); }
 	)
 	|
@@ -826,7 +826,7 @@ rule__DataType__Alternatives
 	|
 	(
 		{ before(grammarAccess.getDataTypeAccess().getDATEEnumLiteralDeclaration_7()); }
-		('date')
+		('Date')
 		{ after(grammarAccess.getDataTypeAccess().getDATEEnumLiteralDeclaration_7()); }
 	)
 ;
