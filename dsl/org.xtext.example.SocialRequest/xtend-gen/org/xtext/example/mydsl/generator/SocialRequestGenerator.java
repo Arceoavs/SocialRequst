@@ -123,7 +123,7 @@ public class SocialRequestGenerator extends AbstractGenerator {
       TypeReference _typeRef = attribute.getTypeRef();
       if ((_typeRef instanceof EntityTypeReference)) {
         TypeReference _typeRef_1 = attribute.getTypeRef();
-        rawAttributeType = ((EntityTypeReference) _typeRef_1).getType().toString();
+        rawAttributeType = ((EntityTypeReference) _typeRef_1).getType().getName().toString();
       } else {
         TypeReference _typeRef_2 = attribute.getTypeRef();
         rawAttributeType = ((DataTypeReference) _typeRef_2).getType().toString();

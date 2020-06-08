@@ -39,25 +39,25 @@ class SocialRequestGenerator extends AbstractGenerator {
 		import javax.persistence.*;
 		import javax.validation.constraints.*;
 
-		public class Â«entity.nameÂ» implements Serializable {
+		public class «entity.name» implements Serializable {
 			private static final long serialVersionUID = 1L;
 
-			Â«FOR attribute : entity.attributesÂ»
-			Â«generateAttribute(attribute)Â»
-			Â«ENDFORÂ»
+			«FOR attribute : entity.attributes»
+			«generateAttribute(attribute)»
+			«ENDFOR»
 
-			Â«generateToStringMethod(entity)Â»
+			«generateToStringMethod(entity)»
 		}
 	'''
 	
 	private def generateAttribute(Attribute attribute)'''
-		Â«FOR validation : attribute.validationsÂ»
-			Â«generateValidation(validation)Â»
-		Â«ENDFORÂ»
-		Â«IF attribute.association != nullÂ»
-			Â«generateAssociationAnnotation(attribute)Â»
-		Â«ENDIFÂ»
-		private Â«attributeType(attribute)Â» Â«attribute.nameÂ»;
+		«FOR validation : attribute.validations»
+			«generateValidation(validation)»
+		«ENDFOR»
+		«IF attribute.association != null»
+			«generateAssociationAnnotation(attribute)»
+		«ENDIF»
+		private «attributeType(attribute)» «attribute.name»;
 
 	'''
 
@@ -66,7 +66,7 @@ class SocialRequestGenerator extends AbstractGenerator {
 		var String rawAttributeType
 
 		if (attribute.typeRef instanceof EntityTypeReference) {
-			rawAttributeType = (attribute.typeRef as EntityTypeReference).type.toString
+			rawAttributeType = (attribute.typeRef as EntityTypeReference).type.name.toString
 		} else {
 			rawAttributeType = (attribute.typeRef as DataTypeReference).type.toString
 		}
@@ -91,23 +91,23 @@ class SocialRequestGenerator extends AbstractGenerator {
 	}
 	
 	private def generateAssociationAnnotation(Attribute attribute)'''
-		Â«IF attribute.mappedBy == null && attribute.fetchType == nullÂ»
-			@Â«attribute.association.literalÂ»
-		Â«ELSEIF attribute.mappedBy != null && attribute.fetchType != nullÂ»
-			@Â«attribute.association.literalÂ»(mappedBy = Â«attribute.mappedByÂ», fetch = Â«attribute.fetchType.literalÂ»)
-		Â«ELSEIF attribute.mappedBy != null && attribute.fetchType == nullÂ»
-			@Â«attribute.association.literalÂ»(mappedBy = Â«attribute.mappedByÂ»)
-		Â«ENDIFÂ»
+		«IF attribute.mappedBy == null && attribute.fetchType == null»
+			@«attribute.association.literal»
+		«ELSEIF attribute.mappedBy != null && attribute.fetchType != null»
+			@«attribute.association.literal»(mappedBy = «attribute.mappedBy», fetch = «attribute.fetchType.literal»)
+		«ELSEIF attribute.mappedBy != null && attribute.fetchType == null»
+			@«attribute.association.literal»(mappedBy = «attribute.mappedBy»)
+		«ENDIF»
 	'''
 	
 	private def generateToStringMethod(Entity entity)'''
 		@Override
 		public String toString() {
 			return (
-				"Â«entity.nameÂ»{" +
-				Â«FOR attribute : entity.attributesÂ»
-				"Â«attribute.nameÂ»='" + Â«attribute.nameÂ» + '\'' +
-				Â«ENDFORÂ»
+				"«entity.name»{" +
+				«FOR attribute : entity.attributes»
+				"«attribute.name»='" + «attribute.name» + '\'' +
+				«ENDFOR»
 				'}';
 			)
 		}
