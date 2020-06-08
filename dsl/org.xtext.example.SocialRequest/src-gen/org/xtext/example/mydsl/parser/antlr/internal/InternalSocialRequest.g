@@ -1448,7 +1448,7 @@ ruleBasicValidation returns [Enumerator current=null]
 }:
 	(
 		(
-			enumLiteral_0='not-null'
+			enumLiteral_0='NotNull'
 			{
 				$current = grammarAccess.getBasicValidationAccess().getNOT_NULLEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
 				newLeafNode(enumLiteral_0, grammarAccess.getBasicValidationAccess().getNOT_NULLEnumLiteralDeclaration_0());
@@ -1456,7 +1456,7 @@ ruleBasicValidation returns [Enumerator current=null]
 		)
 		    |
 		(
-			enumLiteral_1='not-blank'
+			enumLiteral_1='NotBlank'
 			{
 				$current = grammarAccess.getBasicValidationAccess().getNOT_BLANKEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
 				newLeafNode(enumLiteral_1, grammarAccess.getBasicValidationAccess().getNOT_BLANKEnumLiteralDeclaration_1());
@@ -1464,7 +1464,7 @@ ruleBasicValidation returns [Enumerator current=null]
 		)
 		    |
 		(
-			enumLiteral_2='past'
+			enumLiteral_2='Past'
 			{
 				$current = grammarAccess.getBasicValidationAccess().getPASTEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
 				newLeafNode(enumLiteral_2, grammarAccess.getBasicValidationAccess().getPASTEnumLiteralDeclaration_2());
@@ -1472,7 +1472,7 @@ ruleBasicValidation returns [Enumerator current=null]
 		)
 		    |
 		(
-			enumLiteral_3='unique'
+			enumLiteral_3='Unique'
 			{
 				$current = grammarAccess.getBasicValidationAccess().getUNIQUEEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
 				newLeafNode(enumLiteral_3, grammarAccess.getBasicValidationAccess().getUNIQUEEnumLiteralDeclaration_3());
@@ -1480,7 +1480,7 @@ ruleBasicValidation returns [Enumerator current=null]
 		)
 		    |
 		(
-			enumLiteral_4='valid-email'
+			enumLiteral_4='Email'
 			{
 				$current = grammarAccess.getBasicValidationAccess().getEMAILEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
 				newLeafNode(enumLiteral_4, grammarAccess.getBasicValidationAccess().getEMAILEnumLiteralDeclaration_4());
@@ -1499,7 +1499,7 @@ ruleGenerationType returns [Enumerator current=null]
 }:
 	(
 		(
-			enumLiteral_0='auto'
+			enumLiteral_0='AUTO'
 			{
 				$current = grammarAccess.getGenerationTypeAccess().getAUTOEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
 				newLeafNode(enumLiteral_0, grammarAccess.getGenerationTypeAccess().getAUTOEnumLiteralDeclaration_0());
@@ -1507,7 +1507,7 @@ ruleGenerationType returns [Enumerator current=null]
 		)
 		    |
 		(
-			enumLiteral_1='table'
+			enumLiteral_1='TABLE'
 			{
 				$current = grammarAccess.getGenerationTypeAccess().getTABLEEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
 				newLeafNode(enumLiteral_1, grammarAccess.getGenerationTypeAccess().getTABLEEnumLiteralDeclaration_1());
@@ -1515,7 +1515,7 @@ ruleGenerationType returns [Enumerator current=null]
 		)
 		    |
 		(
-			enumLiteral_2='identity'
+			enumLiteral_2='IDENTITY'
 			{
 				$current = grammarAccess.getGenerationTypeAccess().getIDENTITYEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
 				newLeafNode(enumLiteral_2, grammarAccess.getGenerationTypeAccess().getIDENTITYEnumLiteralDeclaration_2());
@@ -1523,7 +1523,7 @@ ruleGenerationType returns [Enumerator current=null]
 		)
 		    |
 		(
-			enumLiteral_3='sequence'
+			enumLiteral_3='SEQUENCE'
 			{
 				$current = grammarAccess.getGenerationTypeAccess().getSEQUENCEEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
 				newLeafNode(enumLiteral_3, grammarAccess.getGenerationTypeAccess().getSEQUENCEEnumLiteralDeclaration_3());
@@ -1542,7 +1542,7 @@ ruleFetchType returns [Enumerator current=null]
 }:
 	(
 		(
-			enumLiteral_0='eager'
+			enumLiteral_0='EAGER'
 			{
 				$current = grammarAccess.getFetchTypeAccess().getEAGEREnumLiteralDeclaration_0().getEnumLiteral().getInstance();
 				newLeafNode(enumLiteral_0, grammarAccess.getFetchTypeAccess().getEAGEREnumLiteralDeclaration_0());
@@ -1550,7 +1550,7 @@ ruleFetchType returns [Enumerator current=null]
 		)
 		    |
 		(
-			enumLiteral_1='lazy'
+			enumLiteral_1='LAZY'
 			{
 				$current = grammarAccess.getFetchTypeAccess().getLAZYEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
 				newLeafNode(enumLiteral_1, grammarAccess.getFetchTypeAccess().getLAZYEnumLiteralDeclaration_1());
@@ -1569,7 +1569,7 @@ ruleAssociation returns [Enumerator current=null]
 }:
 	(
 		(
-			enumLiteral_0='one-to-many'
+			enumLiteral_0='OneToMany'
 			{
 				$current = grammarAccess.getAssociationAccess().getONE_TO_MANYEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
 				newLeafNode(enumLiteral_0, grammarAccess.getAssociationAccess().getONE_TO_MANYEnumLiteralDeclaration_0());
@@ -1577,7 +1577,7 @@ ruleAssociation returns [Enumerator current=null]
 		)
 		    |
 		(
-			enumLiteral_1='many-to-one'
+			enumLiteral_1='ManyToOne'
 			{
 				$current = grammarAccess.getAssociationAccess().getMANY_TO_ONEEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
 				newLeafNode(enumLiteral_1, grammarAccess.getAssociationAccess().getMANY_TO_ONEEnumLiteralDeclaration_1());
@@ -1585,7 +1585,7 @@ ruleAssociation returns [Enumerator current=null]
 		)
 		    |
 		(
-			enumLiteral_2='one-to-one'
+			enumLiteral_2='OneToOne'
 			{
 				$current = grammarAccess.getAssociationAccess().getONE_TO_ONEEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
 				newLeafNode(enumLiteral_2, grammarAccess.getAssociationAccess().getONE_TO_ONEEnumLiteralDeclaration_2());
@@ -1593,7 +1593,7 @@ ruleAssociation returns [Enumerator current=null]
 		)
 		    |
 		(
-			enumLiteral_3='many-to-many'
+			enumLiteral_3='ManyToMany'
 			{
 				$current = grammarAccess.getAssociationAccess().getMANY_TO_MANYEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
 				newLeafNode(enumLiteral_3, grammarAccess.getAssociationAccess().getMANY_TO_MANYEnumLiteralDeclaration_3());
@@ -1612,7 +1612,7 @@ ruleDataType returns [Enumerator current=null]
 }:
 	(
 		(
-			enumLiteral_0='string'
+			enumLiteral_0='String'
 			{
 				$current = grammarAccess.getDataTypeAccess().getSTRINGEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
 				newLeafNode(enumLiteral_0, grammarAccess.getDataTypeAccess().getSTRINGEnumLiteralDeclaration_0());
@@ -1668,7 +1668,7 @@ ruleDataType returns [Enumerator current=null]
 		)
 		    |
 		(
-			enumLiteral_7='date'
+			enumLiteral_7='Date'
 			{
 				$current = grammarAccess.getDataTypeAccess().getDATEEnumLiteralDeclaration_7().getEnumLiteral().getInstance();
 				newLeafNode(enumLiteral_7, grammarAccess.getDataTypeAccess().getDATEEnumLiteralDeclaration_7());

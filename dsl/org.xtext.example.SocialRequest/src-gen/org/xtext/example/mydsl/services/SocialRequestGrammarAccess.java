@@ -863,114 +863,114 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		private final EnumLiteralDeclaration cUNIQUEEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
 		private final Keyword cUNIQUEUniqueKeyword_3_0 = (Keyword)cUNIQUEEnumLiteralDeclaration_3.eContents().get(0);
 		private final EnumLiteralDeclaration cEMAILEnumLiteralDeclaration_4 = (EnumLiteralDeclaration)cAlternatives.eContents().get(4);
-		private final Keyword cEMAILValidEmailKeyword_4_0 = (Keyword)cEMAILEnumLiteralDeclaration_4.eContents().get(0);
+		private final Keyword cEMAILEmailKeyword_4_0 = (Keyword)cEMAILEnumLiteralDeclaration_4.eContents().get(0);
 		
 		//enum BasicValidation:
-		//	NOT_NULL='not-null' | NOT_BLANK='not-blank' | PAST='past' | UNIQUE='unique' | EMAIL='valid-email';
+		//	NOT_NULL='NotNull' | NOT_BLANK='NotBlank' | PAST='Past' | UNIQUE='Unique' | EMAIL='Email';
 		public EnumRule getRule() { return rule; }
 		
-		//NOT_NULL='not-null' | NOT_BLANK='not-blank' | PAST='past' | UNIQUE='unique' | EMAIL='valid-email'
+		//NOT_NULL='NotNull' | NOT_BLANK='NotBlank' | PAST='Past' | UNIQUE='Unique' | EMAIL='Email'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//NOT_NULL='not-null'
+		//NOT_NULL='NotNull'
 		public EnumLiteralDeclaration getNOT_NULLEnumLiteralDeclaration_0() { return cNOT_NULLEnumLiteralDeclaration_0; }
 		
-		//'not-null'
+		//'NotNull'
 		public Keyword getNOT_NULLNotNullKeyword_0_0() { return cNOT_NULLNotNullKeyword_0_0; }
 		
-		//NOT_BLANK='not-blank'
+		//NOT_BLANK='NotBlank'
 		public EnumLiteralDeclaration getNOT_BLANKEnumLiteralDeclaration_1() { return cNOT_BLANKEnumLiteralDeclaration_1; }
 		
-		//'not-blank'
+		//'NotBlank'
 		public Keyword getNOT_BLANKNotBlankKeyword_1_0() { return cNOT_BLANKNotBlankKeyword_1_0; }
 		
-		//PAST='past'
+		//PAST='Past'
 		public EnumLiteralDeclaration getPASTEnumLiteralDeclaration_2() { return cPASTEnumLiteralDeclaration_2; }
 		
-		//'past'
+		//'Past'
 		public Keyword getPASTPastKeyword_2_0() { return cPASTPastKeyword_2_0; }
 		
-		//UNIQUE='unique'
+		//UNIQUE='Unique'
 		public EnumLiteralDeclaration getUNIQUEEnumLiteralDeclaration_3() { return cUNIQUEEnumLiteralDeclaration_3; }
 		
-		//'unique'
+		//'Unique'
 		public Keyword getUNIQUEUniqueKeyword_3_0() { return cUNIQUEUniqueKeyword_3_0; }
 		
-		//EMAIL='valid-email'
+		//EMAIL='Email'
 		public EnumLiteralDeclaration getEMAILEnumLiteralDeclaration_4() { return cEMAILEnumLiteralDeclaration_4; }
 		
-		//'valid-email'
-		public Keyword getEMAILValidEmailKeyword_4_0() { return cEMAILValidEmailKeyword_4_0; }
+		//'Email'
+		public Keyword getEMAILEmailKeyword_4_0() { return cEMAILEmailKeyword_4_0; }
 	}
 	public class GenerationTypeElements extends AbstractEnumRuleElementFinder {
 		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.GenerationType");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final EnumLiteralDeclaration cAUTOEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
-		private final Keyword cAUTOAutoKeyword_0_0 = (Keyword)cAUTOEnumLiteralDeclaration_0.eContents().get(0);
+		private final Keyword cAUTOAUTOKeyword_0_0 = (Keyword)cAUTOEnumLiteralDeclaration_0.eContents().get(0);
 		private final EnumLiteralDeclaration cTABLEEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
-		private final Keyword cTABLETableKeyword_1_0 = (Keyword)cTABLEEnumLiteralDeclaration_1.eContents().get(0);
+		private final Keyword cTABLETABLEKeyword_1_0 = (Keyword)cTABLEEnumLiteralDeclaration_1.eContents().get(0);
 		private final EnumLiteralDeclaration cIDENTITYEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
-		private final Keyword cIDENTITYIdentityKeyword_2_0 = (Keyword)cIDENTITYEnumLiteralDeclaration_2.eContents().get(0);
+		private final Keyword cIDENTITYIDENTITYKeyword_2_0 = (Keyword)cIDENTITYEnumLiteralDeclaration_2.eContents().get(0);
 		private final EnumLiteralDeclaration cSEQUENCEEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
-		private final Keyword cSEQUENCESequenceKeyword_3_0 = (Keyword)cSEQUENCEEnumLiteralDeclaration_3.eContents().get(0);
+		private final Keyword cSEQUENCESEQUENCEKeyword_3_0 = (Keyword)cSEQUENCEEnumLiteralDeclaration_3.eContents().get(0);
 		
 		//enum GenerationType:
-		//	AUTO='auto' | TABLE='table' | IDENTITY='identity' | SEQUENCE='sequence';
+		//	AUTO | TABLE | IDENTITY | SEQUENCE;
 		public EnumRule getRule() { return rule; }
 		
-		//AUTO='auto' | TABLE='table' | IDENTITY='identity' | SEQUENCE='sequence'
+		//AUTO | TABLE | IDENTITY | SEQUENCE
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//AUTO='auto'
+		//AUTO
 		public EnumLiteralDeclaration getAUTOEnumLiteralDeclaration_0() { return cAUTOEnumLiteralDeclaration_0; }
 		
-		//'auto'
-		public Keyword getAUTOAutoKeyword_0_0() { return cAUTOAutoKeyword_0_0; }
+		//'AUTO'
+		public Keyword getAUTOAUTOKeyword_0_0() { return cAUTOAUTOKeyword_0_0; }
 		
-		//TABLE='table'
+		//TABLE
 		public EnumLiteralDeclaration getTABLEEnumLiteralDeclaration_1() { return cTABLEEnumLiteralDeclaration_1; }
 		
-		//'table'
-		public Keyword getTABLETableKeyword_1_0() { return cTABLETableKeyword_1_0; }
+		//'TABLE'
+		public Keyword getTABLETABLEKeyword_1_0() { return cTABLETABLEKeyword_1_0; }
 		
-		//IDENTITY='identity'
+		//IDENTITY
 		public EnumLiteralDeclaration getIDENTITYEnumLiteralDeclaration_2() { return cIDENTITYEnumLiteralDeclaration_2; }
 		
-		//'identity'
-		public Keyword getIDENTITYIdentityKeyword_2_0() { return cIDENTITYIdentityKeyword_2_0; }
+		//'IDENTITY'
+		public Keyword getIDENTITYIDENTITYKeyword_2_0() { return cIDENTITYIDENTITYKeyword_2_0; }
 		
-		//SEQUENCE='sequence'
+		//SEQUENCE
 		public EnumLiteralDeclaration getSEQUENCEEnumLiteralDeclaration_3() { return cSEQUENCEEnumLiteralDeclaration_3; }
 		
-		//'sequence'
-		public Keyword getSEQUENCESequenceKeyword_3_0() { return cSEQUENCESequenceKeyword_3_0; }
+		//'SEQUENCE'
+		public Keyword getSEQUENCESEQUENCEKeyword_3_0() { return cSEQUENCESEQUENCEKeyword_3_0; }
 	}
 	public class FetchTypeElements extends AbstractEnumRuleElementFinder {
 		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.FetchType");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final EnumLiteralDeclaration cEAGEREnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
-		private final Keyword cEAGEREagerKeyword_0_0 = (Keyword)cEAGEREnumLiteralDeclaration_0.eContents().get(0);
+		private final Keyword cEAGEREAGERKeyword_0_0 = (Keyword)cEAGEREnumLiteralDeclaration_0.eContents().get(0);
 		private final EnumLiteralDeclaration cLAZYEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
-		private final Keyword cLAZYLazyKeyword_1_0 = (Keyword)cLAZYEnumLiteralDeclaration_1.eContents().get(0);
+		private final Keyword cLAZYLAZYKeyword_1_0 = (Keyword)cLAZYEnumLiteralDeclaration_1.eContents().get(0);
 		
 		//enum FetchType:
-		//	EAGER='eager' | LAZY='lazy';
+		//	EAGER | LAZY;
 		public EnumRule getRule() { return rule; }
 		
-		//EAGER='eager' | LAZY='lazy'
+		//EAGER | LAZY
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//EAGER='eager'
+		//EAGER
 		public EnumLiteralDeclaration getEAGEREnumLiteralDeclaration_0() { return cEAGEREnumLiteralDeclaration_0; }
 		
-		//'eager'
-		public Keyword getEAGEREagerKeyword_0_0() { return cEAGEREagerKeyword_0_0; }
+		//'EAGER'
+		public Keyword getEAGEREAGERKeyword_0_0() { return cEAGEREAGERKeyword_0_0; }
 		
-		//LAZY='lazy'
+		//LAZY
 		public EnumLiteralDeclaration getLAZYEnumLiteralDeclaration_1() { return cLAZYEnumLiteralDeclaration_1; }
 		
-		//'lazy'
-		public Keyword getLAZYLazyKeyword_1_0() { return cLAZYLazyKeyword_1_0; }
+		//'LAZY'
+		public Keyword getLAZYLAZYKeyword_1_0() { return cLAZYLAZYKeyword_1_0; }
 	}
 	public class AssociationElements extends AbstractEnumRuleElementFinder {
 		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.Association");
@@ -985,34 +985,34 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cMANY_TO_MANYManyToManyKeyword_3_0 = (Keyword)cMANY_TO_MANYEnumLiteralDeclaration_3.eContents().get(0);
 		
 		//enum Association:
-		//	ONE_TO_MANY='one-to-many' | MANY_TO_ONE='many-to-one' | ONE_TO_ONE='one-to-one' | MANY_TO_MANY='many-to-many';
+		//	ONE_TO_MANY='OneToMany' | MANY_TO_ONE='ManyToOne' | ONE_TO_ONE='OneToOne' | MANY_TO_MANY='ManyToMany';
 		public EnumRule getRule() { return rule; }
 		
-		//ONE_TO_MANY='one-to-many' | MANY_TO_ONE='many-to-one' | ONE_TO_ONE='one-to-one' | MANY_TO_MANY='many-to-many'
+		//ONE_TO_MANY='OneToMany' | MANY_TO_ONE='ManyToOne' | ONE_TO_ONE='OneToOne' | MANY_TO_MANY='ManyToMany'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//ONE_TO_MANY='one-to-many'
+		//ONE_TO_MANY='OneToMany'
 		public EnumLiteralDeclaration getONE_TO_MANYEnumLiteralDeclaration_0() { return cONE_TO_MANYEnumLiteralDeclaration_0; }
 		
-		//'one-to-many'
+		//'OneToMany'
 		public Keyword getONE_TO_MANYOneToManyKeyword_0_0() { return cONE_TO_MANYOneToManyKeyword_0_0; }
 		
-		//MANY_TO_ONE='many-to-one'
+		//MANY_TO_ONE='ManyToOne'
 		public EnumLiteralDeclaration getMANY_TO_ONEEnumLiteralDeclaration_1() { return cMANY_TO_ONEEnumLiteralDeclaration_1; }
 		
-		//'many-to-one'
+		//'ManyToOne'
 		public Keyword getMANY_TO_ONEManyToOneKeyword_1_0() { return cMANY_TO_ONEManyToOneKeyword_1_0; }
 		
-		//ONE_TO_ONE='one-to-one'
+		//ONE_TO_ONE='OneToOne'
 		public EnumLiteralDeclaration getONE_TO_ONEEnumLiteralDeclaration_2() { return cONE_TO_ONEEnumLiteralDeclaration_2; }
 		
-		//'one-to-one'
+		//'OneToOne'
 		public Keyword getONE_TO_ONEOneToOneKeyword_2_0() { return cONE_TO_ONEOneToOneKeyword_2_0; }
 		
-		//MANY_TO_MANY='many-to-many'
+		//MANY_TO_MANY='ManyToMany'
 		public EnumLiteralDeclaration getMANY_TO_MANYEnumLiteralDeclaration_3() { return cMANY_TO_MANYEnumLiteralDeclaration_3; }
 		
-		//'many-to-many'
+		//'ManyToMany'
 		public Keyword getMANY_TO_MANYManyToManyKeyword_3_0() { return cMANY_TO_MANYManyToManyKeyword_3_0; }
 	}
 	public class DataTypeElements extends AbstractEnumRuleElementFinder {
@@ -1036,18 +1036,18 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cDATEDateKeyword_7_0 = (Keyword)cDATEEnumLiteralDeclaration_7.eContents().get(0);
 		
 		//enum DataType:
-		//	STRING='string' | LONG='long' | FLOAT='float' | DOUBLE='double' | CHAR='char' | INT='int' | BOOLEAN='boolean' |
-		//	DATE='date';
+		//	STRING='String' | LONG='long' | FLOAT='float' | DOUBLE='double' | CHAR='char' | INT='int' | BOOLEAN='boolean' |
+		//	DATE='Date';
 		public EnumRule getRule() { return rule; }
 		
-		//STRING='string' | LONG='long' | FLOAT='float' | DOUBLE='double' | CHAR='char' | INT='int' | BOOLEAN='boolean' |
-		//DATE='date'
+		//STRING='String' | LONG='long' | FLOAT='float' | DOUBLE='double' | CHAR='char' | INT='int' | BOOLEAN='boolean' |
+		//DATE='Date'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//STRING='string'
+		//STRING='String'
 		public EnumLiteralDeclaration getSTRINGEnumLiteralDeclaration_0() { return cSTRINGEnumLiteralDeclaration_0; }
 		
-		//'string'
+		//'String'
 		public Keyword getSTRINGStringKeyword_0_0() { return cSTRINGStringKeyword_0_0; }
 		
 		//LONG='long'
@@ -1086,10 +1086,10 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		//'boolean'
 		public Keyword getBOOLEANBooleanKeyword_6_0() { return cBOOLEANBooleanKeyword_6_0; }
 		
-		//DATE='date'
+		//DATE='Date'
 		public EnumLiteralDeclaration getDATEEnumLiteralDeclaration_7() { return cDATEEnumLiteralDeclaration_7; }
 		
-		//'date'
+		//'Date'
 		public Keyword getDATEDateKeyword_7_0() { return cDATEDateKeyword_7_0; }
 	}
 	public class JoinTypeElements extends AbstractEnumRuleElementFinder {
@@ -1311,7 +1311,7 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//enum BasicValidation:
-	//	NOT_NULL='not-null' | NOT_BLANK='not-blank' | PAST='past' | UNIQUE='unique' | EMAIL='valid-email';
+	//	NOT_NULL='NotNull' | NOT_BLANK='NotBlank' | PAST='Past' | UNIQUE='Unique' | EMAIL='Email';
 	public BasicValidationElements getBasicValidationAccess() {
 		return eBasicValidation;
 	}
@@ -1327,7 +1327,7 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//enum GenerationType:
-	//	AUTO='auto' | TABLE='table' | IDENTITY='identity' | SEQUENCE='sequence';
+	//	AUTO | TABLE | IDENTITY | SEQUENCE;
 	public GenerationTypeElements getGenerationTypeAccess() {
 		return eGenerationType;
 	}
@@ -1337,7 +1337,7 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//enum FetchType:
-	//	EAGER='eager' | LAZY='lazy';
+	//	EAGER | LAZY;
 	public FetchTypeElements getFetchTypeAccess() {
 		return eFetchType;
 	}
@@ -1347,7 +1347,7 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//enum Association:
-	//	ONE_TO_MANY='one-to-many' | MANY_TO_ONE='many-to-one' | ONE_TO_ONE='one-to-one' | MANY_TO_MANY='many-to-many';
+	//	ONE_TO_MANY='OneToMany' | MANY_TO_ONE='ManyToOne' | ONE_TO_ONE='OneToOne' | MANY_TO_MANY='ManyToMany';
 	public AssociationElements getAssociationAccess() {
 		return eAssociation;
 	}
@@ -1357,8 +1357,8 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//enum DataType:
-	//	STRING='string' | LONG='long' | FLOAT='float' | DOUBLE='double' | CHAR='char' | INT='int' | BOOLEAN='boolean' |
-	//	DATE='date';
+	//	STRING='String' | LONG='long' | FLOAT='float' | DOUBLE='double' | CHAR='char' | INT='int' | BOOLEAN='boolean' |
+	//	DATE='Date';
 	public DataTypeElements getDataTypeAccess() {
 		return eDataType;
 	}

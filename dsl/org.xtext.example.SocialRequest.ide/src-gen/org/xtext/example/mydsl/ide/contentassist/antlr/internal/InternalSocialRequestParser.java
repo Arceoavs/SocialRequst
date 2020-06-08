@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalSocialRequestParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_POSSIBLY_SIGNED_INT", "RULE_STRING", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'not-null'", "'not-blank'", "'past'", "'unique'", "'valid-email'", "'auto'", "'table'", "'identity'", "'sequence'", "'eager'", "'lazy'", "'one-to-many'", "'many-to-one'", "'one-to-one'", "'many-to-many'", "'string'", "'long'", "'float'", "'double'", "'char'", "'int'", "'boolean'", "'date'", "'LEFT JOIN'", "'LEFT OUTER JOIN'", "'CROSS JOIN'", "'JOIN'", "'Entity'", "'{'", "'}'", "'UserDetails'", "':'", "'mappedBy:'", "'fetch:'", "'validations'", "'('", "')'", "'min:'", "'max:'", "'pattern:'", "'Repository'", "'query'", "'list'", "'params'", "'SELECT'", "'FROM'", "'ON'", "'WHERE'", "'ORDER BY'", "'implements'", "'LOB'", "'TRANSIENT'", "'ID'", "'DISTINCT'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_POSSIBLY_SIGNED_INT", "RULE_STRING", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'NotNull'", "'NotBlank'", "'Past'", "'Unique'", "'Email'", "'AUTO'", "'TABLE'", "'IDENTITY'", "'SEQUENCE'", "'EAGER'", "'LAZY'", "'OneToMany'", "'ManyToOne'", "'OneToOne'", "'ManyToMany'", "'String'", "'long'", "'float'", "'double'", "'char'", "'int'", "'boolean'", "'Date'", "'LEFT JOIN'", "'LEFT OUTER JOIN'", "'CROSS JOIN'", "'JOIN'", "'Entity'", "'{'", "'}'", "'UserDetails'", "':'", "'mappedBy:'", "'fetch:'", "'validations'", "'('", "')'", "'min:'", "'max:'", "'pattern:'", "'Repository'", "'query'", "'list'", "'params'", "'SELECT'", "'FROM'", "'ON'", "'WHERE'", "'ORDER BY'", "'implements'", "'LOB'", "'TRANSIENT'", "'ID'", "'DISTINCT'"
     };
     public static final int T__50=50;
     public static final int T__19=19;
@@ -2078,13 +2078,13 @@ public class InternalSocialRequestParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__BasicValidation__Alternatives"
-    // InternalSocialRequest.g:654:1: rule__BasicValidation__Alternatives : ( ( ( 'not-null' ) ) | ( ( 'not-blank' ) ) | ( ( 'past' ) ) | ( ( 'unique' ) ) | ( ( 'valid-email' ) ) );
+    // InternalSocialRequest.g:654:1: rule__BasicValidation__Alternatives : ( ( ( 'NotNull' ) ) | ( ( 'NotBlank' ) ) | ( ( 'Past' ) ) | ( ( 'Unique' ) ) | ( ( 'Email' ) ) );
     public final void rule__BasicValidation__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSocialRequest.g:658:1: ( ( ( 'not-null' ) ) | ( ( 'not-blank' ) ) | ( ( 'past' ) ) | ( ( 'unique' ) ) | ( ( 'valid-email' ) ) )
+            // InternalSocialRequest.g:658:1: ( ( ( 'NotNull' ) ) | ( ( 'NotBlank' ) ) | ( ( 'Past' ) ) | ( ( 'Unique' ) ) | ( ( 'Email' ) ) )
             int alt4=5;
             switch ( input.LA(1) ) {
             case 12:
@@ -2121,14 +2121,14 @@ public class InternalSocialRequestParser extends AbstractInternalContentAssistPa
 
             switch (alt4) {
                 case 1 :
-                    // InternalSocialRequest.g:659:2: ( ( 'not-null' ) )
+                    // InternalSocialRequest.g:659:2: ( ( 'NotNull' ) )
                     {
-                    // InternalSocialRequest.g:659:2: ( ( 'not-null' ) )
-                    // InternalSocialRequest.g:660:3: ( 'not-null' )
+                    // InternalSocialRequest.g:659:2: ( ( 'NotNull' ) )
+                    // InternalSocialRequest.g:660:3: ( 'NotNull' )
                     {
                      before(grammarAccess.getBasicValidationAccess().getNOT_NULLEnumLiteralDeclaration_0()); 
-                    // InternalSocialRequest.g:661:3: ( 'not-null' )
-                    // InternalSocialRequest.g:661:4: 'not-null'
+                    // InternalSocialRequest.g:661:3: ( 'NotNull' )
+                    // InternalSocialRequest.g:661:4: 'NotNull'
                     {
                     match(input,12,FOLLOW_2); 
 
@@ -2142,14 +2142,14 @@ public class InternalSocialRequestParser extends AbstractInternalContentAssistPa
                     }
                     break;
                 case 2 :
-                    // InternalSocialRequest.g:665:2: ( ( 'not-blank' ) )
+                    // InternalSocialRequest.g:665:2: ( ( 'NotBlank' ) )
                     {
-                    // InternalSocialRequest.g:665:2: ( ( 'not-blank' ) )
-                    // InternalSocialRequest.g:666:3: ( 'not-blank' )
+                    // InternalSocialRequest.g:665:2: ( ( 'NotBlank' ) )
+                    // InternalSocialRequest.g:666:3: ( 'NotBlank' )
                     {
                      before(grammarAccess.getBasicValidationAccess().getNOT_BLANKEnumLiteralDeclaration_1()); 
-                    // InternalSocialRequest.g:667:3: ( 'not-blank' )
-                    // InternalSocialRequest.g:667:4: 'not-blank'
+                    // InternalSocialRequest.g:667:3: ( 'NotBlank' )
+                    // InternalSocialRequest.g:667:4: 'NotBlank'
                     {
                     match(input,13,FOLLOW_2); 
 
@@ -2163,14 +2163,14 @@ public class InternalSocialRequestParser extends AbstractInternalContentAssistPa
                     }
                     break;
                 case 3 :
-                    // InternalSocialRequest.g:671:2: ( ( 'past' ) )
+                    // InternalSocialRequest.g:671:2: ( ( 'Past' ) )
                     {
-                    // InternalSocialRequest.g:671:2: ( ( 'past' ) )
-                    // InternalSocialRequest.g:672:3: ( 'past' )
+                    // InternalSocialRequest.g:671:2: ( ( 'Past' ) )
+                    // InternalSocialRequest.g:672:3: ( 'Past' )
                     {
                      before(grammarAccess.getBasicValidationAccess().getPASTEnumLiteralDeclaration_2()); 
-                    // InternalSocialRequest.g:673:3: ( 'past' )
-                    // InternalSocialRequest.g:673:4: 'past'
+                    // InternalSocialRequest.g:673:3: ( 'Past' )
+                    // InternalSocialRequest.g:673:4: 'Past'
                     {
                     match(input,14,FOLLOW_2); 
 
@@ -2184,14 +2184,14 @@ public class InternalSocialRequestParser extends AbstractInternalContentAssistPa
                     }
                     break;
                 case 4 :
-                    // InternalSocialRequest.g:677:2: ( ( 'unique' ) )
+                    // InternalSocialRequest.g:677:2: ( ( 'Unique' ) )
                     {
-                    // InternalSocialRequest.g:677:2: ( ( 'unique' ) )
-                    // InternalSocialRequest.g:678:3: ( 'unique' )
+                    // InternalSocialRequest.g:677:2: ( ( 'Unique' ) )
+                    // InternalSocialRequest.g:678:3: ( 'Unique' )
                     {
                      before(grammarAccess.getBasicValidationAccess().getUNIQUEEnumLiteralDeclaration_3()); 
-                    // InternalSocialRequest.g:679:3: ( 'unique' )
-                    // InternalSocialRequest.g:679:4: 'unique'
+                    // InternalSocialRequest.g:679:3: ( 'Unique' )
+                    // InternalSocialRequest.g:679:4: 'Unique'
                     {
                     match(input,15,FOLLOW_2); 
 
@@ -2205,14 +2205,14 @@ public class InternalSocialRequestParser extends AbstractInternalContentAssistPa
                     }
                     break;
                 case 5 :
-                    // InternalSocialRequest.g:683:2: ( ( 'valid-email' ) )
+                    // InternalSocialRequest.g:683:2: ( ( 'Email' ) )
                     {
-                    // InternalSocialRequest.g:683:2: ( ( 'valid-email' ) )
-                    // InternalSocialRequest.g:684:3: ( 'valid-email' )
+                    // InternalSocialRequest.g:683:2: ( ( 'Email' ) )
+                    // InternalSocialRequest.g:684:3: ( 'Email' )
                     {
                      before(grammarAccess.getBasicValidationAccess().getEMAILEnumLiteralDeclaration_4()); 
-                    // InternalSocialRequest.g:685:3: ( 'valid-email' )
-                    // InternalSocialRequest.g:685:4: 'valid-email'
+                    // InternalSocialRequest.g:685:3: ( 'Email' )
+                    // InternalSocialRequest.g:685:4: 'Email'
                     {
                     match(input,16,FOLLOW_2); 
 
@@ -2243,13 +2243,13 @@ public class InternalSocialRequestParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__GenerationType__Alternatives"
-    // InternalSocialRequest.g:693:1: rule__GenerationType__Alternatives : ( ( ( 'auto' ) ) | ( ( 'table' ) ) | ( ( 'identity' ) ) | ( ( 'sequence' ) ) );
+    // InternalSocialRequest.g:693:1: rule__GenerationType__Alternatives : ( ( ( 'AUTO' ) ) | ( ( 'TABLE' ) ) | ( ( 'IDENTITY' ) ) | ( ( 'SEQUENCE' ) ) );
     public final void rule__GenerationType__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSocialRequest.g:697:1: ( ( ( 'auto' ) ) | ( ( 'table' ) ) | ( ( 'identity' ) ) | ( ( 'sequence' ) ) )
+            // InternalSocialRequest.g:697:1: ( ( ( 'AUTO' ) ) | ( ( 'TABLE' ) ) | ( ( 'IDENTITY' ) ) | ( ( 'SEQUENCE' ) ) )
             int alt5=4;
             switch ( input.LA(1) ) {
             case 17:
@@ -2281,14 +2281,14 @@ public class InternalSocialRequestParser extends AbstractInternalContentAssistPa
 
             switch (alt5) {
                 case 1 :
-                    // InternalSocialRequest.g:698:2: ( ( 'auto' ) )
+                    // InternalSocialRequest.g:698:2: ( ( 'AUTO' ) )
                     {
-                    // InternalSocialRequest.g:698:2: ( ( 'auto' ) )
-                    // InternalSocialRequest.g:699:3: ( 'auto' )
+                    // InternalSocialRequest.g:698:2: ( ( 'AUTO' ) )
+                    // InternalSocialRequest.g:699:3: ( 'AUTO' )
                     {
                      before(grammarAccess.getGenerationTypeAccess().getAUTOEnumLiteralDeclaration_0()); 
-                    // InternalSocialRequest.g:700:3: ( 'auto' )
-                    // InternalSocialRequest.g:700:4: 'auto'
+                    // InternalSocialRequest.g:700:3: ( 'AUTO' )
+                    // InternalSocialRequest.g:700:4: 'AUTO'
                     {
                     match(input,17,FOLLOW_2); 
 
@@ -2302,14 +2302,14 @@ public class InternalSocialRequestParser extends AbstractInternalContentAssistPa
                     }
                     break;
                 case 2 :
-                    // InternalSocialRequest.g:704:2: ( ( 'table' ) )
+                    // InternalSocialRequest.g:704:2: ( ( 'TABLE' ) )
                     {
-                    // InternalSocialRequest.g:704:2: ( ( 'table' ) )
-                    // InternalSocialRequest.g:705:3: ( 'table' )
+                    // InternalSocialRequest.g:704:2: ( ( 'TABLE' ) )
+                    // InternalSocialRequest.g:705:3: ( 'TABLE' )
                     {
                      before(grammarAccess.getGenerationTypeAccess().getTABLEEnumLiteralDeclaration_1()); 
-                    // InternalSocialRequest.g:706:3: ( 'table' )
-                    // InternalSocialRequest.g:706:4: 'table'
+                    // InternalSocialRequest.g:706:3: ( 'TABLE' )
+                    // InternalSocialRequest.g:706:4: 'TABLE'
                     {
                     match(input,18,FOLLOW_2); 
 
@@ -2323,14 +2323,14 @@ public class InternalSocialRequestParser extends AbstractInternalContentAssistPa
                     }
                     break;
                 case 3 :
-                    // InternalSocialRequest.g:710:2: ( ( 'identity' ) )
+                    // InternalSocialRequest.g:710:2: ( ( 'IDENTITY' ) )
                     {
-                    // InternalSocialRequest.g:710:2: ( ( 'identity' ) )
-                    // InternalSocialRequest.g:711:3: ( 'identity' )
+                    // InternalSocialRequest.g:710:2: ( ( 'IDENTITY' ) )
+                    // InternalSocialRequest.g:711:3: ( 'IDENTITY' )
                     {
                      before(grammarAccess.getGenerationTypeAccess().getIDENTITYEnumLiteralDeclaration_2()); 
-                    // InternalSocialRequest.g:712:3: ( 'identity' )
-                    // InternalSocialRequest.g:712:4: 'identity'
+                    // InternalSocialRequest.g:712:3: ( 'IDENTITY' )
+                    // InternalSocialRequest.g:712:4: 'IDENTITY'
                     {
                     match(input,19,FOLLOW_2); 
 
@@ -2344,14 +2344,14 @@ public class InternalSocialRequestParser extends AbstractInternalContentAssistPa
                     }
                     break;
                 case 4 :
-                    // InternalSocialRequest.g:716:2: ( ( 'sequence' ) )
+                    // InternalSocialRequest.g:716:2: ( ( 'SEQUENCE' ) )
                     {
-                    // InternalSocialRequest.g:716:2: ( ( 'sequence' ) )
-                    // InternalSocialRequest.g:717:3: ( 'sequence' )
+                    // InternalSocialRequest.g:716:2: ( ( 'SEQUENCE' ) )
+                    // InternalSocialRequest.g:717:3: ( 'SEQUENCE' )
                     {
                      before(grammarAccess.getGenerationTypeAccess().getSEQUENCEEnumLiteralDeclaration_3()); 
-                    // InternalSocialRequest.g:718:3: ( 'sequence' )
-                    // InternalSocialRequest.g:718:4: 'sequence'
+                    // InternalSocialRequest.g:718:3: ( 'SEQUENCE' )
+                    // InternalSocialRequest.g:718:4: 'SEQUENCE'
                     {
                     match(input,20,FOLLOW_2); 
 
@@ -2382,13 +2382,13 @@ public class InternalSocialRequestParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__FetchType__Alternatives"
-    // InternalSocialRequest.g:726:1: rule__FetchType__Alternatives : ( ( ( 'eager' ) ) | ( ( 'lazy' ) ) );
+    // InternalSocialRequest.g:726:1: rule__FetchType__Alternatives : ( ( ( 'EAGER' ) ) | ( ( 'LAZY' ) ) );
     public final void rule__FetchType__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSocialRequest.g:730:1: ( ( ( 'eager' ) ) | ( ( 'lazy' ) ) )
+            // InternalSocialRequest.g:730:1: ( ( ( 'EAGER' ) ) | ( ( 'LAZY' ) ) )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -2406,14 +2406,14 @@ public class InternalSocialRequestParser extends AbstractInternalContentAssistPa
             }
             switch (alt6) {
                 case 1 :
-                    // InternalSocialRequest.g:731:2: ( ( 'eager' ) )
+                    // InternalSocialRequest.g:731:2: ( ( 'EAGER' ) )
                     {
-                    // InternalSocialRequest.g:731:2: ( ( 'eager' ) )
-                    // InternalSocialRequest.g:732:3: ( 'eager' )
+                    // InternalSocialRequest.g:731:2: ( ( 'EAGER' ) )
+                    // InternalSocialRequest.g:732:3: ( 'EAGER' )
                     {
                      before(grammarAccess.getFetchTypeAccess().getEAGEREnumLiteralDeclaration_0()); 
-                    // InternalSocialRequest.g:733:3: ( 'eager' )
-                    // InternalSocialRequest.g:733:4: 'eager'
+                    // InternalSocialRequest.g:733:3: ( 'EAGER' )
+                    // InternalSocialRequest.g:733:4: 'EAGER'
                     {
                     match(input,21,FOLLOW_2); 
 
@@ -2427,14 +2427,14 @@ public class InternalSocialRequestParser extends AbstractInternalContentAssistPa
                     }
                     break;
                 case 2 :
-                    // InternalSocialRequest.g:737:2: ( ( 'lazy' ) )
+                    // InternalSocialRequest.g:737:2: ( ( 'LAZY' ) )
                     {
-                    // InternalSocialRequest.g:737:2: ( ( 'lazy' ) )
-                    // InternalSocialRequest.g:738:3: ( 'lazy' )
+                    // InternalSocialRequest.g:737:2: ( ( 'LAZY' ) )
+                    // InternalSocialRequest.g:738:3: ( 'LAZY' )
                     {
                      before(grammarAccess.getFetchTypeAccess().getLAZYEnumLiteralDeclaration_1()); 
-                    // InternalSocialRequest.g:739:3: ( 'lazy' )
-                    // InternalSocialRequest.g:739:4: 'lazy'
+                    // InternalSocialRequest.g:739:3: ( 'LAZY' )
+                    // InternalSocialRequest.g:739:4: 'LAZY'
                     {
                     match(input,22,FOLLOW_2); 
 
@@ -2465,13 +2465,13 @@ public class InternalSocialRequestParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Association__Alternatives"
-    // InternalSocialRequest.g:747:1: rule__Association__Alternatives : ( ( ( 'one-to-many' ) ) | ( ( 'many-to-one' ) ) | ( ( 'one-to-one' ) ) | ( ( 'many-to-many' ) ) );
+    // InternalSocialRequest.g:747:1: rule__Association__Alternatives : ( ( ( 'OneToMany' ) ) | ( ( 'ManyToOne' ) ) | ( ( 'OneToOne' ) ) | ( ( 'ManyToMany' ) ) );
     public final void rule__Association__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSocialRequest.g:751:1: ( ( ( 'one-to-many' ) ) | ( ( 'many-to-one' ) ) | ( ( 'one-to-one' ) ) | ( ( 'many-to-many' ) ) )
+            // InternalSocialRequest.g:751:1: ( ( ( 'OneToMany' ) ) | ( ( 'ManyToOne' ) ) | ( ( 'OneToOne' ) ) | ( ( 'ManyToMany' ) ) )
             int alt7=4;
             switch ( input.LA(1) ) {
             case 23:
@@ -2503,14 +2503,14 @@ public class InternalSocialRequestParser extends AbstractInternalContentAssistPa
 
             switch (alt7) {
                 case 1 :
-                    // InternalSocialRequest.g:752:2: ( ( 'one-to-many' ) )
+                    // InternalSocialRequest.g:752:2: ( ( 'OneToMany' ) )
                     {
-                    // InternalSocialRequest.g:752:2: ( ( 'one-to-many' ) )
-                    // InternalSocialRequest.g:753:3: ( 'one-to-many' )
+                    // InternalSocialRequest.g:752:2: ( ( 'OneToMany' ) )
+                    // InternalSocialRequest.g:753:3: ( 'OneToMany' )
                     {
                      before(grammarAccess.getAssociationAccess().getONE_TO_MANYEnumLiteralDeclaration_0()); 
-                    // InternalSocialRequest.g:754:3: ( 'one-to-many' )
-                    // InternalSocialRequest.g:754:4: 'one-to-many'
+                    // InternalSocialRequest.g:754:3: ( 'OneToMany' )
+                    // InternalSocialRequest.g:754:4: 'OneToMany'
                     {
                     match(input,23,FOLLOW_2); 
 
@@ -2524,14 +2524,14 @@ public class InternalSocialRequestParser extends AbstractInternalContentAssistPa
                     }
                     break;
                 case 2 :
-                    // InternalSocialRequest.g:758:2: ( ( 'many-to-one' ) )
+                    // InternalSocialRequest.g:758:2: ( ( 'ManyToOne' ) )
                     {
-                    // InternalSocialRequest.g:758:2: ( ( 'many-to-one' ) )
-                    // InternalSocialRequest.g:759:3: ( 'many-to-one' )
+                    // InternalSocialRequest.g:758:2: ( ( 'ManyToOne' ) )
+                    // InternalSocialRequest.g:759:3: ( 'ManyToOne' )
                     {
                      before(grammarAccess.getAssociationAccess().getMANY_TO_ONEEnumLiteralDeclaration_1()); 
-                    // InternalSocialRequest.g:760:3: ( 'many-to-one' )
-                    // InternalSocialRequest.g:760:4: 'many-to-one'
+                    // InternalSocialRequest.g:760:3: ( 'ManyToOne' )
+                    // InternalSocialRequest.g:760:4: 'ManyToOne'
                     {
                     match(input,24,FOLLOW_2); 
 
@@ -2545,14 +2545,14 @@ public class InternalSocialRequestParser extends AbstractInternalContentAssistPa
                     }
                     break;
                 case 3 :
-                    // InternalSocialRequest.g:764:2: ( ( 'one-to-one' ) )
+                    // InternalSocialRequest.g:764:2: ( ( 'OneToOne' ) )
                     {
-                    // InternalSocialRequest.g:764:2: ( ( 'one-to-one' ) )
-                    // InternalSocialRequest.g:765:3: ( 'one-to-one' )
+                    // InternalSocialRequest.g:764:2: ( ( 'OneToOne' ) )
+                    // InternalSocialRequest.g:765:3: ( 'OneToOne' )
                     {
                      before(grammarAccess.getAssociationAccess().getONE_TO_ONEEnumLiteralDeclaration_2()); 
-                    // InternalSocialRequest.g:766:3: ( 'one-to-one' )
-                    // InternalSocialRequest.g:766:4: 'one-to-one'
+                    // InternalSocialRequest.g:766:3: ( 'OneToOne' )
+                    // InternalSocialRequest.g:766:4: 'OneToOne'
                     {
                     match(input,25,FOLLOW_2); 
 
@@ -2566,14 +2566,14 @@ public class InternalSocialRequestParser extends AbstractInternalContentAssistPa
                     }
                     break;
                 case 4 :
-                    // InternalSocialRequest.g:770:2: ( ( 'many-to-many' ) )
+                    // InternalSocialRequest.g:770:2: ( ( 'ManyToMany' ) )
                     {
-                    // InternalSocialRequest.g:770:2: ( ( 'many-to-many' ) )
-                    // InternalSocialRequest.g:771:3: ( 'many-to-many' )
+                    // InternalSocialRequest.g:770:2: ( ( 'ManyToMany' ) )
+                    // InternalSocialRequest.g:771:3: ( 'ManyToMany' )
                     {
                      before(grammarAccess.getAssociationAccess().getMANY_TO_MANYEnumLiteralDeclaration_3()); 
-                    // InternalSocialRequest.g:772:3: ( 'many-to-many' )
-                    // InternalSocialRequest.g:772:4: 'many-to-many'
+                    // InternalSocialRequest.g:772:3: ( 'ManyToMany' )
+                    // InternalSocialRequest.g:772:4: 'ManyToMany'
                     {
                     match(input,26,FOLLOW_2); 
 
@@ -2604,13 +2604,13 @@ public class InternalSocialRequestParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__DataType__Alternatives"
-    // InternalSocialRequest.g:780:1: rule__DataType__Alternatives : ( ( ( 'string' ) ) | ( ( 'long' ) ) | ( ( 'float' ) ) | ( ( 'double' ) ) | ( ( 'char' ) ) | ( ( 'int' ) ) | ( ( 'boolean' ) ) | ( ( 'date' ) ) );
+    // InternalSocialRequest.g:780:1: rule__DataType__Alternatives : ( ( ( 'String' ) ) | ( ( 'long' ) ) | ( ( 'float' ) ) | ( ( 'double' ) ) | ( ( 'char' ) ) | ( ( 'int' ) ) | ( ( 'boolean' ) ) | ( ( 'Date' ) ) );
     public final void rule__DataType__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSocialRequest.g:784:1: ( ( ( 'string' ) ) | ( ( 'long' ) ) | ( ( 'float' ) ) | ( ( 'double' ) ) | ( ( 'char' ) ) | ( ( 'int' ) ) | ( ( 'boolean' ) ) | ( ( 'date' ) ) )
+            // InternalSocialRequest.g:784:1: ( ( ( 'String' ) ) | ( ( 'long' ) ) | ( ( 'float' ) ) | ( ( 'double' ) ) | ( ( 'char' ) ) | ( ( 'int' ) ) | ( ( 'boolean' ) ) | ( ( 'Date' ) ) )
             int alt8=8;
             switch ( input.LA(1) ) {
             case 27:
@@ -2662,14 +2662,14 @@ public class InternalSocialRequestParser extends AbstractInternalContentAssistPa
 
             switch (alt8) {
                 case 1 :
-                    // InternalSocialRequest.g:785:2: ( ( 'string' ) )
+                    // InternalSocialRequest.g:785:2: ( ( 'String' ) )
                     {
-                    // InternalSocialRequest.g:785:2: ( ( 'string' ) )
-                    // InternalSocialRequest.g:786:3: ( 'string' )
+                    // InternalSocialRequest.g:785:2: ( ( 'String' ) )
+                    // InternalSocialRequest.g:786:3: ( 'String' )
                     {
                      before(grammarAccess.getDataTypeAccess().getSTRINGEnumLiteralDeclaration_0()); 
-                    // InternalSocialRequest.g:787:3: ( 'string' )
-                    // InternalSocialRequest.g:787:4: 'string'
+                    // InternalSocialRequest.g:787:3: ( 'String' )
+                    // InternalSocialRequest.g:787:4: 'String'
                     {
                     match(input,27,FOLLOW_2); 
 
@@ -2809,14 +2809,14 @@ public class InternalSocialRequestParser extends AbstractInternalContentAssistPa
                     }
                     break;
                 case 8 :
-                    // InternalSocialRequest.g:827:2: ( ( 'date' ) )
+                    // InternalSocialRequest.g:827:2: ( ( 'Date' ) )
                     {
-                    // InternalSocialRequest.g:827:2: ( ( 'date' ) )
-                    // InternalSocialRequest.g:828:3: ( 'date' )
+                    // InternalSocialRequest.g:827:2: ( ( 'Date' ) )
+                    // InternalSocialRequest.g:828:3: ( 'Date' )
                     {
                      before(grammarAccess.getDataTypeAccess().getDATEEnumLiteralDeclaration_7()); 
-                    // InternalSocialRequest.g:829:3: ( 'date' )
-                    // InternalSocialRequest.g:829:4: 'date'
+                    // InternalSocialRequest.g:829:3: ( 'Date' )
+                    // InternalSocialRequest.g:829:4: 'Date'
                     {
                     match(input,34,FOLLOW_2); 
 

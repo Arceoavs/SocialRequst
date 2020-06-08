@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_POSSIBLY_SIGNED_INT", "RULE_STRING", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'Entity'", "'implements'", "'UserDetails'", "'{'", "'}'", "':'", "'mappedBy:'", "'fetch:'", "'validations'", "'LOB'", "'TRANSIENT'", "'ID'", "'('", "')'", "'min:'", "'max:'", "'pattern:'", "'Repository'", "'query'", "'list'", "'params'", "'SELECT'", "'DISTINCT'", "'FROM'", "'ON'", "'WHERE'", "'ORDER BY'", "'not-null'", "'not-blank'", "'past'", "'unique'", "'valid-email'", "'auto'", "'table'", "'identity'", "'sequence'", "'eager'", "'lazy'", "'one-to-many'", "'many-to-one'", "'one-to-one'", "'many-to-many'", "'string'", "'long'", "'float'", "'double'", "'char'", "'int'", "'boolean'", "'date'", "'LEFT JOIN'", "'LEFT OUTER JOIN'", "'CROSS JOIN'", "'JOIN'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_POSSIBLY_SIGNED_INT", "RULE_STRING", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'Entity'", "'implements'", "'UserDetails'", "'{'", "'}'", "':'", "'mappedBy:'", "'fetch:'", "'validations'", "'LOB'", "'TRANSIENT'", "'ID'", "'('", "')'", "'min:'", "'max:'", "'pattern:'", "'Repository'", "'query'", "'list'", "'params'", "'SELECT'", "'DISTINCT'", "'FROM'", "'ON'", "'WHERE'", "'ORDER BY'", "'NotNull'", "'NotBlank'", "'Past'", "'Unique'", "'Email'", "'AUTO'", "'TABLE'", "'IDENTITY'", "'SEQUENCE'", "'EAGER'", "'LAZY'", "'OneToMany'", "'ManyToOne'", "'OneToOne'", "'ManyToMany'", "'String'", "'long'", "'float'", "'double'", "'char'", "'int'", "'boolean'", "'Date'", "'LEFT JOIN'", "'LEFT OUTER JOIN'", "'CROSS JOIN'", "'JOIN'"
     };
     public static final int T__50=50;
     public static final int T__19=19;
@@ -3560,7 +3560,7 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleBasicValidation"
-    // InternalSocialRequest.g:1442:1: ruleBasicValidation returns [Enumerator current=null] : ( (enumLiteral_0= 'not-null' ) | (enumLiteral_1= 'not-blank' ) | (enumLiteral_2= 'past' ) | (enumLiteral_3= 'unique' ) | (enumLiteral_4= 'valid-email' ) ) ;
+    // InternalSocialRequest.g:1442:1: ruleBasicValidation returns [Enumerator current=null] : ( (enumLiteral_0= 'NotNull' ) | (enumLiteral_1= 'NotBlank' ) | (enumLiteral_2= 'Past' ) | (enumLiteral_3= 'Unique' ) | (enumLiteral_4= 'Email' ) ) ;
     public final Enumerator ruleBasicValidation() throws RecognitionException {
         Enumerator current = null;
 
@@ -3574,10 +3574,10 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalSocialRequest.g:1448:2: ( ( (enumLiteral_0= 'not-null' ) | (enumLiteral_1= 'not-blank' ) | (enumLiteral_2= 'past' ) | (enumLiteral_3= 'unique' ) | (enumLiteral_4= 'valid-email' ) ) )
-            // InternalSocialRequest.g:1449:2: ( (enumLiteral_0= 'not-null' ) | (enumLiteral_1= 'not-blank' ) | (enumLiteral_2= 'past' ) | (enumLiteral_3= 'unique' ) | (enumLiteral_4= 'valid-email' ) )
+            // InternalSocialRequest.g:1448:2: ( ( (enumLiteral_0= 'NotNull' ) | (enumLiteral_1= 'NotBlank' ) | (enumLiteral_2= 'Past' ) | (enumLiteral_3= 'Unique' ) | (enumLiteral_4= 'Email' ) ) )
+            // InternalSocialRequest.g:1449:2: ( (enumLiteral_0= 'NotNull' ) | (enumLiteral_1= 'NotBlank' ) | (enumLiteral_2= 'Past' ) | (enumLiteral_3= 'Unique' ) | (enumLiteral_4= 'Email' ) )
             {
-            // InternalSocialRequest.g:1449:2: ( (enumLiteral_0= 'not-null' ) | (enumLiteral_1= 'not-blank' ) | (enumLiteral_2= 'past' ) | (enumLiteral_3= 'unique' ) | (enumLiteral_4= 'valid-email' ) )
+            // InternalSocialRequest.g:1449:2: ( (enumLiteral_0= 'NotNull' ) | (enumLiteral_1= 'NotBlank' ) | (enumLiteral_2= 'Past' ) | (enumLiteral_3= 'Unique' ) | (enumLiteral_4= 'Email' ) )
             int alt24=5;
             switch ( input.LA(1) ) {
             case 39:
@@ -3614,10 +3614,10 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
 
             switch (alt24) {
                 case 1 :
-                    // InternalSocialRequest.g:1450:3: (enumLiteral_0= 'not-null' )
+                    // InternalSocialRequest.g:1450:3: (enumLiteral_0= 'NotNull' )
                     {
-                    // InternalSocialRequest.g:1450:3: (enumLiteral_0= 'not-null' )
-                    // InternalSocialRequest.g:1451:4: enumLiteral_0= 'not-null'
+                    // InternalSocialRequest.g:1450:3: (enumLiteral_0= 'NotNull' )
+                    // InternalSocialRequest.g:1451:4: enumLiteral_0= 'NotNull'
                     {
                     enumLiteral_0=(Token)match(input,39,FOLLOW_2); 
 
@@ -3631,10 +3631,10 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalSocialRequest.g:1458:3: (enumLiteral_1= 'not-blank' )
+                    // InternalSocialRequest.g:1458:3: (enumLiteral_1= 'NotBlank' )
                     {
-                    // InternalSocialRequest.g:1458:3: (enumLiteral_1= 'not-blank' )
-                    // InternalSocialRequest.g:1459:4: enumLiteral_1= 'not-blank'
+                    // InternalSocialRequest.g:1458:3: (enumLiteral_1= 'NotBlank' )
+                    // InternalSocialRequest.g:1459:4: enumLiteral_1= 'NotBlank'
                     {
                     enumLiteral_1=(Token)match(input,40,FOLLOW_2); 
 
@@ -3648,10 +3648,10 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalSocialRequest.g:1466:3: (enumLiteral_2= 'past' )
+                    // InternalSocialRequest.g:1466:3: (enumLiteral_2= 'Past' )
                     {
-                    // InternalSocialRequest.g:1466:3: (enumLiteral_2= 'past' )
-                    // InternalSocialRequest.g:1467:4: enumLiteral_2= 'past'
+                    // InternalSocialRequest.g:1466:3: (enumLiteral_2= 'Past' )
+                    // InternalSocialRequest.g:1467:4: enumLiteral_2= 'Past'
                     {
                     enumLiteral_2=(Token)match(input,41,FOLLOW_2); 
 
@@ -3665,10 +3665,10 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalSocialRequest.g:1474:3: (enumLiteral_3= 'unique' )
+                    // InternalSocialRequest.g:1474:3: (enumLiteral_3= 'Unique' )
                     {
-                    // InternalSocialRequest.g:1474:3: (enumLiteral_3= 'unique' )
-                    // InternalSocialRequest.g:1475:4: enumLiteral_3= 'unique'
+                    // InternalSocialRequest.g:1474:3: (enumLiteral_3= 'Unique' )
+                    // InternalSocialRequest.g:1475:4: enumLiteral_3= 'Unique'
                     {
                     enumLiteral_3=(Token)match(input,42,FOLLOW_2); 
 
@@ -3682,10 +3682,10 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // InternalSocialRequest.g:1482:3: (enumLiteral_4= 'valid-email' )
+                    // InternalSocialRequest.g:1482:3: (enumLiteral_4= 'Email' )
                     {
-                    // InternalSocialRequest.g:1482:3: (enumLiteral_4= 'valid-email' )
-                    // InternalSocialRequest.g:1483:4: enumLiteral_4= 'valid-email'
+                    // InternalSocialRequest.g:1482:3: (enumLiteral_4= 'Email' )
+                    // InternalSocialRequest.g:1483:4: enumLiteral_4= 'Email'
                     {
                     enumLiteral_4=(Token)match(input,43,FOLLOW_2); 
 
@@ -3721,7 +3721,7 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleGenerationType"
-    // InternalSocialRequest.g:1493:1: ruleGenerationType returns [Enumerator current=null] : ( (enumLiteral_0= 'auto' ) | (enumLiteral_1= 'table' ) | (enumLiteral_2= 'identity' ) | (enumLiteral_3= 'sequence' ) ) ;
+    // InternalSocialRequest.g:1493:1: ruleGenerationType returns [Enumerator current=null] : ( (enumLiteral_0= 'AUTO' ) | (enumLiteral_1= 'TABLE' ) | (enumLiteral_2= 'IDENTITY' ) | (enumLiteral_3= 'SEQUENCE' ) ) ;
     public final Enumerator ruleGenerationType() throws RecognitionException {
         Enumerator current = null;
 
@@ -3734,10 +3734,10 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalSocialRequest.g:1499:2: ( ( (enumLiteral_0= 'auto' ) | (enumLiteral_1= 'table' ) | (enumLiteral_2= 'identity' ) | (enumLiteral_3= 'sequence' ) ) )
-            // InternalSocialRequest.g:1500:2: ( (enumLiteral_0= 'auto' ) | (enumLiteral_1= 'table' ) | (enumLiteral_2= 'identity' ) | (enumLiteral_3= 'sequence' ) )
+            // InternalSocialRequest.g:1499:2: ( ( (enumLiteral_0= 'AUTO' ) | (enumLiteral_1= 'TABLE' ) | (enumLiteral_2= 'IDENTITY' ) | (enumLiteral_3= 'SEQUENCE' ) ) )
+            // InternalSocialRequest.g:1500:2: ( (enumLiteral_0= 'AUTO' ) | (enumLiteral_1= 'TABLE' ) | (enumLiteral_2= 'IDENTITY' ) | (enumLiteral_3= 'SEQUENCE' ) )
             {
-            // InternalSocialRequest.g:1500:2: ( (enumLiteral_0= 'auto' ) | (enumLiteral_1= 'table' ) | (enumLiteral_2= 'identity' ) | (enumLiteral_3= 'sequence' ) )
+            // InternalSocialRequest.g:1500:2: ( (enumLiteral_0= 'AUTO' ) | (enumLiteral_1= 'TABLE' ) | (enumLiteral_2= 'IDENTITY' ) | (enumLiteral_3= 'SEQUENCE' ) )
             int alt25=4;
             switch ( input.LA(1) ) {
             case 44:
@@ -3769,10 +3769,10 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
 
             switch (alt25) {
                 case 1 :
-                    // InternalSocialRequest.g:1501:3: (enumLiteral_0= 'auto' )
+                    // InternalSocialRequest.g:1501:3: (enumLiteral_0= 'AUTO' )
                     {
-                    // InternalSocialRequest.g:1501:3: (enumLiteral_0= 'auto' )
-                    // InternalSocialRequest.g:1502:4: enumLiteral_0= 'auto'
+                    // InternalSocialRequest.g:1501:3: (enumLiteral_0= 'AUTO' )
+                    // InternalSocialRequest.g:1502:4: enumLiteral_0= 'AUTO'
                     {
                     enumLiteral_0=(Token)match(input,44,FOLLOW_2); 
 
@@ -3786,10 +3786,10 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalSocialRequest.g:1509:3: (enumLiteral_1= 'table' )
+                    // InternalSocialRequest.g:1509:3: (enumLiteral_1= 'TABLE' )
                     {
-                    // InternalSocialRequest.g:1509:3: (enumLiteral_1= 'table' )
-                    // InternalSocialRequest.g:1510:4: enumLiteral_1= 'table'
+                    // InternalSocialRequest.g:1509:3: (enumLiteral_1= 'TABLE' )
+                    // InternalSocialRequest.g:1510:4: enumLiteral_1= 'TABLE'
                     {
                     enumLiteral_1=(Token)match(input,45,FOLLOW_2); 
 
@@ -3803,10 +3803,10 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalSocialRequest.g:1517:3: (enumLiteral_2= 'identity' )
+                    // InternalSocialRequest.g:1517:3: (enumLiteral_2= 'IDENTITY' )
                     {
-                    // InternalSocialRequest.g:1517:3: (enumLiteral_2= 'identity' )
-                    // InternalSocialRequest.g:1518:4: enumLiteral_2= 'identity'
+                    // InternalSocialRequest.g:1517:3: (enumLiteral_2= 'IDENTITY' )
+                    // InternalSocialRequest.g:1518:4: enumLiteral_2= 'IDENTITY'
                     {
                     enumLiteral_2=(Token)match(input,46,FOLLOW_2); 
 
@@ -3820,10 +3820,10 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalSocialRequest.g:1525:3: (enumLiteral_3= 'sequence' )
+                    // InternalSocialRequest.g:1525:3: (enumLiteral_3= 'SEQUENCE' )
                     {
-                    // InternalSocialRequest.g:1525:3: (enumLiteral_3= 'sequence' )
-                    // InternalSocialRequest.g:1526:4: enumLiteral_3= 'sequence'
+                    // InternalSocialRequest.g:1525:3: (enumLiteral_3= 'SEQUENCE' )
+                    // InternalSocialRequest.g:1526:4: enumLiteral_3= 'SEQUENCE'
                     {
                     enumLiteral_3=(Token)match(input,47,FOLLOW_2); 
 
@@ -3859,7 +3859,7 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFetchType"
-    // InternalSocialRequest.g:1536:1: ruleFetchType returns [Enumerator current=null] : ( (enumLiteral_0= 'eager' ) | (enumLiteral_1= 'lazy' ) ) ;
+    // InternalSocialRequest.g:1536:1: ruleFetchType returns [Enumerator current=null] : ( (enumLiteral_0= 'EAGER' ) | (enumLiteral_1= 'LAZY' ) ) ;
     public final Enumerator ruleFetchType() throws RecognitionException {
         Enumerator current = null;
 
@@ -3870,10 +3870,10 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalSocialRequest.g:1542:2: ( ( (enumLiteral_0= 'eager' ) | (enumLiteral_1= 'lazy' ) ) )
-            // InternalSocialRequest.g:1543:2: ( (enumLiteral_0= 'eager' ) | (enumLiteral_1= 'lazy' ) )
+            // InternalSocialRequest.g:1542:2: ( ( (enumLiteral_0= 'EAGER' ) | (enumLiteral_1= 'LAZY' ) ) )
+            // InternalSocialRequest.g:1543:2: ( (enumLiteral_0= 'EAGER' ) | (enumLiteral_1= 'LAZY' ) )
             {
-            // InternalSocialRequest.g:1543:2: ( (enumLiteral_0= 'eager' ) | (enumLiteral_1= 'lazy' ) )
+            // InternalSocialRequest.g:1543:2: ( (enumLiteral_0= 'EAGER' ) | (enumLiteral_1= 'LAZY' ) )
             int alt26=2;
             int LA26_0 = input.LA(1);
 
@@ -3891,10 +3891,10 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
             }
             switch (alt26) {
                 case 1 :
-                    // InternalSocialRequest.g:1544:3: (enumLiteral_0= 'eager' )
+                    // InternalSocialRequest.g:1544:3: (enumLiteral_0= 'EAGER' )
                     {
-                    // InternalSocialRequest.g:1544:3: (enumLiteral_0= 'eager' )
-                    // InternalSocialRequest.g:1545:4: enumLiteral_0= 'eager'
+                    // InternalSocialRequest.g:1544:3: (enumLiteral_0= 'EAGER' )
+                    // InternalSocialRequest.g:1545:4: enumLiteral_0= 'EAGER'
                     {
                     enumLiteral_0=(Token)match(input,48,FOLLOW_2); 
 
@@ -3908,10 +3908,10 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalSocialRequest.g:1552:3: (enumLiteral_1= 'lazy' )
+                    // InternalSocialRequest.g:1552:3: (enumLiteral_1= 'LAZY' )
                     {
-                    // InternalSocialRequest.g:1552:3: (enumLiteral_1= 'lazy' )
-                    // InternalSocialRequest.g:1553:4: enumLiteral_1= 'lazy'
+                    // InternalSocialRequest.g:1552:3: (enumLiteral_1= 'LAZY' )
+                    // InternalSocialRequest.g:1553:4: enumLiteral_1= 'LAZY'
                     {
                     enumLiteral_1=(Token)match(input,49,FOLLOW_2); 
 
@@ -3947,7 +3947,7 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAssociation"
-    // InternalSocialRequest.g:1563:1: ruleAssociation returns [Enumerator current=null] : ( (enumLiteral_0= 'one-to-many' ) | (enumLiteral_1= 'many-to-one' ) | (enumLiteral_2= 'one-to-one' ) | (enumLiteral_3= 'many-to-many' ) ) ;
+    // InternalSocialRequest.g:1563:1: ruleAssociation returns [Enumerator current=null] : ( (enumLiteral_0= 'OneToMany' ) | (enumLiteral_1= 'ManyToOne' ) | (enumLiteral_2= 'OneToOne' ) | (enumLiteral_3= 'ManyToMany' ) ) ;
     public final Enumerator ruleAssociation() throws RecognitionException {
         Enumerator current = null;
 
@@ -3960,10 +3960,10 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalSocialRequest.g:1569:2: ( ( (enumLiteral_0= 'one-to-many' ) | (enumLiteral_1= 'many-to-one' ) | (enumLiteral_2= 'one-to-one' ) | (enumLiteral_3= 'many-to-many' ) ) )
-            // InternalSocialRequest.g:1570:2: ( (enumLiteral_0= 'one-to-many' ) | (enumLiteral_1= 'many-to-one' ) | (enumLiteral_2= 'one-to-one' ) | (enumLiteral_3= 'many-to-many' ) )
+            // InternalSocialRequest.g:1569:2: ( ( (enumLiteral_0= 'OneToMany' ) | (enumLiteral_1= 'ManyToOne' ) | (enumLiteral_2= 'OneToOne' ) | (enumLiteral_3= 'ManyToMany' ) ) )
+            // InternalSocialRequest.g:1570:2: ( (enumLiteral_0= 'OneToMany' ) | (enumLiteral_1= 'ManyToOne' ) | (enumLiteral_2= 'OneToOne' ) | (enumLiteral_3= 'ManyToMany' ) )
             {
-            // InternalSocialRequest.g:1570:2: ( (enumLiteral_0= 'one-to-many' ) | (enumLiteral_1= 'many-to-one' ) | (enumLiteral_2= 'one-to-one' ) | (enumLiteral_3= 'many-to-many' ) )
+            // InternalSocialRequest.g:1570:2: ( (enumLiteral_0= 'OneToMany' ) | (enumLiteral_1= 'ManyToOne' ) | (enumLiteral_2= 'OneToOne' ) | (enumLiteral_3= 'ManyToMany' ) )
             int alt27=4;
             switch ( input.LA(1) ) {
             case 50:
@@ -3995,10 +3995,10 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
 
             switch (alt27) {
                 case 1 :
-                    // InternalSocialRequest.g:1571:3: (enumLiteral_0= 'one-to-many' )
+                    // InternalSocialRequest.g:1571:3: (enumLiteral_0= 'OneToMany' )
                     {
-                    // InternalSocialRequest.g:1571:3: (enumLiteral_0= 'one-to-many' )
-                    // InternalSocialRequest.g:1572:4: enumLiteral_0= 'one-to-many'
+                    // InternalSocialRequest.g:1571:3: (enumLiteral_0= 'OneToMany' )
+                    // InternalSocialRequest.g:1572:4: enumLiteral_0= 'OneToMany'
                     {
                     enumLiteral_0=(Token)match(input,50,FOLLOW_2); 
 
@@ -4012,10 +4012,10 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalSocialRequest.g:1579:3: (enumLiteral_1= 'many-to-one' )
+                    // InternalSocialRequest.g:1579:3: (enumLiteral_1= 'ManyToOne' )
                     {
-                    // InternalSocialRequest.g:1579:3: (enumLiteral_1= 'many-to-one' )
-                    // InternalSocialRequest.g:1580:4: enumLiteral_1= 'many-to-one'
+                    // InternalSocialRequest.g:1579:3: (enumLiteral_1= 'ManyToOne' )
+                    // InternalSocialRequest.g:1580:4: enumLiteral_1= 'ManyToOne'
                     {
                     enumLiteral_1=(Token)match(input,51,FOLLOW_2); 
 
@@ -4029,10 +4029,10 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalSocialRequest.g:1587:3: (enumLiteral_2= 'one-to-one' )
+                    // InternalSocialRequest.g:1587:3: (enumLiteral_2= 'OneToOne' )
                     {
-                    // InternalSocialRequest.g:1587:3: (enumLiteral_2= 'one-to-one' )
-                    // InternalSocialRequest.g:1588:4: enumLiteral_2= 'one-to-one'
+                    // InternalSocialRequest.g:1587:3: (enumLiteral_2= 'OneToOne' )
+                    // InternalSocialRequest.g:1588:4: enumLiteral_2= 'OneToOne'
                     {
                     enumLiteral_2=(Token)match(input,52,FOLLOW_2); 
 
@@ -4046,10 +4046,10 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalSocialRequest.g:1595:3: (enumLiteral_3= 'many-to-many' )
+                    // InternalSocialRequest.g:1595:3: (enumLiteral_3= 'ManyToMany' )
                     {
-                    // InternalSocialRequest.g:1595:3: (enumLiteral_3= 'many-to-many' )
-                    // InternalSocialRequest.g:1596:4: enumLiteral_3= 'many-to-many'
+                    // InternalSocialRequest.g:1595:3: (enumLiteral_3= 'ManyToMany' )
+                    // InternalSocialRequest.g:1596:4: enumLiteral_3= 'ManyToMany'
                     {
                     enumLiteral_3=(Token)match(input,53,FOLLOW_2); 
 
@@ -4085,7 +4085,7 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleDataType"
-    // InternalSocialRequest.g:1606:1: ruleDataType returns [Enumerator current=null] : ( (enumLiteral_0= 'string' ) | (enumLiteral_1= 'long' ) | (enumLiteral_2= 'float' ) | (enumLiteral_3= 'double' ) | (enumLiteral_4= 'char' ) | (enumLiteral_5= 'int' ) | (enumLiteral_6= 'boolean' ) | (enumLiteral_7= 'date' ) ) ;
+    // InternalSocialRequest.g:1606:1: ruleDataType returns [Enumerator current=null] : ( (enumLiteral_0= 'String' ) | (enumLiteral_1= 'long' ) | (enumLiteral_2= 'float' ) | (enumLiteral_3= 'double' ) | (enumLiteral_4= 'char' ) | (enumLiteral_5= 'int' ) | (enumLiteral_6= 'boolean' ) | (enumLiteral_7= 'Date' ) ) ;
     public final Enumerator ruleDataType() throws RecognitionException {
         Enumerator current = null;
 
@@ -4102,10 +4102,10 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalSocialRequest.g:1612:2: ( ( (enumLiteral_0= 'string' ) | (enumLiteral_1= 'long' ) | (enumLiteral_2= 'float' ) | (enumLiteral_3= 'double' ) | (enumLiteral_4= 'char' ) | (enumLiteral_5= 'int' ) | (enumLiteral_6= 'boolean' ) | (enumLiteral_7= 'date' ) ) )
-            // InternalSocialRequest.g:1613:2: ( (enumLiteral_0= 'string' ) | (enumLiteral_1= 'long' ) | (enumLiteral_2= 'float' ) | (enumLiteral_3= 'double' ) | (enumLiteral_4= 'char' ) | (enumLiteral_5= 'int' ) | (enumLiteral_6= 'boolean' ) | (enumLiteral_7= 'date' ) )
+            // InternalSocialRequest.g:1612:2: ( ( (enumLiteral_0= 'String' ) | (enumLiteral_1= 'long' ) | (enumLiteral_2= 'float' ) | (enumLiteral_3= 'double' ) | (enumLiteral_4= 'char' ) | (enumLiteral_5= 'int' ) | (enumLiteral_6= 'boolean' ) | (enumLiteral_7= 'Date' ) ) )
+            // InternalSocialRequest.g:1613:2: ( (enumLiteral_0= 'String' ) | (enumLiteral_1= 'long' ) | (enumLiteral_2= 'float' ) | (enumLiteral_3= 'double' ) | (enumLiteral_4= 'char' ) | (enumLiteral_5= 'int' ) | (enumLiteral_6= 'boolean' ) | (enumLiteral_7= 'Date' ) )
             {
-            // InternalSocialRequest.g:1613:2: ( (enumLiteral_0= 'string' ) | (enumLiteral_1= 'long' ) | (enumLiteral_2= 'float' ) | (enumLiteral_3= 'double' ) | (enumLiteral_4= 'char' ) | (enumLiteral_5= 'int' ) | (enumLiteral_6= 'boolean' ) | (enumLiteral_7= 'date' ) )
+            // InternalSocialRequest.g:1613:2: ( (enumLiteral_0= 'String' ) | (enumLiteral_1= 'long' ) | (enumLiteral_2= 'float' ) | (enumLiteral_3= 'double' ) | (enumLiteral_4= 'char' ) | (enumLiteral_5= 'int' ) | (enumLiteral_6= 'boolean' ) | (enumLiteral_7= 'Date' ) )
             int alt28=8;
             switch ( input.LA(1) ) {
             case 54:
@@ -4157,10 +4157,10 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
 
             switch (alt28) {
                 case 1 :
-                    // InternalSocialRequest.g:1614:3: (enumLiteral_0= 'string' )
+                    // InternalSocialRequest.g:1614:3: (enumLiteral_0= 'String' )
                     {
-                    // InternalSocialRequest.g:1614:3: (enumLiteral_0= 'string' )
-                    // InternalSocialRequest.g:1615:4: enumLiteral_0= 'string'
+                    // InternalSocialRequest.g:1614:3: (enumLiteral_0= 'String' )
+                    // InternalSocialRequest.g:1615:4: enumLiteral_0= 'String'
                     {
                     enumLiteral_0=(Token)match(input,54,FOLLOW_2); 
 
@@ -4276,10 +4276,10 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 8 :
-                    // InternalSocialRequest.g:1670:3: (enumLiteral_7= 'date' )
+                    // InternalSocialRequest.g:1670:3: (enumLiteral_7= 'Date' )
                     {
-                    // InternalSocialRequest.g:1670:3: (enumLiteral_7= 'date' )
-                    // InternalSocialRequest.g:1671:4: enumLiteral_7= 'date'
+                    // InternalSocialRequest.g:1670:3: (enumLiteral_7= 'Date' )
+                    // InternalSocialRequest.g:1671:4: enumLiteral_7= 'Date'
                     {
                     enumLiteral_7=(Token)match(input,61,FOLLOW_2); 
 
