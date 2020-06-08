@@ -17,7 +17,8 @@ Entity:
 Attribute:
 	(association=ASSOCIATION)? name=ID':' type=[Entity|DATA_TYPE] (modifier=Modifier)? ('{'
 			(
-				associationSpecifications+=AssociationSpecification* &
+				('mappedBy:' mappedBy=ID)? &
+				('fetch:' fetchType=FETCH_TYPE)? &
 				('validations {'
 					validations+=Validation+
 				'}')?
@@ -46,10 +47,6 @@ terminal GENERATION_TYPE returns ecore::EString:
 	'auto' | 'table' | 'identity' | 'sequence'
 ;
 
-AssociationSpecification:
-	('mappedBy:' mappedBy=ID) | ('fetch:' fetchType=FETCH_TYPE)
-;
-
 terminal FETCH_TYPE returns ecore::EString:
 	'eager' | 'lazy'
 ;
@@ -62,6 +59,8 @@ terminal DATA_TYPE returns ecore::EString:
 	'String' | 'long' | 'Long' | 'float' | 'double' | 'char' | 'int' | 'boolean'
 ;
 
+// Repository
+
 Repository:
 	'Repository' entity=[Entity] '{'
 		queries+=Query+
@@ -70,16 +69,46 @@ Repository:
 
 Query:
 	'query' name=ID(isList?=': list')? ('{'
-		params+=Param*
+		('params {'
+			params+=Param*
+		'}')?
 		
 		(sqlQuery=SQLQuery)?
 	'}')
 ;
 
 Param:
-	'param' name=ID':' type=[Entity|DATA_TYPE]
+	name=ID':' type=[Entity|DATA_TYPE]
 ;
 
 SQLQuery:
-	'Kek'
+	select=Select
+	from=From
+	joins+=Join*
+	(where=Where)?
+	(order=Order)?
+;
+
+Select:
+	'SELECT' (isDistinct?='DISTINCT')? '{' clause=STRING '}'
+;
+
+From:
+	'FROM {' entity=[Entity] alias=STRING '}'
+;
+
+Join:
+	joinType=JOIN_TYPE '{' entity=[Entity] alias=STRING '}' ('ON {' joinCondition=STRING '}')?
+;
+
+terminal JOIN_TYPE returns ecore::EString:
+	'LEFT JOIN' | 'LEFT OUTER JOIN' | 'CROSS JOIN' | 'JOIN'
+;
+
+Where:
+	'WHERE {' condition=STRING '}'
+;
+
+Order:
+	'ORDER BY {' order=STRING '}' 
 ;

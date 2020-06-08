@@ -10,18 +10,23 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import org.xtext.example.mydsl.socialRequest.AssociationSpecification;
 import org.xtext.example.mydsl.socialRequest.Attribute;
 import org.xtext.example.mydsl.socialRequest.Entity;
+import org.xtext.example.mydsl.socialRequest.From;
 import org.xtext.example.mydsl.socialRequest.Identification;
+import org.xtext.example.mydsl.socialRequest.Join;
 import org.xtext.example.mydsl.socialRequest.Model;
 import org.xtext.example.mydsl.socialRequest.Modifier;
+import org.xtext.example.mydsl.socialRequest.Order;
 import org.xtext.example.mydsl.socialRequest.Param;
 import org.xtext.example.mydsl.socialRequest.Query;
 import org.xtext.example.mydsl.socialRequest.Repository;
+import org.xtext.example.mydsl.socialRequest.SQLQuery;
+import org.xtext.example.mydsl.socialRequest.Select;
 import org.xtext.example.mydsl.socialRequest.SocialRequestFactory;
 import org.xtext.example.mydsl.socialRequest.SocialRequestPackage;
 import org.xtext.example.mydsl.socialRequest.Validation;
+import org.xtext.example.mydsl.socialRequest.Where;
 
 /**
  * <!-- begin-user-doc -->
@@ -78,13 +83,6 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass associationSpecificationEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   private EClass repositoryEClass = null;
 
   /**
@@ -100,6 +98,48 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
    * @generated
    */
   private EClass paramEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass sqlQueryEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass selectEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass fromEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass joinEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass whereEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass orderEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -302,9 +342,20 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
    * @generated
    */
   @Override
-  public EReference getAttribute_AssociationSpecifications()
+  public EAttribute getAttribute_MappedBy()
   {
-    return (EReference)attributeEClass.getEStructuralFeatures().get(4);
+    return (EAttribute)attributeEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getAttribute_FetchType()
+  {
+    return (EAttribute)attributeEClass.getEStructuralFeatures().get(5);
   }
 
   /**
@@ -315,7 +366,7 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
   @Override
   public EReference getAttribute_Validations()
   {
-    return (EReference)attributeEClass.getEStructuralFeatures().get(5);
+    return (EReference)attributeEClass.getEStructuralFeatures().get(6);
   }
 
   /**
@@ -401,39 +452,6 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
    * @generated
    */
   @Override
-  public EClass getAssociationSpecification()
-  {
-    return associationSpecificationEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getAssociationSpecification_MappedBy()
-  {
-    return (EAttribute)associationSpecificationEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getAssociationSpecification_FetchType()
-  {
-    return (EAttribute)associationSpecificationEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EClass getRepository()
   {
     return repositoryEClass;
@@ -511,9 +529,9 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
    * @generated
    */
   @Override
-  public EAttribute getQuery_SqlQuery()
+  public EReference getQuery_SqlQuery()
   {
-    return (EAttribute)queryEClass.getEStructuralFeatures().get(3);
+    return (EReference)queryEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -547,6 +565,237 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
   public EReference getParam_Type()
   {
     return (EReference)paramEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getSQLQuery()
+  {
+    return sqlQueryEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getSQLQuery_Select()
+  {
+    return (EReference)sqlQueryEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getSQLQuery_From()
+  {
+    return (EReference)sqlQueryEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getSQLQuery_Joins()
+  {
+    return (EReference)sqlQueryEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getSQLQuery_Where()
+  {
+    return (EReference)sqlQueryEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getSQLQuery_Order()
+  {
+    return (EReference)sqlQueryEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getSelect()
+  {
+    return selectEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getSelect_IsDistinct()
+  {
+    return (EAttribute)selectEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getSelect_Clause()
+  {
+    return (EAttribute)selectEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getFrom()
+  {
+    return fromEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getFrom_Entity()
+  {
+    return (EReference)fromEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getFrom_Alias()
+  {
+    return (EAttribute)fromEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getJoin()
+  {
+    return joinEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getJoin_JoinType()
+  {
+    return (EAttribute)joinEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getJoin_Entity()
+  {
+    return (EReference)joinEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getJoin_Alias()
+  {
+    return (EAttribute)joinEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getJoin_JoinCondition()
+  {
+    return (EAttribute)joinEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getWhere()
+  {
+    return whereEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getWhere_Condition()
+  {
+    return (EAttribute)whereEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getOrder()
+  {
+    return orderEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getOrder_Order()
+  {
+    return (EAttribute)orderEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -594,7 +843,8 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
     createEAttribute(attributeEClass, ATTRIBUTE__NAME);
     createEReference(attributeEClass, ATTRIBUTE__TYPE);
     createEReference(attributeEClass, ATTRIBUTE__MODIFIER);
-    createEReference(attributeEClass, ATTRIBUTE__ASSOCIATION_SPECIFICATIONS);
+    createEAttribute(attributeEClass, ATTRIBUTE__MAPPED_BY);
+    createEAttribute(attributeEClass, ATTRIBUTE__FETCH_TYPE);
     createEReference(attributeEClass, ATTRIBUTE__VALIDATIONS);
 
     modifierEClass = createEClass(MODIFIER);
@@ -607,10 +857,6 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
     createEAttribute(validationEClass, VALIDATION__MAX);
     createEAttribute(validationEClass, VALIDATION__REGEX);
 
-    associationSpecificationEClass = createEClass(ASSOCIATION_SPECIFICATION);
-    createEAttribute(associationSpecificationEClass, ASSOCIATION_SPECIFICATION__MAPPED_BY);
-    createEAttribute(associationSpecificationEClass, ASSOCIATION_SPECIFICATION__FETCH_TYPE);
-
     repositoryEClass = createEClass(REPOSITORY);
     createEReference(repositoryEClass, REPOSITORY__ENTITY);
     createEReference(repositoryEClass, REPOSITORY__QUERIES);
@@ -619,11 +865,38 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
     createEAttribute(queryEClass, QUERY__NAME);
     createEAttribute(queryEClass, QUERY__IS_LIST);
     createEReference(queryEClass, QUERY__PARAMS);
-    createEAttribute(queryEClass, QUERY__SQL_QUERY);
+    createEReference(queryEClass, QUERY__SQL_QUERY);
 
     paramEClass = createEClass(PARAM);
     createEAttribute(paramEClass, PARAM__NAME);
     createEReference(paramEClass, PARAM__TYPE);
+
+    sqlQueryEClass = createEClass(SQL_QUERY);
+    createEReference(sqlQueryEClass, SQL_QUERY__SELECT);
+    createEReference(sqlQueryEClass, SQL_QUERY__FROM);
+    createEReference(sqlQueryEClass, SQL_QUERY__JOINS);
+    createEReference(sqlQueryEClass, SQL_QUERY__WHERE);
+    createEReference(sqlQueryEClass, SQL_QUERY__ORDER);
+
+    selectEClass = createEClass(SELECT);
+    createEAttribute(selectEClass, SELECT__IS_DISTINCT);
+    createEAttribute(selectEClass, SELECT__CLAUSE);
+
+    fromEClass = createEClass(FROM);
+    createEReference(fromEClass, FROM__ENTITY);
+    createEAttribute(fromEClass, FROM__ALIAS);
+
+    joinEClass = createEClass(JOIN);
+    createEAttribute(joinEClass, JOIN__JOIN_TYPE);
+    createEReference(joinEClass, JOIN__ENTITY);
+    createEAttribute(joinEClass, JOIN__ALIAS);
+    createEAttribute(joinEClass, JOIN__JOIN_CONDITION);
+
+    whereEClass = createEClass(WHERE);
+    createEAttribute(whereEClass, WHERE__CONDITION);
+
+    orderEClass = createEClass(ORDER);
+    createEAttribute(orderEClass, ORDER__ORDER);
   }
 
   /**
@@ -672,7 +945,8 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
     initEAttribute(getAttribute_Name(), ecorePackage.getEString(), "name", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAttribute_Type(), this.getEntity(), null, "type", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAttribute_Modifier(), this.getModifier(), null, "modifier", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAttribute_AssociationSpecifications(), this.getAssociationSpecification(), null, "associationSpecifications", null, 0, -1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAttribute_MappedBy(), ecorePackage.getEString(), "mappedBy", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAttribute_FetchType(), ecorePackage.getEString(), "fetchType", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAttribute_Validations(), this.getValidation(), null, "validations", null, 0, -1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(modifierEClass, Modifier.class, "Modifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -685,10 +959,6 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
     initEAttribute(getValidation_Max(), ecorePackage.getEBigDecimal(), "max", null, 0, 1, Validation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getValidation_Regex(), ecorePackage.getEString(), "regex", null, 0, 1, Validation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(associationSpecificationEClass, AssociationSpecification.class, "AssociationSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getAssociationSpecification_MappedBy(), ecorePackage.getEString(), "mappedBy", null, 0, 1, AssociationSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getAssociationSpecification_FetchType(), ecorePackage.getEString(), "fetchType", null, 0, 1, AssociationSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
     initEClass(repositoryEClass, Repository.class, "Repository", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRepository_Entity(), this.getEntity(), null, "entity", null, 0, 1, Repository.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRepository_Queries(), this.getQuery(), null, "queries", null, 0, -1, Repository.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -697,11 +967,38 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
     initEAttribute(getQuery_Name(), ecorePackage.getEString(), "name", null, 0, 1, Query.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getQuery_IsList(), ecorePackage.getEBoolean(), "isList", null, 0, 1, Query.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getQuery_Params(), this.getParam(), null, "params", null, 0, -1, Query.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getQuery_SqlQuery(), ecorePackage.getEString(), "sqlQuery", null, 0, 1, Query.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getQuery_SqlQuery(), this.getSQLQuery(), null, "sqlQuery", null, 0, 1, Query.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(paramEClass, Param.class, "Param", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getParam_Name(), ecorePackage.getEString(), "name", null, 0, 1, Param.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getParam_Type(), this.getEntity(), null, "type", null, 0, 1, Param.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(sqlQueryEClass, SQLQuery.class, "SQLQuery", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getSQLQuery_Select(), this.getSelect(), null, "select", null, 0, 1, SQLQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSQLQuery_From(), this.getFrom(), null, "from", null, 0, 1, SQLQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSQLQuery_Joins(), this.getJoin(), null, "joins", null, 0, -1, SQLQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSQLQuery_Where(), this.getWhere(), null, "where", null, 0, 1, SQLQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSQLQuery_Order(), this.getOrder(), null, "order", null, 0, 1, SQLQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(selectEClass, Select.class, "Select", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getSelect_IsDistinct(), ecorePackage.getEBoolean(), "isDistinct", null, 0, 1, Select.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getSelect_Clause(), ecorePackage.getEString(), "clause", null, 0, 1, Select.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(fromEClass, From.class, "From", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getFrom_Entity(), this.getEntity(), null, "entity", null, 0, 1, From.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFrom_Alias(), ecorePackage.getEString(), "alias", null, 0, 1, From.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(joinEClass, Join.class, "Join", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getJoin_JoinType(), ecorePackage.getEString(), "joinType", null, 0, 1, Join.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getJoin_Entity(), this.getEntity(), null, "entity", null, 0, 1, Join.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getJoin_Alias(), ecorePackage.getEString(), "alias", null, 0, 1, Join.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getJoin_JoinCondition(), ecorePackage.getEString(), "joinCondition", null, 0, 1, Join.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(whereEClass, Where.class, "Where", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getWhere_Condition(), ecorePackage.getEString(), "condition", null, 0, 1, Where.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(orderEClass, Order.class, "Order", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getOrder_Order(), ecorePackage.getEString(), "order", null, 0, 1, Order.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

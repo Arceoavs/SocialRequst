@@ -85,25 +85,25 @@ public interface Query extends EObject
   EList<Param> getParams();
 
   /**
-   * Returns the value of the '<em><b>Sql Query</b></em>' attribute.
+   * Returns the value of the '<em><b>Sql Query</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Sql Query</em>' attribute.
-   * @see #setSqlQuery(String)
+   * @return the value of the '<em>Sql Query</em>' containment reference.
+   * @see #setSqlQuery(SQLQuery)
    * @see org.xtext.example.mydsl.socialRequest.SocialRequestPackage#getQuery_SqlQuery()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getSqlQuery();
+  SQLQuery getSqlQuery();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.socialRequest.Query#getSqlQuery <em>Sql Query</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.example.mydsl.socialRequest.Query#getSqlQuery <em>Sql Query</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Sql Query</em>' attribute.
+   * @param value the new value of the '<em>Sql Query</em>' containment reference.
    * @see #getSqlQuery()
    * @generated
    */
-  void setSqlQuery(String value);
+  void setSqlQuery(SQLQuery value);
 
 } // Query

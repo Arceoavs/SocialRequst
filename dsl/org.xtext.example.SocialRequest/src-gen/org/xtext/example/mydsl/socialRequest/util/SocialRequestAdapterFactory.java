@@ -106,11 +106,6 @@ public class SocialRequestAdapterFactory extends AdapterFactoryImpl
         return createValidationAdapter();
       }
       @Override
-      public Adapter caseAssociationSpecification(AssociationSpecification object)
-      {
-        return createAssociationSpecificationAdapter();
-      }
-      @Override
       public Adapter caseRepository(Repository object)
       {
         return createRepositoryAdapter();
@@ -124,6 +119,36 @@ public class SocialRequestAdapterFactory extends AdapterFactoryImpl
       public Adapter caseParam(Param object)
       {
         return createParamAdapter();
+      }
+      @Override
+      public Adapter caseSQLQuery(SQLQuery object)
+      {
+        return createSQLQueryAdapter();
+      }
+      @Override
+      public Adapter caseSelect(Select object)
+      {
+        return createSelectAdapter();
+      }
+      @Override
+      public Adapter caseFrom(From object)
+      {
+        return createFromAdapter();
+      }
+      @Override
+      public Adapter caseJoin(Join object)
+      {
+        return createJoinAdapter();
+      }
+      @Override
+      public Adapter caseWhere(Where object)
+      {
+        return createWhereAdapter();
+      }
+      @Override
+      public Adapter caseOrder(Order object)
+      {
+        return createOrderAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -238,21 +263,6 @@ public class SocialRequestAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.socialRequest.AssociationSpecification <em>Association Specification</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.mydsl.socialRequest.AssociationSpecification
-   * @generated
-   */
-  public Adapter createAssociationSpecificationAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.socialRequest.Repository <em>Repository</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -293,6 +303,96 @@ public class SocialRequestAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createParamAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.socialRequest.SQLQuery <em>SQL Query</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.socialRequest.SQLQuery
+   * @generated
+   */
+  public Adapter createSQLQueryAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.socialRequest.Select <em>Select</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.socialRequest.Select
+   * @generated
+   */
+  public Adapter createSelectAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.socialRequest.From <em>From</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.socialRequest.From
+   * @generated
+   */
+  public Adapter createFromAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.socialRequest.Join <em>Join</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.socialRequest.Join
+   * @generated
+   */
+  public Adapter createJoinAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.socialRequest.Where <em>Where</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.socialRequest.Where
+   * @generated
+   */
+  public Adapter createWhereAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.socialRequest.Order <em>Order</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.socialRequest.Order
+   * @generated
+   */
+  public Adapter createOrderAdapter()
   {
     return null;
   }

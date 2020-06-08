@@ -116,13 +116,6 @@ public class SocialRequestSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case SocialRequestPackage.ASSOCIATION_SPECIFICATION:
-      {
-        AssociationSpecification associationSpecification = (AssociationSpecification)theEObject;
-        T result = caseAssociationSpecification(associationSpecification);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case SocialRequestPackage.REPOSITORY:
       {
         Repository repository = (Repository)theEObject;
@@ -141,6 +134,48 @@ public class SocialRequestSwitch<T> extends Switch<T>
       {
         Param param = (Param)theEObject;
         T result = caseParam(param);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SocialRequestPackage.SQL_QUERY:
+      {
+        SQLQuery sqlQuery = (SQLQuery)theEObject;
+        T result = caseSQLQuery(sqlQuery);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SocialRequestPackage.SELECT:
+      {
+        Select select = (Select)theEObject;
+        T result = caseSelect(select);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SocialRequestPackage.FROM:
+      {
+        From from = (From)theEObject;
+        T result = caseFrom(from);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SocialRequestPackage.JOIN:
+      {
+        Join join = (Join)theEObject;
+        T result = caseJoin(join);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SocialRequestPackage.WHERE:
+      {
+        Where where = (Where)theEObject;
+        T result = caseWhere(where);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SocialRequestPackage.ORDER:
+      {
+        Order order = (Order)theEObject;
+        T result = caseOrder(order);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -245,22 +280,6 @@ public class SocialRequestSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Association Specification</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Association Specification</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseAssociationSpecification(AssociationSpecification object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Repository</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -304,6 +323,102 @@ public class SocialRequestSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseParam(Param object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>SQL Query</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>SQL Query</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSQLQuery(SQLQuery object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Select</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Select</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSelect(Select object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>From</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>From</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFrom(From object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Join</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Join</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseJoin(Join object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Where</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Where</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseWhere(Where object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Order</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Order</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseOrder(Order object)
   {
     return null;
   }
