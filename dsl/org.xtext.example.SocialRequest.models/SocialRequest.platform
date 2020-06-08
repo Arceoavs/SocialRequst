@@ -1,29 +1,105 @@
-Entity Topic {
-  name: String ID {
+Entity User implements UserDetails {
+  id: long ID(auto)
+
+  username: string {
     validations {
-      pattern: [a-zA-Z0-9]+
+      unique
     }
   }
 
-  ManyToMany users: User {
-    mappedBy: specialties
-  }
-
-  ManyToMany requests: Request {
-    mappedBy: topics
-  }
-}
-
-Entity Request {
-  id: long ID(AUTO)
-
-  title: String {
+  password: string {
     validations {
       not-blank
     }
   }
 
-  description: String LOB {
+  rawPassword: string TRANSIENT
+
+  email: string {
+    validations {
+      not-blank
+      valid-email
+    }
+  }
+
+  latitude: float {
+    validations {
+      not-null
+      min: -90
+      max: 90
+    }
+  }
+
+  longitude: float {
+    validations {
+      not-null
+      min: -180
+      max: 180
+    }
+  }
+
+  one-to-many requests: Request {
+    mappedBy: user
+  }
+
+  one-to-many fulfillments: Fulfillment {
+    mappedBy: user
+  }
+
+  many-to-many specialties: Topic {
+    fetch: eager
+  }
+}
+
+Entity Fulfillment {
+  id: long ID(auto)
+
+  createdAt: date {
+    validations {
+      not-null
+      past
+    }
+  }
+
+  many-to-one user: User {
+    validations {
+      not-null
+    }
+  }
+
+  one-to-one request: Request {
+    validations {
+      not-null
+    }
+  }
+}
+
+Entity Topic {
+  name: string ID {
+    validations {
+      pattern: "[a-zA-Z0-9]+"
+    }
+  }
+
+  many-to-many users: User {
+    mappedBy: specialties
+  }
+
+  many-to-many requests: Request {
+    mappedBy: topics
+  }
+}
+
+Entity Request {
+  id: long ID(auto)
+
+  title: string {
+    validations {
+      not-blank
+    }
+  }
+
+  description: string LOB {
     validations {
       not-blank
     }
@@ -38,31 +114,47 @@ Entity Request {
   }
 
   longitude: float {
-    validations: {
+    validations {
       not-null
       min: -180
       max: 180
     }
   }
 
-  createdAt: Date {
-    validations: {
+  createdAt: date {
+    validations {
       not-null
       past
     }
   }
 
-  ManyToOne user: User {
+  many-to-one user: User {
     validations {
       not-null
     }
   }
 
-  OneToOne fulfillment: Fulfillment {
+  one-to-one fulfillment: Fulfillment {
     mappedBy: request
   }
 
-  ManyToMany topics: Topic {
+  many-to-many topics: Topic {
     fetch: eager
   }
 }
+
+Repository Request {
+  query nearByUser: list {
+    params {
+      lat: float
+      lng: float
+    }
+
+    SELECT DISTINCT { "r" }
+    FROM { Request r }
+    LEFT JOIN { Fulfillment f }
+    WHERE { "f.id IS NULL NAD 6371 * SQRT(POWER((radians(r.longitude) - radians(:lng)) * COS((radians(:lat) + radians(r.latitude))/2), 2) + POWER(radians(r.latitude) - radians(:lat), 2)) <= 10"}
+    ORDER BY { "r.createdAt DESC" }
+  }
+}
+
