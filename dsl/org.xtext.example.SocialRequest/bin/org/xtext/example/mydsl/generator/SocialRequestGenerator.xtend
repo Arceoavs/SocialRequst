@@ -39,7 +39,7 @@ class SocialRequestGenerator extends AbstractGenerator {
 		import javax.persistence.*;
 		import javax.validation.constraints.*;
 
-		public class «entity.name» implements Serializable {
+		public class «entity.name» implements Serializable «IF entity.hasUserDetails», UserDetails «ENDIF»{
 			private static final long serialVersionUID = 1L;
 
 			«FOR attribute : entity.attributes»
@@ -71,7 +71,7 @@ class SocialRequestGenerator extends AbstractGenerator {
 			rawAttributeType = (attribute.typeRef as DataTypeReference).type.toString
 		}
 		
-		if (attribute.association != null && attribute.association.literal.endsWith("One")) {
+		if (attribute.association != null && attribute.association.endsWith("One")) {
 			"Set<" + rawAttributeType + ">"
 		} else {
 			rawAttributeType
@@ -92,11 +92,13 @@ class SocialRequestGenerator extends AbstractGenerator {
 	
 	private def generateAssociationAnnotation(Attribute attribute)'''
 		«IF attribute.mappedBy == null && attribute.fetchType == null»
-			@«attribute.association.literal»
+			@«attribute.association»
 		«ELSEIF attribute.mappedBy != null && attribute.fetchType != null»
-			@«attribute.association.literal»(mappedBy = «attribute.mappedBy», fetch = «attribute.fetchType.literal»)
+			@«attribute.association»(mappedBy = "«attribute.mappedBy»", fetch = FetchType.«attribute.fetchType»)
 		«ELSEIF attribute.mappedBy != null && attribute.fetchType == null»
-			@«attribute.association.literal»(mappedBy = «attribute.mappedBy»)
+			@«attribute.association»(mappedBy = "«attribute.mappedBy»")
+	    «ELSEIF attribute.mappedBy == null && attribute.fetchType != null»
+	    	@«attribute.association»(fetch = FetchType.«attribute.fetchType»)
 		«ENDIF»
 	'''
 	

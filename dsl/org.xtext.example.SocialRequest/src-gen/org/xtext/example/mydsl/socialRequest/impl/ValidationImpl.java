@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.xtext.example.mydsl.socialRequest.BasicValidation;
 import org.xtext.example.mydsl.socialRequest.SocialRequestPackage;
 import org.xtext.example.mydsl.socialRequest.Validation;
 
@@ -102,7 +101,7 @@ public class ValidationImpl extends MinimalEObjectImpl.Container implements Vali
    * @generated
    * @ordered
    */
-  protected static final BasicValidation VALIDATOR_EDEFAULT = BasicValidation.NOT_NULL;
+  protected static final String VALIDATOR_EDEFAULT = null;
 
   /**
    * The cached value of the '{@link #getValidator() <em>Validator</em>}' attribute.
@@ -112,7 +111,7 @@ public class ValidationImpl extends MinimalEObjectImpl.Container implements Vali
    * @generated
    * @ordered
    */
-  protected BasicValidation validator = VALIDATOR_EDEFAULT;
+  protected String validator = VALIDATOR_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -216,7 +215,7 @@ public class ValidationImpl extends MinimalEObjectImpl.Container implements Vali
    * @generated
    */
   @Override
-  public BasicValidation getValidator()
+  public String getValidator()
   {
     return validator;
   }
@@ -227,10 +226,10 @@ public class ValidationImpl extends MinimalEObjectImpl.Container implements Vali
    * @generated
    */
   @Override
-  public void setValidator(BasicValidation newValidator)
+  public void setValidator(String newValidator)
   {
-    BasicValidation oldValidator = validator;
-    validator = newValidator == null ? VALIDATOR_EDEFAULT : newValidator;
+    String oldValidator = validator;
+    validator = newValidator;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, SocialRequestPackage.VALIDATION__VALIDATOR, oldValidator, validator));
   }
@@ -277,7 +276,7 @@ public class ValidationImpl extends MinimalEObjectImpl.Container implements Vali
         setRegex((String)newValue);
         return;
       case SocialRequestPackage.VALIDATION__VALIDATOR:
-        setValidator((BasicValidation)newValue);
+        setValidator((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -326,7 +325,7 @@ public class ValidationImpl extends MinimalEObjectImpl.Container implements Vali
       case SocialRequestPackage.VALIDATION__REGEX:
         return REGEX_EDEFAULT == null ? regex != null : !REGEX_EDEFAULT.equals(regex);
       case SocialRequestPackage.VALIDATION__VALIDATOR:
-        return validator != VALIDATOR_EDEFAULT;
+        return VALIDATOR_EDEFAULT == null ? validator != null : !VALIDATOR_EDEFAULT.equals(validator);
     }
     return super.eIsSet(featureID);
   }

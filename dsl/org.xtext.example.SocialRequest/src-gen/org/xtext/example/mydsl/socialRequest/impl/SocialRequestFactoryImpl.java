@@ -98,14 +98,8 @@ public class SocialRequestFactoryImpl extends EFactoryImpl implements SocialRequ
   {
     switch (eDataType.getClassifierID())
     {
-      case SocialRequestPackage.BASIC_VALIDATION:
-        return createBasicValidationFromString(eDataType, initialValue);
       case SocialRequestPackage.GENERATION_TYPE:
         return createGenerationTypeFromString(eDataType, initialValue);
-      case SocialRequestPackage.FETCH_TYPE:
-        return createFetchTypeFromString(eDataType, initialValue);
-      case SocialRequestPackage.ASSOCIATION:
-        return createAssociationFromString(eDataType, initialValue);
       case SocialRequestPackage.DATA_TYPE:
         return createDataTypeFromString(eDataType, initialValue);
       case SocialRequestPackage.JOIN_TYPE:
@@ -125,14 +119,8 @@ public class SocialRequestFactoryImpl extends EFactoryImpl implements SocialRequ
   {
     switch (eDataType.getClassifierID())
     {
-      case SocialRequestPackage.BASIC_VALIDATION:
-        return convertBasicValidationToString(eDataType, instanceValue);
       case SocialRequestPackage.GENERATION_TYPE:
         return convertGenerationTypeToString(eDataType, instanceValue);
-      case SocialRequestPackage.FETCH_TYPE:
-        return convertFetchTypeToString(eDataType, instanceValue);
-      case SocialRequestPackage.ASSOCIATION:
-        return convertAssociationToString(eDataType, instanceValue);
       case SocialRequestPackage.DATA_TYPE:
         return convertDataTypeToString(eDataType, instanceValue);
       case SocialRequestPackage.JOIN_TYPE:
@@ -351,28 +339,6 @@ public class SocialRequestFactoryImpl extends EFactoryImpl implements SocialRequ
    * <!-- end-user-doc -->
    * @generated
    */
-  public BasicValidation createBasicValidationFromString(EDataType eDataType, String initialValue)
-  {
-    BasicValidation result = BasicValidation.get(initialValue);
-    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-    return result;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String convertBasicValidationToString(EDataType eDataType, Object instanceValue)
-  {
-    return instanceValue == null ? null : instanceValue.toString();
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public GenerationType createGenerationTypeFromString(EDataType eDataType, String initialValue)
   {
     GenerationType result = GenerationType.get(initialValue);
@@ -386,50 +352,6 @@ public class SocialRequestFactoryImpl extends EFactoryImpl implements SocialRequ
    * @generated
    */
   public String convertGenerationTypeToString(EDataType eDataType, Object instanceValue)
-  {
-    return instanceValue == null ? null : instanceValue.toString();
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public FetchType createFetchTypeFromString(EDataType eDataType, String initialValue)
-  {
-    FetchType result = FetchType.get(initialValue);
-    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-    return result;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String convertFetchTypeToString(EDataType eDataType, Object instanceValue)
-  {
-    return instanceValue == null ? null : instanceValue.toString();
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Association createAssociationFromString(EDataType eDataType, String initialValue)
-  {
-    Association result = Association.get(initialValue);
-    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-    return result;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String convertAssociationToString(EDataType eDataType, Object instanceValue)
   {
     return instanceValue == null ? null : instanceValue.toString();
   }

@@ -6,28 +6,11 @@
     complianceLevel="8.0" copyrightFields="false" runtimeVersion="2.20">
   <genPackages prefix="SocialRequest" basePackage="org.xtext.example.mydsl" disposableProviderFactory="true"
       fileExtensions="platform" ecorePackage="SocialRequest.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="SocialRequest.ecore#//BasicValidation">
-      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//BasicValidation/NOT_NULL"/>
-      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//BasicValidation/NOT_BLANK"/>
-      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//BasicValidation/PAST"/>
-      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//BasicValidation/UNIQUE"/>
-      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//BasicValidation/EMAIL"/>
-    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="SocialRequest.ecore#//GenerationType">
       <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//GenerationType/AUTO"/>
       <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//GenerationType/TABLE"/>
       <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//GenerationType/IDENTITY"/>
       <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//GenerationType/SEQUENCE"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="SocialRequest.ecore#//FetchType">
-      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//FetchType/EAGER"/>
-      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//FetchType/LAZY"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="SocialRequest.ecore#//Association">
-      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//Association/ONE_TO_MANY"/>
-      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//Association/MANY_TO_ONE"/>
-      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//Association/ONE_TO_ONE"/>
-      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//Association/MANY_TO_MANY"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="SocialRequest.ecore#//DataType">
       <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//DataType/STRING"/>

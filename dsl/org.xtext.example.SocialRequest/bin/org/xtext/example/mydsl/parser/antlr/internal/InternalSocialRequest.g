@@ -225,9 +225,9 @@ ruleAttribute returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getAttributeAccess().getAssociationAssociationEnumRuleCall_0_0());
+					newCompositeNode(grammarAccess.getAttributeAccess().getAssociationASSOCIATIONParserRuleCall_0_0());
 				}
-				lv_association_0_0=ruleAssociation
+				lv_association_0_0=ruleASSOCIATION
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getAttributeRule());
@@ -236,7 +236,7 @@ ruleAttribute returns [EObject current=null]
 						$current,
 						"association",
 						lv_association_0_0,
-						"org.xtext.example.mydsl.SocialRequest.Association");
+						"org.xtext.example.mydsl.SocialRequest.ASSOCIATION");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -357,20 +357,19 @@ ruleAttribute returns [EObject current=null]
 									}
 									(
 										(
+											lv_fetchType_10_0=RULE_FETCHTYPE
 											{
-												newCompositeNode(grammarAccess.getAttributeAccess().getFetchTypeFetchTypeEnumRuleCall_5_1_1_1_0());
+												newLeafNode(lv_fetchType_10_0, grammarAccess.getAttributeAccess().getFetchTypeFETCHTYPETerminalRuleCall_5_1_1_1_0());
 											}
-											lv_fetchType_10_0=ruleFetchType
 											{
 												if ($current==null) {
-													$current = createModelElementForParent(grammarAccess.getAttributeRule());
+													$current = createModelElement(grammarAccess.getAttributeRule());
 												}
-												set(
+												setWithLastConsumed(
 													$current,
 													"fetchType",
 													lv_fetchType_10_0,
-													"org.xtext.example.mydsl.SocialRequest.FetchType");
-												afterParserOrEnumRuleCall();
+													"org.xtext.example.mydsl.SocialRequest.FETCHTYPE");
 											}
 										)
 									)
@@ -727,9 +726,9 @@ ruleValidation returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getValidationAccess().getValidatorBasicValidationEnumRuleCall_3_0());
+					newCompositeNode(grammarAccess.getValidationAccess().getValidatorBASICVALIDATIONParserRuleCall_3_0());
 				}
-				lv_validator_6_0=ruleBasicValidation
+				lv_validator_6_0=ruleBASICVALIDATION
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getValidationRule());
@@ -738,11 +737,101 @@ ruleValidation returns [EObject current=null]
 						$current,
 						"validator",
 						lv_validator_6_0,
-						"org.xtext.example.mydsl.SocialRequest.BasicValidation");
+						"org.xtext.example.mydsl.SocialRequest.BASICVALIDATION");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
+	)
+;
+
+// Entry rule entryRuleBASICVALIDATION
+entryRuleBASICVALIDATION returns [String current=null]:
+	{ newCompositeNode(grammarAccess.getBASICVALIDATIONRule()); }
+	iv_ruleBASICVALIDATION=ruleBASICVALIDATION
+	{ $current=$iv_ruleBASICVALIDATION.current.getText(); }
+	EOF;
+
+// Rule BASICVALIDATION
+ruleBASICVALIDATION returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		kw='NotNull'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getBASICVALIDATIONAccess().getNotNullKeyword_0());
+		}
+		    |
+		kw='NotBlank'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getBASICVALIDATIONAccess().getNotBlankKeyword_1());
+		}
+		    |
+		kw='Past'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getBASICVALIDATIONAccess().getPastKeyword_2());
+		}
+		    |
+		kw='Unique'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getBASICVALIDATIONAccess().getUniqueKeyword_3());
+		}
+		    |
+		kw='Email'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getBASICVALIDATIONAccess().getEmailKeyword_4());
+		}
+	)
+;
+
+// Entry rule entryRuleASSOCIATION
+entryRuleASSOCIATION returns [String current=null]:
+	{ newCompositeNode(grammarAccess.getASSOCIATIONRule()); }
+	iv_ruleASSOCIATION=ruleASSOCIATION
+	{ $current=$iv_ruleASSOCIATION.current.getText(); }
+	EOF;
+
+// Rule ASSOCIATION
+ruleASSOCIATION returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		kw='OneToMany'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getASSOCIATIONAccess().getOneToManyKeyword_0());
+		}
+		    |
+		kw='ManyToOne'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getASSOCIATIONAccess().getManyToOneKeyword_1());
+		}
+		    |
+		kw='OneToOne'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getASSOCIATIONAccess().getOneToOneKeyword_2());
+		}
+		    |
+		kw='ManyToMany'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getASSOCIATIONAccess().getManyToManyKeyword_3());
+		}
 	)
 ;
 
@@ -1438,57 +1527,6 @@ ruleOrder returns [EObject current=null]
 	)
 ;
 
-// Rule BasicValidation
-ruleBasicValidation returns [Enumerator current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			enumLiteral_0='NotNull'
-			{
-				$current = grammarAccess.getBasicValidationAccess().getNOT_NULLEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_0, grammarAccess.getBasicValidationAccess().getNOT_NULLEnumLiteralDeclaration_0());
-			}
-		)
-		    |
-		(
-			enumLiteral_1='NotBlank'
-			{
-				$current = grammarAccess.getBasicValidationAccess().getNOT_BLANKEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_1, grammarAccess.getBasicValidationAccess().getNOT_BLANKEnumLiteralDeclaration_1());
-			}
-		)
-		    |
-		(
-			enumLiteral_2='Past'
-			{
-				$current = grammarAccess.getBasicValidationAccess().getPASTEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_2, grammarAccess.getBasicValidationAccess().getPASTEnumLiteralDeclaration_2());
-			}
-		)
-		    |
-		(
-			enumLiteral_3='Unique'
-			{
-				$current = grammarAccess.getBasicValidationAccess().getUNIQUEEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_3, grammarAccess.getBasicValidationAccess().getUNIQUEEnumLiteralDeclaration_3());
-			}
-		)
-		    |
-		(
-			enumLiteral_4='Email'
-			{
-				$current = grammarAccess.getBasicValidationAccess().getEMAILEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_4, grammarAccess.getBasicValidationAccess().getEMAILEnumLiteralDeclaration_4());
-			}
-		)
-	)
-;
-
 // Rule GenerationType
 ruleGenerationType returns [Enumerator current=null]
 @init {
@@ -1527,76 +1565,6 @@ ruleGenerationType returns [Enumerator current=null]
 			{
 				$current = grammarAccess.getGenerationTypeAccess().getSEQUENCEEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
 				newLeafNode(enumLiteral_3, grammarAccess.getGenerationTypeAccess().getSEQUENCEEnumLiteralDeclaration_3());
-			}
-		)
-	)
-;
-
-// Rule FetchType
-ruleFetchType returns [Enumerator current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			enumLiteral_0='EAGER'
-			{
-				$current = grammarAccess.getFetchTypeAccess().getEAGEREnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_0, grammarAccess.getFetchTypeAccess().getEAGEREnumLiteralDeclaration_0());
-			}
-		)
-		    |
-		(
-			enumLiteral_1='LAZY'
-			{
-				$current = grammarAccess.getFetchTypeAccess().getLAZYEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_1, grammarAccess.getFetchTypeAccess().getLAZYEnumLiteralDeclaration_1());
-			}
-		)
-	)
-;
-
-// Rule Association
-ruleAssociation returns [Enumerator current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			enumLiteral_0='OneToMany'
-			{
-				$current = grammarAccess.getAssociationAccess().getONE_TO_MANYEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_0, grammarAccess.getAssociationAccess().getONE_TO_MANYEnumLiteralDeclaration_0());
-			}
-		)
-		    |
-		(
-			enumLiteral_1='ManyToOne'
-			{
-				$current = grammarAccess.getAssociationAccess().getMANY_TO_ONEEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_1, grammarAccess.getAssociationAccess().getMANY_TO_ONEEnumLiteralDeclaration_1());
-			}
-		)
-		    |
-		(
-			enumLiteral_2='OneToOne'
-			{
-				$current = grammarAccess.getAssociationAccess().getONE_TO_ONEEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_2, grammarAccess.getAssociationAccess().getONE_TO_ONEEnumLiteralDeclaration_2());
-			}
-		)
-		    |
-		(
-			enumLiteral_3='ManyToMany'
-			{
-				$current = grammarAccess.getAssociationAccess().getMANY_TO_MANYEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_3, grammarAccess.getAssociationAccess().getMANY_TO_MANYEnumLiteralDeclaration_3());
 			}
 		)
 	)
@@ -1721,6 +1689,8 @@ ruleJoinType returns [Enumerator current=null]
 ;
 
 RULE_POSSIBLY_SIGNED_INT : '-'? RULE_INT;
+
+RULE_FETCHTYPE : ('EAGER'|'LAZY');
 
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 

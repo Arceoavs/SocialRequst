@@ -105,7 +105,7 @@ public class SocialRequestSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *     Attribute returns Attribute
 	 *
 	 * Constraint:
-	 *     (association=Association? name=ID typeRef=TypeReference modifier=Modifier? (mappedBy=ID | fetchType=FetchType | validations+=Validation)*)
+	 *     (association=ASSOCIATION? name=ID typeRef=TypeReference modifier=Modifier? (mappedBy=ID | fetchType=FETCHTYPE | validations+=Validation)*)
 	 */
 	protected void sequence_Attribute(ISerializationContext context, Attribute semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -311,7 +311,7 @@ public class SocialRequestSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *     Validation returns Validation
 	 *
 	 * Constraint:
-	 *     (min=POSSIBLY_SIGNED_INT | max=POSSIBLY_SIGNED_INT | regex=STRING | validator=BasicValidation)
+	 *     (min=POSSIBLY_SIGNED_INT | max=POSSIBLY_SIGNED_INT | regex=STRING | validator=BASICVALIDATION)
 	 */
 	protected void sequence_Validation(ISerializationContext context, Validation semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

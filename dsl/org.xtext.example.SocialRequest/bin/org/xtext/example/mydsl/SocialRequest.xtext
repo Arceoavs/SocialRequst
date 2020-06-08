@@ -15,10 +15,10 @@ Entity:
 ;
 
 Attribute:
-	(association=Association)? name=ID ':' typeRef=TypeReference (modifier=Modifier)? ('{'
+	(association=ASSOCIATION)? name=ID ':' typeRef=TypeReference (modifier=Modifier)? ('{'
 			(
 				('mappedBy:' mappedBy=ID)? &
-				('fetch:' fetchType=FetchType)? &
+				('fetch:' fetchType=FETCHTYPE)? &
 				('validations' '{'
 					validations+=Validation+
 				'}')?
@@ -44,11 +44,11 @@ Modifier:
 
 Validation:
 	'min:' (min=POSSIBLY_SIGNED_INT) | 'max:' (max=POSSIBLY_SIGNED_INT) |
-	  'pattern:' regex=STRING | validator=BasicValidation
+	  'pattern:' regex=STRING | validator=BASICVALIDATION
 ;
 
-enum BasicValidation:
-	NOT_NULL='NotNull' | NOT_BLANK='NotBlank' | PAST='Past' | UNIQUE='Unique' | EMAIL='Email'
+BASICVALIDATION:
+	'NotNull' | 'NotBlank' | 'Past' | 'Unique' | 'Email'
 ;
 
 terminal POSSIBLY_SIGNED_INT returns ecore::EBigDecimal:
@@ -59,12 +59,12 @@ enum GenerationType:
 	AUTO='AUTO' | TABLE='TABLE' | IDENTITY='IDENTITY' | SEQUENCE='SEQUENCE'
 ;
 
-enum FetchType:
-	EAGER='EAGER' | LAZY='LAZY'
+terminal FETCHTYPE:
+	'EAGER' | 'LAZY'
 ;
 	
-enum Association:
-	ONE_TO_MANY='OneToMany' | MANY_TO_ONE='ManyToOne' | ONE_TO_ONE='OneToOne' | MANY_TO_MANY='ManyToMany'
+ASSOCIATION:
+	'OneToMany' | 'ManyToOne' | 'OneToOne' | 'ManyToMany'
 ;
 
 enum DataType:

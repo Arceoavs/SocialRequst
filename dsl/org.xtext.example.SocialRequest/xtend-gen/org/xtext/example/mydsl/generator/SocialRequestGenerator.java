@@ -14,9 +14,7 @@ import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
-import org.xtext.example.mydsl.socialRequest.Association;
 import org.xtext.example.mydsl.socialRequest.Attribute;
-import org.xtext.example.mydsl.socialRequest.BasicValidation;
 import org.xtext.example.mydsl.socialRequest.DataTypeReference;
 import org.xtext.example.mydsl.socialRequest.Entity;
 import org.xtext.example.mydsl.socialRequest.EntityTypeReference;
@@ -60,7 +58,14 @@ public class SocialRequestGenerator extends AbstractGenerator {
     _builder.append("public class ");
     String _name = entity.getName();
     _builder.append(_name);
-    _builder.append(" implements Serializable {");
+    _builder.append(" implements Serializable ");
+    {
+      boolean _isHasUserDetails = entity.isHasUserDetails();
+      if (_isHasUserDetails) {
+        _builder.append(", UserDetails ");
+      }
+    }
+    _builder.append("{");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("private static final long serialVersionUID = 1L;");
@@ -96,7 +101,7 @@ public class SocialRequestGenerator extends AbstractGenerator {
       }
     }
     {
-      Association _association = attribute.getAssociation();
+      String _association = attribute.getAssociation();
       boolean _notEquals = (!Objects.equal(_association, null));
       if (_notEquals) {
         CharSequence _generateAssociationAnnotation = this.generateAssociationAnnotation(attribute);
@@ -129,7 +134,7 @@ public class SocialRequestGenerator extends AbstractGenerator {
         rawAttributeType = ((DataTypeReference) _typeRef_2).getType().toString();
       }
       String _xifexpression = null;
-      if (((!Objects.equal(attribute.getAssociation(), null)) && attribute.getAssociation().getLiteral().endsWith("One"))) {
+      if (((!Objects.equal(attribute.getAssociation(), null)) && attribute.getAssociation().endsWith("One"))) {
         _xifexpression = (("Set<" + rawAttributeType) + ">");
       } else {
         _xifexpression = rawAttributeType;
@@ -141,7 +146,7 @@ public class SocialRequestGenerator extends AbstractGenerator {
   
   private String generateValidation(final Validation validation) {
     String _xifexpression = null;
-    BasicValidation _validator = validation.getValidator();
+    String _validator = validation.getValidator();
     boolean _notEquals = (!Objects.equal(_validator, null));
     if (_notEquals) {
       String _string = validation.getValidator().toString();
@@ -185,32 +190,43 @@ public class SocialRequestGenerator extends AbstractGenerator {
     {
       if ((Objects.equal(attribute.getMappedBy(), null) && Objects.equal(attribute.getFetchType(), null))) {
         _builder.append("@");
-        String _literal = attribute.getAssociation().getLiteral();
-        _builder.append(_literal);
+        String _association = attribute.getAssociation();
+        _builder.append(_association);
         _builder.newLineIfNotEmpty();
       } else {
         if (((!Objects.equal(attribute.getMappedBy(), null)) && (!Objects.equal(attribute.getFetchType(), null)))) {
           _builder.append("@");
-          String _literal_1 = attribute.getAssociation().getLiteral();
-          _builder.append(_literal_1);
-          _builder.append("(mappedBy = ");
+          String _association_1 = attribute.getAssociation();
+          _builder.append(_association_1);
+          _builder.append("(mappedBy = \"");
           String _mappedBy = attribute.getMappedBy();
           _builder.append(_mappedBy);
-          _builder.append(", fetch = ");
-          String _literal_2 = attribute.getFetchType().getLiteral();
-          _builder.append(_literal_2);
+          _builder.append("\", fetch = FetchType.");
+          String _fetchType = attribute.getFetchType();
+          _builder.append(_fetchType);
           _builder.append(")");
           _builder.newLineIfNotEmpty();
         } else {
           if (((!Objects.equal(attribute.getMappedBy(), null)) && Objects.equal(attribute.getFetchType(), null))) {
             _builder.append("@");
-            String _literal_3 = attribute.getAssociation().getLiteral();
-            _builder.append(_literal_3);
-            _builder.append("(mappedBy = ");
+            String _association_2 = attribute.getAssociation();
+            _builder.append(_association_2);
+            _builder.append("(mappedBy = \"");
             String _mappedBy_1 = attribute.getMappedBy();
             _builder.append(_mappedBy_1);
-            _builder.append(")");
+            _builder.append("\")");
             _builder.newLineIfNotEmpty();
+          } else {
+            if ((Objects.equal(attribute.getMappedBy(), null) && (!Objects.equal(attribute.getFetchType(), null)))) {
+              _builder.append("@");
+              String _association_3 = attribute.getAssociation();
+              _builder.append(_association_3);
+              _builder.append("(fetch = FetchType.");
+              String _fetchType_1 = attribute.getFetchType();
+              _builder.append(_fetchType_1);
+              _builder.append(")");
+              _builder.newLineIfNotEmpty();
+            }
           }
         }
       }

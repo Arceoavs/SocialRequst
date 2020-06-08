@@ -787,16 +787,6 @@ public interface SocialRequestPackage extends EPackage
   int ORDER_FEATURE_COUNT = 1;
 
   /**
-   * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.BasicValidation <em>Basic Validation</em>}' enum.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.example.mydsl.socialRequest.BasicValidation
-   * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getBasicValidation()
-   * @generated
-   */
-  int BASIC_VALIDATION = 17;
-
-  /**
    * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.GenerationType <em>Generation Type</em>}' enum.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -804,27 +794,7 @@ public interface SocialRequestPackage extends EPackage
    * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getGenerationType()
    * @generated
    */
-  int GENERATION_TYPE = 18;
-
-  /**
-   * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.FetchType <em>Fetch Type</em>}' enum.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.example.mydsl.socialRequest.FetchType
-   * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getFetchType()
-   * @generated
-   */
-  int FETCH_TYPE = 19;
-
-  /**
-   * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.Association <em>Association</em>}' enum.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.example.mydsl.socialRequest.Association
-   * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getAssociation()
-   * @generated
-   */
-  int ASSOCIATION = 20;
+  int GENERATION_TYPE = 17;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.DataType <em>Data Type</em>}' enum.
@@ -834,7 +804,7 @@ public interface SocialRequestPackage extends EPackage
    * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getDataType()
    * @generated
    */
-  int DATA_TYPE = 21;
+  int DATA_TYPE = 18;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.JoinType <em>Join Type</em>}' enum.
@@ -844,7 +814,7 @@ public interface SocialRequestPackage extends EPackage
    * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getJoinType()
    * @generated
    */
-  int JOIN_TYPE = 22;
+  int JOIN_TYPE = 19;
 
 
   /**
@@ -1513,16 +1483,6 @@ public interface SocialRequestPackage extends EPackage
   EAttribute getOrder_Order();
 
   /**
-   * Returns the meta object for enum '{@link org.xtext.example.mydsl.socialRequest.BasicValidation <em>Basic Validation</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for enum '<em>Basic Validation</em>'.
-   * @see org.xtext.example.mydsl.socialRequest.BasicValidation
-   * @generated
-   */
-  EEnum getBasicValidation();
-
-  /**
    * Returns the meta object for enum '{@link org.xtext.example.mydsl.socialRequest.GenerationType <em>Generation Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1531,26 +1491,6 @@ public interface SocialRequestPackage extends EPackage
    * @generated
    */
   EEnum getGenerationType();
-
-  /**
-   * Returns the meta object for enum '{@link org.xtext.example.mydsl.socialRequest.FetchType <em>Fetch Type</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for enum '<em>Fetch Type</em>'.
-   * @see org.xtext.example.mydsl.socialRequest.FetchType
-   * @generated
-   */
-  EEnum getFetchType();
-
-  /**
-   * Returns the meta object for enum '{@link org.xtext.example.mydsl.socialRequest.Association <em>Association</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for enum '<em>Association</em>'.
-   * @see org.xtext.example.mydsl.socialRequest.Association
-   * @generated
-   */
-  EEnum getAssociation();
 
   /**
    * Returns the meta object for enum '{@link org.xtext.example.mydsl.socialRequest.DataType <em>Data Type</em>}'.
@@ -2126,16 +2066,6 @@ public interface SocialRequestPackage extends EPackage
     EAttribute ORDER__ORDER = eINSTANCE.getOrder_Order();
 
     /**
-     * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.BasicValidation <em>Basic Validation</em>}' enum.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.example.mydsl.socialRequest.BasicValidation
-     * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getBasicValidation()
-     * @generated
-     */
-    EEnum BASIC_VALIDATION = eINSTANCE.getBasicValidation();
-
-    /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.GenerationType <em>Generation Type</em>}' enum.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2144,26 +2074,6 @@ public interface SocialRequestPackage extends EPackage
      * @generated
      */
     EEnum GENERATION_TYPE = eINSTANCE.getGenerationType();
-
-    /**
-     * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.FetchType <em>Fetch Type</em>}' enum.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.example.mydsl.socialRequest.FetchType
-     * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getFetchType()
-     * @generated
-     */
-    EEnum FETCH_TYPE = eINSTANCE.getFetchType();
-
-    /**
-     * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.Association <em>Association</em>}' enum.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.example.mydsl.socialRequest.Association
-     * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getAssociation()
-     * @generated
-     */
-    EEnum ASSOCIATION = eINSTANCE.getAssociation();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.DataType <em>Data Type</em>}' enum.

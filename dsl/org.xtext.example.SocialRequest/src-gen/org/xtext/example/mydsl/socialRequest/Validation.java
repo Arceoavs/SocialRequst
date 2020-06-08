@@ -96,27 +96,24 @@ public interface Validation extends EObject
 
   /**
    * Returns the value of the '<em><b>Validator</b></em>' attribute.
-   * The literals are from the enumeration {@link org.xtext.example.mydsl.socialRequest.BasicValidation}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Validator</em>' attribute.
-   * @see org.xtext.example.mydsl.socialRequest.BasicValidation
-   * @see #setValidator(BasicValidation)
+   * @see #setValidator(String)
    * @see org.xtext.example.mydsl.socialRequest.SocialRequestPackage#getValidation_Validator()
    * @model
    * @generated
    */
-  BasicValidation getValidator();
+  String getValidator();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.socialRequest.Validation#getValidator <em>Validator</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Validator</em>' attribute.
-   * @see org.xtext.example.mydsl.socialRequest.BasicValidation
    * @see #getValidator()
    * @generated
    */
-  void setValidator(BasicValidation value);
+  void setValidator(String value);
 
 } // Validation

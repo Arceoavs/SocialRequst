@@ -33,28 +33,25 @@ public interface Attribute extends EObject
 {
   /**
    * Returns the value of the '<em><b>Association</b></em>' attribute.
-   * The literals are from the enumeration {@link org.xtext.example.mydsl.socialRequest.Association}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Association</em>' attribute.
-   * @see org.xtext.example.mydsl.socialRequest.Association
-   * @see #setAssociation(Association)
+   * @see #setAssociation(String)
    * @see org.xtext.example.mydsl.socialRequest.SocialRequestPackage#getAttribute_Association()
    * @model
    * @generated
    */
-  Association getAssociation();
+  String getAssociation();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.socialRequest.Attribute#getAssociation <em>Association</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Association</em>' attribute.
-   * @see org.xtext.example.mydsl.socialRequest.Association
    * @see #getAssociation()
    * @generated
    */
-  void setAssociation(Association value);
+  void setAssociation(String value);
 
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
@@ -146,28 +143,25 @@ public interface Attribute extends EObject
 
   /**
    * Returns the value of the '<em><b>Fetch Type</b></em>' attribute.
-   * The literals are from the enumeration {@link org.xtext.example.mydsl.socialRequest.FetchType}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Fetch Type</em>' attribute.
-   * @see org.xtext.example.mydsl.socialRequest.FetchType
-   * @see #setFetchType(FetchType)
+   * @see #setFetchType(String)
    * @see org.xtext.example.mydsl.socialRequest.SocialRequestPackage#getAttribute_FetchType()
    * @model
    * @generated
    */
-  FetchType getFetchType();
+  String getFetchType();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.socialRequest.Attribute#getFetchType <em>Fetch Type</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Fetch Type</em>' attribute.
-   * @see org.xtext.example.mydsl.socialRequest.FetchType
    * @see #getFetchType()
    * @generated
    */
-  void setFetchType(FetchType value);
+  void setFetchType(String value);
 
   /**
    * Returns the value of the '<em><b>Validations</b></em>' containment reference list.
