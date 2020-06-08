@@ -5,6 +5,7 @@ package org.xtext.example.mydsl.generator;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
+import java.math.BigDecimal;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -12,6 +13,16 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.xtext.example.mydsl.socialRequest.Association;
+import org.xtext.example.mydsl.socialRequest.Attribute;
+import org.xtext.example.mydsl.socialRequest.BasicValidation;
+import org.xtext.example.mydsl.socialRequest.DataTypeReference;
+import org.xtext.example.mydsl.socialRequest.Entity;
+import org.xtext.example.mydsl.socialRequest.EntityTypeReference;
+import org.xtext.example.mydsl.socialRequest.Repository;
+import org.xtext.example.mydsl.socialRequest.TypeReference;
+import org.xtext.example.mydsl.socialRequest.Validation;
 
 /**
  * Generates code from your model files on save.
@@ -22,5 +33,235 @@ import org.eclipse.xtext.generator.IGeneratorContext;
 public class SocialRequestGenerator extends AbstractGenerator {
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+    Iterable<Entity> _filter = Iterables.<Entity>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Entity.class);
+    for (final Entity entity : _filter) {
+      String _name = entity.getName();
+      String _plus = (_name + ".java");
+      fsa.generateFile(_plus, this.generateEntity(entity));
+    }
+    Iterable<Repository> _filter_1 = Iterables.<Repository>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Repository.class);
+    for (final Repository repo : _filter_1) {
+      String _name_1 = repo.getEntity().getName();
+      String _plus_1 = (_name_1 + ".java");
+      fsa.generateFile(_plus_1, this.generateQuery(repo));
+    }
+  }
+  
+  private CharSequence generateEntity(final Entity entity) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("package ????");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("import javax.persistence.*;");
+    _builder.newLine();
+    _builder.append("import javax.validation.constraints.*;");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("public class ");
+    String _name = entity.getName();
+    _builder.append(_name);
+    _builder.append(" implements Serializable {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("private static final long serialVersionUID = 1L;");
+    _builder.newLine();
+    _builder.newLine();
+    {
+      EList<Attribute> _attributes = entity.getAttributes();
+      for(final Attribute attribute : _attributes) {
+        _builder.append("\t");
+        CharSequence _generateAttribute = this.generateAttribute(attribute);
+        _builder.append(_generateAttribute, "\t");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.newLine();
+    _builder.append("\t");
+    CharSequence _generateToStringMethod = this.generateToStringMethod(entity);
+    _builder.append(_generateToStringMethod, "\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  private CharSequence generateAttribute(final Attribute attribute) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      EList<Validation> _validations = attribute.getValidations();
+      for(final Validation validation : _validations) {
+        String _generateValidation = this.generateValidation(validation);
+        _builder.append(_generateValidation);
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      Association _association = attribute.getAssociation();
+      boolean _notEquals = (!Objects.equal(_association, null));
+      if (_notEquals) {
+        CharSequence _generateAssociationAnnotation = this.generateAssociationAnnotation(attribute);
+        _builder.append(_generateAssociationAnnotation);
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("private ");
+    String _attributeType = this.attributeType(attribute);
+    _builder.append(_attributeType);
+    _builder.append(" ");
+    String _name = attribute.getName();
+    _builder.append(_name);
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    return _builder;
+  }
+  
+  private String attributeType(final Attribute attribute) {
+    String _xblockexpression = null;
+    {
+      String rawAttributeType = null;
+      TypeReference _typeRef = attribute.getTypeRef();
+      if ((_typeRef instanceof EntityTypeReference)) {
+        TypeReference _typeRef_1 = attribute.getTypeRef();
+        rawAttributeType = ((EntityTypeReference) _typeRef_1).getType().toString();
+      } else {
+        TypeReference _typeRef_2 = attribute.getTypeRef();
+        rawAttributeType = ((DataTypeReference) _typeRef_2).getType().toString();
+      }
+      String _xifexpression = null;
+      if (((!Objects.equal(attribute.getAssociation(), null)) && attribute.getAssociation().getLiteral().endsWith("One"))) {
+        _xifexpression = (("Set<" + rawAttributeType) + ">");
+      } else {
+        _xifexpression = rawAttributeType;
+      }
+      _xblockexpression = _xifexpression;
+    }
+    return _xblockexpression;
+  }
+  
+  private String generateValidation(final Validation validation) {
+    String _xifexpression = null;
+    BasicValidation _validator = validation.getValidator();
+    boolean _notEquals = (!Objects.equal(_validator, null));
+    if (_notEquals) {
+      String _string = validation.getValidator().toString();
+      _xifexpression = ("@" + _string);
+    } else {
+      String _xifexpression_1 = null;
+      BigDecimal _min = validation.getMin();
+      boolean _notEquals_1 = (!Objects.equal(_min, null));
+      if (_notEquals_1) {
+        BigDecimal _min_1 = validation.getMin();
+        String _plus = ("@Min(" + _min_1);
+        _xifexpression_1 = (_plus + ")");
+      } else {
+        String _xifexpression_2 = null;
+        BigDecimal _max = validation.getMax();
+        boolean _notEquals_2 = (!Objects.equal(_max, null));
+        if (_notEquals_2) {
+          BigDecimal _max_1 = validation.getMax();
+          String _plus_1 = ("@Max(" + _max_1);
+          _xifexpression_2 = (_plus_1 + ")");
+        } else {
+          String _xifexpression_3 = null;
+          String _regex = validation.getRegex();
+          boolean _notEquals_3 = (!Objects.equal(_regex, null));
+          if (_notEquals_3) {
+            String _regex_1 = validation.getRegex();
+            String _plus_2 = ("@Pattern(regexp = \"" + _regex_1);
+            _xifexpression_3 = (_plus_2 + "\")");
+          }
+          _xifexpression_2 = _xifexpression_3;
+        }
+        _xifexpression_1 = _xifexpression_2;
+      }
+      _xifexpression = _xifexpression_1;
+    }
+    return _xifexpression;
+  }
+  
+  private CharSequence generateAssociationAnnotation(final Attribute attribute) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      if ((Objects.equal(attribute.getMappedBy(), null) && Objects.equal(attribute.getFetchType(), null))) {
+        _builder.append("@");
+        String _literal = attribute.getAssociation().getLiteral();
+        _builder.append(_literal);
+        _builder.newLineIfNotEmpty();
+      } else {
+        if (((!Objects.equal(attribute.getMappedBy(), null)) && (!Objects.equal(attribute.getFetchType(), null)))) {
+          _builder.append("@");
+          String _literal_1 = attribute.getAssociation().getLiteral();
+          _builder.append(_literal_1);
+          _builder.append("(mappedBy = ");
+          String _mappedBy = attribute.getMappedBy();
+          _builder.append(_mappedBy);
+          _builder.append(", fetch = ");
+          String _literal_2 = attribute.getFetchType().getLiteral();
+          _builder.append(_literal_2);
+          _builder.append(")");
+          _builder.newLineIfNotEmpty();
+        } else {
+          if (((!Objects.equal(attribute.getMappedBy(), null)) && Objects.equal(attribute.getFetchType(), null))) {
+            _builder.append("@");
+            String _literal_3 = attribute.getAssociation().getLiteral();
+            _builder.append(_literal_3);
+            _builder.append("(mappedBy = ");
+            String _mappedBy_1 = attribute.getMappedBy();
+            _builder.append(_mappedBy_1);
+            _builder.append(")");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    return _builder;
+  }
+  
+  private CharSequence generateToStringMethod(final Entity entity) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("@Override");
+    _builder.newLine();
+    _builder.append("public String toString() {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("return (");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("\"");
+    String _name = entity.getName();
+    _builder.append(_name, "\t\t");
+    _builder.append("{\" +");
+    _builder.newLineIfNotEmpty();
+    {
+      EList<Attribute> _attributes = entity.getAttributes();
+      for(final Attribute attribute : _attributes) {
+        _builder.append("\t\t");
+        _builder.append("\"");
+        String _name_1 = attribute.getName();
+        _builder.append(_name_1, "\t\t");
+        _builder.append("=\'\" + ");
+        String _name_2 = attribute.getName();
+        _builder.append(_name_2, "\t\t");
+        _builder.append(" + \'\\\'\' +");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("\t\t");
+    _builder.append("\'}\';");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append(")");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  private CharSequence generateQuery(final Repository r) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("\t");
+    _builder.newLine();
+    return _builder;
   }
 }

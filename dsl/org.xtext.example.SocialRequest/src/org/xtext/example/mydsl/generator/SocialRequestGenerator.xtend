@@ -11,6 +11,9 @@ import org.eclipse.xtext.generator.IGeneratorContext
 import org.xtext.example.mydsl.socialRequest.Entity
 import org.xtext.example.mydsl.socialRequest.Repository
 import org.xtext.example.mydsl.socialRequest.Attribute
+import org.xtext.example.mydsl.socialRequest.EntityTypeReference
+import org.xtext.example.mydsl.socialRequest.DataTypeReference
+import org.xtext.example.mydsl.socialRequest.Validation
 
 /**
  * Generates code from your model files on save.
@@ -30,51 +33,84 @@ class SocialRequestGenerator extends AbstractGenerator {
 		}
 	}
 	
-	private def generateEntity(Entity e){
-		var CharSequence output = generateImports(e)
-		for(attr : e.attributes){
-			output = output + generateAttribute(attr).toString	
-		}
-		return output
-	}
-	
-	private def generateImports(Entity e)'''
+	private def generateEntity(Entity entity)'''
 		package ????
-		import javax.persistence.Entity;
-		«FOR attr : e.attributes »
-			«IF attr.modifier == "LOB"»
-				import javax.persistence.Lob;
-			«ENDIF»
-			«IF attr.modifier == "LOB"»
-				import javax.persistence.Id;
-			«ENDIF»
-			«IF attr.association != null»
-				import import javax.persistence.«attr.association»;
-			«ENDIF»
-		«ENDFOR»
-		TODO: does not work like that, how we check if already imported
+
+		import javax.persistence.*;
+		import javax.validation.constraints.*;
+
+		public class Â«entity.nameÂ» implements Serializable {
+			private static final long serialVersionUID = 1L;
+
+			Â«FOR attribute : entity.attributesÂ»
+			Â«generateAttribute(attribute)Â»
+			Â«ENDFORÂ»
+
+			Â«generateToStringMethod(entity)Â»
+		}
 	'''
 	
-	private def generateAttribute(Attribute a){
-		if(a.association == null){
-			
+	private def generateAttribute(Attribute attribute)'''
+		Â«FOR validation : attribute.validationsÂ»
+			Â«generateValidation(validation)Â»
+		Â«ENDFORÂ»
+		Â«IF attribute.association != nullÂ»
+			Â«generateAssociationAnnotation(attribute)Â»
+		Â«ENDIFÂ»
+		private Â«attributeType(attribute)Â» Â«attribute.nameÂ»;
+
+	'''
+
+	
+	private def attributeType(Attribute attribute) {
+		var String rawAttributeType
+
+		if (attribute.typeRef instanceof EntityTypeReference) {
+			rawAttributeType = (attribute.typeRef as EntityTypeReference).type.toString
+		} else {
+			rawAttributeType = (attribute.typeRef as DataTypeReference).type.toString
 		}
-		else{
-			generateAssociationAttribute(a);
+		
+		if (attribute.association != null && attribute.association.literal.endsWith("One")) {
+			"Set<" + rawAttributeType + ">"
+		} else {
+			rawAttributeType
 		}
 	}
 	
-	private def generateAssociationAttribute(Attribute a)'''
-		«IF a.mappedBy == null && a.fetchType == null»
-			@«a.association»
-		«ELSEIF a.mappedBy != null && a.fetchType != null»
-			@«a.association»(mappedBy = «a.mappedBy», fetch = «a.fetchType»)
-		«ELSEIF a.mappedBy != null && a.fetchType == null»
-			@«a.association»(mappedBy = «a.mappedBy»)
-		«ELSEIF a.mappedBy == null && a.fetchType != null»
-			@«a.association»(mappedBy = «a.fetchType»)
-		«ENDIF»
-		private «a.type»  «a.name»;
+	private def generateValidation(Validation validation) {
+		if (validation.validator != null) {
+			"@" + validation.validator.toString
+		} else if (validation.min != null) {
+			"@Min(" + validation.min + ")"
+		} else if (validation.max != null) {
+			"@Max(" + validation.max + ")"
+		} else if (validation.regex != null) {
+			"@Pattern(regexp = \"" + validation.regex + "\")"
+		}
+	}
+	
+	private def generateAssociationAnnotation(Attribute attribute)'''
+		Â«IF attribute.mappedBy == null && attribute.fetchType == nullÂ»
+			@Â«attribute.association.literalÂ»
+		Â«ELSEIF attribute.mappedBy != null && attribute.fetchType != nullÂ»
+			@Â«attribute.association.literalÂ»(mappedBy = Â«attribute.mappedByÂ», fetch = Â«attribute.fetchType.literalÂ»)
+		Â«ELSEIF attribute.mappedBy != null && attribute.fetchType == nullÂ»
+			@Â«attribute.association.literalÂ»(mappedBy = Â«attribute.mappedByÂ»)
+		Â«ENDIFÂ»
+	'''
+	
+	private def generateToStringMethod(Entity entity)'''
+		@Override
+		public String toString() {
+			return (
+				"Â«entity.nameÂ»{" +
+				Â«FOR attribute : entity.attributesÂ»
+				"Â«attribute.nameÂ»='" + Â«attribute.nameÂ» + '\'' +
+				Â«ENDFORÂ»
+				'}';
+			)
+		}
 	'''
 	
 	private def generateQuery(Repository r)'''
