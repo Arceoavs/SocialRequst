@@ -222,7 +222,7 @@ public class SocialRequestGenerator extends AbstractGenerator {
         rawAttributeType = ((DataTypeReference) _typeRef_2).getType().toString();
       }
       String _xifexpression = null;
-      if (((!Objects.equal(attribute.getAssociation(), null)) && attribute.getAssociation().endsWith("One"))) {
+      if (((!Objects.equal(attribute.getAssociation(), null)) && attribute.getAssociation().endsWith("Many"))) {
         _xifexpression = (("Set<" + rawAttributeType) + ">");
       } else {
         _xifexpression = rawAttributeType;

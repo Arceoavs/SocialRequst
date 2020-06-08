@@ -95,7 +95,7 @@ class SocialRequestGenerator extends AbstractGenerator {
 			rawAttributeType = (attribute.typeRef as DataTypeReference).type.toString
 		}
 		
-		if (attribute.association != null && attribute.association.endsWith("One")) {
+		if (attribute.association != null && attribute.association.endsWith("Many")) {
 			"Set<" + rawAttributeType + ">"
 		} else {
 			rawAttributeType
