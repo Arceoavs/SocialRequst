@@ -56,14 +56,26 @@ class SocialRequestGenerator extends AbstractGenerator {
 		TODO: does not work like that, how we check if already imported
 	'''
 	
-	private def generateAttribute(Attribute a)'''
-		«IF a.association != null && a.associationSpecifications == null»
+	private def generateAttribute(Attribute a){
+		if(a.association == null){
+			
+		}
+		else{
+			generateAssociationAttribute(a);
+		}
+	}
+	
+	private def generateAssociationAttribute(Attribute a)'''
+		«IF a.mappedBy == null && a.fetchType == null»
 			@«a.association»
-		«ELSEIF a.association != null && a.associationSpecifications.length == 1»  // Wie soll ich das vernünftig machen. Man muss schauen ob mappedBy und
-																				   // fetchType gesetzt ist oder nur eins von beiden
-		«ELSEIF a.association != null && a.associationSpecifications.length == 2»
-			@«a.association»(mappedBy = «a.associationSpecifications»	// Wie bekomme ich hier beides. Die Reihenfolge ist egal, deswegen ist nicht bekannt welcher
-		«ENDIF»															// Arrayindex mappedBy oder fetchType enthält
+		«ELSEIF a.mappedBy != null && a.fetchType != null»
+			@«a.association»(mappedBy = «a.mappedBy», fetch = «a.fetchType»)
+		«ELSEIF a.mappedBy != null && a.fetchType == null»
+			@«a.association»(mappedBy = «a.mappedBy»)
+		«ELSEIF a.mappedBy == null && a.fetchType != null»
+			@«a.association»(mappedBy = «a.fetchType»)
+		«ENDIF»
+		private «a.type»  «a.name»;
 	'''
 	
 	private def generateQuery(Repository r)'''

@@ -12,9 +12,7 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
-import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
-import org.xtext.example.mydsl.socialRequest.AssociationSpecification;
 import org.xtext.example.mydsl.socialRequest.Attribute;
 import org.xtext.example.mydsl.socialRequest.Entity;
 import org.xtext.example.mydsl.socialRequest.Modifier;
@@ -98,37 +96,70 @@ public class SocialRequestGenerator extends AbstractGenerator {
   }
   
   private CharSequence generateAttribute(final Attribute a) {
+    CharSequence _xifexpression = null;
+    String _association = a.getAssociation();
+    boolean _equals = Objects.equal(_association, null);
+    if (_equals) {
+      _xifexpression = null;
+    } else {
+      _xifexpression = this.generateAssociationAttribute(a);
+    }
+    return _xifexpression;
+  }
+  
+  private CharSequence generateAssociationAttribute(final Attribute a) {
     StringConcatenation _builder = new StringConcatenation();
     {
-      if (((!Objects.equal(a.getAssociation(), null)) && Objects.equal(a.getAssociationSpecifications(), null))) {
+      if ((Objects.equal(a.getMappedBy(), null) && Objects.equal(a.getFetchType(), null))) {
         _builder.append("@");
         String _association = a.getAssociation();
         _builder.append(_association);
         _builder.newLineIfNotEmpty();
-        _builder.append("\t\t");
       } else {
-        if (((!Objects.equal(a.getAssociation(), null)) && (((Object[])Conversions.unwrapArray(a.getAssociationSpecifications(), Object.class)).length == 1))) {
-          _builder.append("  // Wie soll ich das vernünftig machen. Man muss schauen ob mappedBy und");
+        if (((!Objects.equal(a.getMappedBy(), null)) && (!Objects.equal(a.getFetchType(), null)))) {
+          _builder.append("@");
+          String _association_1 = a.getAssociation();
+          _builder.append(_association_1);
+          _builder.append("(mappedBy = ");
+          String _mappedBy = a.getMappedBy();
+          _builder.append(_mappedBy);
+          _builder.append(", fetch = ");
+          String _fetchType = a.getFetchType();
+          _builder.append(_fetchType);
+          _builder.append(")");
           _builder.newLineIfNotEmpty();
-          _builder.append("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t   ");
-          _builder.append("// fetchType gesetzt ist oder nur eins von beiden");
-          _builder.newLine();
         } else {
-          if (((!Objects.equal(a.getAssociation(), null)) && (((Object[])Conversions.unwrapArray(a.getAssociationSpecifications(), Object.class)).length == 2))) {
+          if (((!Objects.equal(a.getMappedBy(), null)) && Objects.equal(a.getFetchType(), null))) {
             _builder.append("@");
-            String _association_1 = a.getAssociation();
-            _builder.append(_association_1);
+            String _association_2 = a.getAssociation();
+            _builder.append(_association_2);
             _builder.append("(mappedBy = ");
-            EList<AssociationSpecification> _associationSpecifications = a.getAssociationSpecifications();
-            _builder.append(_associationSpecifications);
-            _builder.append("\t// Wie bekomme ich hier beides. Die Reihenfolge ist egal, deswegen ist nicht bekannt welcher");
+            String _mappedBy_1 = a.getMappedBy();
+            _builder.append(_mappedBy_1);
+            _builder.append(")");
             _builder.newLineIfNotEmpty();
-            _builder.append("\t\t");
+          } else {
+            if ((Objects.equal(a.getMappedBy(), null) && (!Objects.equal(a.getFetchType(), null)))) {
+              _builder.append("@");
+              String _association_3 = a.getAssociation();
+              _builder.append(_association_3);
+              _builder.append("(mappedBy = ");
+              String _fetchType_1 = a.getFetchType();
+              _builder.append(_fetchType_1);
+              _builder.append(")");
+              _builder.newLineIfNotEmpty();
+            }
           }
         }
       }
     }
-    _builder.append("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t// Arrayindex mappedBy oder fetchType enthält");
+    _builder.append("private ");
+    Entity _type = a.getType();
+    _builder.append(_type);
+    _builder.append("  ");
+    String _name = a.getName();
+    _builder.append(_name);
+    _builder.append(";");
     _builder.newLineIfNotEmpty();
     return _builder;
   }
