@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.example.mydsl.socialRequest.Param;
 import org.xtext.example.mydsl.socialRequest.Query;
+import org.xtext.example.mydsl.socialRequest.SQLQuery;
 import org.xtext.example.mydsl.socialRequest.SocialRequestPackage;
 
 /**
@@ -92,24 +93,14 @@ public class QueryImpl extends MinimalEObjectImpl.Container implements Query
   protected EList<Param> params;
 
   /**
-   * The default value of the '{@link #getSqlQuery() <em>Sql Query</em>}' attribute.
+   * The cached value of the '{@link #getSqlQuery() <em>Sql Query</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getSqlQuery()
    * @generated
    * @ordered
    */
-  protected static final String SQL_QUERY_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getSqlQuery() <em>Sql Query</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getSqlQuery()
-   * @generated
-   * @ordered
-   */
-  protected String sqlQuery = SQL_QUERY_EDEFAULT;
+  protected SQLQuery sqlQuery;
 
   /**
    * <!-- begin-user-doc -->
@@ -203,7 +194,7 @@ public class QueryImpl extends MinimalEObjectImpl.Container implements Query
    * @generated
    */
   @Override
-  public String getSqlQuery()
+  public SQLQuery getSqlQuery()
   {
     return sqlQuery;
   }
@@ -213,13 +204,38 @@ public class QueryImpl extends MinimalEObjectImpl.Container implements Query
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public void setSqlQuery(String newSqlQuery)
+  public NotificationChain basicSetSqlQuery(SQLQuery newSqlQuery, NotificationChain msgs)
   {
-    String oldSqlQuery = sqlQuery;
+    SQLQuery oldSqlQuery = sqlQuery;
     sqlQuery = newSqlQuery;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, SocialRequestPackage.QUERY__SQL_QUERY, oldSqlQuery, sqlQuery));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SocialRequestPackage.QUERY__SQL_QUERY, oldSqlQuery, newSqlQuery);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setSqlQuery(SQLQuery newSqlQuery)
+  {
+    if (newSqlQuery != sqlQuery)
+    {
+      NotificationChain msgs = null;
+      if (sqlQuery != null)
+        msgs = ((InternalEObject)sqlQuery).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SocialRequestPackage.QUERY__SQL_QUERY, null, msgs);
+      if (newSqlQuery != null)
+        msgs = ((InternalEObject)newSqlQuery).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SocialRequestPackage.QUERY__SQL_QUERY, null, msgs);
+      msgs = basicSetSqlQuery(newSqlQuery, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, SocialRequestPackage.QUERY__SQL_QUERY, newSqlQuery, newSqlQuery));
   }
 
   /**
@@ -234,6 +250,8 @@ public class QueryImpl extends MinimalEObjectImpl.Container implements Query
     {
       case SocialRequestPackage.QUERY__PARAMS:
         return ((InternalEList<?>)getParams()).basicRemove(otherEnd, msgs);
+      case SocialRequestPackage.QUERY__SQL_QUERY:
+        return basicSetSqlQuery(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -282,7 +300,7 @@ public class QueryImpl extends MinimalEObjectImpl.Container implements Query
         getParams().addAll((Collection<? extends Param>)newValue);
         return;
       case SocialRequestPackage.QUERY__SQL_QUERY:
-        setSqlQuery((String)newValue);
+        setSqlQuery((SQLQuery)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -308,7 +326,7 @@ public class QueryImpl extends MinimalEObjectImpl.Container implements Query
         getParams().clear();
         return;
       case SocialRequestPackage.QUERY__SQL_QUERY:
-        setSqlQuery(SQL_QUERY_EDEFAULT);
+        setSqlQuery((SQLQuery)null);
         return;
     }
     super.eUnset(featureID);
@@ -331,7 +349,7 @@ public class QueryImpl extends MinimalEObjectImpl.Container implements Query
       case SocialRequestPackage.QUERY__PARAMS:
         return params != null && !params.isEmpty();
       case SocialRequestPackage.QUERY__SQL_QUERY:
-        return SQL_QUERY_EDEFAULT == null ? sqlQuery != null : !SQL_QUERY_EDEFAULT.equals(sqlQuery);
+        return sqlQuery != null;
     }
     return super.eIsSet(featureID);
   }
@@ -351,8 +369,6 @@ public class QueryImpl extends MinimalEObjectImpl.Container implements Query
     result.append(name);
     result.append(", isList: ");
     result.append(isList);
-    result.append(", sqlQuery: ");
-    result.append(sqlQuery);
     result.append(')');
     return result.toString();
   }

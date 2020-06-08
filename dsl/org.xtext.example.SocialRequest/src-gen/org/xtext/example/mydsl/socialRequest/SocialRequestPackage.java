@@ -187,13 +187,22 @@ public interface SocialRequestPackage extends EPackage
   int ATTRIBUTE__MODIFIER = 3;
 
   /**
-   * The feature id for the '<em><b>Association Specifications</b></em>' containment reference list.
+   * The feature id for the '<em><b>Mapped By</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ATTRIBUTE__ASSOCIATION_SPECIFICATIONS = 4;
+  int ATTRIBUTE__MAPPED_BY = 4;
+
+  /**
+   * The feature id for the '<em><b>Fetch Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE__FETCH_TYPE = 5;
 
   /**
    * The feature id for the '<em><b>Validations</b></em>' containment reference list.
@@ -202,7 +211,7 @@ public interface SocialRequestPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ATTRIBUTE__VALIDATIONS = 5;
+  int ATTRIBUTE__VALIDATIONS = 6;
 
   /**
    * The number of structural features of the '<em>Attribute</em>' class.
@@ -211,7 +220,7 @@ public interface SocialRequestPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ATTRIBUTE_FEATURE_COUNT = 6;
+  int ATTRIBUTE_FEATURE_COUNT = 7;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.impl.ModifierImpl <em>Modifier</em>}' class.
@@ -307,43 +316,6 @@ public interface SocialRequestPackage extends EPackage
   int VALIDATION_FEATURE_COUNT = 3;
 
   /**
-   * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.impl.AssociationSpecificationImpl <em>Association Specification</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.example.mydsl.socialRequest.impl.AssociationSpecificationImpl
-   * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getAssociationSpecification()
-   * @generated
-   */
-  int ASSOCIATION_SPECIFICATION = 6;
-
-  /**
-   * The feature id for the '<em><b>Mapped By</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ASSOCIATION_SPECIFICATION__MAPPED_BY = 0;
-
-  /**
-   * The feature id for the '<em><b>Fetch Type</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ASSOCIATION_SPECIFICATION__FETCH_TYPE = 1;
-
-  /**
-   * The number of structural features of the '<em>Association Specification</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ASSOCIATION_SPECIFICATION_FEATURE_COUNT = 2;
-
-  /**
    * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.impl.RepositoryImpl <em>Repository</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -351,7 +323,7 @@ public interface SocialRequestPackage extends EPackage
    * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getRepository()
    * @generated
    */
-  int REPOSITORY = 7;
+  int REPOSITORY = 6;
 
   /**
    * The feature id for the '<em><b>Entity</b></em>' reference.
@@ -388,7 +360,7 @@ public interface SocialRequestPackage extends EPackage
    * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getQuery()
    * @generated
    */
-  int QUERY = 8;
+  int QUERY = 7;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -418,7 +390,7 @@ public interface SocialRequestPackage extends EPackage
   int QUERY__PARAMS = 2;
 
   /**
-   * The feature id for the '<em><b>Sql Query</b></em>' attribute.
+   * The feature id for the '<em><b>Sql Query</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -443,7 +415,7 @@ public interface SocialRequestPackage extends EPackage
    * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getParam()
    * @generated
    */
-  int PARAM = 9;
+  int PARAM = 8;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -471,6 +443,255 @@ public interface SocialRequestPackage extends EPackage
    * @ordered
    */
   int PARAM_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.impl.SQLQueryImpl <em>SQL Query</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.socialRequest.impl.SQLQueryImpl
+   * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getSQLQuery()
+   * @generated
+   */
+  int SQL_QUERY = 9;
+
+  /**
+   * The feature id for the '<em><b>Select</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SQL_QUERY__SELECT = 0;
+
+  /**
+   * The feature id for the '<em><b>From</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SQL_QUERY__FROM = 1;
+
+  /**
+   * The feature id for the '<em><b>Joins</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SQL_QUERY__JOINS = 2;
+
+  /**
+   * The feature id for the '<em><b>Where</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SQL_QUERY__WHERE = 3;
+
+  /**
+   * The feature id for the '<em><b>Order</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SQL_QUERY__ORDER = 4;
+
+  /**
+   * The number of structural features of the '<em>SQL Query</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SQL_QUERY_FEATURE_COUNT = 5;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.impl.SelectImpl <em>Select</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.socialRequest.impl.SelectImpl
+   * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getSelect()
+   * @generated
+   */
+  int SELECT = 10;
+
+  /**
+   * The feature id for the '<em><b>Is Distinct</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SELECT__IS_DISTINCT = 0;
+
+  /**
+   * The feature id for the '<em><b>Clause</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SELECT__CLAUSE = 1;
+
+  /**
+   * The number of structural features of the '<em>Select</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SELECT_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.impl.FromImpl <em>From</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.socialRequest.impl.FromImpl
+   * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getFrom()
+   * @generated
+   */
+  int FROM = 11;
+
+  /**
+   * The feature id for the '<em><b>Entity</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FROM__ENTITY = 0;
+
+  /**
+   * The feature id for the '<em><b>Alias</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FROM__ALIAS = 1;
+
+  /**
+   * The number of structural features of the '<em>From</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FROM_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.impl.JoinImpl <em>Join</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.socialRequest.impl.JoinImpl
+   * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getJoin()
+   * @generated
+   */
+  int JOIN = 12;
+
+  /**
+   * The feature id for the '<em><b>Join Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int JOIN__JOIN_TYPE = 0;
+
+  /**
+   * The feature id for the '<em><b>Entity</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int JOIN__ENTITY = 1;
+
+  /**
+   * The feature id for the '<em><b>Alias</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int JOIN__ALIAS = 2;
+
+  /**
+   * The feature id for the '<em><b>Join Condition</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int JOIN__JOIN_CONDITION = 3;
+
+  /**
+   * The number of structural features of the '<em>Join</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int JOIN_FEATURE_COUNT = 4;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.impl.WhereImpl <em>Where</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.socialRequest.impl.WhereImpl
+   * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getWhere()
+   * @generated
+   */
+  int WHERE = 13;
+
+  /**
+   * The feature id for the '<em><b>Condition</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int WHERE__CONDITION = 0;
+
+  /**
+   * The number of structural features of the '<em>Where</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int WHERE_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.impl.OrderImpl <em>Order</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.socialRequest.impl.OrderImpl
+   * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getOrder()
+   * @generated
+   */
+  int ORDER = 14;
+
+  /**
+   * The feature id for the '<em><b>Order</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ORDER__ORDER = 0;
+
+  /**
+   * The number of structural features of the '<em>Order</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ORDER_FEATURE_COUNT = 1;
 
 
   /**
@@ -603,15 +824,26 @@ public interface SocialRequestPackage extends EPackage
   EReference getAttribute_Modifier();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.socialRequest.Attribute#getAssociationSpecifications <em>Association Specifications</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.Attribute#getMappedBy <em>Mapped By</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Association Specifications</em>'.
-   * @see org.xtext.example.mydsl.socialRequest.Attribute#getAssociationSpecifications()
+   * @return the meta object for the attribute '<em>Mapped By</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Attribute#getMappedBy()
    * @see #getAttribute()
    * @generated
    */
-  EReference getAttribute_AssociationSpecifications();
+  EAttribute getAttribute_MappedBy();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.Attribute#getFetchType <em>Fetch Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Fetch Type</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Attribute#getFetchType()
+   * @see #getAttribute()
+   * @generated
+   */
+  EAttribute getAttribute_FetchType();
 
   /**
    * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.socialRequest.Attribute#getValidations <em>Validations</em>}'.
@@ -699,38 +931,6 @@ public interface SocialRequestPackage extends EPackage
   EAttribute getValidation_Regex();
 
   /**
-   * Returns the meta object for class '{@link org.xtext.example.mydsl.socialRequest.AssociationSpecification <em>Association Specification</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Association Specification</em>'.
-   * @see org.xtext.example.mydsl.socialRequest.AssociationSpecification
-   * @generated
-   */
-  EClass getAssociationSpecification();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.AssociationSpecification#getMappedBy <em>Mapped By</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Mapped By</em>'.
-   * @see org.xtext.example.mydsl.socialRequest.AssociationSpecification#getMappedBy()
-   * @see #getAssociationSpecification()
-   * @generated
-   */
-  EAttribute getAssociationSpecification_MappedBy();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.AssociationSpecification#getFetchType <em>Fetch Type</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Fetch Type</em>'.
-   * @see org.xtext.example.mydsl.socialRequest.AssociationSpecification#getFetchType()
-   * @see #getAssociationSpecification()
-   * @generated
-   */
-  EAttribute getAssociationSpecification_FetchType();
-
-  /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.socialRequest.Repository <em>Repository</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -806,15 +1006,15 @@ public interface SocialRequestPackage extends EPackage
   EReference getQuery_Params();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.Query#getSqlQuery <em>Sql Query</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.socialRequest.Query#getSqlQuery <em>Sql Query</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Sql Query</em>'.
+   * @return the meta object for the containment reference '<em>Sql Query</em>'.
    * @see org.xtext.example.mydsl.socialRequest.Query#getSqlQuery()
    * @see #getQuery()
    * @generated
    */
-  EAttribute getQuery_SqlQuery();
+  EReference getQuery_SqlQuery();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.socialRequest.Param <em>Param</em>}'.
@@ -847,6 +1047,231 @@ public interface SocialRequestPackage extends EPackage
    * @generated
    */
   EReference getParam_Type();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.socialRequest.SQLQuery <em>SQL Query</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>SQL Query</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.SQLQuery
+   * @generated
+   */
+  EClass getSQLQuery();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.socialRequest.SQLQuery#getSelect <em>Select</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Select</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.SQLQuery#getSelect()
+   * @see #getSQLQuery()
+   * @generated
+   */
+  EReference getSQLQuery_Select();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.socialRequest.SQLQuery#getFrom <em>From</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>From</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.SQLQuery#getFrom()
+   * @see #getSQLQuery()
+   * @generated
+   */
+  EReference getSQLQuery_From();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.socialRequest.SQLQuery#getJoins <em>Joins</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Joins</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.SQLQuery#getJoins()
+   * @see #getSQLQuery()
+   * @generated
+   */
+  EReference getSQLQuery_Joins();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.socialRequest.SQLQuery#getWhere <em>Where</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Where</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.SQLQuery#getWhere()
+   * @see #getSQLQuery()
+   * @generated
+   */
+  EReference getSQLQuery_Where();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.socialRequest.SQLQuery#getOrder <em>Order</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Order</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.SQLQuery#getOrder()
+   * @see #getSQLQuery()
+   * @generated
+   */
+  EReference getSQLQuery_Order();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.socialRequest.Select <em>Select</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Select</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Select
+   * @generated
+   */
+  EClass getSelect();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.Select#isIsDistinct <em>Is Distinct</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Is Distinct</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Select#isIsDistinct()
+   * @see #getSelect()
+   * @generated
+   */
+  EAttribute getSelect_IsDistinct();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.Select#getClause <em>Clause</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Clause</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Select#getClause()
+   * @see #getSelect()
+   * @generated
+   */
+  EAttribute getSelect_Clause();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.socialRequest.From <em>From</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>From</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.From
+   * @generated
+   */
+  EClass getFrom();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.socialRequest.From#getEntity <em>Entity</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Entity</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.From#getEntity()
+   * @see #getFrom()
+   * @generated
+   */
+  EReference getFrom_Entity();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.From#getAlias <em>Alias</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Alias</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.From#getAlias()
+   * @see #getFrom()
+   * @generated
+   */
+  EAttribute getFrom_Alias();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.socialRequest.Join <em>Join</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Join</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Join
+   * @generated
+   */
+  EClass getJoin();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.Join#getJoinType <em>Join Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Join Type</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Join#getJoinType()
+   * @see #getJoin()
+   * @generated
+   */
+  EAttribute getJoin_JoinType();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.socialRequest.Join#getEntity <em>Entity</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Entity</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Join#getEntity()
+   * @see #getJoin()
+   * @generated
+   */
+  EReference getJoin_Entity();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.Join#getAlias <em>Alias</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Alias</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Join#getAlias()
+   * @see #getJoin()
+   * @generated
+   */
+  EAttribute getJoin_Alias();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.Join#getJoinCondition <em>Join Condition</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Join Condition</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Join#getJoinCondition()
+   * @see #getJoin()
+   * @generated
+   */
+  EAttribute getJoin_JoinCondition();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.socialRequest.Where <em>Where</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Where</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Where
+   * @generated
+   */
+  EClass getWhere();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.Where#getCondition <em>Condition</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Condition</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Where#getCondition()
+   * @see #getWhere()
+   * @generated
+   */
+  EAttribute getWhere_Condition();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.socialRequest.Order <em>Order</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Order</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Order
+   * @generated
+   */
+  EClass getOrder();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.Order#getOrder <em>Order</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Order</em>'.
+   * @see org.xtext.example.mydsl.socialRequest.Order#getOrder()
+   * @see #getOrder()
+   * @generated
+   */
+  EAttribute getOrder_Order();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -974,12 +1399,20 @@ public interface SocialRequestPackage extends EPackage
     EReference ATTRIBUTE__MODIFIER = eINSTANCE.getAttribute_Modifier();
 
     /**
-     * The meta object literal for the '<em><b>Association Specifications</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Mapped By</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference ATTRIBUTE__ASSOCIATION_SPECIFICATIONS = eINSTANCE.getAttribute_AssociationSpecifications();
+    EAttribute ATTRIBUTE__MAPPED_BY = eINSTANCE.getAttribute_MappedBy();
+
+    /**
+     * The meta object literal for the '<em><b>Fetch Type</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ATTRIBUTE__FETCH_TYPE = eINSTANCE.getAttribute_FetchType();
 
     /**
      * The meta object literal for the '<em><b>Validations</b></em>' containment reference list feature.
@@ -1052,32 +1485,6 @@ public interface SocialRequestPackage extends EPackage
     EAttribute VALIDATION__REGEX = eINSTANCE.getValidation_Regex();
 
     /**
-     * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.impl.AssociationSpecificationImpl <em>Association Specification</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.example.mydsl.socialRequest.impl.AssociationSpecificationImpl
-     * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getAssociationSpecification()
-     * @generated
-     */
-    EClass ASSOCIATION_SPECIFICATION = eINSTANCE.getAssociationSpecification();
-
-    /**
-     * The meta object literal for the '<em><b>Mapped By</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ASSOCIATION_SPECIFICATION__MAPPED_BY = eINSTANCE.getAssociationSpecification_MappedBy();
-
-    /**
-     * The meta object literal for the '<em><b>Fetch Type</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ASSOCIATION_SPECIFICATION__FETCH_TYPE = eINSTANCE.getAssociationSpecification_FetchType();
-
-    /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.impl.RepositoryImpl <em>Repository</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1138,12 +1545,12 @@ public interface SocialRequestPackage extends EPackage
     EReference QUERY__PARAMS = eINSTANCE.getQuery_Params();
 
     /**
-     * The meta object literal for the '<em><b>Sql Query</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Sql Query</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute QUERY__SQL_QUERY = eINSTANCE.getQuery_SqlQuery();
+    EReference QUERY__SQL_QUERY = eINSTANCE.getQuery_SqlQuery();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.impl.ParamImpl <em>Param</em>}' class.
@@ -1170,6 +1577,186 @@ public interface SocialRequestPackage extends EPackage
      * @generated
      */
     EReference PARAM__TYPE = eINSTANCE.getParam_Type();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.impl.SQLQueryImpl <em>SQL Query</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.socialRequest.impl.SQLQueryImpl
+     * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getSQLQuery()
+     * @generated
+     */
+    EClass SQL_QUERY = eINSTANCE.getSQLQuery();
+
+    /**
+     * The meta object literal for the '<em><b>Select</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SQL_QUERY__SELECT = eINSTANCE.getSQLQuery_Select();
+
+    /**
+     * The meta object literal for the '<em><b>From</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SQL_QUERY__FROM = eINSTANCE.getSQLQuery_From();
+
+    /**
+     * The meta object literal for the '<em><b>Joins</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SQL_QUERY__JOINS = eINSTANCE.getSQLQuery_Joins();
+
+    /**
+     * The meta object literal for the '<em><b>Where</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SQL_QUERY__WHERE = eINSTANCE.getSQLQuery_Where();
+
+    /**
+     * The meta object literal for the '<em><b>Order</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SQL_QUERY__ORDER = eINSTANCE.getSQLQuery_Order();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.impl.SelectImpl <em>Select</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.socialRequest.impl.SelectImpl
+     * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getSelect()
+     * @generated
+     */
+    EClass SELECT = eINSTANCE.getSelect();
+
+    /**
+     * The meta object literal for the '<em><b>Is Distinct</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute SELECT__IS_DISTINCT = eINSTANCE.getSelect_IsDistinct();
+
+    /**
+     * The meta object literal for the '<em><b>Clause</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute SELECT__CLAUSE = eINSTANCE.getSelect_Clause();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.impl.FromImpl <em>From</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.socialRequest.impl.FromImpl
+     * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getFrom()
+     * @generated
+     */
+    EClass FROM = eINSTANCE.getFrom();
+
+    /**
+     * The meta object literal for the '<em><b>Entity</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FROM__ENTITY = eINSTANCE.getFrom_Entity();
+
+    /**
+     * The meta object literal for the '<em><b>Alias</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FROM__ALIAS = eINSTANCE.getFrom_Alias();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.impl.JoinImpl <em>Join</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.socialRequest.impl.JoinImpl
+     * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getJoin()
+     * @generated
+     */
+    EClass JOIN = eINSTANCE.getJoin();
+
+    /**
+     * The meta object literal for the '<em><b>Join Type</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute JOIN__JOIN_TYPE = eINSTANCE.getJoin_JoinType();
+
+    /**
+     * The meta object literal for the '<em><b>Entity</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference JOIN__ENTITY = eINSTANCE.getJoin_Entity();
+
+    /**
+     * The meta object literal for the '<em><b>Alias</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute JOIN__ALIAS = eINSTANCE.getJoin_Alias();
+
+    /**
+     * The meta object literal for the '<em><b>Join Condition</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute JOIN__JOIN_CONDITION = eINSTANCE.getJoin_JoinCondition();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.impl.WhereImpl <em>Where</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.socialRequest.impl.WhereImpl
+     * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getWhere()
+     * @generated
+     */
+    EClass WHERE = eINSTANCE.getWhere();
+
+    /**
+     * The meta object literal for the '<em><b>Condition</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute WHERE__CONDITION = eINSTANCE.getWhere_Condition();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.impl.OrderImpl <em>Order</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.socialRequest.impl.OrderImpl
+     * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getOrder()
+     * @generated
+     */
+    EClass ORDER = eINSTANCE.getOrder();
+
+    /**
+     * The meta object literal for the '<em><b>Order</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ORDER__ORDER = eINSTANCE.getOrder_Order();
 
   }
 

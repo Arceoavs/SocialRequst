@@ -78,15 +78,6 @@ public interface SocialRequestFactory extends EFactory
   Validation createValidation();
 
   /**
-   * Returns a new object of class '<em>Association Specification</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Association Specification</em>'.
-   * @generated
-   */
-  AssociationSpecification createAssociationSpecification();
-
-  /**
    * Returns a new object of class '<em>Repository</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -112,6 +103,60 @@ public interface SocialRequestFactory extends EFactory
    * @generated
    */
   Param createParam();
+
+  /**
+   * Returns a new object of class '<em>SQL Query</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>SQL Query</em>'.
+   * @generated
+   */
+  SQLQuery createSQLQuery();
+
+  /**
+   * Returns a new object of class '<em>Select</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Select</em>'.
+   * @generated
+   */
+  Select createSelect();
+
+  /**
+   * Returns a new object of class '<em>From</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>From</em>'.
+   * @generated
+   */
+  From createFrom();
+
+  /**
+   * Returns a new object of class '<em>Join</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Join</em>'.
+   * @generated
+   */
+  Join createJoin();
+
+  /**
+   * Returns a new object of class '<em>Where</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Where</em>'.
+   * @generated
+   */
+  Where createWhere();
+
+  /**
+   * Returns a new object of class '<em>Order</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Order</em>'.
+   * @generated
+   */
+  Order createOrder();
 
   /**
    * Returns the package supported by this factory.

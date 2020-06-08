@@ -20,7 +20,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.xtext.example.mydsl.socialRequest.Attribute#getName <em>Name</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.socialRequest.Attribute#getType <em>Type</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.socialRequest.Attribute#getModifier <em>Modifier</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.socialRequest.Attribute#getAssociationSpecifications <em>Association Specifications</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.socialRequest.Attribute#getMappedBy <em>Mapped By</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.socialRequest.Attribute#getFetchType <em>Fetch Type</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.socialRequest.Attribute#getValidations <em>Validations</em>}</li>
  * </ul>
  *
@@ -119,16 +120,48 @@ public interface Attribute extends EObject
   void setModifier(Modifier value);
 
   /**
-   * Returns the value of the '<em><b>Association Specifications</b></em>' containment reference list.
-   * The list contents are of type {@link org.xtext.example.mydsl.socialRequest.AssociationSpecification}.
+   * Returns the value of the '<em><b>Mapped By</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Association Specifications</em>' containment reference list.
-   * @see org.xtext.example.mydsl.socialRequest.SocialRequestPackage#getAttribute_AssociationSpecifications()
-   * @model containment="true"
+   * @return the value of the '<em>Mapped By</em>' attribute.
+   * @see #setMappedBy(String)
+   * @see org.xtext.example.mydsl.socialRequest.SocialRequestPackage#getAttribute_MappedBy()
+   * @model
    * @generated
    */
-  EList<AssociationSpecification> getAssociationSpecifications();
+  String getMappedBy();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.socialRequest.Attribute#getMappedBy <em>Mapped By</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Mapped By</em>' attribute.
+   * @see #getMappedBy()
+   * @generated
+   */
+  void setMappedBy(String value);
+
+  /**
+   * Returns the value of the '<em><b>Fetch Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Fetch Type</em>' attribute.
+   * @see #setFetchType(String)
+   * @see org.xtext.example.mydsl.socialRequest.SocialRequestPackage#getAttribute_FetchType()
+   * @model
+   * @generated
+   */
+  String getFetchType();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.socialRequest.Attribute#getFetchType <em>Fetch Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Fetch Type</em>' attribute.
+   * @see #getFetchType()
+   * @generated
+   */
+  void setFetchType(String value);
 
   /**
    * Returns the value of the '<em><b>Validations</b></em>' containment reference list.

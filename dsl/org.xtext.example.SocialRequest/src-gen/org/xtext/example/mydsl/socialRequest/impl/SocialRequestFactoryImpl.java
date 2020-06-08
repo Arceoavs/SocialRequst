@@ -71,10 +71,15 @@ public class SocialRequestFactoryImpl extends EFactoryImpl implements SocialRequ
       case SocialRequestPackage.MODIFIER: return createModifier();
       case SocialRequestPackage.IDENTIFICATION: return createIdentification();
       case SocialRequestPackage.VALIDATION: return createValidation();
-      case SocialRequestPackage.ASSOCIATION_SPECIFICATION: return createAssociationSpecification();
       case SocialRequestPackage.REPOSITORY: return createRepository();
       case SocialRequestPackage.QUERY: return createQuery();
       case SocialRequestPackage.PARAM: return createParam();
+      case SocialRequestPackage.SQL_QUERY: return createSQLQuery();
+      case SocialRequestPackage.SELECT: return createSelect();
+      case SocialRequestPackage.FROM: return createFrom();
+      case SocialRequestPackage.JOIN: return createJoin();
+      case SocialRequestPackage.WHERE: return createWhere();
+      case SocialRequestPackage.ORDER: return createOrder();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -158,18 +163,6 @@ public class SocialRequestFactoryImpl extends EFactoryImpl implements SocialRequ
    * @generated
    */
   @Override
-  public AssociationSpecification createAssociationSpecification()
-  {
-    AssociationSpecificationImpl associationSpecification = new AssociationSpecificationImpl();
-    return associationSpecification;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public Repository createRepository()
   {
     RepositoryImpl repository = new RepositoryImpl();
@@ -198,6 +191,78 @@ public class SocialRequestFactoryImpl extends EFactoryImpl implements SocialRequ
   {
     ParamImpl param = new ParamImpl();
     return param;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public SQLQuery createSQLQuery()
+  {
+    SQLQueryImpl sqlQuery = new SQLQueryImpl();
+    return sqlQuery;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Select createSelect()
+  {
+    SelectImpl select = new SelectImpl();
+    return select;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public From createFrom()
+  {
+    FromImpl from = new FromImpl();
+    return from;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Join createJoin()
+  {
+    JoinImpl join = new JoinImpl();
+    return join;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Where createWhere()
+  {
+    WhereImpl where = new WhereImpl();
+    return where;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Order createOrder()
+  {
+    OrderImpl order = new OrderImpl();
+    return order;
   }
 
   /**

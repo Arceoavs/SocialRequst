@@ -20,7 +20,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Attribute/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SocialRequest.ecore#//Attribute/type"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocialRequest.ecore#//Attribute/modifier"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocialRequest.ecore#//Attribute/associationSpecifications"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Attribute/mappedBy"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Attribute/fetchType"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocialRequest.ecore#//Attribute/validations"/>
     </genClasses>
     <genClasses ecoreClass="SocialRequest.ecore#//Modifier"/>
@@ -32,10 +33,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Validation/max"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Validation/regex"/>
     </genClasses>
-    <genClasses ecoreClass="SocialRequest.ecore#//AssociationSpecification">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//AssociationSpecification/mappedBy"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//AssociationSpecification/fetchType"/>
-    </genClasses>
     <genClasses ecoreClass="SocialRequest.ecore#//Repository">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SocialRequest.ecore#//Repository/entity"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocialRequest.ecore#//Repository/queries"/>
@@ -44,11 +41,38 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Query/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Query/isList"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocialRequest.ecore#//Query/params"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Query/sqlQuery"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocialRequest.ecore#//Query/sqlQuery"/>
     </genClasses>
     <genClasses ecoreClass="SocialRequest.ecore#//Param">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Param/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SocialRequest.ecore#//Param/type"/>
+    </genClasses>
+    <genClasses ecoreClass="SocialRequest.ecore#//SQLQuery">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocialRequest.ecore#//SQLQuery/select"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocialRequest.ecore#//SQLQuery/from"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocialRequest.ecore#//SQLQuery/joins"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocialRequest.ecore#//SQLQuery/where"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocialRequest.ecore#//SQLQuery/order"/>
+    </genClasses>
+    <genClasses ecoreClass="SocialRequest.ecore#//Select">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Select/isDistinct"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Select/clause"/>
+    </genClasses>
+    <genClasses ecoreClass="SocialRequest.ecore#//From">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SocialRequest.ecore#//From/entity"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//From/alias"/>
+    </genClasses>
+    <genClasses ecoreClass="SocialRequest.ecore#//Join">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Join/joinType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SocialRequest.ecore#//Join/entity"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Join/alias"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Join/joinCondition"/>
+    </genClasses>
+    <genClasses ecoreClass="SocialRequest.ecore#//Where">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Where/condition"/>
+    </genClasses>
+    <genClasses ecoreClass="SocialRequest.ecore#//Order">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Order/order"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

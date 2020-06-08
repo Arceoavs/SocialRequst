@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.xtext.example.mydsl.socialRequest.AssociationSpecification;
 import org.xtext.example.mydsl.socialRequest.Attribute;
 import org.xtext.example.mydsl.socialRequest.Entity;
 import org.xtext.example.mydsl.socialRequest.Modifier;
@@ -38,7 +37,8 @@ import org.xtext.example.mydsl.socialRequest.Validation;
  *   <li>{@link org.xtext.example.mydsl.socialRequest.impl.AttributeImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.socialRequest.impl.AttributeImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.socialRequest.impl.AttributeImpl#getModifier <em>Modifier</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.socialRequest.impl.AttributeImpl#getAssociationSpecifications <em>Association Specifications</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.socialRequest.impl.AttributeImpl#getMappedBy <em>Mapped By</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.socialRequest.impl.AttributeImpl#getFetchType <em>Fetch Type</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.socialRequest.impl.AttributeImpl#getValidations <em>Validations</em>}</li>
  * </ul>
  *
@@ -107,14 +107,44 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
   protected Modifier modifier;
 
   /**
-   * The cached value of the '{@link #getAssociationSpecifications() <em>Association Specifications</em>}' containment reference list.
+   * The default value of the '{@link #getMappedBy() <em>Mapped By</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getAssociationSpecifications()
+   * @see #getMappedBy()
    * @generated
    * @ordered
    */
-  protected EList<AssociationSpecification> associationSpecifications;
+  protected static final String MAPPED_BY_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getMappedBy() <em>Mapped By</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getMappedBy()
+   * @generated
+   * @ordered
+   */
+  protected String mappedBy = MAPPED_BY_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getFetchType() <em>Fetch Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getFetchType()
+   * @generated
+   * @ordered
+   */
+  protected static final String FETCH_TYPE_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getFetchType() <em>Fetch Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getFetchType()
+   * @generated
+   * @ordered
+   */
+  protected String fetchType = FETCH_TYPE_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getValidations() <em>Validations</em>}' containment reference list.
@@ -298,13 +328,48 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
    * @generated
    */
   @Override
-  public EList<AssociationSpecification> getAssociationSpecifications()
+  public String getMappedBy()
   {
-    if (associationSpecifications == null)
-    {
-      associationSpecifications = new EObjectContainmentEList<AssociationSpecification>(AssociationSpecification.class, this, SocialRequestPackage.ATTRIBUTE__ASSOCIATION_SPECIFICATIONS);
-    }
-    return associationSpecifications;
+    return mappedBy;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setMappedBy(String newMappedBy)
+  {
+    String oldMappedBy = mappedBy;
+    mappedBy = newMappedBy;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, SocialRequestPackage.ATTRIBUTE__MAPPED_BY, oldMappedBy, mappedBy));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getFetchType()
+  {
+    return fetchType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setFetchType(String newFetchType)
+  {
+    String oldFetchType = fetchType;
+    fetchType = newFetchType;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, SocialRequestPackage.ATTRIBUTE__FETCH_TYPE, oldFetchType, fetchType));
   }
 
   /**
@@ -334,8 +399,6 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
     {
       case SocialRequestPackage.ATTRIBUTE__MODIFIER:
         return basicSetModifier(null, msgs);
-      case SocialRequestPackage.ATTRIBUTE__ASSOCIATION_SPECIFICATIONS:
-        return ((InternalEList<?>)getAssociationSpecifications()).basicRemove(otherEnd, msgs);
       case SocialRequestPackage.ATTRIBUTE__VALIDATIONS:
         return ((InternalEList<?>)getValidations()).basicRemove(otherEnd, msgs);
     }
@@ -361,8 +424,10 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
         return basicGetType();
       case SocialRequestPackage.ATTRIBUTE__MODIFIER:
         return getModifier();
-      case SocialRequestPackage.ATTRIBUTE__ASSOCIATION_SPECIFICATIONS:
-        return getAssociationSpecifications();
+      case SocialRequestPackage.ATTRIBUTE__MAPPED_BY:
+        return getMappedBy();
+      case SocialRequestPackage.ATTRIBUTE__FETCH_TYPE:
+        return getFetchType();
       case SocialRequestPackage.ATTRIBUTE__VALIDATIONS:
         return getValidations();
     }
@@ -392,9 +457,11 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
       case SocialRequestPackage.ATTRIBUTE__MODIFIER:
         setModifier((Modifier)newValue);
         return;
-      case SocialRequestPackage.ATTRIBUTE__ASSOCIATION_SPECIFICATIONS:
-        getAssociationSpecifications().clear();
-        getAssociationSpecifications().addAll((Collection<? extends AssociationSpecification>)newValue);
+      case SocialRequestPackage.ATTRIBUTE__MAPPED_BY:
+        setMappedBy((String)newValue);
+        return;
+      case SocialRequestPackage.ATTRIBUTE__FETCH_TYPE:
+        setFetchType((String)newValue);
         return;
       case SocialRequestPackage.ATTRIBUTE__VALIDATIONS:
         getValidations().clear();
@@ -426,8 +493,11 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
       case SocialRequestPackage.ATTRIBUTE__MODIFIER:
         setModifier((Modifier)null);
         return;
-      case SocialRequestPackage.ATTRIBUTE__ASSOCIATION_SPECIFICATIONS:
-        getAssociationSpecifications().clear();
+      case SocialRequestPackage.ATTRIBUTE__MAPPED_BY:
+        setMappedBy(MAPPED_BY_EDEFAULT);
+        return;
+      case SocialRequestPackage.ATTRIBUTE__FETCH_TYPE:
+        setFetchType(FETCH_TYPE_EDEFAULT);
         return;
       case SocialRequestPackage.ATTRIBUTE__VALIDATIONS:
         getValidations().clear();
@@ -454,8 +524,10 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
         return type != null;
       case SocialRequestPackage.ATTRIBUTE__MODIFIER:
         return modifier != null;
-      case SocialRequestPackage.ATTRIBUTE__ASSOCIATION_SPECIFICATIONS:
-        return associationSpecifications != null && !associationSpecifications.isEmpty();
+      case SocialRequestPackage.ATTRIBUTE__MAPPED_BY:
+        return MAPPED_BY_EDEFAULT == null ? mappedBy != null : !MAPPED_BY_EDEFAULT.equals(mappedBy);
+      case SocialRequestPackage.ATTRIBUTE__FETCH_TYPE:
+        return FETCH_TYPE_EDEFAULT == null ? fetchType != null : !FETCH_TYPE_EDEFAULT.equals(fetchType);
       case SocialRequestPackage.ATTRIBUTE__VALIDATIONS:
         return validations != null && !validations.isEmpty();
     }
@@ -477,6 +549,10 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
     result.append(association);
     result.append(", name: ");
     result.append(name);
+    result.append(", mappedBy: ");
+    result.append(mappedBy);
+    result.append(", fetchType: ");
+    result.append(fetchType);
     result.append(')');
     return result.toString();
   }
