@@ -787,16 +787,6 @@ public interface SocialRequestPackage extends EPackage
   int ORDER_FEATURE_COUNT = 1;
 
   /**
-   * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.GenerationType <em>Generation Type</em>}' enum.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.example.mydsl.socialRequest.GenerationType
-   * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getGenerationType()
-   * @generated
-   */
-  int GENERATION_TYPE = 17;
-
-  /**
    * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.DataType <em>Data Type</em>}' enum.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -804,7 +794,7 @@ public interface SocialRequestPackage extends EPackage
    * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getDataType()
    * @generated
    */
-  int DATA_TYPE = 18;
+  int DATA_TYPE = 17;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.socialRequest.JoinType <em>Join Type</em>}' enum.
@@ -814,7 +804,7 @@ public interface SocialRequestPackage extends EPackage
    * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getJoinType()
    * @generated
    */
-  int JOIN_TYPE = 19;
+  int JOIN_TYPE = 18;
 
 
   /**
@@ -1483,16 +1473,6 @@ public interface SocialRequestPackage extends EPackage
   EAttribute getOrder_Order();
 
   /**
-   * Returns the meta object for enum '{@link org.xtext.example.mydsl.socialRequest.GenerationType <em>Generation Type</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for enum '<em>Generation Type</em>'.
-   * @see org.xtext.example.mydsl.socialRequest.GenerationType
-   * @generated
-   */
-  EEnum getGenerationType();
-
-  /**
    * Returns the meta object for enum '{@link org.xtext.example.mydsl.socialRequest.DataType <em>Data Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2064,16 +2044,6 @@ public interface SocialRequestPackage extends EPackage
      * @generated
      */
     EAttribute ORDER__ORDER = eINSTANCE.getOrder_Order();
-
-    /**
-     * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.GenerationType <em>Generation Type</em>}' enum.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.example.mydsl.socialRequest.GenerationType
-     * @see org.xtext.example.mydsl.socialRequest.impl.SocialRequestPackageImpl#getGenerationType()
-     * @generated
-     */
-    EEnum GENERATION_TYPE = eINSTANCE.getGenerationType();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.socialRequest.DataType <em>Data Type</em>}' enum.

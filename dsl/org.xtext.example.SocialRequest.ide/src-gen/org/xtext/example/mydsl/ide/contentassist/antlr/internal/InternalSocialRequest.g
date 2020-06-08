@@ -524,22 +524,6 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-// Rule GenerationType
-ruleGenerationType
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	(
-		{ before(grammarAccess.getGenerationTypeAccess().getAlternatives()); }
-		(rule__GenerationType__Alternatives)
-		{ after(grammarAccess.getGenerationTypeAccess().getAlternatives()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
 // Rule DataType
 ruleDataType
 	@init {
@@ -719,39 +703,6 @@ rule__ASSOCIATION__Alternatives
 		{ before(grammarAccess.getASSOCIATIONAccess().getManyToManyKeyword_3()); }
 		'ManyToMany'
 		{ after(grammarAccess.getASSOCIATIONAccess().getManyToManyKeyword_3()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__GenerationType__Alternatives
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	(
-		{ before(grammarAccess.getGenerationTypeAccess().getAUTOEnumLiteralDeclaration_0()); }
-		('AUTO')
-		{ after(grammarAccess.getGenerationTypeAccess().getAUTOEnumLiteralDeclaration_0()); }
-	)
-	|
-	(
-		{ before(grammarAccess.getGenerationTypeAccess().getTABLEEnumLiteralDeclaration_1()); }
-		('TABLE')
-		{ after(grammarAccess.getGenerationTypeAccess().getTABLEEnumLiteralDeclaration_1()); }
-	)
-	|
-	(
-		{ before(grammarAccess.getGenerationTypeAccess().getIDENTITYEnumLiteralDeclaration_2()); }
-		('IDENTITY')
-		{ after(grammarAccess.getGenerationTypeAccess().getIDENTITYEnumLiteralDeclaration_2()); }
-	)
-	|
-	(
-		{ before(grammarAccess.getGenerationTypeAccess().getSEQUENCEEnumLiteralDeclaration_3()); }
-		('SEQUENCE')
-		{ after(grammarAccess.getGenerationTypeAccess().getSEQUENCEEnumLiteralDeclaration_3()); }
 	)
 ;
 finally {
@@ -3771,9 +3722,9 @@ rule__Modifier__IDGenerationTypeAssignment_2_1_1
 	}
 :
 	(
-		{ before(grammarAccess.getModifierAccess().getIDGenerationTypeGenerationTypeEnumRuleCall_2_1_1_0()); }
-		ruleGenerationType
-		{ after(grammarAccess.getModifierAccess().getIDGenerationTypeGenerationTypeEnumRuleCall_2_1_1_0()); }
+		{ before(grammarAccess.getModifierAccess().getIDGenerationTypeGENERATIONTYPETerminalRuleCall_2_1_1_0()); }
+		RULE_GENERATIONTYPE
+		{ after(grammarAccess.getModifierAccess().getIDGenerationTypeGENERATIONTYPETerminalRuleCall_2_1_1_0()); }
 	)
 ;
 finally {
@@ -4206,6 +4157,8 @@ finally {
 }
 
 RULE_POSSIBLY_SIGNED_INT : '-'? RULE_INT;
+
+RULE_GENERATIONTYPE : ('AUTO'|'TABLE'|'IDENTITY'|'SEQUENCE');
 
 RULE_FETCHTYPE : ('EAGER'|'LAZY');
 

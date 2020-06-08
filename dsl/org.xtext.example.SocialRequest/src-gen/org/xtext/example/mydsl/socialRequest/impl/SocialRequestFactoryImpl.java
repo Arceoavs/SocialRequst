@@ -98,8 +98,6 @@ public class SocialRequestFactoryImpl extends EFactoryImpl implements SocialRequ
   {
     switch (eDataType.getClassifierID())
     {
-      case SocialRequestPackage.GENERATION_TYPE:
-        return createGenerationTypeFromString(eDataType, initialValue);
       case SocialRequestPackage.DATA_TYPE:
         return createDataTypeFromString(eDataType, initialValue);
       case SocialRequestPackage.JOIN_TYPE:
@@ -119,8 +117,6 @@ public class SocialRequestFactoryImpl extends EFactoryImpl implements SocialRequ
   {
     switch (eDataType.getClassifierID())
     {
-      case SocialRequestPackage.GENERATION_TYPE:
-        return convertGenerationTypeToString(eDataType, instanceValue);
       case SocialRequestPackage.DATA_TYPE:
         return convertDataTypeToString(eDataType, instanceValue);
       case SocialRequestPackage.JOIN_TYPE:
@@ -332,28 +328,6 @@ public class SocialRequestFactoryImpl extends EFactoryImpl implements SocialRequ
   {
     OrderImpl order = new OrderImpl();
     return order;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public GenerationType createGenerationTypeFromString(EDataType eDataType, String initialValue)
-  {
-    GenerationType result = GenerationType.get(initialValue);
-    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-    return result;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String convertGenerationTypeToString(EDataType eDataType, Object instanceValue)
-  {
-    return instanceValue == null ? null : instanceValue.toString();
   }
 
   /**

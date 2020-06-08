@@ -17,7 +17,6 @@ import org.xtext.example.mydsl.socialRequest.DataTypeReference;
 import org.xtext.example.mydsl.socialRequest.Entity;
 import org.xtext.example.mydsl.socialRequest.EntityTypeReference;
 import org.xtext.example.mydsl.socialRequest.From;
-import org.xtext.example.mydsl.socialRequest.GenerationType;
 import org.xtext.example.mydsl.socialRequest.Join;
 import org.xtext.example.mydsl.socialRequest.JoinType;
 import org.xtext.example.mydsl.socialRequest.Model;
@@ -160,13 +159,6 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
    * @generated
    */
   private EClass orderEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EEnum generationTypeEEnum = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -933,17 +925,6 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
    * @generated
    */
   @Override
-  public EEnum getGenerationType()
-  {
-    return generationTypeEEnum;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EEnum getDataType()
   {
     return dataTypeEEnum;
@@ -1071,7 +1052,6 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
     createEAttribute(orderEClass, ORDER__ORDER);
 
     // Create enums
-    generationTypeEEnum = createEEnum(GENERATION_TYPE);
     dataTypeEEnum = createEEnum(DATA_TYPE);
     joinTypeEEnum = createEEnum(JOIN_TYPE);
   }
@@ -1139,7 +1119,7 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
     initEAttribute(getModifier_IsLOB(), ecorePackage.getEBoolean(), "isLOB", null, 0, 1, Modifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getModifier_IsTransient(), ecorePackage.getEBoolean(), "isTransient", null, 0, 1, Modifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getModifier_IsID(), ecorePackage.getEBoolean(), "isID", null, 0, 1, Modifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getModifier_IDGenerationType(), this.getGenerationType(), "IDGenerationType", null, 0, 1, Modifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getModifier_IDGenerationType(), ecorePackage.getEString(), "IDGenerationType", null, 0, 1, Modifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(validationEClass, Validation.class, "Validation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getValidation_Min(), ecorePackage.getEBigDecimal(), "min", null, 0, 1, Validation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1189,12 +1169,6 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
     initEAttribute(getOrder_Order(), ecorePackage.getEString(), "order", null, 0, 1, Order.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
-    initEEnum(generationTypeEEnum, GenerationType.class, "GenerationType");
-    addEEnumLiteral(generationTypeEEnum, GenerationType.AUTO);
-    addEEnumLiteral(generationTypeEEnum, GenerationType.TABLE);
-    addEEnumLiteral(generationTypeEEnum, GenerationType.IDENTITY);
-    addEEnumLiteral(generationTypeEEnum, GenerationType.SEQUENCE);
-
     initEEnum(dataTypeEEnum, DataType.class, "DataType");
     addEEnumLiteral(dataTypeEEnum, DataType.STRING);
     addEEnumLiteral(dataTypeEEnum, DataType.LONG);

@@ -606,20 +606,19 @@ ruleModifier returns [EObject current=null]
 				}
 				(
 					(
+						lv_IDGenerationType_4_0=RULE_GENERATIONTYPE
 						{
-							newCompositeNode(grammarAccess.getModifierAccess().getIDGenerationTypeGenerationTypeEnumRuleCall_2_1_1_0());
+							newLeafNode(lv_IDGenerationType_4_0, grammarAccess.getModifierAccess().getIDGenerationTypeGENERATIONTYPETerminalRuleCall_2_1_1_0());
 						}
-						lv_IDGenerationType_4_0=ruleGenerationType
 						{
 							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getModifierRule());
+								$current = createModelElement(grammarAccess.getModifierRule());
 							}
-							set(
+							setWithLastConsumed(
 								$current,
 								"IDGenerationType",
 								lv_IDGenerationType_4_0,
-								"org.xtext.example.mydsl.SocialRequest.GenerationType");
-							afterParserOrEnumRuleCall();
+								"org.xtext.example.mydsl.SocialRequest.GENERATIONTYPE");
 						}
 					)
 				)
@@ -1527,49 +1526,6 @@ ruleOrder returns [EObject current=null]
 	)
 ;
 
-// Rule GenerationType
-ruleGenerationType returns [Enumerator current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			enumLiteral_0='AUTO'
-			{
-				$current = grammarAccess.getGenerationTypeAccess().getAUTOEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_0, grammarAccess.getGenerationTypeAccess().getAUTOEnumLiteralDeclaration_0());
-			}
-		)
-		    |
-		(
-			enumLiteral_1='TABLE'
-			{
-				$current = grammarAccess.getGenerationTypeAccess().getTABLEEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_1, grammarAccess.getGenerationTypeAccess().getTABLEEnumLiteralDeclaration_1());
-			}
-		)
-		    |
-		(
-			enumLiteral_2='IDENTITY'
-			{
-				$current = grammarAccess.getGenerationTypeAccess().getIDENTITYEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_2, grammarAccess.getGenerationTypeAccess().getIDENTITYEnumLiteralDeclaration_2());
-			}
-		)
-		    |
-		(
-			enumLiteral_3='SEQUENCE'
-			{
-				$current = grammarAccess.getGenerationTypeAccess().getSEQUENCEEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_3, grammarAccess.getGenerationTypeAccess().getSEQUENCEEnumLiteralDeclaration_3());
-			}
-		)
-	)
-;
-
 // Rule DataType
 ruleDataType returns [Enumerator current=null]
 @init {
@@ -1689,6 +1645,8 @@ ruleJoinType returns [Enumerator current=null]
 ;
 
 RULE_POSSIBLY_SIGNED_INT : '-'? RULE_INT;
+
+RULE_GENERATIONTYPE : ('AUTO'|'TABLE'|'IDENTITY'|'SEQUENCE');
 
 RULE_FETCHTYPE : ('EAGER'|'LAZY');
 

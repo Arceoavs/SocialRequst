@@ -212,7 +212,7 @@ public class SocialRequestSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *     Modifier returns Modifier
 	 *
 	 * Constraint:
-	 *     (isLOB?='LOB' | isTransient?='TRANSIENT' | (isID?='ID' IDGenerationType=GenerationType?))
+	 *     (isLOB?='LOB' | isTransient?='TRANSIENT' | (isID?='ID' IDGenerationType=GENERATIONTYPE?))
 	 */
 	protected void sequence_Modifier(ISerializationContext context, Modifier semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

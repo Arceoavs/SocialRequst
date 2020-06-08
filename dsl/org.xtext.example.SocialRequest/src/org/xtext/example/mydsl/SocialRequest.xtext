@@ -39,7 +39,7 @@ DataTypeReference:
 ;
 
 Modifier:
-	isLOB?='LOB' | isTransient?='TRANSIENT' | isID?='ID'('('IDGenerationType=GenerationType')')?
+	isLOB?='LOB' | isTransient?='TRANSIENT' | isID?='ID'('('IDGenerationType=GENERATIONTYPE')')?
 ;
 
 Validation:
@@ -55,8 +55,8 @@ terminal POSSIBLY_SIGNED_INT returns ecore::EBigDecimal:
 	'-'?INT
 ;
 
-enum GenerationType:
-	AUTO='AUTO' | TABLE='TABLE' | IDENTITY='IDENTITY' | SEQUENCE='SEQUENCE'
+terminal GENERATIONTYPE:
+	'AUTO' | 'TABLE' | 'IDENTITY' | 'SEQUENCE'
 ;
 
 terminal FETCHTYPE:

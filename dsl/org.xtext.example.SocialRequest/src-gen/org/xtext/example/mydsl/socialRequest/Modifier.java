@@ -94,27 +94,24 @@ public interface Modifier extends EObject
 
   /**
    * Returns the value of the '<em><b>ID Generation Type</b></em>' attribute.
-   * The literals are from the enumeration {@link org.xtext.example.mydsl.socialRequest.GenerationType}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>ID Generation Type</em>' attribute.
-   * @see org.xtext.example.mydsl.socialRequest.GenerationType
-   * @see #setIDGenerationType(GenerationType)
+   * @see #setIDGenerationType(String)
    * @see org.xtext.example.mydsl.socialRequest.SocialRequestPackage#getModifier_IDGenerationType()
    * @model
    * @generated
    */
-  GenerationType getIDGenerationType();
+  String getIDGenerationType();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.socialRequest.Modifier#getIDGenerationType <em>ID Generation Type</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>ID Generation Type</em>' attribute.
-   * @see org.xtext.example.mydsl.socialRequest.GenerationType
    * @see #getIDGenerationType()
    * @generated
    */
-  void setIDGenerationType(GenerationType value);
+  void setIDGenerationType(String value);
 
 } // Modifier

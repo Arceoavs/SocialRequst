@@ -18,6 +18,7 @@ import org.xtext.example.mydsl.socialRequest.Attribute;
 import org.xtext.example.mydsl.socialRequest.DataTypeReference;
 import org.xtext.example.mydsl.socialRequest.Entity;
 import org.xtext.example.mydsl.socialRequest.EntityTypeReference;
+import org.xtext.example.mydsl.socialRequest.Modifier;
 import org.xtext.example.mydsl.socialRequest.Repository;
 import org.xtext.example.mydsl.socialRequest.TypeReference;
 import org.xtext.example.mydsl.socialRequest.Validation;
@@ -107,6 +108,33 @@ public class SocialRequestGenerator extends AbstractGenerator {
         CharSequence _generateAssociationAnnotation = this.generateAssociationAnnotation(attribute);
         _builder.append(_generateAssociationAnnotation);
         _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      Modifier _modifier = attribute.getModifier();
+      boolean _notEquals_1 = (!Objects.equal(_modifier, null));
+      if (_notEquals_1) {
+        {
+          Modifier _modifier_1 = attribute.getModifier();
+          boolean _isIsID = ((Modifier) _modifier_1).isIsID();
+          if (_isIsID) {
+            _builder.append("@Id");
+            _builder.newLine();
+            {
+              Modifier _modifier_2 = attribute.getModifier();
+              String _iDGenerationType = ((Modifier) _modifier_2).getIDGenerationType();
+              boolean _notEquals_2 = (!Objects.equal(_iDGenerationType, null));
+              if (_notEquals_2) {
+                _builder.append("@GeneratedValue(GenerationType.");
+                Modifier _modifier_3 = attribute.getModifier();
+                String _iDGenerationType_1 = ((Modifier) _modifier_3).getIDGenerationType();
+                _builder.append(_iDGenerationType_1);
+                _builder.append(")");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
       }
     }
     _builder.append("private ");

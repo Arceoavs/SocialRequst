@@ -302,14 +302,14 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_2_1 = (Group)cGroup_2.eContents().get(1);
 		private final Keyword cLeftParenthesisKeyword_2_1_0 = (Keyword)cGroup_2_1.eContents().get(0);
 		private final Assignment cIDGenerationTypeAssignment_2_1_1 = (Assignment)cGroup_2_1.eContents().get(1);
-		private final RuleCall cIDGenerationTypeGenerationTypeEnumRuleCall_2_1_1_0 = (RuleCall)cIDGenerationTypeAssignment_2_1_1.eContents().get(0);
+		private final RuleCall cIDGenerationTypeGENERATIONTYPETerminalRuleCall_2_1_1_0 = (RuleCall)cIDGenerationTypeAssignment_2_1_1.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_2_1_2 = (Keyword)cGroup_2_1.eContents().get(2);
 		
 		//Modifier:
-		//	isLOB?='LOB' | isTransient?='TRANSIENT' | isID?='ID' ('(' IDGenerationType=GenerationType ')')?;
+		//	isLOB?='LOB' | isTransient?='TRANSIENT' | isID?='ID' ('(' IDGenerationType=GENERATIONTYPE ')')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//isLOB?='LOB' | isTransient?='TRANSIENT' | isID?='ID' ('(' IDGenerationType=GenerationType ')')?
+		//isLOB?='LOB' | isTransient?='TRANSIENT' | isID?='ID' ('(' IDGenerationType=GENERATIONTYPE ')')?
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//isLOB?='LOB'
@@ -324,7 +324,7 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		//'TRANSIENT'
 		public Keyword getIsTransientTRANSIENTKeyword_1_0() { return cIsTransientTRANSIENTKeyword_1_0; }
 		
-		//isID?='ID' ('(' IDGenerationType=GenerationType ')')?
+		//isID?='ID' ('(' IDGenerationType=GENERATIONTYPE ')')?
 		public Group getGroup_2() { return cGroup_2; }
 		
 		//isID?='ID'
@@ -333,17 +333,17 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		//'ID'
 		public Keyword getIsIDIDKeyword_2_0_0() { return cIsIDIDKeyword_2_0_0; }
 		
-		//('(' IDGenerationType=GenerationType ')')?
+		//('(' IDGenerationType=GENERATIONTYPE ')')?
 		public Group getGroup_2_1() { return cGroup_2_1; }
 		
 		//'('
 		public Keyword getLeftParenthesisKeyword_2_1_0() { return cLeftParenthesisKeyword_2_1_0; }
 		
-		//IDGenerationType=GenerationType
+		//IDGenerationType=GENERATIONTYPE
 		public Assignment getIDGenerationTypeAssignment_2_1_1() { return cIDGenerationTypeAssignment_2_1_1; }
 		
-		//GenerationType
-		public RuleCall getIDGenerationTypeGenerationTypeEnumRuleCall_2_1_1_0() { return cIDGenerationTypeGenerationTypeEnumRuleCall_2_1_1_0; }
+		//GENERATIONTYPE
+		public RuleCall getIDGenerationTypeGENERATIONTYPETerminalRuleCall_2_1_1_0() { return cIDGenerationTypeGENERATIONTYPETerminalRuleCall_2_1_1_0; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_2_1_2() { return cRightParenthesisKeyword_2_1_2; }
@@ -909,49 +909,6 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
 	}
 	
-	public class GenerationTypeElements extends AbstractEnumRuleElementFinder {
-		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.GenerationType");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final EnumLiteralDeclaration cAUTOEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
-		private final Keyword cAUTOAUTOKeyword_0_0 = (Keyword)cAUTOEnumLiteralDeclaration_0.eContents().get(0);
-		private final EnumLiteralDeclaration cTABLEEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
-		private final Keyword cTABLETABLEKeyword_1_0 = (Keyword)cTABLEEnumLiteralDeclaration_1.eContents().get(0);
-		private final EnumLiteralDeclaration cIDENTITYEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
-		private final Keyword cIDENTITYIDENTITYKeyword_2_0 = (Keyword)cIDENTITYEnumLiteralDeclaration_2.eContents().get(0);
-		private final EnumLiteralDeclaration cSEQUENCEEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
-		private final Keyword cSEQUENCESEQUENCEKeyword_3_0 = (Keyword)cSEQUENCEEnumLiteralDeclaration_3.eContents().get(0);
-		
-		//enum GenerationType:
-		//	AUTO | TABLE | IDENTITY | SEQUENCE;
-		public EnumRule getRule() { return rule; }
-		
-		//AUTO | TABLE | IDENTITY | SEQUENCE
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//AUTO
-		public EnumLiteralDeclaration getAUTOEnumLiteralDeclaration_0() { return cAUTOEnumLiteralDeclaration_0; }
-		
-		//'AUTO'
-		public Keyword getAUTOAUTOKeyword_0_0() { return cAUTOAUTOKeyword_0_0; }
-		
-		//TABLE
-		public EnumLiteralDeclaration getTABLEEnumLiteralDeclaration_1() { return cTABLEEnumLiteralDeclaration_1; }
-		
-		//'TABLE'
-		public Keyword getTABLETABLEKeyword_1_0() { return cTABLETABLEKeyword_1_0; }
-		
-		//IDENTITY
-		public EnumLiteralDeclaration getIDENTITYEnumLiteralDeclaration_2() { return cIDENTITYEnumLiteralDeclaration_2; }
-		
-		//'IDENTITY'
-		public Keyword getIDENTITYIDENTITYKeyword_2_0() { return cIDENTITYIDENTITYKeyword_2_0; }
-		
-		//SEQUENCE
-		public EnumLiteralDeclaration getSEQUENCEEnumLiteralDeclaration_3() { return cSEQUENCEEnumLiteralDeclaration_3; }
-		
-		//'SEQUENCE'
-		public Keyword getSEQUENCESEQUENCEKeyword_3_0() { return cSEQUENCESEQUENCEKeyword_3_0; }
-	}
 	public class DataTypeElements extends AbstractEnumRuleElementFinder {
 		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.DataType");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -1083,7 +1040,7 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 	private final ValidationElements pValidation;
 	private final BASICVALIDATIONElements pBASICVALIDATION;
 	private final TerminalRule tPOSSIBLY_SIGNED_INT;
-	private final GenerationTypeElements eGenerationType;
+	private final TerminalRule tGENERATIONTYPE;
 	private final TerminalRule tFETCHTYPE;
 	private final ASSOCIATIONElements pASSOCIATION;
 	private final DataTypeElements eDataType;
@@ -1117,7 +1074,7 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		this.pValidation = new ValidationElements();
 		this.pBASICVALIDATION = new BASICVALIDATIONElements();
 		this.tPOSSIBLY_SIGNED_INT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.POSSIBLY_SIGNED_INT");
-		this.eGenerationType = new GenerationTypeElements();
+		this.tGENERATIONTYPE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.GENERATIONTYPE");
 		this.tFETCHTYPE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.FETCHTYPE");
 		this.pASSOCIATION = new ASSOCIATIONElements();
 		this.eDataType = new DataTypeElements();
@@ -1227,7 +1184,7 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Modifier:
-	//	isLOB?='LOB' | isTransient?='TRANSIENT' | isID?='ID' ('(' IDGenerationType=GenerationType ')')?;
+	//	isLOB?='LOB' | isTransient?='TRANSIENT' | isID?='ID' ('(' IDGenerationType=GENERATIONTYPE ')')?;
 	public ModifierElements getModifierAccess() {
 		return pModifier;
 	}
@@ -1263,14 +1220,10 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		return tPOSSIBLY_SIGNED_INT;
 	}
 	
-	//enum GenerationType:
-	//	AUTO | TABLE | IDENTITY | SEQUENCE;
-	public GenerationTypeElements getGenerationTypeAccess() {
-		return eGenerationType;
-	}
-	
-	public EnumRule getGenerationTypeRule() {
-		return getGenerationTypeAccess().getRule();
+	//terminal GENERATIONTYPE:
+	//	'AUTO' | 'TABLE' | 'IDENTITY' | 'SEQUENCE';
+	public TerminalRule getGENERATIONTYPERule() {
+		return tGENERATIONTYPE;
 	}
 	
 	//terminal FETCHTYPE:

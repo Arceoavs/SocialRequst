@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.xtext.example.mydsl.socialRequest.GenerationType;
 import org.xtext.example.mydsl.socialRequest.Modifier;
 import org.xtext.example.mydsl.socialRequest.SocialRequestPackage;
 
@@ -100,7 +99,7 @@ public class ModifierImpl extends MinimalEObjectImpl.Container implements Modifi
    * @generated
    * @ordered
    */
-  protected static final GenerationType ID_GENERATION_TYPE_EDEFAULT = GenerationType.AUTO;
+  protected static final String ID_GENERATION_TYPE_EDEFAULT = null;
 
   /**
    * The cached value of the '{@link #getIDGenerationType() <em>ID Generation Type</em>}' attribute.
@@ -110,7 +109,7 @@ public class ModifierImpl extends MinimalEObjectImpl.Container implements Modifi
    * @generated
    * @ordered
    */
-  protected GenerationType idGenerationType = ID_GENERATION_TYPE_EDEFAULT;
+  protected String idGenerationType = ID_GENERATION_TYPE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -214,7 +213,7 @@ public class ModifierImpl extends MinimalEObjectImpl.Container implements Modifi
    * @generated
    */
   @Override
-  public GenerationType getIDGenerationType()
+  public String getIDGenerationType()
   {
     return idGenerationType;
   }
@@ -225,10 +224,10 @@ public class ModifierImpl extends MinimalEObjectImpl.Container implements Modifi
    * @generated
    */
   @Override
-  public void setIDGenerationType(GenerationType newIDGenerationType)
+  public void setIDGenerationType(String newIDGenerationType)
   {
-    GenerationType oldIDGenerationType = idGenerationType;
-    idGenerationType = newIDGenerationType == null ? ID_GENERATION_TYPE_EDEFAULT : newIDGenerationType;
+    String oldIDGenerationType = idGenerationType;
+    idGenerationType = newIDGenerationType;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, SocialRequestPackage.MODIFIER__ID_GENERATION_TYPE, oldIDGenerationType, idGenerationType));
   }
@@ -275,7 +274,7 @@ public class ModifierImpl extends MinimalEObjectImpl.Container implements Modifi
         setIsID((Boolean)newValue);
         return;
       case SocialRequestPackage.MODIFIER__ID_GENERATION_TYPE:
-        setIDGenerationType((GenerationType)newValue);
+        setIDGenerationType((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -324,7 +323,7 @@ public class ModifierImpl extends MinimalEObjectImpl.Container implements Modifi
       case SocialRequestPackage.MODIFIER__IS_ID:
         return isID != IS_ID_EDEFAULT;
       case SocialRequestPackage.MODIFIER__ID_GENERATION_TYPE:
-        return idGenerationType != ID_GENERATION_TYPE_EDEFAULT;
+        return ID_GENERATION_TYPE_EDEFAULT == null ? idGenerationType != null : !ID_GENERATION_TYPE_EDEFAULT.equals(idGenerationType);
     }
     return super.eIsSet(featureID);
   }

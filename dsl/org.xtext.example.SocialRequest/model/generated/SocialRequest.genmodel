@@ -6,12 +6,6 @@
     complianceLevel="8.0" copyrightFields="false" runtimeVersion="2.20">
   <genPackages prefix="SocialRequest" basePackage="org.xtext.example.mydsl" disposableProviderFactory="true"
       fileExtensions="platform" ecorePackage="SocialRequest.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="SocialRequest.ecore#//GenerationType">
-      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//GenerationType/AUTO"/>
-      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//GenerationType/TABLE"/>
-      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//GenerationType/IDENTITY"/>
-      <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//GenerationType/SEQUENCE"/>
-    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="SocialRequest.ecore#//DataType">
       <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//DataType/STRING"/>
       <genEnumLiterals ecoreEnumLiteral="SocialRequest.ecore#//DataType/LONG"/>

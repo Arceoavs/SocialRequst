@@ -12,6 +12,7 @@ import org.xtext.example.mydsl.socialRequest.Entity
 import org.xtext.example.mydsl.socialRequest.Repository
 import org.xtext.example.mydsl.socialRequest.Attribute
 import org.xtext.example.mydsl.socialRequest.EntityTypeReference
+import org.xtext.example.mydsl.socialRequest.Modifier
 import org.xtext.example.mydsl.socialRequest.DataTypeReference
 import org.xtext.example.mydsl.socialRequest.Validation
 
@@ -56,6 +57,14 @@ class SocialRequestGenerator extends AbstractGenerator {
 		«ENDFOR»
 		«IF attribute.association != null»
 			«generateAssociationAnnotation(attribute)»
+		«ENDIF»
+		«IF attribute.modifier != null»
+			«IF (attribute.modifier as Modifier).isID»
+				@Id
+				«IF (attribute.modifier as Modifier).IDGenerationType != null»
+					@GeneratedValue(GenerationType.«(attribute.modifier as Modifier).IDGenerationType»)
+				«ENDIF»
+			«ENDIF»
 		«ENDIF»
 		private «attributeType(attribute)» «attribute.name»;
 
