@@ -241,4 +241,7 @@ public abstract class AbstractSocialRequestProposalProvider extends TerminalsPro
 	public void complete_Order(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}
+	public void complete_FullPackageName(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		// subclasses may override
+	}
 }

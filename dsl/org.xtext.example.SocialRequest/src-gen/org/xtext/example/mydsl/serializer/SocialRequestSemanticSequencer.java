@@ -140,7 +140,7 @@ public class SocialRequestSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *     EntityTypeReference returns EntityTypeReference
 	 *
 	 * Constraint:
-	 *     type=[Entity|ID]
+	 *     type=[Entity|FullPackageName]
 	 */
 	protected void sequence_EntityTypeReference(ISerializationContext context, EntityTypeReference semanticObject) {
 		if (errorAcceptor != null) {
@@ -148,7 +148,7 @@ public class SocialRequestSemanticSequencer extends AbstractDelegatingSemanticSe
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SocialRequestPackage.Literals.ENTITY_TYPE_REFERENCE__TYPE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getEntityTypeReferenceAccess().getTypeEntityIDTerminalRuleCall_0_1(), semanticObject.eGet(SocialRequestPackage.Literals.ENTITY_TYPE_REFERENCE__TYPE, false));
+		feeder.accept(grammarAccess.getEntityTypeReferenceAccess().getTypeEntityFullPackageNameParserRuleCall_0_1(), semanticObject.eGet(SocialRequestPackage.Literals.ENTITY_TYPE_REFERENCE__TYPE, false));
 		feeder.finish();
 	}
 	
@@ -171,7 +171,7 @@ public class SocialRequestSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *     From returns From
 	 *
 	 * Constraint:
-	 *     (entity=[Entity|ID] alias=ID)
+	 *     (entity=[Entity|FullPackageName] alias=ID)
 	 */
 	protected void sequence_From(ISerializationContext context, From semanticObject) {
 		if (errorAcceptor != null) {
@@ -181,7 +181,7 @@ public class SocialRequestSemanticSequencer extends AbstractDelegatingSemanticSe
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SocialRequestPackage.Literals.FROM__ALIAS));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getFromAccess().getEntityEntityIDTerminalRuleCall_2_0_1(), semanticObject.eGet(SocialRequestPackage.Literals.FROM__ENTITY, false));
+		feeder.accept(grammarAccess.getFromAccess().getEntityEntityFullPackageNameParserRuleCall_2_0_1(), semanticObject.eGet(SocialRequestPackage.Literals.FROM__ENTITY, false));
 		feeder.accept(grammarAccess.getFromAccess().getAliasIDTerminalRuleCall_3_0(), semanticObject.getAlias());
 		feeder.finish();
 	}
@@ -192,7 +192,7 @@ public class SocialRequestSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *     Join returns Join
 	 *
 	 * Constraint:
-	 *     (joinType=JoinType entity=[Entity|ID] alias=ID joinCondition=STRING?)
+	 *     (joinType=JoinType entity=[Entity|FullPackageName] alias=ID joinCondition=STRING?)
 	 */
 	protected void sequence_Join(ISerializationContext context, Join semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -293,7 +293,7 @@ public class SocialRequestSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *     Repository returns Repository
 	 *
 	 * Constraint:
-	 *     (entity=[Entity|ID] queries+=Query+)
+	 *     (entity=[Entity|FullPackageName] queries+=Query+)
 	 */
 	protected void sequence_Repository(ISerializationContext context, Repository semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -44,7 +44,7 @@ TypeReference:
 ;
 
 EntityTypeReference:
-	type=[Entity]
+	type=[Entity|FullPackageName]
 ;
 
 DataTypeReference:
@@ -87,7 +87,7 @@ enum DataType:
 // Repository
 
 Repository:
-	'Repository' entity=[Entity] '{'
+	'Repository' entity=[Entity|FullPackageName] '{'
 		queries+=Query+
 	'}'
 ;
@@ -119,11 +119,11 @@ Select:
 ;
 
 From:
-	'FROM' '{' entity=[Entity] alias=ID '}'
+	'FROM' '{' entity=[Entity|FullPackageName] alias=ID '}'
 ;
 
 Join:
-	joinType=JoinType '{' entity=[Entity] alias=ID '}' ('ON' '{' joinCondition=STRING '}')?
+	joinType=JoinType '{' entity=[Entity|FullPackageName] alias=ID '}' ('ON' '{' joinCondition=STRING '}')?
 ;
 
 enum JoinType:
@@ -136,4 +136,8 @@ Where:
 
 Order:
 	'ORDER BY' '{' order=STRING '}' 
+;
+
+FullPackageName hidden():
+	ID('.' ID)*
 ;

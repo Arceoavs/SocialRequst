@@ -338,20 +338,20 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.EntityTypeReference");
 		private final Assignment cTypeAssignment = (Assignment)rule.eContents().get(1);
 		private final CrossReference cTypeEntityCrossReference_0 = (CrossReference)cTypeAssignment.eContents().get(0);
-		private final RuleCall cTypeEntityIDTerminalRuleCall_0_1 = (RuleCall)cTypeEntityCrossReference_0.eContents().get(1);
+		private final RuleCall cTypeEntityFullPackageNameParserRuleCall_0_1 = (RuleCall)cTypeEntityCrossReference_0.eContents().get(1);
 		
 		//EntityTypeReference:
-		//	type=[Entity];
+		//	type=[Entity|FullPackageName];
 		@Override public ParserRule getRule() { return rule; }
 		
-		//type=[Entity]
+		//type=[Entity|FullPackageName]
 		public Assignment getTypeAssignment() { return cTypeAssignment; }
 		
-		//[Entity]
+		//[Entity|FullPackageName]
 		public CrossReference getTypeEntityCrossReference_0() { return cTypeEntityCrossReference_0; }
 		
-		//ID
-		public RuleCall getTypeEntityIDTerminalRuleCall_0_1() { return cTypeEntityIDTerminalRuleCall_0_1; }
+		//FullPackageName
+		public RuleCall getTypeEntityFullPackageNameParserRuleCall_0_1() { return cTypeEntityFullPackageNameParserRuleCall_0_1; }
 	}
 	public class DataTypeReferenceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.DataTypeReference");
@@ -564,7 +564,7 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRepositoryKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cEntityAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final CrossReference cEntityEntityCrossReference_1_0 = (CrossReference)cEntityAssignment_1.eContents().get(0);
-		private final RuleCall cEntityEntityIDTerminalRuleCall_1_0_1 = (RuleCall)cEntityEntityCrossReference_1_0.eContents().get(1);
+		private final RuleCall cEntityEntityFullPackageNameParserRuleCall_1_0_1 = (RuleCall)cEntityEntityCrossReference_1_0.eContents().get(1);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cQueriesAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cQueriesQueryParserRuleCall_3_0 = (RuleCall)cQueriesAssignment_3.eContents().get(0);
@@ -572,25 +572,25 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//// Repository
 		//Repository:
-		//	'Repository' entity=[Entity] '{'
+		//	'Repository' entity=[Entity|FullPackageName] '{'
 		//	queries+=Query+
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Repository' entity=[Entity] '{' queries+=Query+ '}'
+		//'Repository' entity=[Entity|FullPackageName] '{' queries+=Query+ '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'Repository'
 		public Keyword getRepositoryKeyword_0() { return cRepositoryKeyword_0; }
 		
-		//entity=[Entity]
+		//entity=[Entity|FullPackageName]
 		public Assignment getEntityAssignment_1() { return cEntityAssignment_1; }
 		
-		//[Entity]
+		//[Entity|FullPackageName]
 		public CrossReference getEntityEntityCrossReference_1_0() { return cEntityEntityCrossReference_1_0; }
 		
-		//ID
-		public RuleCall getEntityEntityIDTerminalRuleCall_1_0_1() { return cEntityEntityIDTerminalRuleCall_1_0_1; }
+		//FullPackageName
+		public RuleCall getEntityEntityFullPackageNameParserRuleCall_1_0_1() { return cEntityEntityFullPackageNameParserRuleCall_1_0_1; }
 		
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
@@ -823,16 +823,16 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cEntityAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final CrossReference cEntityEntityCrossReference_2_0 = (CrossReference)cEntityAssignment_2.eContents().get(0);
-		private final RuleCall cEntityEntityIDTerminalRuleCall_2_0_1 = (RuleCall)cEntityEntityCrossReference_2_0.eContents().get(1);
+		private final RuleCall cEntityEntityFullPackageNameParserRuleCall_2_0_1 = (RuleCall)cEntityEntityCrossReference_2_0.eContents().get(1);
 		private final Assignment cAliasAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cAliasIDTerminalRuleCall_3_0 = (RuleCall)cAliasAssignment_3.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//From:
-		//	'FROM' '{' entity=[Entity] alias=ID '}';
+		//	'FROM' '{' entity=[Entity|FullPackageName] alias=ID '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'FROM' '{' entity=[Entity] alias=ID '}'
+		//'FROM' '{' entity=[Entity|FullPackageName] alias=ID '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'FROM'
@@ -841,14 +841,14 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 		
-		//entity=[Entity]
+		//entity=[Entity|FullPackageName]
 		public Assignment getEntityAssignment_2() { return cEntityAssignment_2; }
 		
-		//[Entity]
+		//[Entity|FullPackageName]
 		public CrossReference getEntityEntityCrossReference_2_0() { return cEntityEntityCrossReference_2_0; }
 		
-		//ID
-		public RuleCall getEntityEntityIDTerminalRuleCall_2_0_1() { return cEntityEntityIDTerminalRuleCall_2_0_1; }
+		//FullPackageName
+		public RuleCall getEntityEntityFullPackageNameParserRuleCall_2_0_1() { return cEntityEntityFullPackageNameParserRuleCall_2_0_1; }
 		
 		//alias=ID
 		public Assignment getAliasAssignment_3() { return cAliasAssignment_3; }
@@ -867,7 +867,7 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cEntityAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final CrossReference cEntityEntityCrossReference_2_0 = (CrossReference)cEntityAssignment_2.eContents().get(0);
-		private final RuleCall cEntityEntityIDTerminalRuleCall_2_0_1 = (RuleCall)cEntityEntityCrossReference_2_0.eContents().get(1);
+		private final RuleCall cEntityEntityFullPackageNameParserRuleCall_2_0_1 = (RuleCall)cEntityEntityCrossReference_2_0.eContents().get(1);
 		private final Assignment cAliasAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cAliasIDTerminalRuleCall_3_0 = (RuleCall)cAliasAssignment_3.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
@@ -879,10 +879,10 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_5_3 = (Keyword)cGroup_5.eContents().get(3);
 		
 		//Join:
-		//	joinType=JoinType '{' entity=[Entity] alias=ID '}' ('ON' '{' joinCondition=STRING '}')?;
+		//	joinType=JoinType '{' entity=[Entity|FullPackageName] alias=ID '}' ('ON' '{' joinCondition=STRING '}')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//joinType=JoinType '{' entity=[Entity] alias=ID '}' ('ON' '{' joinCondition=STRING '}')?
+		//joinType=JoinType '{' entity=[Entity|FullPackageName] alias=ID '}' ('ON' '{' joinCondition=STRING '}')?
 		public Group getGroup() { return cGroup; }
 		
 		//joinType=JoinType
@@ -894,14 +894,14 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 		
-		//entity=[Entity]
+		//entity=[Entity|FullPackageName]
 		public Assignment getEntityAssignment_2() { return cEntityAssignment_2; }
 		
-		//[Entity]
+		//[Entity|FullPackageName]
 		public CrossReference getEntityEntityCrossReference_2_0() { return cEntityEntityCrossReference_2_0; }
 		
-		//ID
-		public RuleCall getEntityEntityIDTerminalRuleCall_2_0_1() { return cEntityEntityIDTerminalRuleCall_2_0_1; }
+		//FullPackageName
+		public RuleCall getEntityEntityFullPackageNameParserRuleCall_2_0_1() { return cEntityEntityFullPackageNameParserRuleCall_2_0_1; }
 		
 		//alias=ID
 		public Assignment getAliasAssignment_3() { return cAliasAssignment_3; }
@@ -991,6 +991,33 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
+	}
+	public class FullPackageNameElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.FullPackageName");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cIDTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cFullStopKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final RuleCall cIDTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		
+		//FullPackageName hidden():
+		//	ID ('.' ID)*;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//ID ('.' ID)*
+		public Group getGroup() { return cGroup; }
+		
+		//ID
+		public RuleCall getIDTerminalRuleCall_0() { return cIDTerminalRuleCall_0; }
+		
+		//('.' ID)*
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//'.'
+		public Keyword getFullStopKeyword_1_0() { return cFullStopKeyword_1_0; }
+		
+		//ID
+		public RuleCall getIDTerminalRuleCall_1_1() { return cIDTerminalRuleCall_1_1; }
 	}
 	
 	public class DataTypeElements extends AbstractEnumRuleElementFinder {
@@ -1141,6 +1168,7 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 	private final JoinTypeElements eJoinType;
 	private final WhereElements pWhere;
 	private final OrderElements pOrder;
+	private final FullPackageNameElements pFullPackageName;
 	
 	private final Grammar grammar;
 	
@@ -1178,6 +1206,7 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		this.eJoinType = new JoinTypeElements();
 		this.pWhere = new WhereElements();
 		this.pOrder = new OrderElements();
+		this.pFullPackageName = new FullPackageNameElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -1286,7 +1315,7 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//EntityTypeReference:
-	//	type=[Entity];
+	//	type=[Entity|FullPackageName];
 	public EntityTypeReferenceElements getEntityTypeReferenceAccess() {
 		return pEntityTypeReference;
 	}
@@ -1377,7 +1406,7 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//// Repository
 	//Repository:
-	//	'Repository' entity=[Entity] '{'
+	//	'Repository' entity=[Entity|FullPackageName] '{'
 	//	queries+=Query+
 	//	'}';
 	public RepositoryElements getRepositoryAccess() {
@@ -1437,7 +1466,7 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//From:
-	//	'FROM' '{' entity=[Entity] alias=ID '}';
+	//	'FROM' '{' entity=[Entity|FullPackageName] alias=ID '}';
 	public FromElements getFromAccess() {
 		return pFrom;
 	}
@@ -1447,7 +1476,7 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Join:
-	//	joinType=JoinType '{' entity=[Entity] alias=ID '}' ('ON' '{' joinCondition=STRING '}')?;
+	//	joinType=JoinType '{' entity=[Entity|FullPackageName] alias=ID '}' ('ON' '{' joinCondition=STRING '}')?;
 	public JoinElements getJoinAccess() {
 		return pJoin;
 	}
@@ -1484,6 +1513,16 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getOrderRule() {
 		return getOrderAccess().getRule();
+	}
+	
+	//FullPackageName hidden():
+	//	ID ('.' ID)*;
+	public FullPackageNameElements getFullPackageNameAccess() {
+		return pFullPackageName;
+	}
+	
+	public ParserRule getFullPackageNameRule() {
+		return getFullPackageNameAccess().getRule();
 	}
 	
 	//terminal ID:

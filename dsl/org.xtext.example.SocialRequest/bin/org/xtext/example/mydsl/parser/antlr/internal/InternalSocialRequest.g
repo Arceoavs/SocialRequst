@@ -627,9 +627,12 @@ ruleEntityTypeReference returns [EObject current=null]
 					$current = createModelElement(grammarAccess.getEntityTypeReferenceRule());
 				}
 			}
-			otherlv_0=RULE_ID
 			{
-				newLeafNode(otherlv_0, grammarAccess.getEntityTypeReferenceAccess().getTypeEntityCrossReference_0());
+				newCompositeNode(grammarAccess.getEntityTypeReferenceAccess().getTypeEntityCrossReference_0());
+			}
+			ruleFullPackageName
+			{
+				afterParserOrEnumRuleCall();
 			}
 		)
 	)
@@ -1003,9 +1006,12 @@ ruleRepository returns [EObject current=null]
 						$current = createModelElement(grammarAccess.getRepositoryRule());
 					}
 				}
-				otherlv_1=RULE_ID
 				{
-					newLeafNode(otherlv_1, grammarAccess.getRepositoryAccess().getEntityEntityCrossReference_1_0());
+					newCompositeNode(grammarAccess.getRepositoryAccess().getEntityEntityCrossReference_1_0());
+				}
+				ruleFullPackageName
+				{
+					afterParserOrEnumRuleCall();
 				}
 			)
 		)
@@ -1430,9 +1436,12 @@ ruleFrom returns [EObject current=null]
 						$current = createModelElement(grammarAccess.getFromRule());
 					}
 				}
-				otherlv_2=RULE_ID
 				{
-					newLeafNode(otherlv_2, grammarAccess.getFromAccess().getEntityEntityCrossReference_2_0());
+					newCompositeNode(grammarAccess.getFromAccess().getEntityEntityCrossReference_2_0());
+				}
+				ruleFullPackageName
+				{
+					afterParserOrEnumRuleCall();
 				}
 			)
 		)
@@ -1507,9 +1516,12 @@ ruleJoin returns [EObject current=null]
 						$current = createModelElement(grammarAccess.getJoinRule());
 					}
 				}
-				otherlv_2=RULE_ID
 				{
-					newLeafNode(otherlv_2, grammarAccess.getJoinAccess().getEntityEntityCrossReference_2_0());
+					newCompositeNode(grammarAccess.getJoinAccess().getEntityEntityCrossReference_2_0());
+				}
+				ruleFullPackageName
+				{
+					afterParserOrEnumRuleCall();
 				}
 			)
 		)
@@ -1667,6 +1679,55 @@ ruleOrder returns [EObject current=null]
 		}
 	)
 ;
+
+// Entry rule entryRuleFullPackageName
+entryRuleFullPackageName returns [String current=null]@init {
+	HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
+}:
+	{ newCompositeNode(grammarAccess.getFullPackageNameRule()); }
+	iv_ruleFullPackageName=ruleFullPackageName
+	{ $current=$iv_ruleFullPackageName.current.getText(); }
+	EOF;
+finally {
+	myHiddenTokenState.restore();
+}
+
+// Rule FullPackageName
+ruleFullPackageName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+@init {
+	enterRule();
+	HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
+}
+@after {
+	leaveRule();
+}:
+	(
+		this_ID_0=RULE_ID
+		{
+			$current.merge(this_ID_0);
+		}
+		{
+			newLeafNode(this_ID_0, grammarAccess.getFullPackageNameAccess().getIDTerminalRuleCall_0());
+		}
+		(
+			kw='.'
+			{
+				$current.merge(kw);
+				newLeafNode(kw, grammarAccess.getFullPackageNameAccess().getFullStopKeyword_1_0());
+			}
+			this_ID_2=RULE_ID
+			{
+				$current.merge(this_ID_2);
+			}
+			{
+				newLeafNode(this_ID_2, grammarAccess.getFullPackageNameAccess().getIDTerminalRuleCall_1_1());
+			}
+		)*
+	)
+;
+finally {
+	myHiddenTokenState.restore();
+}
 
 // Rule DataType
 ruleDataType returns [Enumerator current=null]
