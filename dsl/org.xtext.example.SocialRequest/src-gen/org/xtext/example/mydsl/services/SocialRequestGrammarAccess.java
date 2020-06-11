@@ -631,10 +631,10 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		//	params+=Param*
 		//	'}')?
 		//	sqlQuery=SQLQuery?
-		//	'}');
+		//	'}')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'query' name=ID (isList?=':' 'list')? ('{' ('params' '{' params+=Param* '}')? sqlQuery=SQLQuery? '}')
+		//'query' name=ID (isList?=':' 'list')? ('{' ('params' '{' params+=Param* '}')? sqlQuery=SQLQuery? '}')?
 		public Group getGroup() { return cGroup; }
 		
 		//'query'
@@ -658,7 +658,7 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		//'list'
 		public Keyword getListKeyword_2_1() { return cListKeyword_2_1; }
 		
-		//('{' ('params' '{' params+=Param* '}')? sqlQuery=SQLQuery? '}')
+		//('{' ('params' '{' params+=Param* '}')? sqlQuery=SQLQuery? '}')?
 		public Group getGroup_3() { return cGroup_3; }
 		
 		//'{'
@@ -1393,7 +1393,7 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 	//	params+=Param*
 	//	'}')?
 	//	sqlQuery=SQLQuery?
-	//	'}');
+	//	'}')?;
 	public QueryElements getQueryAccess() {
 		return pQuery;
 	}

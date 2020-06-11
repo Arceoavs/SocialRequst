@@ -99,7 +99,7 @@ Query:
 		'}')?
 		
 		(sqlQuery=SQLQuery)?
-	'}')
+	'}')?
 ;
 
 Param:

@@ -1158,7 +1158,7 @@ ruleQuery returns [EObject current=null]
 			{
 				newLeafNode(otherlv_10, grammarAccess.getQueryAccess().getRightCurlyBracketKeyword_3_3());
 			}
-		)
+		)?
 	)
 ;
 

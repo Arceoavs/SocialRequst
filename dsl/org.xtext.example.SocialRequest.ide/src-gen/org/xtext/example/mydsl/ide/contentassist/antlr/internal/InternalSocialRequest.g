@@ -2378,7 +2378,7 @@ rule__Query__Group__3__Impl
 :
 (
 	{ before(grammarAccess.getQueryAccess().getGroup_3()); }
-	(rule__Query__Group_3__0)
+	(rule__Query__Group_3__0)?
 	{ after(grammarAccess.getQueryAccess().getGroup_3()); }
 )
 ;

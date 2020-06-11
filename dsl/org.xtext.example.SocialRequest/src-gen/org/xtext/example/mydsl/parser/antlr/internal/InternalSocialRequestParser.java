@@ -2850,7 +2850,7 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleQuery"
-    // InternalSocialRequest.g:1050:1: ruleQuery returns [EObject current=null] : (otherlv_0= 'query' ( (lv_name_1_0= RULE_ID ) ) ( ( (lv_isList_2_0= ':' ) ) otherlv_3= 'list' )? (otherlv_4= '{' (otherlv_5= 'params' otherlv_6= '{' ( (lv_params_7_0= ruleParam ) )* otherlv_8= '}' )? ( (lv_sqlQuery_9_0= ruleSQLQuery ) )? otherlv_10= '}' ) ) ;
+    // InternalSocialRequest.g:1050:1: ruleQuery returns [EObject current=null] : (otherlv_0= 'query' ( (lv_name_1_0= RULE_ID ) ) ( ( (lv_isList_2_0= ':' ) ) otherlv_3= 'list' )? (otherlv_4= '{' (otherlv_5= 'params' otherlv_6= '{' ( (lv_params_7_0= ruleParam ) )* otherlv_8= '}' )? ( (lv_sqlQuery_9_0= ruleSQLQuery ) )? otherlv_10= '}' )? ) ;
     public final EObject ruleQuery() throws RecognitionException {
         EObject current = null;
 
@@ -2872,11 +2872,11 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalSocialRequest.g:1056:2: ( (otherlv_0= 'query' ( (lv_name_1_0= RULE_ID ) ) ( ( (lv_isList_2_0= ':' ) ) otherlv_3= 'list' )? (otherlv_4= '{' (otherlv_5= 'params' otherlv_6= '{' ( (lv_params_7_0= ruleParam ) )* otherlv_8= '}' )? ( (lv_sqlQuery_9_0= ruleSQLQuery ) )? otherlv_10= '}' ) ) )
-            // InternalSocialRequest.g:1057:2: (otherlv_0= 'query' ( (lv_name_1_0= RULE_ID ) ) ( ( (lv_isList_2_0= ':' ) ) otherlv_3= 'list' )? (otherlv_4= '{' (otherlv_5= 'params' otherlv_6= '{' ( (lv_params_7_0= ruleParam ) )* otherlv_8= '}' )? ( (lv_sqlQuery_9_0= ruleSQLQuery ) )? otherlv_10= '}' ) )
+            // InternalSocialRequest.g:1056:2: ( (otherlv_0= 'query' ( (lv_name_1_0= RULE_ID ) ) ( ( (lv_isList_2_0= ':' ) ) otherlv_3= 'list' )? (otherlv_4= '{' (otherlv_5= 'params' otherlv_6= '{' ( (lv_params_7_0= ruleParam ) )* otherlv_8= '}' )? ( (lv_sqlQuery_9_0= ruleSQLQuery ) )? otherlv_10= '}' )? ) )
+            // InternalSocialRequest.g:1057:2: (otherlv_0= 'query' ( (lv_name_1_0= RULE_ID ) ) ( ( (lv_isList_2_0= ':' ) ) otherlv_3= 'list' )? (otherlv_4= '{' (otherlv_5= 'params' otherlv_6= '{' ( (lv_params_7_0= ruleParam ) )* otherlv_8= '}' )? ( (lv_sqlQuery_9_0= ruleSQLQuery ) )? otherlv_10= '}' )? )
             {
-            // InternalSocialRequest.g:1057:2: (otherlv_0= 'query' ( (lv_name_1_0= RULE_ID ) ) ( ( (lv_isList_2_0= ':' ) ) otherlv_3= 'list' )? (otherlv_4= '{' (otherlv_5= 'params' otherlv_6= '{' ( (lv_params_7_0= ruleParam ) )* otherlv_8= '}' )? ( (lv_sqlQuery_9_0= ruleSQLQuery ) )? otherlv_10= '}' ) )
-            // InternalSocialRequest.g:1058:3: otherlv_0= 'query' ( (lv_name_1_0= RULE_ID ) ) ( ( (lv_isList_2_0= ':' ) ) otherlv_3= 'list' )? (otherlv_4= '{' (otherlv_5= 'params' otherlv_6= '{' ( (lv_params_7_0= ruleParam ) )* otherlv_8= '}' )? ( (lv_sqlQuery_9_0= ruleSQLQuery ) )? otherlv_10= '}' )
+            // InternalSocialRequest.g:1057:2: (otherlv_0= 'query' ( (lv_name_1_0= RULE_ID ) ) ( ( (lv_isList_2_0= ':' ) ) otherlv_3= 'list' )? (otherlv_4= '{' (otherlv_5= 'params' otherlv_6= '{' ( (lv_params_7_0= ruleParam ) )* otherlv_8= '}' )? ( (lv_sqlQuery_9_0= ruleSQLQuery ) )? otherlv_10= '}' )? )
+            // InternalSocialRequest.g:1058:3: otherlv_0= 'query' ( (lv_name_1_0= RULE_ID ) ) ( ( (lv_isList_2_0= ':' ) ) otherlv_3= 'list' )? (otherlv_4= '{' (otherlv_5= 'params' otherlv_6= '{' ( (lv_params_7_0= ruleParam ) )* otherlv_8= '}' )? ( (lv_sqlQuery_9_0= ruleSQLQuery ) )? otherlv_10= '}' )?
             {
             otherlv_0=(Token)match(input,43,FOLLOW_4); 
 
@@ -2941,7 +2941,7 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    otherlv_3=(Token)match(input,44,FOLLOW_5); 
+                    otherlv_3=(Token)match(input,44,FOLLOW_15); 
 
                     				newLeafNode(otherlv_3, grammarAccess.getQueryAccess().getListKeyword_2_1());
                     			
@@ -2951,137 +2951,148 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalSocialRequest.g:1100:3: (otherlv_4= '{' (otherlv_5= 'params' otherlv_6= '{' ( (lv_params_7_0= ruleParam ) )* otherlv_8= '}' )? ( (lv_sqlQuery_9_0= ruleSQLQuery ) )? otherlv_10= '}' )
-            // InternalSocialRequest.g:1101:4: otherlv_4= '{' (otherlv_5= 'params' otherlv_6= '{' ( (lv_params_7_0= ruleParam ) )* otherlv_8= '}' )? ( (lv_sqlQuery_9_0= ruleSQLQuery ) )? otherlv_10= '}'
-            {
-            otherlv_4=(Token)match(input,15,FOLLOW_29); 
+            // InternalSocialRequest.g:1100:3: (otherlv_4= '{' (otherlv_5= 'params' otherlv_6= '{' ( (lv_params_7_0= ruleParam ) )* otherlv_8= '}' )? ( (lv_sqlQuery_9_0= ruleSQLQuery ) )? otherlv_10= '}' )?
+            int alt23=2;
+            int LA23_0 = input.LA(1);
 
-            				newLeafNode(otherlv_4, grammarAccess.getQueryAccess().getLeftCurlyBracketKeyword_3_0());
-            			
-            // InternalSocialRequest.g:1105:4: (otherlv_5= 'params' otherlv_6= '{' ( (lv_params_7_0= ruleParam ) )* otherlv_8= '}' )?
-            int alt21=2;
-            int LA21_0 = input.LA(1);
-
-            if ( (LA21_0==45) ) {
-                alt21=1;
+            if ( (LA23_0==15) ) {
+                alt23=1;
             }
-            switch (alt21) {
+            switch (alt23) {
                 case 1 :
-                    // InternalSocialRequest.g:1106:5: otherlv_5= 'params' otherlv_6= '{' ( (lv_params_7_0= ruleParam ) )* otherlv_8= '}'
+                    // InternalSocialRequest.g:1101:4: otherlv_4= '{' (otherlv_5= 'params' otherlv_6= '{' ( (lv_params_7_0= ruleParam ) )* otherlv_8= '}' )? ( (lv_sqlQuery_9_0= ruleSQLQuery ) )? otherlv_10= '}'
                     {
-                    otherlv_5=(Token)match(input,45,FOLLOW_5); 
+                    otherlv_4=(Token)match(input,15,FOLLOW_29); 
 
-                    					newLeafNode(otherlv_5, grammarAccess.getQueryAccess().getParamsKeyword_3_1_0());
-                    				
-                    otherlv_6=(Token)match(input,15,FOLLOW_30); 
+                    				newLeafNode(otherlv_4, grammarAccess.getQueryAccess().getLeftCurlyBracketKeyword_3_0());
+                    			
+                    // InternalSocialRequest.g:1105:4: (otherlv_5= 'params' otherlv_6= '{' ( (lv_params_7_0= ruleParam ) )* otherlv_8= '}' )?
+                    int alt21=2;
+                    int LA21_0 = input.LA(1);
 
-                    					newLeafNode(otherlv_6, grammarAccess.getQueryAccess().getLeftCurlyBracketKeyword_3_1_1());
-                    				
-                    // InternalSocialRequest.g:1114:5: ( (lv_params_7_0= ruleParam ) )*
-                    loop20:
-                    do {
-                        int alt20=2;
-                        int LA20_0 = input.LA(1);
+                    if ( (LA21_0==45) ) {
+                        alt21=1;
+                    }
+                    switch (alt21) {
+                        case 1 :
+                            // InternalSocialRequest.g:1106:5: otherlv_5= 'params' otherlv_6= '{' ( (lv_params_7_0= ruleParam ) )* otherlv_8= '}'
+                            {
+                            otherlv_5=(Token)match(input,45,FOLLOW_5); 
 
-                        if ( (LA20_0==RULE_ID) ) {
-                            alt20=1;
-                        }
+                            					newLeafNode(otherlv_5, grammarAccess.getQueryAccess().getParamsKeyword_3_1_0());
+                            				
+                            otherlv_6=(Token)match(input,15,FOLLOW_30); 
 
+                            					newLeafNode(otherlv_6, grammarAccess.getQueryAccess().getLeftCurlyBracketKeyword_3_1_1());
+                            				
+                            // InternalSocialRequest.g:1114:5: ( (lv_params_7_0= ruleParam ) )*
+                            loop20:
+                            do {
+                                int alt20=2;
+                                int LA20_0 = input.LA(1);
 
-                        switch (alt20) {
-                    	case 1 :
-                    	    // InternalSocialRequest.g:1115:6: (lv_params_7_0= ruleParam )
-                    	    {
-                    	    // InternalSocialRequest.g:1115:6: (lv_params_7_0= ruleParam )
-                    	    // InternalSocialRequest.g:1116:7: lv_params_7_0= ruleParam
-                    	    {
-
-                    	    							newCompositeNode(grammarAccess.getQueryAccess().getParamsParamParserRuleCall_3_1_2_0());
-                    	    						
-                    	    pushFollow(FOLLOW_30);
-                    	    lv_params_7_0=ruleParam();
-
-                    	    state._fsp--;
-
-
-                    	    							if (current==null) {
-                    	    								current = createModelElementForParent(grammarAccess.getQueryRule());
-                    	    							}
-                    	    							add(
-                    	    								current,
-                    	    								"params",
-                    	    								lv_params_7_0,
-                    	    								"org.xtext.example.mydsl.SocialRequest.Param");
-                    	    							afterParserOrEnumRuleCall();
-                    	    						
-
-                    	    }
+                                if ( (LA20_0==RULE_ID) ) {
+                                    alt20=1;
+                                }
 
 
-                    	    }
-                    	    break;
+                                switch (alt20) {
+                            	case 1 :
+                            	    // InternalSocialRequest.g:1115:6: (lv_params_7_0= ruleParam )
+                            	    {
+                            	    // InternalSocialRequest.g:1115:6: (lv_params_7_0= ruleParam )
+                            	    // InternalSocialRequest.g:1116:7: lv_params_7_0= ruleParam
+                            	    {
 
-                    	default :
-                    	    break loop20;
-                        }
-                    } while (true);
+                            	    							newCompositeNode(grammarAccess.getQueryAccess().getParamsParamParserRuleCall_3_1_2_0());
+                            	    						
+                            	    pushFollow(FOLLOW_30);
+                            	    lv_params_7_0=ruleParam();
 
-                    otherlv_8=(Token)match(input,16,FOLLOW_31); 
+                            	    state._fsp--;
 
-                    					newLeafNode(otherlv_8, grammarAccess.getQueryAccess().getRightCurlyBracketKeyword_3_1_3());
-                    				
+
+                            	    							if (current==null) {
+                            	    								current = createModelElementForParent(grammarAccess.getQueryRule());
+                            	    							}
+                            	    							add(
+                            	    								current,
+                            	    								"params",
+                            	    								lv_params_7_0,
+                            	    								"org.xtext.example.mydsl.SocialRequest.Param");
+                            	    							afterParserOrEnumRuleCall();
+                            	    						
+
+                            	    }
+
+
+                            	    }
+                            	    break;
+
+                            	default :
+                            	    break loop20;
+                                }
+                            } while (true);
+
+                            otherlv_8=(Token)match(input,16,FOLLOW_31); 
+
+                            					newLeafNode(otherlv_8, grammarAccess.getQueryAccess().getRightCurlyBracketKeyword_3_1_3());
+                            				
+
+                            }
+                            break;
+
+                    }
+
+                    // InternalSocialRequest.g:1138:4: ( (lv_sqlQuery_9_0= ruleSQLQuery ) )?
+                    int alt22=2;
+                    int LA22_0 = input.LA(1);
+
+                    if ( (LA22_0==46) ) {
+                        alt22=1;
+                    }
+                    switch (alt22) {
+                        case 1 :
+                            // InternalSocialRequest.g:1139:5: (lv_sqlQuery_9_0= ruleSQLQuery )
+                            {
+                            // InternalSocialRequest.g:1139:5: (lv_sqlQuery_9_0= ruleSQLQuery )
+                            // InternalSocialRequest.g:1140:6: lv_sqlQuery_9_0= ruleSQLQuery
+                            {
+
+                            						newCompositeNode(grammarAccess.getQueryAccess().getSqlQuerySQLQueryParserRuleCall_3_2_0());
+                            					
+                            pushFollow(FOLLOW_32);
+                            lv_sqlQuery_9_0=ruleSQLQuery();
+
+                            state._fsp--;
+
+
+                            						if (current==null) {
+                            							current = createModelElementForParent(grammarAccess.getQueryRule());
+                            						}
+                            						set(
+                            							current,
+                            							"sqlQuery",
+                            							lv_sqlQuery_9_0,
+                            							"org.xtext.example.mydsl.SocialRequest.SQLQuery");
+                            						afterParserOrEnumRuleCall();
+                            					
+
+                            }
+
+
+                            }
+                            break;
+
+                    }
+
+                    otherlv_10=(Token)match(input,16,FOLLOW_2); 
+
+                    				newLeafNode(otherlv_10, grammarAccess.getQueryAccess().getRightCurlyBracketKeyword_3_3());
+                    			
 
                     }
                     break;
-
-            }
-
-            // InternalSocialRequest.g:1138:4: ( (lv_sqlQuery_9_0= ruleSQLQuery ) )?
-            int alt22=2;
-            int LA22_0 = input.LA(1);
-
-            if ( (LA22_0==46) ) {
-                alt22=1;
-            }
-            switch (alt22) {
-                case 1 :
-                    // InternalSocialRequest.g:1139:5: (lv_sqlQuery_9_0= ruleSQLQuery )
-                    {
-                    // InternalSocialRequest.g:1139:5: (lv_sqlQuery_9_0= ruleSQLQuery )
-                    // InternalSocialRequest.g:1140:6: lv_sqlQuery_9_0= ruleSQLQuery
-                    {
-
-                    						newCompositeNode(grammarAccess.getQueryAccess().getSqlQuerySQLQueryParserRuleCall_3_2_0());
-                    					
-                    pushFollow(FOLLOW_32);
-                    lv_sqlQuery_9_0=ruleSQLQuery();
-
-                    state._fsp--;
-
-
-                    						if (current==null) {
-                    							current = createModelElementForParent(grammarAccess.getQueryRule());
-                    						}
-                    						set(
-                    							current,
-                    							"sqlQuery",
-                    							lv_sqlQuery_9_0,
-                    							"org.xtext.example.mydsl.SocialRequest.SQLQuery");
-                    						afterParserOrEnumRuleCall();
-                    					
-
-                    }
-
-
-                    }
-                    break;
-
-            }
-
-            otherlv_10=(Token)match(input,16,FOLLOW_2); 
-
-            				newLeafNode(otherlv_10, grammarAccess.getQueryAccess().getRightCurlyBracketKeyword_3_3());
-            			
 
             }
 
@@ -3371,17 +3382,17 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
             }
 
             // InternalSocialRequest.g:1279:3: ( (lv_joins_2_0= ruleJoin ) )*
-            loop23:
+            loop24:
             do {
-                int alt23=2;
-                int LA23_0 = input.LA(1);
+                int alt24=2;
+                int LA24_0 = input.LA(1);
 
-                if ( ((LA23_0>=60 && LA23_0<=63)) ) {
-                    alt23=1;
+                if ( ((LA24_0>=60 && LA24_0<=63)) ) {
+                    alt24=1;
                 }
 
 
-                switch (alt23) {
+                switch (alt24) {
             	case 1 :
             	    // InternalSocialRequest.g:1280:4: (lv_joins_2_0= ruleJoin )
             	    {
@@ -3415,18 +3426,18 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop23;
+            	    break loop24;
                 }
             } while (true);
 
             // InternalSocialRequest.g:1298:3: ( (lv_where_3_0= ruleWhere ) )?
-            int alt24=2;
-            int LA24_0 = input.LA(1);
+            int alt25=2;
+            int LA25_0 = input.LA(1);
 
-            if ( (LA24_0==50) ) {
-                alt24=1;
+            if ( (LA25_0==50) ) {
+                alt25=1;
             }
-            switch (alt24) {
+            switch (alt25) {
                 case 1 :
                     // InternalSocialRequest.g:1299:4: (lv_where_3_0= ruleWhere )
                     {
@@ -3462,13 +3473,13 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
             }
 
             // InternalSocialRequest.g:1317:3: ( (lv_order_4_0= ruleOrder ) )?
-            int alt25=2;
-            int LA25_0 = input.LA(1);
+            int alt26=2;
+            int LA26_0 = input.LA(1);
 
-            if ( (LA25_0==51) ) {
-                alt25=1;
+            if ( (LA26_0==51) ) {
+                alt26=1;
             }
-            switch (alt25) {
+            switch (alt26) {
                 case 1 :
                     // InternalSocialRequest.g:1318:4: (lv_order_4_0= ruleOrder )
                     {
@@ -3587,13 +3598,13 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
             			newLeafNode(otherlv_0, grammarAccess.getSelectAccess().getSELECTKeyword_0());
             		
             // InternalSocialRequest.g:1359:3: ( (lv_isDistinct_1_0= 'DISTINCT' ) )?
-            int alt26=2;
-            int LA26_0 = input.LA(1);
+            int alt27=2;
+            int LA27_0 = input.LA(1);
 
-            if ( (LA26_0==47) ) {
-                alt26=1;
+            if ( (LA27_0==47) ) {
+                alt27=1;
             }
-            switch (alt26) {
+            switch (alt27) {
                 case 1 :
                     // InternalSocialRequest.g:1360:4: (lv_isDistinct_1_0= 'DISTINCT' )
                     {
@@ -3962,13 +3973,13 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
             			newLeafNode(otherlv_4, grammarAccess.getJoinAccess().getRightCurlyBracketKeyword_4());
             		
             // InternalSocialRequest.g:1538:3: (otherlv_5= 'ON' otherlv_6= '{' ( (lv_joinCondition_7_0= RULE_STRING ) ) otherlv_8= '}' )?
-            int alt27=2;
-            int LA27_0 = input.LA(1);
+            int alt28=2;
+            int LA28_0 = input.LA(1);
 
-            if ( (LA27_0==49) ) {
-                alt27=1;
+            if ( (LA28_0==49) ) {
+                alt28=1;
             }
-            switch (alt27) {
+            switch (alt28) {
                 case 1 :
                     // InternalSocialRequest.g:1539:4: otherlv_5= 'ON' otherlv_6= '{' ( (lv_joinCondition_7_0= RULE_STRING ) ) otherlv_8= '}'
                     {
@@ -4292,56 +4303,56 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
             // InternalSocialRequest.g:1679:2: ( (enumLiteral_0= 'String' ) | (enumLiteral_1= 'long' ) | (enumLiteral_2= 'float' ) | (enumLiteral_3= 'double' ) | (enumLiteral_4= 'char' ) | (enumLiteral_5= 'int' ) | (enumLiteral_6= 'boolean' ) | (enumLiteral_7= 'Date' ) )
             {
             // InternalSocialRequest.g:1679:2: ( (enumLiteral_0= 'String' ) | (enumLiteral_1= 'long' ) | (enumLiteral_2= 'float' ) | (enumLiteral_3= 'double' ) | (enumLiteral_4= 'char' ) | (enumLiteral_5= 'int' ) | (enumLiteral_6= 'boolean' ) | (enumLiteral_7= 'Date' ) )
-            int alt28=8;
+            int alt29=8;
             switch ( input.LA(1) ) {
             case 52:
                 {
-                alt28=1;
+                alt29=1;
                 }
                 break;
             case 53:
                 {
-                alt28=2;
+                alt29=2;
                 }
                 break;
             case 54:
                 {
-                alt28=3;
+                alt29=3;
                 }
                 break;
             case 55:
                 {
-                alt28=4;
+                alt29=4;
                 }
                 break;
             case 56:
                 {
-                alt28=5;
+                alt29=5;
                 }
                 break;
             case 57:
                 {
-                alt28=6;
+                alt29=6;
                 }
                 break;
             case 58:
                 {
-                alt28=7;
+                alt29=7;
                 }
                 break;
             case 59:
                 {
-                alt28=8;
+                alt29=8;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 28, 0, input);
+                    new NoViableAltException("", 29, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt28) {
+            switch (alt29) {
                 case 1 :
                     // InternalSocialRequest.g:1680:3: (enumLiteral_0= 'String' )
                     {
@@ -4518,36 +4529,36 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
             // InternalSocialRequest.g:1754:2: ( (enumLiteral_0= 'LEFT JOIN' ) | (enumLiteral_1= 'LEFT OUTER JOIN' ) | (enumLiteral_2= 'CROSS JOIN' ) | (enumLiteral_3= 'JOIN' ) )
             {
             // InternalSocialRequest.g:1754:2: ( (enumLiteral_0= 'LEFT JOIN' ) | (enumLiteral_1= 'LEFT OUTER JOIN' ) | (enumLiteral_2= 'CROSS JOIN' ) | (enumLiteral_3= 'JOIN' ) )
-            int alt29=4;
+            int alt30=4;
             switch ( input.LA(1) ) {
             case 60:
                 {
-                alt29=1;
+                alt30=1;
                 }
                 break;
             case 61:
                 {
-                alt29=2;
+                alt30=2;
                 }
                 break;
             case 62:
                 {
-                alt29=3;
+                alt30=3;
                 }
                 break;
             case 63:
                 {
-                alt29=4;
+                alt30=4;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 29, 0, input);
+                    new NoViableAltException("", 30, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt29) {
+            switch (alt30) {
                 case 1 :
                     // InternalSocialRequest.g:1755:3: (enumLiteral_0= 'LEFT JOIN' )
                     {
@@ -4668,7 +4679,7 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0000000000000100L});
     public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000080000000000L});
     public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000080000010000L});
-    public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000000000208000L});
+    public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000000000208002L});
     public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000100000000000L});
     public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000600000010000L});
     public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000000000010010L});

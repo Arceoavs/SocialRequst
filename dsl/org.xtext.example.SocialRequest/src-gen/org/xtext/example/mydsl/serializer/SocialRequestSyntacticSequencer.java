@@ -23,6 +23,7 @@ public class SocialRequestSyntacticSequencer extends AbstractSyntacticSequencer 
 	protected SocialRequestGrammarAccess grammarAccess;
 	protected AbstractElementAlias match_Attribute___LeftCurlyBracketKeyword_5_0_RightCurlyBracketKeyword_5_2__q;
 	protected AbstractElementAlias match_Attribute___RightCurlyBracketKeyword_5_1_2_3_ValidationsKeyword_5_1_2_0_LeftCurlyBracketKeyword_5_1_2_1__q;
+	protected AbstractElementAlias match_Query___LeftCurlyBracketKeyword_3_0___ParamsKeyword_3_1_0_LeftCurlyBracketKeyword_3_1_1_RightCurlyBracketKeyword_3_1_3__q_RightCurlyBracketKeyword_3_3__q;
 	protected AbstractElementAlias match_Query___ParamsKeyword_3_1_0_LeftCurlyBracketKeyword_3_1_1_RightCurlyBracketKeyword_3_1_3__q;
 	
 	@Inject
@@ -30,6 +31,7 @@ public class SocialRequestSyntacticSequencer extends AbstractSyntacticSequencer 
 		grammarAccess = (SocialRequestGrammarAccess) access;
 		match_Attribute___LeftCurlyBracketKeyword_5_0_RightCurlyBracketKeyword_5_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getAttributeAccess().getLeftCurlyBracketKeyword_5_0()), new TokenAlias(false, false, grammarAccess.getAttributeAccess().getRightCurlyBracketKeyword_5_2()));
 		match_Attribute___RightCurlyBracketKeyword_5_1_2_3_ValidationsKeyword_5_1_2_0_LeftCurlyBracketKeyword_5_1_2_1__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getAttributeAccess().getRightCurlyBracketKeyword_5_1_2_3()), new TokenAlias(false, false, grammarAccess.getAttributeAccess().getValidationsKeyword_5_1_2_0()), new TokenAlias(false, false, grammarAccess.getAttributeAccess().getLeftCurlyBracketKeyword_5_1_2_1()));
+		match_Query___LeftCurlyBracketKeyword_3_0___ParamsKeyword_3_1_0_LeftCurlyBracketKeyword_3_1_1_RightCurlyBracketKeyword_3_1_3__q_RightCurlyBracketKeyword_3_3__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getQueryAccess().getLeftCurlyBracketKeyword_3_0()), new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getQueryAccess().getParamsKeyword_3_1_0()), new TokenAlias(false, false, grammarAccess.getQueryAccess().getLeftCurlyBracketKeyword_3_1_1()), new TokenAlias(false, false, grammarAccess.getQueryAccess().getRightCurlyBracketKeyword_3_1_3())), new TokenAlias(false, false, grammarAccess.getQueryAccess().getRightCurlyBracketKeyword_3_3()));
 		match_Query___ParamsKeyword_3_1_0_LeftCurlyBracketKeyword_3_1_1_RightCurlyBracketKeyword_3_1_3__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getQueryAccess().getParamsKeyword_3_1_0()), new TokenAlias(false, false, grammarAccess.getQueryAccess().getLeftCurlyBracketKeyword_3_1_1()), new TokenAlias(false, false, grammarAccess.getQueryAccess().getRightCurlyBracketKeyword_3_1_3()));
 	}
 	
@@ -49,6 +51,8 @@ public class SocialRequestSyntacticSequencer extends AbstractSyntacticSequencer 
 				emit_Attribute___LeftCurlyBracketKeyword_5_0_RightCurlyBracketKeyword_5_2__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Attribute___RightCurlyBracketKeyword_5_1_2_3_ValidationsKeyword_5_1_2_0_LeftCurlyBracketKeyword_5_1_2_1__q.equals(syntax))
 				emit_Attribute___RightCurlyBracketKeyword_5_1_2_3_ValidationsKeyword_5_1_2_0_LeftCurlyBracketKeyword_5_1_2_1__q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Query___LeftCurlyBracketKeyword_3_0___ParamsKeyword_3_1_0_LeftCurlyBracketKeyword_3_1_1_RightCurlyBracketKeyword_3_1_3__q_RightCurlyBracketKeyword_3_3__q.equals(syntax))
+				emit_Query___LeftCurlyBracketKeyword_3_0___ParamsKeyword_3_1_0_LeftCurlyBracketKeyword_3_1_1_RightCurlyBracketKeyword_3_1_3__q_RightCurlyBracketKeyword_3_3__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Query___ParamsKeyword_3_1_0_LeftCurlyBracketKeyword_3_1_1_RightCurlyBracketKeyword_3_1_3__q.equals(syntax))
 				emit_Query___ParamsKeyword_3_1_0_LeftCurlyBracketKeyword_3_1_1_RightCurlyBracketKeyword_3_1_3__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
@@ -80,12 +84,22 @@ public class SocialRequestSyntacticSequencer extends AbstractSyntacticSequencer 
 	
 	/**
 	 * Ambiguous syntax:
+	 *     ('{' ('params' '{' '}')? '}')?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     isList?=':' 'list' (ambiguity) (rule end)
+	 *     name=ID (ambiguity) (rule end)
+	 */
+	protected void emit_Query___LeftCurlyBracketKeyword_3_0___ParamsKeyword_3_1_0_LeftCurlyBracketKeyword_3_1_1_RightCurlyBracketKeyword_3_1_3__q_RightCurlyBracketKeyword_3_3__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
 	 *     ('params' '{' '}')?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     isList?=':' 'list' '{' (ambiguity) '}' (rule end)
 	 *     isList?=':' 'list' '{' (ambiguity) sqlQuery=SQLQuery
-	 *     name=ID '{' (ambiguity) '}' (rule end)
 	 *     name=ID '{' (ambiguity) sqlQuery=SQLQuery
 	 */
 	protected void emit_Query___ParamsKeyword_3_1_0_LeftCurlyBracketKeyword_3_1_1_RightCurlyBracketKeyword_3_1_3__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {

@@ -7483,27 +7483,38 @@ public class InternalSocialRequestParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Query__Group__3__Impl"
-    // InternalSocialRequest.g:2374:1: rule__Query__Group__3__Impl : ( ( rule__Query__Group_3__0 ) ) ;
+    // InternalSocialRequest.g:2374:1: rule__Query__Group__3__Impl : ( ( rule__Query__Group_3__0 )? ) ;
     public final void rule__Query__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSocialRequest.g:2378:1: ( ( ( rule__Query__Group_3__0 ) ) )
-            // InternalSocialRequest.g:2379:1: ( ( rule__Query__Group_3__0 ) )
+            // InternalSocialRequest.g:2378:1: ( ( ( rule__Query__Group_3__0 )? ) )
+            // InternalSocialRequest.g:2379:1: ( ( rule__Query__Group_3__0 )? )
             {
-            // InternalSocialRequest.g:2379:1: ( ( rule__Query__Group_3__0 ) )
-            // InternalSocialRequest.g:2380:2: ( rule__Query__Group_3__0 )
+            // InternalSocialRequest.g:2379:1: ( ( rule__Query__Group_3__0 )? )
+            // InternalSocialRequest.g:2380:2: ( rule__Query__Group_3__0 )?
             {
              before(grammarAccess.getQueryAccess().getGroup_3()); 
-            // InternalSocialRequest.g:2381:2: ( rule__Query__Group_3__0 )
-            // InternalSocialRequest.g:2381:3: rule__Query__Group_3__0
-            {
-            pushFollow(FOLLOW_2);
-            rule__Query__Group_3__0();
+            // InternalSocialRequest.g:2381:2: ( rule__Query__Group_3__0 )?
+            int alt21=2;
+            int LA21_0 = input.LA(1);
 
-            state._fsp--;
+            if ( (LA21_0==35) ) {
+                alt21=1;
+            }
+            switch (alt21) {
+                case 1 :
+                    // InternalSocialRequest.g:2381:3: rule__Query__Group_3__0
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__Query__Group_3__0();
 
+                    state._fsp--;
+
+
+                    }
+                    break;
 
             }
 
@@ -7812,13 +7823,13 @@ public class InternalSocialRequestParser extends AbstractInternalContentAssistPa
             {
              before(grammarAccess.getQueryAccess().getGroup_3_1()); 
             // InternalSocialRequest.g:2490:2: ( rule__Query__Group_3_1__0 )?
-            int alt21=2;
-            int LA21_0 = input.LA(1);
+            int alt22=2;
+            int LA22_0 = input.LA(1);
 
-            if ( (LA21_0==52) ) {
-                alt21=1;
+            if ( (LA22_0==52) ) {
+                alt22=1;
             }
-            switch (alt21) {
+            switch (alt22) {
                 case 1 :
                     // InternalSocialRequest.g:2490:3: rule__Query__Group_3_1__0
                     {
@@ -7908,13 +7919,13 @@ public class InternalSocialRequestParser extends AbstractInternalContentAssistPa
             {
              before(grammarAccess.getQueryAccess().getSqlQueryAssignment_3_2()); 
             // InternalSocialRequest.g:2517:2: ( rule__Query__SqlQueryAssignment_3_2 )?
-            int alt22=2;
-            int LA22_0 = input.LA(1);
+            int alt23=2;
+            int LA23_0 = input.LA(1);
 
-            if ( (LA22_0==53) ) {
-                alt22=1;
+            if ( (LA23_0==53) ) {
+                alt23=1;
             }
-            switch (alt22) {
+            switch (alt23) {
                 case 1 :
                     // InternalSocialRequest.g:2517:3: rule__Query__SqlQueryAssignment_3_2
                     {
@@ -8224,17 +8235,17 @@ public class InternalSocialRequestParser extends AbstractInternalContentAssistPa
             {
              before(grammarAccess.getQueryAccess().getParamsAssignment_3_1_2()); 
             // InternalSocialRequest.g:2625:2: ( rule__Query__ParamsAssignment_3_1_2 )*
-            loop23:
+            loop24:
             do {
-                int alt23=2;
-                int LA23_0 = input.LA(1);
+                int alt24=2;
+                int LA24_0 = input.LA(1);
 
-                if ( (LA23_0==RULE_ID) ) {
-                    alt23=1;
+                if ( (LA24_0==RULE_ID) ) {
+                    alt24=1;
                 }
 
 
-                switch (alt23) {
+                switch (alt24) {
             	case 1 :
             	    // InternalSocialRequest.g:2625:3: rule__Query__ParamsAssignment_3_1_2
             	    {
@@ -8248,7 +8259,7 @@ public class InternalSocialRequestParser extends AbstractInternalContentAssistPa
             	    break;
 
             	default :
-            	    break loop23;
+            	    break loop24;
                 }
             } while (true);
 
@@ -8807,17 +8818,17 @@ public class InternalSocialRequestParser extends AbstractInternalContentAssistPa
             {
              before(grammarAccess.getSQLQueryAccess().getJoinsAssignment_2()); 
             // InternalSocialRequest.g:2814:2: ( rule__SQLQuery__JoinsAssignment_2 )*
-            loop24:
+            loop25:
             do {
-                int alt24=2;
-                int LA24_0 = input.LA(1);
+                int alt25=2;
+                int LA25_0 = input.LA(1);
 
-                if ( ((LA24_0>=30 && LA24_0<=33)) ) {
-                    alt24=1;
+                if ( ((LA25_0>=30 && LA25_0<=33)) ) {
+                    alt25=1;
                 }
 
 
-                switch (alt24) {
+                switch (alt25) {
             	case 1 :
             	    // InternalSocialRequest.g:2814:3: rule__SQLQuery__JoinsAssignment_2
             	    {
@@ -8831,7 +8842,7 @@ public class InternalSocialRequestParser extends AbstractInternalContentAssistPa
             	    break;
 
             	default :
-            	    break loop24;
+            	    break loop25;
                 }
             } while (true);
 
@@ -8910,13 +8921,13 @@ public class InternalSocialRequestParser extends AbstractInternalContentAssistPa
             {
              before(grammarAccess.getSQLQueryAccess().getWhereAssignment_3()); 
             // InternalSocialRequest.g:2841:2: ( rule__SQLQuery__WhereAssignment_3 )?
-            int alt25=2;
-            int LA25_0 = input.LA(1);
+            int alt26=2;
+            int LA26_0 = input.LA(1);
 
-            if ( (LA25_0==56) ) {
-                alt25=1;
+            if ( (LA26_0==56) ) {
+                alt26=1;
             }
-            switch (alt25) {
+            switch (alt26) {
                 case 1 :
                     // InternalSocialRequest.g:2841:3: rule__SQLQuery__WhereAssignment_3
                     {
@@ -9001,13 +9012,13 @@ public class InternalSocialRequestParser extends AbstractInternalContentAssistPa
             {
              before(grammarAccess.getSQLQueryAccess().getOrderAssignment_4()); 
             // InternalSocialRequest.g:2867:2: ( rule__SQLQuery__OrderAssignment_4 )?
-            int alt26=2;
-            int LA26_0 = input.LA(1);
+            int alt27=2;
+            int LA27_0 = input.LA(1);
 
-            if ( (LA26_0==57) ) {
-                alt26=1;
+            if ( (LA27_0==57) ) {
+                alt27=1;
             }
-            switch (alt26) {
+            switch (alt27) {
                 case 1 :
                     // InternalSocialRequest.g:2867:3: rule__SQLQuery__OrderAssignment_4
                     {
@@ -9172,13 +9183,13 @@ public class InternalSocialRequestParser extends AbstractInternalContentAssistPa
             {
              before(grammarAccess.getSelectAccess().getIsDistinctAssignment_1()); 
             // InternalSocialRequest.g:2922:2: ( rule__Select__IsDistinctAssignment_1 )?
-            int alt27=2;
-            int LA27_0 = input.LA(1);
+            int alt28=2;
+            int LA28_0 = input.LA(1);
 
-            if ( (LA27_0==63) ) {
-                alt27=1;
+            if ( (LA28_0==63) ) {
+                alt28=1;
             }
-            switch (alt27) {
+            switch (alt28) {
                 case 1 :
                     // InternalSocialRequest.g:2922:3: rule__Select__IsDistinctAssignment_1
                     {
@@ -10288,13 +10299,13 @@ public class InternalSocialRequestParser extends AbstractInternalContentAssistPa
             {
              before(grammarAccess.getJoinAccess().getGroup_5()); 
             // InternalSocialRequest.g:3299:2: ( rule__Join__Group_5__0 )?
-            int alt28=2;
-            int LA28_0 = input.LA(1);
+            int alt29=2;
+            int LA29_0 = input.LA(1);
 
-            if ( (LA28_0==55) ) {
-                alt28=1;
+            if ( (LA29_0==55) ) {
+                alt29=1;
             }
-            switch (alt28) {
+            switch (alt29) {
                 case 1 :
                     // InternalSocialRequest.g:3299:3: rule__Join__Group_5__0
                     {
@@ -11258,19 +11269,19 @@ public class InternalSocialRequestParser extends AbstractInternalContentAssistPa
             // InternalSocialRequest.g:3638:2: ( rule__Attribute__UnorderedGroup_5_1__0 )?
             {
             // InternalSocialRequest.g:3638:2: ( rule__Attribute__UnorderedGroup_5_1__0 )?
-            int alt29=2;
-            int LA29_0 = input.LA(1);
+            int alt30=2;
+            int LA30_0 = input.LA(1);
 
-            if ( LA29_0 == 41 && getUnorderedGroupHelper().canSelect(grammarAccess.getAttributeAccess().getUnorderedGroup_5_1(), 0) ) {
-                alt29=1;
+            if ( LA30_0 == 41 && getUnorderedGroupHelper().canSelect(grammarAccess.getAttributeAccess().getUnorderedGroup_5_1(), 0) ) {
+                alt30=1;
             }
-            else if ( LA29_0 == 42 && getUnorderedGroupHelper().canSelect(grammarAccess.getAttributeAccess().getUnorderedGroup_5_1(), 1) ) {
-                alt29=1;
+            else if ( LA30_0 == 42 && getUnorderedGroupHelper().canSelect(grammarAccess.getAttributeAccess().getUnorderedGroup_5_1(), 1) ) {
+                alt30=1;
             }
-            else if ( LA29_0 == 43 && getUnorderedGroupHelper().canSelect(grammarAccess.getAttributeAccess().getUnorderedGroup_5_1(), 2) ) {
-                alt29=1;
+            else if ( LA30_0 == 43 && getUnorderedGroupHelper().canSelect(grammarAccess.getAttributeAccess().getUnorderedGroup_5_1(), 2) ) {
+                alt30=1;
             }
-            switch (alt29) {
+            switch (alt30) {
                 case 1 :
                     // InternalSocialRequest.g:3638:2: rule__Attribute__UnorderedGroup_5_1__0
                     {
@@ -11316,25 +11327,25 @@ public class InternalSocialRequestParser extends AbstractInternalContentAssistPa
             // InternalSocialRequest.g:3652:3: ( ({...}? => ( ( ( rule__Attribute__Group_5_1_0__0 ) ) ) ) | ({...}? => ( ( ( rule__Attribute__Group_5_1_1__0 ) ) ) ) | ({...}? => ( ( ( rule__Attribute__Group_5_1_2__0 ) ) ) ) )
             {
             // InternalSocialRequest.g:3652:3: ( ({...}? => ( ( ( rule__Attribute__Group_5_1_0__0 ) ) ) ) | ({...}? => ( ( ( rule__Attribute__Group_5_1_1__0 ) ) ) ) | ({...}? => ( ( ( rule__Attribute__Group_5_1_2__0 ) ) ) ) )
-            int alt30=3;
-            int LA30_0 = input.LA(1);
+            int alt31=3;
+            int LA31_0 = input.LA(1);
 
-            if ( LA30_0 == 41 && getUnorderedGroupHelper().canSelect(grammarAccess.getAttributeAccess().getUnorderedGroup_5_1(), 0) ) {
-                alt30=1;
+            if ( LA31_0 == 41 && getUnorderedGroupHelper().canSelect(grammarAccess.getAttributeAccess().getUnorderedGroup_5_1(), 0) ) {
+                alt31=1;
             }
-            else if ( LA30_0 == 42 && getUnorderedGroupHelper().canSelect(grammarAccess.getAttributeAccess().getUnorderedGroup_5_1(), 1) ) {
-                alt30=2;
+            else if ( LA31_0 == 42 && getUnorderedGroupHelper().canSelect(grammarAccess.getAttributeAccess().getUnorderedGroup_5_1(), 1) ) {
+                alt31=2;
             }
-            else if ( LA30_0 == 43 && getUnorderedGroupHelper().canSelect(grammarAccess.getAttributeAccess().getUnorderedGroup_5_1(), 2) ) {
-                alt30=3;
+            else if ( LA31_0 == 43 && getUnorderedGroupHelper().canSelect(grammarAccess.getAttributeAccess().getUnorderedGroup_5_1(), 2) ) {
+                alt31=3;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 30, 0, input);
+                    new NoViableAltException("", 31, 0, input);
 
                 throw nvae;
             }
-            switch (alt30) {
+            switch (alt31) {
                 case 1 :
                     // InternalSocialRequest.g:3653:3: ({...}? => ( ( ( rule__Attribute__Group_5_1_0__0 ) ) ) )
                     {
@@ -11512,19 +11523,19 @@ public class InternalSocialRequestParser extends AbstractInternalContentAssistPa
             state._fsp--;
 
             // InternalSocialRequest.g:3712:2: ( rule__Attribute__UnorderedGroup_5_1__1 )?
-            int alt31=2;
-            int LA31_0 = input.LA(1);
+            int alt32=2;
+            int LA32_0 = input.LA(1);
 
-            if ( LA31_0 == 41 && getUnorderedGroupHelper().canSelect(grammarAccess.getAttributeAccess().getUnorderedGroup_5_1(), 0) ) {
-                alt31=1;
+            if ( LA32_0 == 41 && getUnorderedGroupHelper().canSelect(grammarAccess.getAttributeAccess().getUnorderedGroup_5_1(), 0) ) {
+                alt32=1;
             }
-            else if ( LA31_0 == 42 && getUnorderedGroupHelper().canSelect(grammarAccess.getAttributeAccess().getUnorderedGroup_5_1(), 1) ) {
-                alt31=1;
+            else if ( LA32_0 == 42 && getUnorderedGroupHelper().canSelect(grammarAccess.getAttributeAccess().getUnorderedGroup_5_1(), 1) ) {
+                alt32=1;
             }
-            else if ( LA31_0 == 43 && getUnorderedGroupHelper().canSelect(grammarAccess.getAttributeAccess().getUnorderedGroup_5_1(), 2) ) {
-                alt31=1;
+            else if ( LA32_0 == 43 && getUnorderedGroupHelper().canSelect(grammarAccess.getAttributeAccess().getUnorderedGroup_5_1(), 2) ) {
+                alt32=1;
             }
-            switch (alt31) {
+            switch (alt32) {
                 case 1 :
                     // InternalSocialRequest.g:3712:2: rule__Attribute__UnorderedGroup_5_1__1
                     {
@@ -11573,19 +11584,19 @@ public class InternalSocialRequestParser extends AbstractInternalContentAssistPa
             state._fsp--;
 
             // InternalSocialRequest.g:3724:2: ( rule__Attribute__UnorderedGroup_5_1__2 )?
-            int alt32=2;
-            int LA32_0 = input.LA(1);
+            int alt33=2;
+            int LA33_0 = input.LA(1);
 
-            if ( LA32_0 == 41 && getUnorderedGroupHelper().canSelect(grammarAccess.getAttributeAccess().getUnorderedGroup_5_1(), 0) ) {
-                alt32=1;
+            if ( LA33_0 == 41 && getUnorderedGroupHelper().canSelect(grammarAccess.getAttributeAccess().getUnorderedGroup_5_1(), 0) ) {
+                alt33=1;
             }
-            else if ( LA32_0 == 42 && getUnorderedGroupHelper().canSelect(grammarAccess.getAttributeAccess().getUnorderedGroup_5_1(), 1) ) {
-                alt32=1;
+            else if ( LA33_0 == 42 && getUnorderedGroupHelper().canSelect(grammarAccess.getAttributeAccess().getUnorderedGroup_5_1(), 1) ) {
+                alt33=1;
             }
-            else if ( LA32_0 == 43 && getUnorderedGroupHelper().canSelect(grammarAccess.getAttributeAccess().getUnorderedGroup_5_1(), 2) ) {
-                alt32=1;
+            else if ( LA33_0 == 43 && getUnorderedGroupHelper().canSelect(grammarAccess.getAttributeAccess().getUnorderedGroup_5_1(), 2) ) {
+                alt33=1;
             }
-            switch (alt32) {
+            switch (alt33) {
                 case 1 :
                     // InternalSocialRequest.g:3724:2: rule__Attribute__UnorderedGroup_5_1__2
                     {
