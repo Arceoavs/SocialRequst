@@ -948,11 +948,11 @@ public interface SocialRequestPackage extends EPackage
   EAttribute getEntity_Name();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.Entity#getHasUserDetails <em>Has User Details</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.socialRequest.Entity#isHasUserDetails <em>Has User Details</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Has User Details</em>'.
-   * @see org.xtext.example.mydsl.socialRequest.Entity#getHasUserDetails()
+   * @see org.xtext.example.mydsl.socialRequest.Entity#isHasUserDetails()
    * @see #getEntity()
    * @generated
    */

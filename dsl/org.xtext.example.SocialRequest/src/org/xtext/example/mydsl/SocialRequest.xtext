@@ -22,7 +22,7 @@ PointSeperatedID:
 ;
 	
 Entity:
-	'Entity' name=ID (hasUserDetails='implements' 'UserDetails')? '{'
+	'Entity' name=ID (hasUserDetails?='implements' 'UserDetails')? '{'
 		attributes+=Attribute+
 	'}'
 ;

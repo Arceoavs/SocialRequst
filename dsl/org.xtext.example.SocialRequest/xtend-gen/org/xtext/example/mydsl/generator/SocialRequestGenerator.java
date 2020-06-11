@@ -3,7 +3,6 @@
  */
 package org.xtext.example.mydsl.generator;
 
-import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import java.math.BigDecimal;
 import javax.inject.Inject;
@@ -17,9 +16,12 @@ import org.eclipse.xtext.generator.IGeneratorContext;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.xtext.example.mydsl.socialRequest.Attribute;
+import org.xtext.example.mydsl.socialRequest.DataType;
 import org.xtext.example.mydsl.socialRequest.DataTypeReference;
 import org.xtext.example.mydsl.socialRequest.Entity;
 import org.xtext.example.mydsl.socialRequest.EntityTypeReference;
@@ -43,7 +45,7 @@ public class SocialRequestGenerator extends AbstractGenerator {
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     Iterable<Entity> _filter = Iterables.<Entity>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Entity.class);
     for (final Entity entity : _filter) {
-      String _string = this._iQualifiedNameProvider.getFullyQualifiedName(entity).toString("/");
+      String _string = this._iQualifiedNameProvider.getFullyQualifiedName(((EObject) entity)).toString("/");
       String _plus = (_string + ".java");
       fsa.generateFile(_plus, 
         this.generateEntity(entity));
@@ -59,14 +61,60 @@ public class SocialRequestGenerator extends AbstractGenerator {
   private CharSequence generateEntity(final Entity entity) {
     StringConcatenation _builder = new StringConcatenation();
     {
-      QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(entity.eContainer());
+      QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(((EObject) entity).eContainer());
       boolean _tripleNotEquals = (_fullyQualifiedName != null);
       if (_tripleNotEquals) {
         _builder.append("package ");
-        QualifiedName _fullyQualifiedName_1 = this._iQualifiedNameProvider.getFullyQualifiedName(entity.eContainer());
+        QualifiedName _fullyQualifiedName_1 = this._iQualifiedNameProvider.getFullyQualifiedName(((EObject) entity).eContainer());
         _builder.append(_fullyQualifiedName_1);
         _builder.append(";");
         _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.newLine();
+    {
+      boolean _isHasUserDetails = entity.isHasUserDetails();
+      if (_isHasUserDetails) {
+        _builder.append("import org.springframework.security.core.GrantedAuthority;");
+        _builder.newLine();
+        _builder.append("import org.springframework.security.core.authority.SimpleGrantedAuthority;");
+        _builder.newLine();
+        _builder.append("import org.springframework.security.core.userdetails.UserDetails;");
+        _builder.newLine();
+        _builder.newLine();
+        _builder.append("import java.util.Collection;");
+        _builder.newLine();
+        _builder.append("import java.util.Collections;");
+        _builder.newLine();
+      } else {
+        _builder.append("import java.io.Serializable;");
+        _builder.newLine();
+      }
+    }
+    {
+      final Function1<Attribute, Boolean> _function = (Attribute it) -> {
+        return Boolean.valueOf(((it.getAssociation() != null) && it.getAssociation().endsWith("Many")));
+      };
+      boolean _isEmpty = IterableExtensions.isEmpty(IterableExtensions.<Attribute>filter(entity.getAttributes(), _function));
+      boolean _not = (!_isEmpty);
+      if (_not) {
+        _builder.append("import java.util.HashSet;");
+        _builder.newLine();
+        _builder.append("import java.util.Set;");
+        _builder.newLine();
+      }
+    }
+    {
+      final Function1<Attribute, Boolean> _function_1 = (Attribute it) -> {
+        String _rawAttributeType = this.rawAttributeType(it);
+        String _literal = DataType.DATE.getLiteral();
+        return Boolean.valueOf((_rawAttributeType == _literal));
+      };
+      boolean _isEmpty_1 = IterableExtensions.isEmpty(IterableExtensions.<Attribute>filter(entity.getAttributes(), _function_1));
+      boolean _not_1 = (!_isEmpty_1);
+      if (_not_1) {
+        _builder.append("import java.util.Date");
+        _builder.newLine();
       }
     }
     _builder.newLine();
@@ -80,9 +128,8 @@ public class SocialRequestGenerator extends AbstractGenerator {
     _builder.append(_name);
     _builder.append(" implements ");
     {
-      String _hasUserDetails = entity.getHasUserDetails();
-      boolean _tripleNotEquals_1 = (_hasUserDetails != null);
-      if (_tripleNotEquals_1) {
+      boolean _isHasUserDetails_1 = entity.isHasUserDetails();
+      if (_isHasUserDetails_1) {
         _builder.append("UserDetails");
       } else {
         _builder.append("Serializable");
@@ -103,8 +150,6 @@ public class SocialRequestGenerator extends AbstractGenerator {
         _builder.newLineIfNotEmpty();
       }
     }
-    _builder.append("\t");
-    _builder.newLine();
     {
       EList<Attribute> _attributes_1 = entity.getAttributes();
       for(final Attribute attribute_1 : _attributes_1) {
@@ -114,7 +159,15 @@ public class SocialRequestGenerator extends AbstractGenerator {
         _builder.newLineIfNotEmpty();
       }
     }
-    _builder.newLine();
+    {
+      boolean _isHasUserDetails_2 = entity.isHasUserDetails();
+      if (_isHasUserDetails_2) {
+        _builder.append("\t");
+        CharSequence _generateUserDetailsMethods = this.generateUserDetailsMethods();
+        _builder.append(_generateUserDetailsMethods, "\t");
+        _builder.newLineIfNotEmpty();
+      }
+    }
     _builder.append("\t");
     CharSequence _generateToStringMethod = this.generateToStringMethod(entity);
     _builder.append(_generateToStringMethod, "\t");
@@ -127,6 +180,15 @@ public class SocialRequestGenerator extends AbstractGenerator {
   private CharSequence generateAttribute(final Attribute attribute) {
     StringConcatenation _builder = new StringConcatenation();
     {
+      Modifier _modifier = attribute.getModifier();
+      boolean _tripleNotEquals = (_modifier != null);
+      if (_tripleNotEquals) {
+        CharSequence _generateAttributeModifier = this.generateAttributeModifier(attribute.getModifier());
+        _builder.append(_generateAttributeModifier);
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
       EList<Validation> _validations = attribute.getValidations();
       for(final Validation validation : _validations) {
         String _generateValidation = this.generateValidation(validation);
@@ -136,38 +198,11 @@ public class SocialRequestGenerator extends AbstractGenerator {
     }
     {
       String _association = attribute.getAssociation();
-      boolean _notEquals = (!Objects.equal(_association, null));
-      if (_notEquals) {
+      boolean _tripleNotEquals_1 = (_association != null);
+      if (_tripleNotEquals_1) {
         CharSequence _generateAssociationAnnotation = this.generateAssociationAnnotation(attribute);
         _builder.append(_generateAssociationAnnotation);
         _builder.newLineIfNotEmpty();
-      }
-    }
-    {
-      Modifier _modifier = attribute.getModifier();
-      boolean _notEquals_1 = (!Objects.equal(_modifier, null));
-      if (_notEquals_1) {
-        {
-          Modifier _modifier_1 = attribute.getModifier();
-          boolean _isIsID = ((Modifier) _modifier_1).isIsID();
-          if (_isIsID) {
-            _builder.append("@Id");
-            _builder.newLine();
-            {
-              Modifier _modifier_2 = attribute.getModifier();
-              String _iDGenerationType = ((Modifier) _modifier_2).getIDGenerationType();
-              boolean _notEquals_2 = (!Objects.equal(_iDGenerationType, null));
-              if (_notEquals_2) {
-                _builder.append("@GeneratedValue(GenerationType.");
-                Modifier _modifier_3 = attribute.getModifier();
-                String _iDGenerationType_1 = ((Modifier) _modifier_3).getIDGenerationType();
-                _builder.append(_iDGenerationType_1);
-                _builder.append(")");
-                _builder.newLineIfNotEmpty();
-              }
-            }
-          }
-        }
       }
     }
     _builder.append("private ");
@@ -184,6 +219,12 @@ public class SocialRequestGenerator extends AbstractGenerator {
   
   private CharSequence generateGettersSetters(final Attribute attribute) {
     StringConcatenation _builder = new StringConcatenation();
+    {
+      if ((((Entity) ((EObject) attribute).eContainer()).isHasUserDetails() && ((attribute.getName() == "username") || (attribute.getName() == "password")))) {
+        _builder.append("@Override");
+        _builder.newLine();
+      }
+    }
     _builder.append("public ");
     String _attributeType = this.attributeType(attribute);
     _builder.append(_attributeType);
@@ -223,61 +264,103 @@ public class SocialRequestGenerator extends AbstractGenerator {
     _builder.newLineIfNotEmpty();
     _builder.append("}");
     _builder.newLine();
+    {
+      if (((attribute.getAssociation() != null) && attribute.getAssociation().endsWith("Many"))) {
+        _builder.newLine();
+        _builder.append("public void add");
+        String _rawAttributeType = this.rawAttributeType(attribute);
+        _builder.append(_rawAttributeType);
+        _builder.append("(");
+        String _rawAttributeType_1 = this.rawAttributeType(attribute);
+        _builder.append(_rawAttributeType_1);
+        _builder.append(" ");
+        String _firstLower = StringExtensions.toFirstLower(this.rawAttributeType(attribute));
+        _builder.append(_firstLower);
+        _builder.append(") {");
+        _builder.newLineIfNotEmpty();
+        _builder.append("    ");
+        _builder.append("if (");
+        String _name_4 = attribute.getName();
+        _builder.append(_name_4, "    ");
+        _builder.append(" == null) {");
+        _builder.newLineIfNotEmpty();
+        _builder.append("      ");
+        String _name_5 = attribute.getName();
+        _builder.append(_name_5, "      ");
+        _builder.append(" = new HashSet<>();");
+        _builder.newLineIfNotEmpty();
+        _builder.append("    ");
+        _builder.append("}");
+        _builder.newLine();
+        _builder.append("    ");
+        String _name_6 = attribute.getName();
+        _builder.append(_name_6, "    ");
+        _builder.append(".add(");
+        String _firstLower_1 = StringExtensions.toFirstLower(this.rawAttributeType(attribute));
+        _builder.append(_firstLower_1, "    ");
+        _builder.append(");");
+        _builder.newLineIfNotEmpty();
+        _builder.append("}");
+        _builder.newLine();
+      }
+    }
     _builder.newLine();
     return _builder;
   }
   
   private String attributeType(final Attribute attribute) {
-    String _xblockexpression = null;
-    {
-      String rawAttributeType = null;
-      TypeReference _typeRef = attribute.getTypeRef();
-      if ((_typeRef instanceof EntityTypeReference)) {
-        TypeReference _typeRef_1 = attribute.getTypeRef();
-        rawAttributeType = ((EntityTypeReference) _typeRef_1).getType().getName().toString();
-      } else {
-        TypeReference _typeRef_2 = attribute.getTypeRef();
-        rawAttributeType = ((DataTypeReference) _typeRef_2).getType().toString();
-      }
-      String _xifexpression = null;
-      if (((!Objects.equal(attribute.getAssociation(), null)) && attribute.getAssociation().endsWith("Many"))) {
-        _xifexpression = (("Set<" + rawAttributeType) + ">");
-      } else {
-        _xifexpression = rawAttributeType;
-      }
-      _xblockexpression = _xifexpression;
+    String _xifexpression = null;
+    if (((attribute.getAssociation() != null) && attribute.getAssociation().endsWith("Many"))) {
+      String _rawAttributeType = this.rawAttributeType(attribute);
+      String _plus = ("Set<" + _rawAttributeType);
+      _xifexpression = (_plus + ">");
+    } else {
+      _xifexpression = this.rawAttributeType(attribute);
     }
-    return _xblockexpression;
+    return _xifexpression;
+  }
+  
+  private String rawAttributeType(final Attribute attribute) {
+    String _xifexpression = null;
+    TypeReference _typeRef = attribute.getTypeRef();
+    if ((_typeRef instanceof EntityTypeReference)) {
+      TypeReference _typeRef_1 = attribute.getTypeRef();
+      _xifexpression = ((EntityTypeReference) _typeRef_1).getType().getName().toString();
+    } else {
+      TypeReference _typeRef_2 = attribute.getTypeRef();
+      _xifexpression = ((DataTypeReference) _typeRef_2).getType().toString();
+    }
+    return _xifexpression;
   }
   
   private String generateValidation(final Validation validation) {
     String _xifexpression = null;
     String _validator = validation.getValidator();
-    boolean _notEquals = (!Objects.equal(_validator, null));
-    if (_notEquals) {
+    boolean _tripleNotEquals = (_validator != null);
+    if (_tripleNotEquals) {
       String _string = validation.getValidator().toString();
       _xifexpression = ("@" + _string);
     } else {
       String _xifexpression_1 = null;
       BigDecimal _min = validation.getMin();
-      boolean _notEquals_1 = (!Objects.equal(_min, null));
-      if (_notEquals_1) {
+      boolean _tripleNotEquals_1 = (_min != null);
+      if (_tripleNotEquals_1) {
         BigDecimal _min_1 = validation.getMin();
         String _plus = ("@Min(" + _min_1);
         _xifexpression_1 = (_plus + ")");
       } else {
         String _xifexpression_2 = null;
         BigDecimal _max = validation.getMax();
-        boolean _notEquals_2 = (!Objects.equal(_max, null));
-        if (_notEquals_2) {
+        boolean _tripleNotEquals_2 = (_max != null);
+        if (_tripleNotEquals_2) {
           BigDecimal _max_1 = validation.getMax();
           String _plus_1 = ("@Max(" + _max_1);
           _xifexpression_2 = (_plus_1 + ")");
         } else {
           String _xifexpression_3 = null;
           String _regex = validation.getRegex();
-          boolean _notEquals_3 = (!Objects.equal(_regex, null));
-          if (_notEquals_3) {
+          boolean _tripleNotEquals_3 = (_regex != null);
+          if (_tripleNotEquals_3) {
             String _regex_1 = validation.getRegex();
             String _plus_2 = ("@Pattern(regexp = \"" + _regex_1);
             _xifexpression_3 = (_plus_2 + "\")");
@@ -301,13 +384,13 @@ public class SocialRequestGenerator extends AbstractGenerator {
   private CharSequence generateAssociationAnnotation(final Attribute attribute) {
     StringConcatenation _builder = new StringConcatenation();
     {
-      if ((Objects.equal(attribute.getMappedBy(), null) && Objects.equal(attribute.getFetchType(), null))) {
+      if (((attribute.getMappedBy() == null) && (attribute.getFetchType() == null))) {
         _builder.append("@");
         String _association = attribute.getAssociation();
         _builder.append(_association);
         _builder.newLineIfNotEmpty();
       } else {
-        if (((!Objects.equal(attribute.getMappedBy(), null)) && (!Objects.equal(attribute.getFetchType(), null)))) {
+        if (((attribute.getMappedBy() != null) && (attribute.getFetchType() != null))) {
           _builder.append("@");
           String _association_1 = attribute.getAssociation();
           _builder.append(_association_1);
@@ -320,7 +403,7 @@ public class SocialRequestGenerator extends AbstractGenerator {
           _builder.append(")");
           _builder.newLineIfNotEmpty();
         } else {
-          if (((!Objects.equal(attribute.getMappedBy(), null)) && Objects.equal(attribute.getFetchType(), null))) {
+          if (((attribute.getMappedBy() != null) && (attribute.getFetchType() == null))) {
             _builder.append("@");
             String _association_2 = attribute.getAssociation();
             _builder.append(_association_2);
@@ -330,7 +413,7 @@ public class SocialRequestGenerator extends AbstractGenerator {
             _builder.append("\")");
             _builder.newLineIfNotEmpty();
           } else {
-            if ((Objects.equal(attribute.getMappedBy(), null) && (!Objects.equal(attribute.getFetchType(), null)))) {
+            if (((attribute.getMappedBy() == null) && (attribute.getFetchType() != null))) {
               _builder.append("@");
               String _association_3 = attribute.getAssociation();
               _builder.append(_association_3);
@@ -344,6 +427,96 @@ public class SocialRequestGenerator extends AbstractGenerator {
         }
       }
     }
+    return _builder;
+  }
+  
+  private CharSequence generateAttributeModifier(final Modifier modifier) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      boolean _isIsID = modifier.isIsID();
+      if (_isIsID) {
+        _builder.append("@Id");
+        _builder.newLine();
+        {
+          String _iDGenerationType = modifier.getIDGenerationType();
+          boolean _tripleNotEquals = (_iDGenerationType != null);
+          if (_tripleNotEquals) {
+            _builder.append("@GeneratedValue(GenerationType.");
+            String _iDGenerationType_1 = modifier.getIDGenerationType();
+            _builder.append(_iDGenerationType_1);
+            _builder.append(")");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      } else {
+        boolean _isIsLOB = modifier.isIsLOB();
+        if (_isIsLOB) {
+          _builder.append("@Lob");
+          _builder.newLine();
+        } else {
+          boolean _isIsTransient = modifier.isIsTransient();
+          if (_isIsTransient) {
+            _builder.append("@Transient");
+            _builder.newLine();
+          }
+        }
+      }
+    }
+    return _builder;
+  }
+  
+  private CharSequence generateUserDetailsMethods() {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("@Override");
+    _builder.newLine();
+    _builder.append("public Collection<? extends GrantedAuthority> getAuthorities() {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("return Collections.singletonList(new SimpleGrantedAuthority(\"ROLE_USER\"));");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("@Override");
+    _builder.newLine();
+    _builder.append("public boolean isAccountNonExpired() {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("return true;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("@Override");
+    _builder.newLine();
+    _builder.append("public boolean isAccountNonLocked() {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("return true;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("@Override");
+    _builder.newLine();
+    _builder.append("public boolean isCredentialsNonExpired() {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("return true;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("@Override");
+    _builder.newLine();
+    _builder.append("public boolean isEnabled() {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("return true;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
     return _builder;
   }
   
@@ -363,8 +536,11 @@ public class SocialRequestGenerator extends AbstractGenerator {
     _builder.append("{\" +");
     _builder.newLineIfNotEmpty();
     {
-      EList<Attribute> _attributes = entity.getAttributes();
-      for(final Attribute attribute : _attributes) {
+      final Function1<Attribute, Boolean> _function = (Attribute it) -> {
+        return Boolean.valueOf(((it.getAssociation() == null) && ((it.getModifier() == null) || (!it.getModifier().isIsTransient()))));
+      };
+      Iterable<Attribute> _filter = IterableExtensions.<Attribute>filter(entity.getAttributes(), _function);
+      for(final Attribute attribute : _filter) {
         _builder.append("\t\t");
         _builder.append("\"");
         String _name_1 = attribute.getName();
@@ -377,10 +553,10 @@ public class SocialRequestGenerator extends AbstractGenerator {
       }
     }
     _builder.append("\t\t");
-    _builder.append("\'}\';");
+    _builder.append("\'}\'");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append(")");
+    _builder.append(");");
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();

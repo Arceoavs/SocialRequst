@@ -149,12 +149,12 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//Entity:
-		//	'Entity' name=ID (hasUserDetails='implements' 'UserDetails')? '{'
+		//	'Entity' name=ID (hasUserDetails?='implements' 'UserDetails')? '{'
 		//	attributes+=Attribute+
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Entity' name=ID (hasUserDetails='implements' 'UserDetails')? '{' attributes+=Attribute+ '}'
+		//'Entity' name=ID (hasUserDetails?='implements' 'UserDetails')? '{' attributes+=Attribute+ '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'Entity'
@@ -166,10 +166,10 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 		
-		//(hasUserDetails='implements' 'UserDetails')?
+		//(hasUserDetails?='implements' 'UserDetails')?
 		public Group getGroup_2() { return cGroup_2; }
 		
-		//hasUserDetails='implements'
+		//hasUserDetails?='implements'
 		public Assignment getHasUserDetailsAssignment_2_0() { return cHasUserDetailsAssignment_2_0; }
 		
 		//'implements'
@@ -1250,7 +1250,7 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Entity:
-	//	'Entity' name=ID (hasUserDetails='implements' 'UserDetails')? '{'
+	//	'Entity' name=ID (hasUserDetails?='implements' 'UserDetails')? '{'
 	//	attributes+=Attribute+
 	//	'}';
 	public EntityElements getEntityAccess() {

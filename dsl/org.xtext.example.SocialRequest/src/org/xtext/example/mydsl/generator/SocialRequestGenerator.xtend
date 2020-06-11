@@ -17,6 +17,8 @@ import org.xtext.example.mydsl.socialRequest.DataTypeReference
 import org.xtext.example.mydsl.socialRequest.Validation
 import javax.inject.Inject
 import org.eclipse.xtext.naming.IQualifiedNameProvider
+import org.eclipse.emf.ecore.EObject
+import org.xtext.example.mydsl.socialRequest.DataType
 
 /**
  * Generates code from your model files on save.
@@ -32,7 +34,7 @@ class SocialRequestGenerator extends AbstractGenerator {
 	
 		for(entity : resource.allContents.toIterable.filter(Entity)) {
 			fsa.generateFile(
-				entity.fullyQualifiedName.toString("/")+".java",
+				(entity as EObject).fullyQualifiedName.toString("/")+".java",
 				generateEntity(entity)
 			)
 		}
@@ -43,83 +45,109 @@ class SocialRequestGenerator extends AbstractGenerator {
 	}
 	
 	private def generateEntity(Entity entity)'''
-		«IF entity.eContainer.fullyQualifiedName !== null»
-			package «entity.eContainer.fullyQualifiedName»;
+		«IF (entity as EObject).eContainer.fullyQualifiedName !== null»
+			package «(entity as EObject).eContainer.fullyQualifiedName»;
         «ENDIF»
+
+		«IF entity.hasUserDetails»
+		import org.springframework.security.core.GrantedAuthority;
+		import org.springframework.security.core.authority.SimpleGrantedAuthority;
+		import org.springframework.security.core.userdetails.UserDetails;
+
+		import java.util.Collection;
+		import java.util.Collections;
+		«ELSE»
+		import java.io.Serializable;
+		«ENDIF»
+		«IF !entity.attributes.filter[it.association !== null && it.association.endsWith("Many")].empty»
+		import java.util.HashSet;
+		import java.util.Set;
+		«ENDIF»
+		«IF !entity.attributes.filter[rawAttributeType(it) === DataType::DATE.literal].empty»
+		import java.util.Date
+		«ENDIF»
 
 		import javax.persistence.*;
 		import javax.validation.constraints.*;
 
-		public class «entity.name» implements «IF entity.hasUserDetails !== null»UserDetails«ELSE»Serializable«ENDIF» {
+		public class «entity.name» implements «IF entity.hasUserDetails»UserDetails«ELSE»Serializable«ENDIF» {
 			private static final long serialVersionUID = 1L;
 
 			«FOR attribute : entity.attributes»
 			«generateAttribute(attribute)»
 			«ENDFOR»
-			
 			«FOR attribute : entity.attributes»
 			«generateGettersSetters(attribute)»
 			«ENDFOR»
-
+			«IF entity.hasUserDetails»
+			«generateUserDetailsMethods»
+			«ENDIF»
 			«generateToStringMethod(entity)»
 		}
 	'''
 	
 	private def generateAttribute(Attribute attribute)'''
+		«IF attribute.modifier !== null»
+			«generateAttributeModifier(attribute.modifier)»
+		«ENDIF»
 		«FOR validation : attribute.validations»
 			«generateValidation(validation)»
 		«ENDFOR»
-		«IF attribute.association != null»
+		«IF attribute.association !== null»
 			«generateAssociationAnnotation(attribute)»
-		«ENDIF»
-		«IF attribute.modifier != null»
-			«IF (attribute.modifier as Modifier).isID»
-				@Id
-				«IF (attribute.modifier as Modifier).IDGenerationType != null»
-					@GeneratedValue(GenerationType.«(attribute.modifier as Modifier).IDGenerationType»)
-				«ENDIF»
-			«ENDIF»
 		«ENDIF»
 		private «attributeType(attribute)» «attribute.name»;
 
 	'''
 	
-	private def generateGettersSetters(Attribute attribute)'''	
+	private def generateGettersSetters(Attribute attribute)'''
+		«IF ((attribute as EObject).eContainer as Entity).hasUserDetails && (attribute.name === "username" || attribute.name === "password")»
+		@Override
+		«ENDIF»
 		public «attributeType(attribute)» get«attribute.name.toFirstUpper»() {
 		    return «attribute.name»;
 		}
-		
+
 		public void set«attribute.name.toFirstUpper»(«attributeType(attribute)» «attribute.name») {
 		    this.«attribute.name» = «attribute.name»;
 		}
-		
+		«IF attribute.association !== null && attribute.association.endsWith("Many")»
+
+		public void add«rawAttributeType(attribute)»(«rawAttributeType(attribute)» «rawAttributeType(attribute).toFirstLower») {
+		    if («attribute.name» == null) {
+		      «attribute.name» = new HashSet<>();
+		    }
+		    «attribute.name».add(«rawAttributeType(attribute).toFirstLower»);
+		}
+	 	«ENDIF»
+
 	'''
 
 	
 	private def attributeType(Attribute attribute) {
-		var String rawAttributeType
-
-		if (attribute.typeRef instanceof EntityTypeReference) {
-			rawAttributeType = (attribute.typeRef as EntityTypeReference).type.name.toString
+		if (attribute.association !== null && attribute.association.endsWith("Many")) {
+			"Set<" + rawAttributeType(attribute) + ">"
 		} else {
-			rawAttributeType = (attribute.typeRef as DataTypeReference).type.toString
+			rawAttributeType(attribute)
 		}
-		
-		if (attribute.association != null && attribute.association.endsWith("Many")) {
-			"Set<" + rawAttributeType + ">"
+	}
+	
+	private def rawAttributeType(Attribute attribute) {
+		if (attribute.typeRef instanceof EntityTypeReference) {
+			(attribute.typeRef as EntityTypeReference).type.name.toString
 		} else {
-			rawAttributeType
+			(attribute.typeRef as DataTypeReference).type.toString
 		}
 	}
 	
 	private def generateValidation(Validation validation) {
-		if (validation.validator != null) {
+		if (validation.validator !== null) {
 			"@" + validation.validator.toString
-		} else if (validation.min != null) {
+		} else if (validation.min !== null) {
 			"@Min(" + validation.min + ")"
-		} else if (validation.max != null) {
+		} else if (validation.max !== null) {
 			"@Max(" + validation.max + ")"
-		} else if (validation.regex != null) {
+		} else if (validation.regex !== null) {
 			"@Pattern(regexp = \"" + validation.regex + "\")"
 		} else if (validation.unique) {
 			"@Column(unique = true)"
@@ -127,15 +155,56 @@ class SocialRequestGenerator extends AbstractGenerator {
 	}
 	
 	private def generateAssociationAnnotation(Attribute attribute)'''
-		«IF attribute.mappedBy == null && attribute.fetchType == null»
+		«IF attribute.mappedBy === null && attribute.fetchType === null»
 			@«attribute.association»
-		«ELSEIF attribute.mappedBy != null && attribute.fetchType != null»
+		«ELSEIF attribute.mappedBy !== null && attribute.fetchType !== null»
 			@«attribute.association»(mappedBy = "«attribute.mappedBy»", fetch = FetchType.«attribute.fetchType»)
-		«ELSEIF attribute.mappedBy != null && attribute.fetchType == null»
+		«ELSEIF attribute.mappedBy !== null && attribute.fetchType === null»
 			@«attribute.association»(mappedBy = "«attribute.mappedBy»")
-	    «ELSEIF attribute.mappedBy == null && attribute.fetchType != null»
-	    	@«attribute.association»(fetch = FetchType.«attribute.fetchType»)
+	    «ELSEIF attribute.mappedBy === null && attribute.fetchType !== null»
+			@«attribute.association»(fetch = FetchType.«attribute.fetchType»)
 		«ENDIF»
+	'''
+	
+	private def generateAttributeModifier(Modifier modifier)'''
+	«IF modifier.isID»
+		@Id
+		«IF modifier.IDGenerationType !== null»
+			@GeneratedValue(GenerationType.«modifier.IDGenerationType»)
+		«ENDIF»
+	«ELSEIF modifier.isLOB»
+		@Lob
+	«ELSEIF modifier.isTransient»
+		@Transient
+	«ENDIF»
+	'''
+	
+	private def generateUserDetailsMethods()'''
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
+
 	'''
 	
 	private def generateToStringMethod(Entity entity)'''
@@ -143,11 +212,11 @@ class SocialRequestGenerator extends AbstractGenerator {
 		public String toString() {
 			return (
 				"«entity.name»{" +
-				«FOR attribute : entity.attributes»
+				«FOR attribute : entity.attributes.filter[it.association === null && (it.modifier === null || !it.modifier.isTransient)]»
 				"«attribute.name»='" + «attribute.name» + '\'' +
 				«ENDFOR»
-				'}';
-			)
+				'}'
+			);
 		}
 	'''
 	

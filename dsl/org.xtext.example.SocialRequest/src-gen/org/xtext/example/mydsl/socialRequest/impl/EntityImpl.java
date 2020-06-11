@@ -31,7 +31,7 @@ import org.xtext.example.mydsl.socialRequest.SocialRequestPackage;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.socialRequest.impl.EntityImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.socialRequest.impl.EntityImpl#getHasUserDetails <em>Has User Details</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.socialRequest.impl.EntityImpl#isHasUserDetails <em>Has User Details</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.socialRequest.impl.EntityImpl#getAttributes <em>Attributes</em>}</li>
  * </ul>
  *
@@ -60,24 +60,24 @@ public class EntityImpl extends AbstractElementImpl implements Entity
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getHasUserDetails() <em>Has User Details</em>}' attribute.
+   * The default value of the '{@link #isHasUserDetails() <em>Has User Details</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getHasUserDetails()
+   * @see #isHasUserDetails()
    * @generated
    * @ordered
    */
-  protected static final String HAS_USER_DETAILS_EDEFAULT = null;
+  protected static final boolean HAS_USER_DETAILS_EDEFAULT = false;
 
   /**
-   * The cached value of the '{@link #getHasUserDetails() <em>Has User Details</em>}' attribute.
+   * The cached value of the '{@link #isHasUserDetails() <em>Has User Details</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getHasUserDetails()
+   * @see #isHasUserDetails()
    * @generated
    * @ordered
    */
-  protected String hasUserDetails = HAS_USER_DETAILS_EDEFAULT;
+  protected boolean hasUserDetails = HAS_USER_DETAILS_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference list.
@@ -141,7 +141,7 @@ public class EntityImpl extends AbstractElementImpl implements Entity
    * @generated
    */
   @Override
-  public String getHasUserDetails()
+  public boolean isHasUserDetails()
   {
     return hasUserDetails;
   }
@@ -152,9 +152,9 @@ public class EntityImpl extends AbstractElementImpl implements Entity
    * @generated
    */
   @Override
-  public void setHasUserDetails(String newHasUserDetails)
+  public void setHasUserDetails(boolean newHasUserDetails)
   {
-    String oldHasUserDetails = hasUserDetails;
+    boolean oldHasUserDetails = hasUserDetails;
     hasUserDetails = newHasUserDetails;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, SocialRequestPackage.ENTITY__HAS_USER_DETAILS, oldHasUserDetails, hasUserDetails));
@@ -204,7 +204,7 @@ public class EntityImpl extends AbstractElementImpl implements Entity
       case SocialRequestPackage.ENTITY__NAME:
         return getName();
       case SocialRequestPackage.ENTITY__HAS_USER_DETAILS:
-        return getHasUserDetails();
+        return isHasUserDetails();
       case SocialRequestPackage.ENTITY__ATTRIBUTES:
         return getAttributes();
     }
@@ -226,7 +226,7 @@ public class EntityImpl extends AbstractElementImpl implements Entity
         setName((String)newValue);
         return;
       case SocialRequestPackage.ENTITY__HAS_USER_DETAILS:
-        setHasUserDetails((String)newValue);
+        setHasUserDetails((Boolean)newValue);
         return;
       case SocialRequestPackage.ENTITY__ATTRIBUTES:
         getAttributes().clear();
@@ -272,7 +272,7 @@ public class EntityImpl extends AbstractElementImpl implements Entity
       case SocialRequestPackage.ENTITY__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case SocialRequestPackage.ENTITY__HAS_USER_DETAILS:
-        return HAS_USER_DETAILS_EDEFAULT == null ? hasUserDetails != null : !HAS_USER_DETAILS_EDEFAULT.equals(hasUserDetails);
+        return hasUserDetails != HAS_USER_DETAILS_EDEFAULT;
       case SocialRequestPackage.ENTITY__ATTRIBUTES:
         return attributes != null && !attributes.isEmpty();
     }

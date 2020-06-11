@@ -814,7 +814,7 @@ public class InternalSocialRequestParser extends AbstractInternalAntlrParser {
                     						if (current==null) {
                     							current = createModelElement(grammarAccess.getEntityRule());
                     						}
-                    						setWithLastConsumed(current, "hasUserDetails", lv_hasUserDetails_2_0, "implements");
+                    						setWithLastConsumed(current, "hasUserDetails", true, "implements");
                     					
 
                     }
