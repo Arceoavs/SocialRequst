@@ -17,7 +17,8 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.socialRequest.Query#getName <em>Name</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.socialRequest.Query#isIsList <em>Is List</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.socialRequest.Query#isReturnsList <em>Returns List</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.socialRequest.Query#isReturnsBoolean <em>Returns Boolean</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.socialRequest.Query#getParams <em>Params</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.socialRequest.Query#getSqlQuery <em>Sql Query</em>}</li>
  * </ul>
@@ -51,26 +52,48 @@ public interface Query extends EObject
   void setName(String value);
 
   /**
-   * Returns the value of the '<em><b>Is List</b></em>' attribute.
+   * Returns the value of the '<em><b>Returns List</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Is List</em>' attribute.
-   * @see #setIsList(boolean)
-   * @see org.xtext.example.mydsl.socialRequest.SocialRequestPackage#getQuery_IsList()
+   * @return the value of the '<em>Returns List</em>' attribute.
+   * @see #setReturnsList(boolean)
+   * @see org.xtext.example.mydsl.socialRequest.SocialRequestPackage#getQuery_ReturnsList()
    * @model
    * @generated
    */
-  boolean isIsList();
+  boolean isReturnsList();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.socialRequest.Query#isIsList <em>Is List</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.example.mydsl.socialRequest.Query#isReturnsList <em>Returns List</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Is List</em>' attribute.
-   * @see #isIsList()
+   * @param value the new value of the '<em>Returns List</em>' attribute.
+   * @see #isReturnsList()
    * @generated
    */
-  void setIsList(boolean value);
+  void setReturnsList(boolean value);
+
+  /**
+   * Returns the value of the '<em><b>Returns Boolean</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Returns Boolean</em>' attribute.
+   * @see #setReturnsBoolean(boolean)
+   * @see org.xtext.example.mydsl.socialRequest.SocialRequestPackage#getQuery_ReturnsBoolean()
+   * @model
+   * @generated
+   */
+  boolean isReturnsBoolean();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.socialRequest.Query#isReturnsBoolean <em>Returns Boolean</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Returns Boolean</em>' attribute.
+   * @see #isReturnsBoolean()
+   * @generated
+   */
+  void setReturnsBoolean(boolean value);
 
   /**
    * Returns the value of the '<em><b>Params</b></em>' containment reference list.

@@ -87,13 +87,13 @@ enum DataType:
 // Repository
 
 Repository:
-	'Repository' entity=[Entity|FullPackageName] '{'
+	'Repository' name=ID 'on' entity=[Entity|FullPackageName] '{'
 		queries+=Query+
 	'}'
 ;
 
 Query:
-	'query' name=ID(isList?=':' 'list')? ('{'
+	'query' name=ID(returnsList?=':' 'list' | returnsBoolean?=':' 'boolean')? ('{'
 		('params' '{'
 			params+=Param*
 		'}')?
@@ -135,7 +135,7 @@ Where:
 ;
 
 Order:
-	'ORDER BY' '{' order=STRING '}' 
+	'ORDER BY' '{' clause=STRING '}' 
 ;
 
 FullPackageName hidden():

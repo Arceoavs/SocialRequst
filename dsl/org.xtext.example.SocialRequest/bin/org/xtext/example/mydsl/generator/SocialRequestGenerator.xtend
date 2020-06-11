@@ -4,21 +4,29 @@
 package org.xtext.example.mydsl.generator
 
 import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.emf.ecore.EObject
 
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
+import org.eclipse.xtext.naming.IQualifiedNameProvider
+
 import org.xtext.example.mydsl.socialRequest.Entity
 import org.xtext.example.mydsl.socialRequest.Repository
 import org.xtext.example.mydsl.socialRequest.Attribute
-import org.xtext.example.mydsl.socialRequest.EntityTypeReference
 import org.xtext.example.mydsl.socialRequest.Modifier
-import org.xtext.example.mydsl.socialRequest.DataTypeReference
 import org.xtext.example.mydsl.socialRequest.Validation
-import javax.inject.Inject
-import org.eclipse.xtext.naming.IQualifiedNameProvider
-import org.eclipse.emf.ecore.EObject
 import org.xtext.example.mydsl.socialRequest.DataType
+import org.xtext.example.mydsl.socialRequest.EntityTypeReference
+import org.xtext.example.mydsl.socialRequest.Query
+import org.xtext.example.mydsl.socialRequest.SQLQuery
+
+import java.util.HashSet
+
+import javax.inject.Inject
+
+import static extension org.xtext.example.mydsl.util.AttributeUtil.*
+import static extension org.xtext.example.mydsl.util.QueryUtil.*
 
 /**
  * Generates code from your model files on save.
@@ -31,62 +39,70 @@ class SocialRequestGenerator extends AbstractGenerator {
 	@Inject extension IQualifiedNameProvider
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-	
 		for(entity : resource.allContents.toIterable.filter(Entity)) {
 			fsa.generateFile(
 				(entity as EObject).fullyQualifiedName.toString("/")+".java",
-				generateEntity(entity)
+				entity.compile
 			)
 		}
 		
-		for(repo : resource.allContents.toIterable.filter(Repository)) {
-			fsa.generateFile(repo.entity.name+".java", generateQuery(repo))
+		for(repository : resource.allContents.toIterable.filter(Repository)) {
+			fsa.generateFile(
+				(repository as EObject).fullyQualifiedName.toString("/")+".java",
+				repository.compile
+			)
 		}
 	}
 	
-	private def generateEntity(Entity entity)'''
+	/*
+	 * ENTITY GENERATION
+	 */
+	private def compile(Entity entity)'''
 		«IF (entity as EObject).eContainer.fullyQualifiedName !== null»
 			package «(entity as EObject).eContainer.fullyQualifiedName»;
         «ENDIF»
 
-		«IF entity.hasUserDetails»
-		import org.springframework.security.core.GrantedAuthority;
-		import org.springframework.security.core.authority.SimpleGrantedAuthority;
-		import org.springframework.security.core.userdetails.UserDetails;
-
-		import java.util.Collection;
-		import java.util.Collections;
-		«ELSE»
-		import java.io.Serializable;
-		«ENDIF»
-		«IF !entity.attributes.filter[it.association !== null && it.association.endsWith("Many")].empty»
-		import java.util.HashSet;
-		import java.util.Set;
-		«ENDIF»
-		«IF !entity.attributes.filter[rawAttributeType(it) === DataType::DATE.literal].empty»
-		import java.util.Date
-		«ENDIF»
-
-		import javax.persistence.*;
-		import javax.validation.constraints.*;
+		«entity.generateImports»
 
 		public class «entity.name» implements «IF entity.hasUserDetails»UserDetails«ELSE»Serializable«ENDIF» {
 			private static final long serialVersionUID = 1L;
 
 			«FOR attribute : entity.attributes»
-			«generateAttribute(attribute)»
+				«attribute.generateAttributeDeclaration»
 			«ENDFOR»
 			«FOR attribute : entity.attributes»
-			«generateGettersSetters(attribute)»
+				«attribute.generateGettersSetters»
 			«ENDFOR»
 			«IF entity.hasUserDetails»
-			«generateUserDetailsMethods»
+				«generateUserDetailsMethods»
 			«ENDIF»
-			«generateToStringMethod(entity)»
+			«entity.generateToStringMethod»
 		}
 	'''
 	
-	private def generateAttribute(Attribute attribute)'''
+	private def generateImports(Entity entity)'''
+		«IF entity.hasUserDetails»
+			import org.springframework.security.core.GrantedAuthority;
+			import org.springframework.security.core.authority.SimpleGrantedAuthority;
+			import org.springframework.security.core.userdetails.UserDetails;
+
+			import java.util.Collection;
+			import java.util.Collections;
+		«ELSE»
+			import java.io.Serializable;
+		«ENDIF»
+		«IF !entity.attributes.filter[it.association !== null && it.association.endsWith("Many")].empty»
+			import java.util.HashSet;
+			import java.util.Set;
+		«ENDIF»
+		«IF !entity.attributes.filter[it.rawAttributeType === DataType::DATE.literal].empty»
+			import java.util.Date;
+		«ENDIF»
+		import javax.persistence.*;
+		import javax.validation.constraints.*;
+	'''
+	
+	private def generateAttributeDeclaration(Attribute attribute)'''
 		«IF attribute.modifier !== null»
 			«generateAttributeModifier(attribute.modifier)»
 		«ENDIF»
@@ -96,49 +112,32 @@ class SocialRequestGenerator extends AbstractGenerator {
 		«IF attribute.association !== null»
 			«generateAssociationAnnotation(attribute)»
 		«ENDIF»
-		private «attributeType(attribute)» «attribute.name»;
+		private «attribute.attributeType» «attribute.name»;
 
 	'''
 	
 	private def generateGettersSetters(Attribute attribute)'''
 		«IF ((attribute as EObject).eContainer as Entity).hasUserDetails && (attribute.name === "username" || attribute.name === "password")»
-		@Override
+			@Override
 		«ENDIF»
-		public «attributeType(attribute)» get«attribute.name.toFirstUpper»() {
+		public «attribute.attributeType» get«attribute.name.toFirstUpper»() {
 		    return «attribute.name»;
 		}
 
-		public void set«attribute.name.toFirstUpper»(«attributeType(attribute)» «attribute.name») {
+		public void set«attribute.name.toFirstUpper»(«attribute.attributeType» «attribute.name») {
 		    this.«attribute.name» = «attribute.name»;
 		}
 		«IF attribute.association !== null && attribute.association.endsWith("Many")»
 
-		public void add«rawAttributeType(attribute)»(«rawAttributeType(attribute)» «rawAttributeType(attribute).toFirstLower») {
-		    if («attribute.name» == null) {
-		      «attribute.name» = new HashSet<>();
-		    }
-		    «attribute.name».add(«rawAttributeType(attribute).toFirstLower»);
-		}
+			public void add«attribute.rawAttributeType»(«attribute.rawAttributeType» «attribute.rawAttributeType.toFirstLower») {
+			    if («attribute.name» == null) {
+			      «attribute.name» = new HashSet<>();
+			    }
+			    «attribute.name».add(«attribute.rawAttributeType.toFirstLower»);
+			}
 	 	«ENDIF»
 
 	'''
-
-	
-	private def attributeType(Attribute attribute) {
-		if (attribute.association !== null && attribute.association.endsWith("Many")) {
-			"Set<" + rawAttributeType(attribute) + ">"
-		} else {
-			rawAttributeType(attribute)
-		}
-	}
-	
-	private def rawAttributeType(Attribute attribute) {
-		if (attribute.typeRef instanceof EntityTypeReference) {
-			(attribute.typeRef as EntityTypeReference).type.name.toString
-		} else {
-			(attribute.typeRef as DataTypeReference).type.toString
-		}
-	}
 	
 	private def generateValidation(Validation validation) {
 		if (validation.validator !== null) {
@@ -180,30 +179,30 @@ class SocialRequestGenerator extends AbstractGenerator {
 	'''
 	
 	private def generateUserDetailsMethods()'''
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
-	}
+		@Override
+		public Collection<? extends GrantedAuthority> getAuthorities() {
+			return Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
+		}
 
-	@Override
-	public boolean isAccountNonExpired() {
-		return true;
-	}
+		@Override
+		public boolean isAccountNonExpired() {
+			return true;
+		}
 
-	@Override
-	public boolean isAccountNonLocked() {
-		return true;
-	}
+		@Override
+		public boolean isAccountNonLocked() {
+			return true;
+		}
 
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
+		@Override
+		public boolean isCredentialsNonExpired() {
+			return true;
+		}
 
-	@Override
-	public boolean isEnabled() {
-		return true;
-	}
+		@Override
+		public boolean isEnabled() {
+			return true;
+		}
 
 	'''
 	
@@ -213,14 +212,104 @@ class SocialRequestGenerator extends AbstractGenerator {
 			return (
 				"«entity.name»{" +
 				«FOR attribute : entity.attributes.filter[it.association === null && (it.modifier === null || !it.modifier.isTransient)]»
-				"«attribute.name»='" + «attribute.name» + '\'' +
+					"«attribute.name»='" + «attribute.name» + '\'' +
 				«ENDFOR»
 				'}'
 			);
 		}
 	'''
 	
-	private def generateQuery(Repository r)'''
-	
+	/*
+	 * REPOSITORY GENERATION
+	 */
+	private def compile(Repository repository)'''
+		«IF (repository as EObject).eContainer.fullyQualifiedName !== null»
+			package «(repository as EObject).eContainer.fullyQualifiedName»;
+        «ENDIF»
+
+		«repository.generateImports»
+		
+		public interface RequestRepository extends JpaRepository<Request, Long> {
+			«FOR query : repository.queries»
+				«query.compile»
+			«ENDFOR»
+		}
 	'''
+	
+	private def generateImports(Repository repository)'''
+		import org.springframework.data.jpa.repository.JpaRepository;
+		«IF !repository.queries.filter[it.sqlQuery !== null].empty»
+			import org.springframework.data.jpa.repository.Query;
+		«ENDIF»
+		«IF !repository.queries.filter[it.params !== null].empty»
+			import org.springframework.data.repository.query.Param;
+		«ENDIF»
+		
+		«IF !repository.queries.filter[it.returnsList].empty»
+			import java.util.List;
+		«ENDIF»
+		«IF !repository.queryParams.filter[it.rawAttributeType === DataType::DATE.literal].empty»
+			import java.util.Date;
+		«ENDIF»
+		
+		«IF (repository.entity as EObject).eContainer.fullyQualifiedName !== null»
+			import «(repository.entity as EObject).eContainer.fullyQualifiedName».«repository.entity.name»;
+		«ENDIF»
+		«IF !repository.queryParams.filter[it.type instanceof EntityTypeReference].empty»
+			«FOR entity : repository.getUniqueEntityTypesFromParams»
+				«IF (entity as EObject).eContainer.fullyQualifiedName !== null»
+					import «(entity as EObject).eContainer.fullyQualifiedName».«entity.name»;
+				«ENDIF»
+			«ENDFOR»
+		«ENDIF»
+	'''
+	
+	private def compile(Query query)'''
+		«IF query.sqlQuery !== null»
+			«query.sqlQuery.generateJpqlQuery»
+		«ENDIF»
+		«query.returnType» «query.name»(«query.generateParams»);
+
+	'''
+	
+	private def generateJpqlQuery(SQLQuery sqlQuery)'''
+		@Query(
+			«sqlQuery.generateJPQL»
+		)
+	'''
+	
+	private def getQueryParams(Repository repository) {
+		repository.queries.map[it.params].filter[it !== null].flatten
+	}
+	
+	
+	private def getUniqueEntityTypesFromParams(Repository repository) {
+		var Entity[] entitiesFromParams = repository.queryParams.filter[it.type instanceof EntityTypeReference].map[(it.type as EntityTypeReference).type]
+		new HashSet(entitiesFromParams)
+	}
+	
+	private def getReturnType(Query query) {
+		if (query.returnsList) {
+			"List<" + ((query as EObject).eContainer as Repository).entity.name + ">"
+		} else if (query.returnsBoolean) {
+			"boolean"
+		} else {
+			((query as EObject).eContainer as Repository).entity.name
+		}
+	}
+	
+	private def generateParams(Query query) {
+		if (query.params === null) return '';
+		
+		query.params.map[param |
+			var paramDeclaration = '''«param.rawAttributeType» «param.name»'''
+			
+			if (query.sqlQuery === null) {
+				paramDeclaration
+			} else {
+				'''@Param("«param.name»") «paramDeclaration»'''
+			}
+		].join(', ')
+	}
+
 }

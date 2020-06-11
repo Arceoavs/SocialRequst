@@ -1001,13 +1001,35 @@ ruleRepository returns [EObject current=null]
 		}
 		(
 			(
+				lv_name_1_0=RULE_ID
+				{
+					newLeafNode(lv_name_1_0, grammarAccess.getRepositoryAccess().getNameIDTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getRepositoryRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_1_0,
+						"org.eclipse.xtext.common.Terminals.ID");
+				}
+			)
+		)
+		otherlv_2='on'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getRepositoryAccess().getOnKeyword_2());
+		}
+		(
+			(
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getRepositoryRule());
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getRepositoryAccess().getEntityEntityCrossReference_1_0());
+					newCompositeNode(grammarAccess.getRepositoryAccess().getEntityEntityCrossReference_3_0());
 				}
 				ruleFullPackageName
 				{
@@ -1015,16 +1037,16 @@ ruleRepository returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_2='{'
+		otherlv_4='{'
 		{
-			newLeafNode(otherlv_2, grammarAccess.getRepositoryAccess().getLeftCurlyBracketKeyword_2());
+			newLeafNode(otherlv_4, grammarAccess.getRepositoryAccess().getLeftCurlyBracketKeyword_4());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getRepositoryAccess().getQueriesQueryParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getRepositoryAccess().getQueriesQueryParserRuleCall_5_0());
 				}
-				lv_queries_3_0=ruleQuery
+				lv_queries_5_0=ruleQuery
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getRepositoryRule());
@@ -1032,15 +1054,15 @@ ruleRepository returns [EObject current=null]
 					add(
 						$current,
 						"queries",
-						lv_queries_3_0,
+						lv_queries_5_0,
 						"org.xtext.example.mydsl.SocialRequest.Query");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)+
-		otherlv_4='}'
+		otherlv_6='}'
 		{
-			newLeafNode(otherlv_4, grammarAccess.getRepositoryAccess().getRightCurlyBracketKeyword_4());
+			newLeafNode(otherlv_6, grammarAccess.getRepositoryAccess().getRightCurlyBracketKeyword_6());
 		}
 	)
 ;
@@ -1086,43 +1108,66 @@ ruleQuery returns [EObject current=null]
 		(
 			(
 				(
-					lv_isList_2_0=':'
-					{
-						newLeafNode(lv_isList_2_0, grammarAccess.getQueryAccess().getIsListColonKeyword_2_0_0());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getQueryRule());
+					(
+						lv_returnsList_2_0=':'
+						{
+							newLeafNode(lv_returnsList_2_0, grammarAccess.getQueryAccess().getReturnsListColonKeyword_2_0_0_0());
 						}
-						setWithLastConsumed($current, "isList", true, ":");
-					}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getQueryRule());
+							}
+							setWithLastConsumed($current, "returnsList", true, ":");
+						}
+					)
 				)
+				otherlv_3='list'
+				{
+					newLeafNode(otherlv_3, grammarAccess.getQueryAccess().getListKeyword_2_0_1());
+				}
 			)
-			otherlv_3='list'
-			{
-				newLeafNode(otherlv_3, grammarAccess.getQueryAccess().getListKeyword_2_1());
-			}
+			    |
+			(
+				(
+					(
+						lv_returnsBoolean_4_0=':'
+						{
+							newLeafNode(lv_returnsBoolean_4_0, grammarAccess.getQueryAccess().getReturnsBooleanColonKeyword_2_1_0_0());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getQueryRule());
+							}
+							setWithLastConsumed($current, "returnsBoolean", true, ":");
+						}
+					)
+				)
+				otherlv_5='boolean'
+				{
+					newLeafNode(otherlv_5, grammarAccess.getQueryAccess().getBooleanKeyword_2_1_1());
+				}
+			)
 		)?
 		(
-			otherlv_4='{'
+			otherlv_6='{'
 			{
-				newLeafNode(otherlv_4, grammarAccess.getQueryAccess().getLeftCurlyBracketKeyword_3_0());
+				newLeafNode(otherlv_6, grammarAccess.getQueryAccess().getLeftCurlyBracketKeyword_3_0());
 			}
 			(
-				otherlv_5='params'
+				otherlv_7='params'
 				{
-					newLeafNode(otherlv_5, grammarAccess.getQueryAccess().getParamsKeyword_3_1_0());
+					newLeafNode(otherlv_7, grammarAccess.getQueryAccess().getParamsKeyword_3_1_0());
 				}
-				otherlv_6='{'
+				otherlv_8='{'
 				{
-					newLeafNode(otherlv_6, grammarAccess.getQueryAccess().getLeftCurlyBracketKeyword_3_1_1());
+					newLeafNode(otherlv_8, grammarAccess.getQueryAccess().getLeftCurlyBracketKeyword_3_1_1());
 				}
 				(
 					(
 						{
 							newCompositeNode(grammarAccess.getQueryAccess().getParamsParamParserRuleCall_3_1_2_0());
 						}
-						lv_params_7_0=ruleParam
+						lv_params_9_0=ruleParam
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getQueryRule());
@@ -1130,15 +1175,15 @@ ruleQuery returns [EObject current=null]
 							add(
 								$current,
 								"params",
-								lv_params_7_0,
+								lv_params_9_0,
 								"org.xtext.example.mydsl.SocialRequest.Param");
 							afterParserOrEnumRuleCall();
 						}
 					)
 				)*
-				otherlv_8='}'
+				otherlv_10='}'
 				{
-					newLeafNode(otherlv_8, grammarAccess.getQueryAccess().getRightCurlyBracketKeyword_3_1_3());
+					newLeafNode(otherlv_10, grammarAccess.getQueryAccess().getRightCurlyBracketKeyword_3_1_3());
 				}
 			)?
 			(
@@ -1146,7 +1191,7 @@ ruleQuery returns [EObject current=null]
 					{
 						newCompositeNode(grammarAccess.getQueryAccess().getSqlQuerySQLQueryParserRuleCall_3_2_0());
 					}
-					lv_sqlQuery_9_0=ruleSQLQuery
+					lv_sqlQuery_11_0=ruleSQLQuery
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getQueryRule());
@@ -1154,15 +1199,15 @@ ruleQuery returns [EObject current=null]
 						set(
 							$current,
 							"sqlQuery",
-							lv_sqlQuery_9_0,
+							lv_sqlQuery_11_0,
 							"org.xtext.example.mydsl.SocialRequest.SQLQuery");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)?
-			otherlv_10='}'
+			otherlv_12='}'
 			{
-				newLeafNode(otherlv_10, grammarAccess.getQueryAccess().getRightCurlyBracketKeyword_3_3());
+				newLeafNode(otherlv_12, grammarAccess.getQueryAccess().getRightCurlyBracketKeyword_3_3());
 			}
 		)?
 	)
@@ -1657,9 +1702,9 @@ ruleOrder returns [EObject current=null]
 		}
 		(
 			(
-				lv_order_2_0=RULE_STRING
+				lv_clause_2_0=RULE_STRING
 				{
-					newLeafNode(lv_order_2_0, grammarAccess.getOrderAccess().getOrderSTRINGTerminalRuleCall_2_0());
+					newLeafNode(lv_clause_2_0, grammarAccess.getOrderAccess().getClauseSTRINGTerminalRuleCall_2_0());
 				}
 				{
 					if ($current==null) {
@@ -1667,8 +1712,8 @@ ruleOrder returns [EObject current=null]
 					}
 					setWithLastConsumed(
 						$current,
-						"order",
-						lv_order_2_0,
+						"clause",
+						lv_clause_2_0,
 						"org.eclipse.xtext.common.Terminals.STRING");
 				}
 			)

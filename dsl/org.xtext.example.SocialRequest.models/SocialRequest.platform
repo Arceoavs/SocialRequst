@@ -147,7 +147,7 @@ package de.wwu.acse2020.socialrequest.data {
 		}
 	}
 	package repo {
-		Repository model.Request {
+		Repository RequestRepository on model.Request {
 			query findAllByFulfillmentIsNullOrderByCreatedAtDesc: list
 
 			query findAllByUserOrderByCreatedAtDesc: list {

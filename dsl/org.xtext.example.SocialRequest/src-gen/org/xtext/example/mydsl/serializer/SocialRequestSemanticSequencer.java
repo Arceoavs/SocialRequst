@@ -228,15 +228,15 @@ public class SocialRequestSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *     Order returns Order
 	 *
 	 * Constraint:
-	 *     order=STRING
+	 *     clause=STRING
 	 */
 	protected void sequence_Order(ISerializationContext context, Order semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SocialRequestPackage.Literals.ORDER__ORDER) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SocialRequestPackage.Literals.ORDER__ORDER));
+			if (transientValues.isValueTransient(semanticObject, SocialRequestPackage.Literals.ORDER__CLAUSE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SocialRequestPackage.Literals.ORDER__CLAUSE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getOrderAccess().getOrderSTRINGTerminalRuleCall_2_0(), semanticObject.getOrder());
+		feeder.accept(grammarAccess.getOrderAccess().getClauseSTRINGTerminalRuleCall_2_0(), semanticObject.getClause());
 		feeder.finish();
 	}
 	
@@ -280,7 +280,7 @@ public class SocialRequestSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *     Query returns Query
 	 *
 	 * Constraint:
-	 *     (name=ID isList?=':'? params+=Param* sqlQuery=SQLQuery?)
+	 *     (name=ID (returnsList?=':' | returnsBoolean?=':')? params+=Param* sqlQuery=SQLQuery?)
 	 */
 	protected void sequence_Query(ISerializationContext context, Query semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -293,7 +293,7 @@ public class SocialRequestSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *     Repository returns Repository
 	 *
 	 * Constraint:
-	 *     (entity=[Entity|FullPackageName] queries+=Query+)
+	 *     (name=ID entity=[Entity|FullPackageName] queries+=Query+)
 	 */
 	protected void sequence_Repository(ISerializationContext context, Repository semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

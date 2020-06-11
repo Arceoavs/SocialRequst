@@ -21,7 +21,7 @@ import org.xtext.example.mydsl.socialRequest.SocialRequestPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.socialRequest.impl.OrderImpl#getOrder <em>Order</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.socialRequest.impl.OrderImpl#getClause <em>Clause</em>}</li>
  * </ul>
  *
  * @generated
@@ -29,24 +29,24 @@ import org.xtext.example.mydsl.socialRequest.SocialRequestPackage;
 public class OrderImpl extends MinimalEObjectImpl.Container implements Order
 {
   /**
-   * The default value of the '{@link #getOrder() <em>Order</em>}' attribute.
+   * The default value of the '{@link #getClause() <em>Clause</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getOrder()
+   * @see #getClause()
    * @generated
    * @ordered
    */
-  protected static final String ORDER_EDEFAULT = null;
+  protected static final String CLAUSE_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getOrder() <em>Order</em>}' attribute.
+   * The cached value of the '{@link #getClause() <em>Clause</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getOrder()
+   * @see #getClause()
    * @generated
    * @ordered
    */
-  protected String order = ORDER_EDEFAULT;
+  protected String clause = CLAUSE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -75,9 +75,9 @@ public class OrderImpl extends MinimalEObjectImpl.Container implements Order
    * @generated
    */
   @Override
-  public String getOrder()
+  public String getClause()
   {
-    return order;
+    return clause;
   }
 
   /**
@@ -86,12 +86,12 @@ public class OrderImpl extends MinimalEObjectImpl.Container implements Order
    * @generated
    */
   @Override
-  public void setOrder(String newOrder)
+  public void setClause(String newClause)
   {
-    String oldOrder = order;
-    order = newOrder;
+    String oldClause = clause;
+    clause = newClause;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, SocialRequestPackage.ORDER__ORDER, oldOrder, order));
+      eNotify(new ENotificationImpl(this, Notification.SET, SocialRequestPackage.ORDER__CLAUSE, oldClause, clause));
   }
 
   /**
@@ -104,8 +104,8 @@ public class OrderImpl extends MinimalEObjectImpl.Container implements Order
   {
     switch (featureID)
     {
-      case SocialRequestPackage.ORDER__ORDER:
-        return getOrder();
+      case SocialRequestPackage.ORDER__CLAUSE:
+        return getClause();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -120,8 +120,8 @@ public class OrderImpl extends MinimalEObjectImpl.Container implements Order
   {
     switch (featureID)
     {
-      case SocialRequestPackage.ORDER__ORDER:
-        setOrder((String)newValue);
+      case SocialRequestPackage.ORDER__CLAUSE:
+        setClause((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -137,8 +137,8 @@ public class OrderImpl extends MinimalEObjectImpl.Container implements Order
   {
     switch (featureID)
     {
-      case SocialRequestPackage.ORDER__ORDER:
-        setOrder(ORDER_EDEFAULT);
+      case SocialRequestPackage.ORDER__CLAUSE:
+        setClause(CLAUSE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -154,8 +154,8 @@ public class OrderImpl extends MinimalEObjectImpl.Container implements Order
   {
     switch (featureID)
     {
-      case SocialRequestPackage.ORDER__ORDER:
-        return ORDER_EDEFAULT == null ? order != null : !ORDER_EDEFAULT.equals(order);
+      case SocialRequestPackage.ORDER__CLAUSE:
+        return CLAUSE_EDEFAULT == null ? clause != null : !CLAUSE_EDEFAULT.equals(clause);
     }
     return super.eIsSet(featureID);
   }
@@ -171,8 +171,8 @@ public class OrderImpl extends MinimalEObjectImpl.Container implements Order
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (order: ");
-    result.append(order);
+    result.append(" (clause: ");
+    result.append(clause);
     result.append(')');
     return result.toString();
   }

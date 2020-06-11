@@ -37,6 +37,7 @@ public class SocialRequestParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getValidationAccess().getAlternatives(), "rule__Validation__Alternatives");
 			builder.put(grammarAccess.getBASICVALIDATIONAccess().getAlternatives(), "rule__BASICVALIDATION__Alternatives");
 			builder.put(grammarAccess.getASSOCIATIONAccess().getAlternatives(), "rule__ASSOCIATION__Alternatives");
+			builder.put(grammarAccess.getQueryAccess().getAlternatives_2(), "rule__Query__Alternatives_2");
 			builder.put(grammarAccess.getDataTypeAccess().getAlternatives(), "rule__DataType__Alternatives");
 			builder.put(grammarAccess.getJoinTypeAccess().getAlternatives(), "rule__JoinType__Alternatives");
 			builder.put(grammarAccess.getPackageAccess().getGroup(), "rule__Package__Group__0");
@@ -56,7 +57,8 @@ public class SocialRequestParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getValidationAccess().getGroup_2(), "rule__Validation__Group_2__0");
 			builder.put(grammarAccess.getRepositoryAccess().getGroup(), "rule__Repository__Group__0");
 			builder.put(grammarAccess.getQueryAccess().getGroup(), "rule__Query__Group__0");
-			builder.put(grammarAccess.getQueryAccess().getGroup_2(), "rule__Query__Group_2__0");
+			builder.put(grammarAccess.getQueryAccess().getGroup_2_0(), "rule__Query__Group_2_0__0");
+			builder.put(grammarAccess.getQueryAccess().getGroup_2_1(), "rule__Query__Group_2_1__0");
 			builder.put(grammarAccess.getQueryAccess().getGroup_3(), "rule__Query__Group_3__0");
 			builder.put(grammarAccess.getQueryAccess().getGroup_3_1(), "rule__Query__Group_3_1__0");
 			builder.put(grammarAccess.getParamAccess().getGroup(), "rule__Param__Group__0");
@@ -93,10 +95,12 @@ public class SocialRequestParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getValidationAccess().getRegexAssignment_2_1(), "rule__Validation__RegexAssignment_2_1");
 			builder.put(grammarAccess.getValidationAccess().getValidatorAssignment_3(), "rule__Validation__ValidatorAssignment_3");
 			builder.put(grammarAccess.getValidationAccess().getUniqueAssignment_4(), "rule__Validation__UniqueAssignment_4");
-			builder.put(grammarAccess.getRepositoryAccess().getEntityAssignment_1(), "rule__Repository__EntityAssignment_1");
-			builder.put(grammarAccess.getRepositoryAccess().getQueriesAssignment_3(), "rule__Repository__QueriesAssignment_3");
+			builder.put(grammarAccess.getRepositoryAccess().getNameAssignment_1(), "rule__Repository__NameAssignment_1");
+			builder.put(grammarAccess.getRepositoryAccess().getEntityAssignment_3(), "rule__Repository__EntityAssignment_3");
+			builder.put(grammarAccess.getRepositoryAccess().getQueriesAssignment_5(), "rule__Repository__QueriesAssignment_5");
 			builder.put(grammarAccess.getQueryAccess().getNameAssignment_1(), "rule__Query__NameAssignment_1");
-			builder.put(grammarAccess.getQueryAccess().getIsListAssignment_2_0(), "rule__Query__IsListAssignment_2_0");
+			builder.put(grammarAccess.getQueryAccess().getReturnsListAssignment_2_0_0(), "rule__Query__ReturnsListAssignment_2_0_0");
+			builder.put(grammarAccess.getQueryAccess().getReturnsBooleanAssignment_2_1_0(), "rule__Query__ReturnsBooleanAssignment_2_1_0");
 			builder.put(grammarAccess.getQueryAccess().getParamsAssignment_3_1_2(), "rule__Query__ParamsAssignment_3_1_2");
 			builder.put(grammarAccess.getQueryAccess().getSqlQueryAssignment_3_2(), "rule__Query__SqlQueryAssignment_3_2");
 			builder.put(grammarAccess.getParamAccess().getNameAssignment_0(), "rule__Param__NameAssignment_0");
@@ -115,7 +119,7 @@ public class SocialRequestParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getJoinAccess().getAliasAssignment_3(), "rule__Join__AliasAssignment_3");
 			builder.put(grammarAccess.getJoinAccess().getJoinConditionAssignment_5_2(), "rule__Join__JoinConditionAssignment_5_2");
 			builder.put(grammarAccess.getWhereAccess().getConditionAssignment_2(), "rule__Where__ConditionAssignment_2");
-			builder.put(grammarAccess.getOrderAccess().getOrderAssignment_2(), "rule__Order__OrderAssignment_2");
+			builder.put(grammarAccess.getOrderAccess().getClauseAssignment_2(), "rule__Order__ClauseAssignment_2");
 			builder.put(grammarAccess.getAttributeAccess().getUnorderedGroup_5_1(), "rule__Attribute__UnorderedGroup_5_1");
 		}
 	}

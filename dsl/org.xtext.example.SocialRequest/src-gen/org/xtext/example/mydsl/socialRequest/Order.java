@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.socialRequest.Order#getOrder <em>Order</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.socialRequest.Order#getClause <em>Clause</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.mydsl.socialRequest.SocialRequestPackage#getOrder()
@@ -24,25 +24,25 @@ import org.eclipse.emf.ecore.EObject;
 public interface Order extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Order</b></em>' attribute.
+   * Returns the value of the '<em><b>Clause</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Order</em>' attribute.
-   * @see #setOrder(String)
-   * @see org.xtext.example.mydsl.socialRequest.SocialRequestPackage#getOrder_Order()
+   * @return the value of the '<em>Clause</em>' attribute.
+   * @see #setClause(String)
+   * @see org.xtext.example.mydsl.socialRequest.SocialRequestPackage#getOrder_Clause()
    * @model
    * @generated
    */
-  String getOrder();
+  String getClause();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.socialRequest.Order#getOrder <em>Order</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.example.mydsl.socialRequest.Order#getClause <em>Clause</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Order</em>' attribute.
-   * @see #getOrder()
+   * @param value the new value of the '<em>Clause</em>' attribute.
+   * @see #getClause()
    * @generated
    */
-  void setOrder(String value);
+  void setClause(String value);
 
 } // Order

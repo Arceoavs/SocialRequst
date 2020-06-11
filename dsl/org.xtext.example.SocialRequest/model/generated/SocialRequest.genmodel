@@ -25,13 +25,13 @@
     <genClasses ecoreClass="SocialRequest.ecore#//Model">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocialRequest.ecore#//Model/elements"/>
     </genClasses>
-    <genClasses ecoreClass="SocialRequest.ecore#//AbstractElement"/>
+    <genClasses ecoreClass="SocialRequest.ecore#//AbstractElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//AbstractElement/name"/>
+    </genClasses>
     <genClasses ecoreClass="SocialRequest.ecore#//Package">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Package/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocialRequest.ecore#//Package/elements"/>
     </genClasses>
     <genClasses ecoreClass="SocialRequest.ecore#//Entity">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Entity/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Entity/hasUserDetails"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocialRequest.ecore#//Entity/attributes"/>
     </genClasses>
@@ -70,7 +70,8 @@
     </genClasses>
     <genClasses ecoreClass="SocialRequest.ecore#//Query">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Query/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Query/isList"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Query/returnsList"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Query/returnsBoolean"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocialRequest.ecore#//Query/params"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocialRequest.ecore#//Query/sqlQuery"/>
     </genClasses>
@@ -103,7 +104,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Where/condition"/>
     </genClasses>
     <genClasses ecoreClass="SocialRequest.ecore#//Order">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Order/order"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocialRequest.ecore#//Order/clause"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

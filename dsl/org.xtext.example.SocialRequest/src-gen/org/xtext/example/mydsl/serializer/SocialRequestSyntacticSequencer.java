@@ -87,8 +87,9 @@ public class SocialRequestSyntacticSequencer extends AbstractSyntacticSequencer 
 	 *     ('{' ('params' '{' '}')? '}')?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     isList?=':' 'list' (ambiguity) (rule end)
 	 *     name=ID (ambiguity) (rule end)
+	 *     returnsBoolean?=':' 'boolean' (ambiguity) (rule end)
+	 *     returnsList?=':' 'list' (ambiguity) (rule end)
 	 */
 	protected void emit_Query___LeftCurlyBracketKeyword_3_0___ParamsKeyword_3_1_0_LeftCurlyBracketKeyword_3_1_1_RightCurlyBracketKeyword_3_1_3__q_RightCurlyBracketKeyword_3_3__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -99,8 +100,9 @@ public class SocialRequestSyntacticSequencer extends AbstractSyntacticSequencer 
 	 *     ('params' '{' '}')?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     isList?=':' 'list' '{' (ambiguity) sqlQuery=SQLQuery
 	 *     name=ID '{' (ambiguity) sqlQuery=SQLQuery
+	 *     returnsBoolean?=':' 'boolean' '{' (ambiguity) sqlQuery=SQLQuery
+	 *     returnsList?=':' 'list' '{' (ambiguity) sqlQuery=SQLQuery
 	 */
 	protected void emit_Query___ParamsKeyword_3_1_0_LeftCurlyBracketKeyword_3_1_1_RightCurlyBracketKeyword_3_1_3__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

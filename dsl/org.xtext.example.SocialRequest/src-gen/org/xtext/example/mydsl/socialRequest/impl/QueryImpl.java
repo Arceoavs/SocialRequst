@@ -33,7 +33,8 @@ import org.xtext.example.mydsl.socialRequest.SocialRequestPackage;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.socialRequest.impl.QueryImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.socialRequest.impl.QueryImpl#isIsList <em>Is List</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.socialRequest.impl.QueryImpl#isReturnsList <em>Returns List</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.socialRequest.impl.QueryImpl#isReturnsBoolean <em>Returns Boolean</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.socialRequest.impl.QueryImpl#getParams <em>Params</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.socialRequest.impl.QueryImpl#getSqlQuery <em>Sql Query</em>}</li>
  * </ul>
@@ -63,24 +64,44 @@ public class QueryImpl extends MinimalEObjectImpl.Container implements Query
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The default value of the '{@link #isIsList() <em>Is List</em>}' attribute.
+   * The default value of the '{@link #isReturnsList() <em>Returns List</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isIsList()
+   * @see #isReturnsList()
    * @generated
    * @ordered
    */
-  protected static final boolean IS_LIST_EDEFAULT = false;
+  protected static final boolean RETURNS_LIST_EDEFAULT = false;
 
   /**
-   * The cached value of the '{@link #isIsList() <em>Is List</em>}' attribute.
+   * The cached value of the '{@link #isReturnsList() <em>Returns List</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isIsList()
+   * @see #isReturnsList()
    * @generated
    * @ordered
    */
-  protected boolean isList = IS_LIST_EDEFAULT;
+  protected boolean returnsList = RETURNS_LIST_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #isReturnsBoolean() <em>Returns Boolean</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isReturnsBoolean()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean RETURNS_BOOLEAN_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isReturnsBoolean() <em>Returns Boolean</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isReturnsBoolean()
+   * @generated
+   * @ordered
+   */
+  protected boolean returnsBoolean = RETURNS_BOOLEAN_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getParams() <em>Params</em>}' containment reference list.
@@ -154,9 +175,9 @@ public class QueryImpl extends MinimalEObjectImpl.Container implements Query
    * @generated
    */
   @Override
-  public boolean isIsList()
+  public boolean isReturnsList()
   {
-    return isList;
+    return returnsList;
   }
 
   /**
@@ -165,12 +186,37 @@ public class QueryImpl extends MinimalEObjectImpl.Container implements Query
    * @generated
    */
   @Override
-  public void setIsList(boolean newIsList)
+  public void setReturnsList(boolean newReturnsList)
   {
-    boolean oldIsList = isList;
-    isList = newIsList;
+    boolean oldReturnsList = returnsList;
+    returnsList = newReturnsList;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, SocialRequestPackage.QUERY__IS_LIST, oldIsList, isList));
+      eNotify(new ENotificationImpl(this, Notification.SET, SocialRequestPackage.QUERY__RETURNS_LIST, oldReturnsList, returnsList));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean isReturnsBoolean()
+  {
+    return returnsBoolean;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setReturnsBoolean(boolean newReturnsBoolean)
+  {
+    boolean oldReturnsBoolean = returnsBoolean;
+    returnsBoolean = newReturnsBoolean;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, SocialRequestPackage.QUERY__RETURNS_BOOLEAN, oldReturnsBoolean, returnsBoolean));
   }
 
   /**
@@ -268,8 +314,10 @@ public class QueryImpl extends MinimalEObjectImpl.Container implements Query
     {
       case SocialRequestPackage.QUERY__NAME:
         return getName();
-      case SocialRequestPackage.QUERY__IS_LIST:
-        return isIsList();
+      case SocialRequestPackage.QUERY__RETURNS_LIST:
+        return isReturnsList();
+      case SocialRequestPackage.QUERY__RETURNS_BOOLEAN:
+        return isReturnsBoolean();
       case SocialRequestPackage.QUERY__PARAMS:
         return getParams();
       case SocialRequestPackage.QUERY__SQL_QUERY:
@@ -292,8 +340,11 @@ public class QueryImpl extends MinimalEObjectImpl.Container implements Query
       case SocialRequestPackage.QUERY__NAME:
         setName((String)newValue);
         return;
-      case SocialRequestPackage.QUERY__IS_LIST:
-        setIsList((Boolean)newValue);
+      case SocialRequestPackage.QUERY__RETURNS_LIST:
+        setReturnsList((Boolean)newValue);
+        return;
+      case SocialRequestPackage.QUERY__RETURNS_BOOLEAN:
+        setReturnsBoolean((Boolean)newValue);
         return;
       case SocialRequestPackage.QUERY__PARAMS:
         getParams().clear();
@@ -319,8 +370,11 @@ public class QueryImpl extends MinimalEObjectImpl.Container implements Query
       case SocialRequestPackage.QUERY__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case SocialRequestPackage.QUERY__IS_LIST:
-        setIsList(IS_LIST_EDEFAULT);
+      case SocialRequestPackage.QUERY__RETURNS_LIST:
+        setReturnsList(RETURNS_LIST_EDEFAULT);
+        return;
+      case SocialRequestPackage.QUERY__RETURNS_BOOLEAN:
+        setReturnsBoolean(RETURNS_BOOLEAN_EDEFAULT);
         return;
       case SocialRequestPackage.QUERY__PARAMS:
         getParams().clear();
@@ -344,8 +398,10 @@ public class QueryImpl extends MinimalEObjectImpl.Container implements Query
     {
       case SocialRequestPackage.QUERY__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case SocialRequestPackage.QUERY__IS_LIST:
-        return isList != IS_LIST_EDEFAULT;
+      case SocialRequestPackage.QUERY__RETURNS_LIST:
+        return returnsList != RETURNS_LIST_EDEFAULT;
+      case SocialRequestPackage.QUERY__RETURNS_BOOLEAN:
+        return returnsBoolean != RETURNS_BOOLEAN_EDEFAULT;
       case SocialRequestPackage.QUERY__PARAMS:
         return params != null && !params.isEmpty();
       case SocialRequestPackage.QUERY__SQL_QUERY:
@@ -367,8 +423,10 @@ public class QueryImpl extends MinimalEObjectImpl.Container implements Query
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (name: ");
     result.append(name);
-    result.append(", isList: ");
-    result.append(isList);
+    result.append(", returnsList: ");
+    result.append(returnsList);
+    result.append(", returnsBoolean: ");
+    result.append(returnsBoolean);
     result.append(')');
     return result.toString();
   }

@@ -291,6 +291,17 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
    * @generated
    */
   @Override
+  public EAttribute getAbstractElement_Name()
+  {
+    return (EAttribute)abstractElementEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getPackage()
   {
     return packageEClass;
@@ -302,20 +313,9 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
    * @generated
    */
   @Override
-  public EAttribute getPackage_Name()
-  {
-    return (EAttribute)packageEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EReference getPackage_Elements()
   {
-    return (EReference)packageEClass.getEStructuralFeatures().get(1);
+    return (EReference)packageEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -335,7 +335,7 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
    * @generated
    */
   @Override
-  public EAttribute getEntity_Name()
+  public EAttribute getEntity_HasUserDetails()
   {
     return (EAttribute)entityEClass.getEStructuralFeatures().get(0);
   }
@@ -346,20 +346,9 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
    * @generated
    */
   @Override
-  public EAttribute getEntity_HasUserDetails()
-  {
-    return (EAttribute)entityEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EReference getEntity_Attributes()
   {
-    return (EReference)entityEClass.getEStructuralFeatures().get(2);
+    return (EReference)entityEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -687,7 +676,7 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
    * @generated
    */
   @Override
-  public EAttribute getQuery_IsList()
+  public EAttribute getQuery_ReturnsList()
   {
     return (EAttribute)queryEClass.getEStructuralFeatures().get(1);
   }
@@ -698,9 +687,20 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
    * @generated
    */
   @Override
+  public EAttribute getQuery_ReturnsBoolean()
+  {
+    return (EAttribute)queryEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EReference getQuery_Params()
   {
-    return (EReference)queryEClass.getEStructuralFeatures().get(2);
+    return (EReference)queryEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -711,7 +711,7 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
   @Override
   public EReference getQuery_SqlQuery()
   {
-    return (EReference)queryEClass.getEStructuralFeatures().get(3);
+    return (EReference)queryEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -973,7 +973,7 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
    * @generated
    */
   @Override
-  public EAttribute getOrder_Order()
+  public EAttribute getOrder_Clause()
   {
     return (EAttribute)orderEClass.getEStructuralFeatures().get(0);
   }
@@ -1035,13 +1035,12 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
     createEReference(modelEClass, MODEL__ELEMENTS);
 
     abstractElementEClass = createEClass(ABSTRACT_ELEMENT);
+    createEAttribute(abstractElementEClass, ABSTRACT_ELEMENT__NAME);
 
     packageEClass = createEClass(PACKAGE);
-    createEAttribute(packageEClass, PACKAGE__NAME);
     createEReference(packageEClass, PACKAGE__ELEMENTS);
 
     entityEClass = createEClass(ENTITY);
-    createEAttribute(entityEClass, ENTITY__NAME);
     createEAttribute(entityEClass, ENTITY__HAS_USER_DETAILS);
     createEReference(entityEClass, ENTITY__ATTRIBUTES);
 
@@ -1081,7 +1080,8 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
 
     queryEClass = createEClass(QUERY);
     createEAttribute(queryEClass, QUERY__NAME);
-    createEAttribute(queryEClass, QUERY__IS_LIST);
+    createEAttribute(queryEClass, QUERY__RETURNS_LIST);
+    createEAttribute(queryEClass, QUERY__RETURNS_BOOLEAN);
     createEReference(queryEClass, QUERY__PARAMS);
     createEReference(queryEClass, QUERY__SQL_QUERY);
 
@@ -1114,7 +1114,7 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
     createEAttribute(whereEClass, WHERE__CONDITION);
 
     orderEClass = createEClass(ORDER);
-    createEAttribute(orderEClass, ORDER__ORDER);
+    createEAttribute(orderEClass, ORDER__CLAUSE);
 
     // Create enums
     dataTypeEEnum = createEEnum(DATA_TYPE);
@@ -1161,13 +1161,12 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
     initEReference(getModel_Elements(), this.getAbstractElement(), null, "elements", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(abstractElementEClass, AbstractElement.class, "AbstractElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getAbstractElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, AbstractElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(packageEClass, org.xtext.example.mydsl.socialRequest.Package.class, "Package", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getPackage_Name(), ecorePackage.getEString(), "name", null, 0, 1, org.xtext.example.mydsl.socialRequest.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPackage_Elements(), this.getAbstractElement(), null, "elements", null, 0, -1, org.xtext.example.mydsl.socialRequest.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(entityEClass, Entity.class, "Entity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getEntity_Name(), ecorePackage.getEString(), "name", null, 0, 1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getEntity_HasUserDetails(), ecorePackage.getEBoolean(), "hasUserDetails", null, 0, 1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getEntity_Attributes(), this.getAttribute(), null, "attributes", null, 0, -1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1207,7 +1206,8 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
 
     initEClass(queryEClass, Query.class, "Query", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getQuery_Name(), ecorePackage.getEString(), "name", null, 0, 1, Query.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getQuery_IsList(), ecorePackage.getEBoolean(), "isList", null, 0, 1, Query.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getQuery_ReturnsList(), ecorePackage.getEBoolean(), "returnsList", null, 0, 1, Query.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getQuery_ReturnsBoolean(), ecorePackage.getEBoolean(), "returnsBoolean", null, 0, 1, Query.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getQuery_Params(), this.getParam(), null, "params", null, 0, -1, Query.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getQuery_SqlQuery(), this.getSQLQuery(), null, "sqlQuery", null, 0, 1, Query.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1240,7 +1240,7 @@ public class SocialRequestPackageImpl extends EPackageImpl implements SocialRequ
     initEAttribute(getWhere_Condition(), ecorePackage.getEString(), "condition", null, 0, 1, Where.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(orderEClass, Order.class, "Order", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getOrder_Order(), ecorePackage.getEString(), "order", null, 0, 1, Order.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getOrder_Clause(), ecorePackage.getEString(), "clause", null, 0, 1, Order.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(dataTypeEEnum, DataType.class, "DataType");

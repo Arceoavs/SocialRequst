@@ -562,47 +562,59 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.Repository");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cRepositoryKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cEntityAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cEntityEntityCrossReference_1_0 = (CrossReference)cEntityAssignment_1.eContents().get(0);
-		private final RuleCall cEntityEntityFullPackageNameParserRuleCall_1_0_1 = (RuleCall)cEntityEntityCrossReference_1_0.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cQueriesAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cQueriesQueryParserRuleCall_3_0 = (RuleCall)cQueriesAssignment_3.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cOnKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cEntityAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final CrossReference cEntityEntityCrossReference_3_0 = (CrossReference)cEntityAssignment_3.eContents().get(0);
+		private final RuleCall cEntityEntityFullPackageNameParserRuleCall_3_0_1 = (RuleCall)cEntityEntityCrossReference_3_0.eContents().get(1);
+		private final Keyword cLeftCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cQueriesAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cQueriesQueryParserRuleCall_5_0 = (RuleCall)cQueriesAssignment_5.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//// Repository
 		//Repository:
-		//	'Repository' entity=[Entity|FullPackageName] '{'
+		//	'Repository' name=ID 'on' entity=[Entity|FullPackageName] '{'
 		//	queries+=Query+
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Repository' entity=[Entity|FullPackageName] '{' queries+=Query+ '}'
+		//'Repository' name=ID 'on' entity=[Entity|FullPackageName] '{' queries+=Query+ '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'Repository'
 		public Keyword getRepositoryKeyword_0() { return cRepositoryKeyword_0; }
 		
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		
+		//'on'
+		public Keyword getOnKeyword_2() { return cOnKeyword_2; }
+		
 		//entity=[Entity|FullPackageName]
-		public Assignment getEntityAssignment_1() { return cEntityAssignment_1; }
+		public Assignment getEntityAssignment_3() { return cEntityAssignment_3; }
 		
 		//[Entity|FullPackageName]
-		public CrossReference getEntityEntityCrossReference_1_0() { return cEntityEntityCrossReference_1_0; }
+		public CrossReference getEntityEntityCrossReference_3_0() { return cEntityEntityCrossReference_3_0; }
 		
 		//FullPackageName
-		public RuleCall getEntityEntityFullPackageNameParserRuleCall_1_0_1() { return cEntityEntityFullPackageNameParserRuleCall_1_0_1; }
+		public RuleCall getEntityEntityFullPackageNameParserRuleCall_3_0_1() { return cEntityEntityFullPackageNameParserRuleCall_3_0_1; }
 		
 		//'{'
-		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
+		public Keyword getLeftCurlyBracketKeyword_4() { return cLeftCurlyBracketKeyword_4; }
 		
 		//queries+=Query+
-		public Assignment getQueriesAssignment_3() { return cQueriesAssignment_3; }
+		public Assignment getQueriesAssignment_5() { return cQueriesAssignment_5; }
 		
 		//Query
-		public RuleCall getQueriesQueryParserRuleCall_3_0() { return cQueriesQueryParserRuleCall_3_0; }
+		public RuleCall getQueriesQueryParserRuleCall_5_0() { return cQueriesQueryParserRuleCall_5_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
+		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
 	}
 	public class QueryElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.SocialRequest.Query");
@@ -610,10 +622,15 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cQueryKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Assignment cIsListAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
-		private final Keyword cIsListColonKeyword_2_0_0 = (Keyword)cIsListAssignment_2_0.eContents().get(0);
-		private final Keyword cListKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
+		private final Assignment cReturnsListAssignment_2_0_0 = (Assignment)cGroup_2_0.eContents().get(0);
+		private final Keyword cReturnsListColonKeyword_2_0_0_0 = (Keyword)cReturnsListAssignment_2_0_0.eContents().get(0);
+		private final Keyword cListKeyword_2_0_1 = (Keyword)cGroup_2_0.eContents().get(1);
+		private final Group cGroup_2_1 = (Group)cAlternatives_2.eContents().get(1);
+		private final Assignment cReturnsBooleanAssignment_2_1_0 = (Assignment)cGroup_2_1.eContents().get(0);
+		private final Keyword cReturnsBooleanColonKeyword_2_1_0_0 = (Keyword)cReturnsBooleanAssignment_2_1_0.eContents().get(0);
+		private final Keyword cBooleanKeyword_2_1_1 = (Keyword)cGroup_2_1.eContents().get(1);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final Keyword cLeftCurlyBracketKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
 		private final Group cGroup_3_1 = (Group)cGroup_3.eContents().get(1);
@@ -627,14 +644,15 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_3_3 = (Keyword)cGroup_3.eContents().get(3);
 		
 		//Query:
-		//	'query' name=ID (isList?=':' 'list')? ('{' ('params' '{'
+		//	'query' name=ID (returnsList?=':' 'list' | returnsBoolean?=':' 'boolean')? ('{' ('params' '{'
 		//	params+=Param*
 		//	'}')?
 		//	sqlQuery=SQLQuery?
 		//	'}')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'query' name=ID (isList?=':' 'list')? ('{' ('params' '{' params+=Param* '}')? sqlQuery=SQLQuery? '}')?
+		//'query' name=ID (returnsList?=':' 'list' | returnsBoolean?=':' 'boolean')? ('{' ('params' '{' params+=Param* '}')?
+		//sqlQuery=SQLQuery? '}')?
 		public Group getGroup() { return cGroup; }
 		
 		//'query'
@@ -646,17 +664,32 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 		
-		//(isList?=':' 'list')?
-		public Group getGroup_2() { return cGroup_2; }
+		//(returnsList?=':' 'list' | returnsBoolean?=':' 'boolean')?
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 		
-		//isList?=':'
-		public Assignment getIsListAssignment_2_0() { return cIsListAssignment_2_0; }
+		//returnsList?=':' 'list'
+		public Group getGroup_2_0() { return cGroup_2_0; }
+		
+		//returnsList?=':'
+		public Assignment getReturnsListAssignment_2_0_0() { return cReturnsListAssignment_2_0_0; }
 		
 		//':'
-		public Keyword getIsListColonKeyword_2_0_0() { return cIsListColonKeyword_2_0_0; }
+		public Keyword getReturnsListColonKeyword_2_0_0_0() { return cReturnsListColonKeyword_2_0_0_0; }
 		
 		//'list'
-		public Keyword getListKeyword_2_1() { return cListKeyword_2_1; }
+		public Keyword getListKeyword_2_0_1() { return cListKeyword_2_0_1; }
+		
+		//returnsBoolean?=':' 'boolean'
+		public Group getGroup_2_1() { return cGroup_2_1; }
+		
+		//returnsBoolean?=':'
+		public Assignment getReturnsBooleanAssignment_2_1_0() { return cReturnsBooleanAssignment_2_1_0; }
+		
+		//':'
+		public Keyword getReturnsBooleanColonKeyword_2_1_0_0() { return cReturnsBooleanColonKeyword_2_1_0_0; }
+		
+		//'boolean'
+		public Keyword getBooleanKeyword_2_1_1() { return cBooleanKeyword_2_1_1; }
 		
 		//('{' ('params' '{' params+=Param* '}')? sqlQuery=SQLQuery? '}')?
 		public Group getGroup_3() { return cGroup_3; }
@@ -966,15 +999,15 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cORDERBYKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cOrderAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cOrderSTRINGTerminalRuleCall_2_0 = (RuleCall)cOrderAssignment_2.eContents().get(0);
+		private final Assignment cClauseAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cClauseSTRINGTerminalRuleCall_2_0 = (RuleCall)cClauseAssignment_2.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//Order:
-		//	'ORDER BY' '{' order=STRING '}';
+		//	'ORDER BY' '{' clause=STRING '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'ORDER BY' '{' order=STRING '}'
+		//'ORDER BY' '{' clause=STRING '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'ORDER BY'
@@ -983,11 +1016,11 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 		
-		//order=STRING
-		public Assignment getOrderAssignment_2() { return cOrderAssignment_2; }
+		//clause=STRING
+		public Assignment getClauseAssignment_2() { return cClauseAssignment_2; }
 		
 		//STRING
-		public RuleCall getOrderSTRINGTerminalRuleCall_2_0() { return cOrderSTRINGTerminalRuleCall_2_0; }
+		public RuleCall getClauseSTRINGTerminalRuleCall_2_0() { return cClauseSTRINGTerminalRuleCall_2_0; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
@@ -1406,7 +1439,7 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//// Repository
 	//Repository:
-	//	'Repository' entity=[Entity|FullPackageName] '{'
+	//	'Repository' name=ID 'on' entity=[Entity|FullPackageName] '{'
 	//	queries+=Query+
 	//	'}';
 	public RepositoryElements getRepositoryAccess() {
@@ -1418,7 +1451,7 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Query:
-	//	'query' name=ID (isList?=':' 'list')? ('{' ('params' '{'
+	//	'query' name=ID (returnsList?=':' 'list' | returnsBoolean?=':' 'boolean')? ('{' ('params' '{'
 	//	params+=Param*
 	//	'}')?
 	//	sqlQuery=SQLQuery?
@@ -1506,7 +1539,7 @@ public class SocialRequestGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Order:
-	//	'ORDER BY' '{' order=STRING '}';
+	//	'ORDER BY' '{' clause=STRING '}';
 	public OrderElements getOrderAccess() {
 		return pOrder;
 	}
