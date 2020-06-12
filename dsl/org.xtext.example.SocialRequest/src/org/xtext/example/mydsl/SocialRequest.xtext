@@ -40,7 +40,7 @@ Attribute:
 ;
 
 TypeReference:
-	EntityTypeReference | DataTypeReference
+	entity=EntityTypeReference | data=DataTypeReference
 ;
 
 EntityTypeReference:
@@ -139,10 +139,10 @@ SQLcondition:
 ;
 
 SQLconditionpart:
-	leftString?=STRING? value=ReferenceValue rightString?=STRING?;
+	(leftString=STRING)? value=ReferenceValue (rightString=STRING)?;
 
 ReferenceValue:
-	(alias=ID('.'attribute=ID)? | {ReferenceValue} ':'methodAttribute=ID?)
+	(alias=ID('.'attribute=ID)? | {ReferenceValue} ':'methodAttribute=ID)
 ;
 
 Order:

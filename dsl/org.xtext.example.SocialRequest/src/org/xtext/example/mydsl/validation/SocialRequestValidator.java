@@ -9,11 +9,13 @@ import java.util.ArrayList;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.ValidationMessageAcceptor;
 import org.xtext.example.mydsl.socialRequest.Attribute;
+import org.xtext.example.mydsl.socialRequest.DataType;
 import org.xtext.example.mydsl.socialRequest.Entity;
 import org.xtext.example.mydsl.socialRequest.Join;
 import org.xtext.example.mydsl.socialRequest.Param;
 import org.xtext.example.mydsl.socialRequest.Query;
 import org.xtext.example.mydsl.socialRequest.ReferenceValue;
+import org.xtext.example.mydsl.socialRequest.Repository;
 import org.xtext.example.mydsl.socialRequest.SQLconditionpart;
 import org.xtext.example.mydsl.socialRequest.SocialRequestPackage;
 
@@ -144,6 +146,36 @@ public class SocialRequestValidator extends AbstractSocialRequestValidator {
 		        	}
 		        	i++;
 		        }
+	    	}
+	    	else {
+	    		if (query.getParams() != null) {
+	    			ArrayList<Param> params = new ArrayList<Param>();
+			    	params.addAll(query.getParams());
+			    	int i = 0;
+			    	Entity entity = null;
+			    	for (Param param: params) {
+			    		if (param.getType().getEntity() != null)
+				    		entity = param.getType().getEntity().getType(); 
+//				    	DataType data = param.getType().getData().getType();
+//			    		Repository repo = (Repository) query.eContainer().eContainer().eGet(query.eContainer().eContainingFeature());
+//			    		Entity returnOb = repo.getEntity();
+//			    		System.out.println(returnOb.getName());
+//			    		boolean usesParam = false;
+//			    		for (Attribute atr : returnOb.getAttributes()) {
+//			    			String name = atr.getName();
+//			    			name = name.replaceFirst(name.substring(0, 1), name.toUpperCase().substring(0, 1));
+//			    			System.out.println(name);
+//			    			if (data != null && query.getName().contains(name) && atr.getTypeRef().getData() != null && atr.getTypeRef().getData().getType().getDeclaringClass() == data.getDeclaringClass()) {
+//			    				usesParam = true;
+//			    				break;
+//			    			}
+//			    		}
+			    		if (entity != null && !query.getName().contains(entity.getName())) //|| (data != null && !usesParam))
+			    			error("Parameter " + param.getName() + " is not used within the query", param.eContainer(), SocialRequestPackage.Literals.QUERY__PARAMS, 
+			    					i);
+			    		i++;
+			    	}
+	    		}
 	    	}
 	    } catch (Exception e) {
 	    	System.out.println("Error" + e.getClass()+ "occurred with message:" + e.getMessage());
