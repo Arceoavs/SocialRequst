@@ -40,7 +40,7 @@ Attribute:
 ;
 
 TypeReference:
-	EntityTypeReference | DataTypeReference
+	entity=EntityTypeReference | data=DataTypeReference
 ;
 
 EntityTypeReference:
@@ -115,7 +115,7 @@ SQLQuery:
 ;
 
 Select:
-	'SELECT' (isDistinct?='DISTINCT')? '{' clause=STRING '}'
+	'SELECT' (isDistinct?='DISTINCT')? '{' clause=ReferenceValue '}'
 ;
 
 From:
@@ -123,7 +123,7 @@ From:
 ;
 
 Join:
-	joinType=JoinType '{' entity=[Entity|FullPackageName] alias=ID '}' ('ON' '{' joinCondition=STRING '}')?
+	joinType=JoinType '{' entity=[Entity|FullPackageName] alias=ID '}' ('ON' '{' joinCondition=SQLcondition '}')?
 ;
 
 enum JoinType:
@@ -131,11 +131,22 @@ enum JoinType:
 ;
 
 Where:
-	'WHERE' '{' condition=STRING '}'
+	'WHERE' '{' condition=SQLcondition '}'
+;
+
+SQLcondition:
+	parts+=SQLconditionpart+
+;
+
+SQLconditionpart:
+	(leftString=STRING)? value=ReferenceValue (rightString=STRING)?;
+
+ReferenceValue:
+	(alias=ID('.'attribute=ID)? | {ReferenceValue} ':'methodAttribute=ID)
 ;
 
 Order:
-	'ORDER BY' '{' clause=STRING '}' 
+	'ORDER' 'BY' '{' clause=SQLcondition '}' 
 ;
 
 FullPackageName hidden():
