@@ -5,7 +5,7 @@ package org.xtext.example.mydsl.validation;
 
 import java.util.ArrayList;
 
-import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.ValidationMessageAcceptor;
 import org.xtext.example.mydsl.socialRequest.Attribute;
@@ -26,36 +26,48 @@ public class SocialRequestValidator extends AbstractSocialRequestValidator {
 	
     @Check
     public void checkattributesInQueryAreCorrect(Query query) {
+    	System.out.println("Checking query " + query.getName());
     	String alias1 = query.getSqlQuery().getFrom().getAlias();
     	Entity entity1 = query.getSqlQuery().getFrom().getEntity();
     	
-    	EList<Param> params = query.getParams();
+    	ArrayList<Param> params = new ArrayList<Param>();
+    	params.addAll(query.getParams());
     	ArrayList<String> containesParams = new ArrayList<String>();
     	
-    	EList<Join> joins = query.getSqlQuery().getJoins();
+    	ArrayList<Join> joins = new ArrayList<Join>();
+    	joins.addAll(query.getSqlQuery().getJoins());
+    	
+    	ArrayList<SQLconditionpart> parts = new ArrayList<SQLconditionpart>();
+    	parts.addAll(query.getSqlQuery().getWhere().getCondition().getParts());
+    	parts.addAll(query.getSqlQuery().getOrder().getClause().getParts());
+    	
     	
     	ArrayList<String> otherAlias = new ArrayList<String>();
     	ArrayList<Entity> otherEntities = new ArrayList<Entity>();
     	for(Join join : joins) {
     		otherAlias.add(join.getAlias());
     		otherEntities.add(join.getEntity());
+    		parts.addAll(join.getJoinCondition().getParts());
     	}
-    	EList<SQLconditionpart> parts = query.getSqlQuery().getWhere().getCondition().getParts();
+		for(SQLconditionpart part : parts) {
+			System.out.println("\t" + part.getValue().getAlias());
+			System.out.println("\t" + part.getValue().getMethodAttribute());
+		}
+    	
         for(SQLconditionpart part : parts) {
         	ReferenceValue refVal = part.getValue();
         	String alias = refVal.getAlias();
         	String attribute = refVal.getAttribute();
-	        //System.out.println(alias);
+	        System.out.println(alias);
         	if (alias != null && !alias.contentEquals("") && !alias.isEmpty()) {
 
     	        //System.out.println(alias.length());
         		if(!(alias1.contentEquals(alias)) && !otherAlias.contains(alias)) {
-        			//System.out.println("2.75");
-        			//System.out.println(otherAlias);
+        			System.out.println(otherAlias);
         			error("Alias " + alias + " is not defined within the query", refVal.eContainer(), SocialRequestPackage.Literals.SQ_LCONDITIONPART__VALUE, 
         					ValidationMessageAcceptor.INSIGNIFICANT_INDEX);
         		}
-        		else if (!attribute.isEmpty() && !attribute.contentEquals("")){
+        		else if (attribute != null && !attribute.isEmpty() && !attribute.contentEquals("")){
     				boolean matchingAttribute = false;
         			if (alias.contentEquals(alias1)) {
         				for(Attribute atr : entity1.getAttributes()) {
@@ -73,7 +85,7 @@ public class SocialRequestValidator extends AbstractSocialRequestValidator {
     					}
         				if (alias.contentEquals(join.getAlias())) {
         					for(Attribute atr : join.getEntity().getAttributes()) {
-        						//System.out.println(join.getEntity().getName() + " attribute name: " + atr.getName() + " used name: " + attribute);
+        						System.out.println(join.getEntity().getName() + " attribute name: " + atr.getName() + " used name: " + attribute);
             					matchingAttribute = atr.getName().contentEquals(attribute);
             					//System.out.println(matchingAttribute);
             					if (matchingAttribute) {
@@ -83,7 +95,7 @@ public class SocialRequestValidator extends AbstractSocialRequestValidator {
         				}
         			}
         			if (!matchingAttribute) {
-        				error("Attribute " + attribute + " is not defined within the entity of the alias" + alias, refVal.eContainer(), SocialRequestPackage.Literals.SQ_LCONDITIONPART__VALUE, 
+        				error("Attribute " + attribute + " is not defined within the entity of the alias " + alias, refVal.eContainer(), SocialRequestPackage.Literals.SQ_LCONDITIONPART__VALUE, 
             					ValidationMessageAcceptor.INSIGNIFICANT_INDEX);
         			}
         		}
@@ -93,12 +105,12 @@ public class SocialRequestValidator extends AbstractSocialRequestValidator {
         		
         		boolean methodAttributeDefined = false;
         		for (Param param : params) {
-        			//System.out.println(param.getName() + " used name: " + methodAttr);
+        			System.out.println(param.getName() + " used name: " + methodAttr);
         			methodAttributeDefined = param.getName().contentEquals(methodAttr);
         			if (param.getName().contentEquals(methodAttr) && !containesParams.contains(methodAttr)) {
                 		containesParams.add(methodAttr);
 
-            			//System.out.println("add " + methodAttr);
+            			System.out.println("add " + methodAttr);
         			}
         			if (methodAttributeDefined) {
         				break;
@@ -112,7 +124,7 @@ public class SocialRequestValidator extends AbstractSocialRequestValidator {
         }
         int i = 0;
         for (Param param : params) {
-        	//System.out.println("Param name: " + param.getName());
+        	System.out.println("Param name: " + param.getName());
         	if (!containesParams.contains(param.getName())) {
         		error("Parameter " + param.getName() + " is not used within the query", param.eContainer(), SocialRequestPackage.Literals.QUERY__PARAMS, 
     					i);

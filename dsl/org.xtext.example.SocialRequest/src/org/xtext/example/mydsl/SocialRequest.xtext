@@ -123,7 +123,7 @@ From:
 ;
 
 Join:
-	joinType=JoinType '{' entity=[Entity|FullPackageName] alias=ID '}' ('ON' '{' joinConditionLeft=ReferenceValue '=' joinConditionRight=ReferenceValue '}')?
+	joinType=JoinType '{' entity=[Entity|FullPackageName] alias=ID '}' ('ON' '{' joinCondition=SQLcondition '}')?
 ;
 
 enum JoinType:
