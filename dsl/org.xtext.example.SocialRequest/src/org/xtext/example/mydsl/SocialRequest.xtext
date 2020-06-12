@@ -115,7 +115,7 @@ SQLQuery:
 ;
 
 Select:
-	'SELECT' (isDistinct?='DISTINCT')? '{' clause=STRING '}'
+	'SELECT' (isDistinct?='DISTINCT')? '{' clause=ReferenceValue '}'
 ;
 
 From:
@@ -131,7 +131,18 @@ enum JoinType:
 ;
 
 Where:
-	'WHERE' '{' condition=STRING '}'
+	'WHERE' '{' condition=SQLcondition '}'
+;
+
+SQLcondition:
+	parts+=SQLconditionpart+
+;
+
+SQLconditionpart:
+	leftString?=STRING? value=ReferenceValue rightString?=STRING?;
+
+ReferenceValue:
+	(alias=ID('.'attribute=ID)? | {ReferenceValue} ':'methodAttribute=ID?)
 ;
 
 Order:
