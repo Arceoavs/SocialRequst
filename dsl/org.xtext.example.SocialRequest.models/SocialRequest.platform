@@ -163,9 +163,9 @@ package de.wwu.acse2020.socialrequest.data {
 
 				SELECT { r }
 				FROM { model.Request r }
-				LEFT OUTER JOIN { model.Fulfillment f } ON { "r = f.request" }
+				LEFT OUTER JOIN { model.Fulfillment f } ON { r "=" f.request }
 				WHERE { "(LOWER(" r.title ") LIKE LOWER(CONCAT('%'," :q ", '%')) OR LOWER(r.description) LIKE LOWER(CONCAT('%'," :q ", '%'))) AND" f.id "IS NULL" }
-				ORDER BY { "r.createdAt DESC" }
+				ORDER BY { r.createdAt "DESC" }
 			}
 
 			query nearByUser: list {
@@ -178,7 +178,7 @@ package de.wwu.acse2020.socialrequest.data {
 				FROM { model.Request r }
 				LEFT JOIN { model.Fulfillment f }
 				WHERE { f.id "IS NULL AND 6371 * SQRT(POWER((radians(" r.longitude ") - radians(" :lng ")) * COS((radians(" :lat ") + radians(" r.latitude "))/2), 2) + POWER(radians(" r.latitude ") - radians(" :lat "), 2)) <= 10" }
-				ORDER BY { "r.createdAt DESC" }
+				ORDER BY { r.createdAt "DESC" }
 			}
 
 			query matchingSpecialtiesOfUser: list {
@@ -188,10 +188,10 @@ package de.wwu.acse2020.socialrequest.data {
 
 				SELECT DISTINCT { r }
 				FROM { model.Request r }
-				JOIN { model.Topic t } ON { "t.request = r" }
+				JOIN { model.Topic t } ON { t.request "=" r }
 				LEFT OUTER JOIN { model.Fulfillment f }
 				WHERE { f.id "IS NULL AND" t.name "IN (SELECT" t.name "FROM Topic t JOIN" t.users "u WHERE u =" :user ")" }
-				ORDER BY { "r.createdAt DESC" }
+				ORDER BY { r.createdAt "DESC" }
 			}
 		}
 	}
