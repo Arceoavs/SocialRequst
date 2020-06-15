@@ -40,7 +40,7 @@ Attribute:
 ;
 
 TypeReference:
-	entity=EntityTypeReference | data=DataTypeReference
+	EntityTypeReference | DataTypeReference
 ;
 
 EntityTypeReference:

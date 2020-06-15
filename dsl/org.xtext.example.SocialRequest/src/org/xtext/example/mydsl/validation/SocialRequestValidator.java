@@ -11,6 +11,7 @@ import org.eclipse.xtext.validation.ValidationMessageAcceptor;
 import org.xtext.example.mydsl.socialRequest.Attribute;
 import org.xtext.example.mydsl.socialRequest.DataType;
 import org.xtext.example.mydsl.socialRequest.Entity;
+import org.xtext.example.mydsl.socialRequest.EntityTypeReference;
 import org.xtext.example.mydsl.socialRequest.Join;
 import org.xtext.example.mydsl.socialRequest.Param;
 import org.xtext.example.mydsl.socialRequest.Query;
@@ -150,8 +151,8 @@ public class SocialRequestValidator extends AbstractSocialRequestValidator {
 			    	int i = 0;
 			    	Entity entity = null;
 			    	for (Param param: params) {
-			    		if (param.getType().getEntity() != null)
-				    		entity = param.getType().getEntity().getType(); 
+			    		if (param.getType() instanceof EntityTypeReference)
+				    		entity = ((EntityTypeReference) param.getType()).getType(); 
 //				    	DataType data = param.getType().getData().getType();
 //			    		Repository repo = (Repository) query.eContainer().eContainer().eGet(query.eContainer().eContainingFeature());
 //			    		Entity returnOb = repo.getEntity();
