@@ -9,14 +9,12 @@ import java.util.ArrayList;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.ValidationMessageAcceptor;
 import org.xtext.example.mydsl.socialRequest.Attribute;
-import org.xtext.example.mydsl.socialRequest.DataType;
 import org.xtext.example.mydsl.socialRequest.Entity;
 import org.xtext.example.mydsl.socialRequest.EntityTypeReference;
 import org.xtext.example.mydsl.socialRequest.Join;
 import org.xtext.example.mydsl.socialRequest.Param;
 import org.xtext.example.mydsl.socialRequest.Query;
 import org.xtext.example.mydsl.socialRequest.ReferenceValue;
-import org.xtext.example.mydsl.socialRequest.Repository;
 import org.xtext.example.mydsl.socialRequest.SQLconditionpart;
 import org.xtext.example.mydsl.socialRequest.SocialRequestPackage;
 
@@ -28,20 +26,15 @@ import org.xtext.example.mydsl.socialRequest.SocialRequestPackage;
 public class SocialRequestValidator extends AbstractSocialRequestValidator {
 	
     @Check
-    public void checkattributesInQueryAreCorrect(Query query) {
+    public void checkAttributesInQueryAreCorrect(Query query) {
 	    try {
 //	    	System.out.println("Checking query " + query.getName());
 	    	if (query.getSqlQuery() != null) {	
 		    	String alias1 = query.getSqlQuery().getFrom().getAlias();
 		    	Entity entity1 = query.getSqlQuery().getFrom().getEntity();
 		    	
-
-		    	
 		    	ArrayList<Param> params = new ArrayList<Param>();
 		    	params.addAll(query.getParams());
-		    	ArrayList<String> containesParams = new ArrayList<String>();
-		    	
-
 		    	
 		    	ArrayList<Join> joins = new ArrayList<Join>();
 		    	joins.addAll(query.getSqlQuery().getJoins());
@@ -49,8 +42,6 @@ public class SocialRequestValidator extends AbstractSocialRequestValidator {
 		    	ArrayList<SQLconditionpart> parts = new ArrayList<SQLconditionpart>();
 		    	parts.addAll(query.getSqlQuery().getWhere().getCondition().getParts());
 		    	parts.addAll(query.getSqlQuery().getOrder().getClause().getParts());
-		    	
-
 		    	
 		    	ArrayList<String> otherAlias = new ArrayList<String>();
 		    	ArrayList<Entity> otherEntities = new ArrayList<Entity>();
@@ -112,8 +103,50 @@ public class SocialRequestValidator extends AbstractSocialRequestValidator {
 		        			}
 		        		}
 		        	}
-		        	else {
-		        		String methodAttr = refVal.getMethodAttribute();
+		        }
+	    	}
+	    } catch (Exception e) {
+	    	System.out.println("Error" + e.getClass()+ "occurred with message:" + e.getMessage());
+	    	e.printStackTrace();
+	    }
+    }
+    
+    @Check
+    public void checkParamsAreDefinedAndUsed(Query query) {
+	    try {
+//	    	System.out.println("Checking query " + query.getName());
+	    	if (query.getSqlQuery() != null) {	
+		    	
+		    	ArrayList<Param> params = new ArrayList<Param>();
+		    	params.addAll(query.getParams());
+		    	ArrayList<String> containesParams = new ArrayList<String>();
+		    	
+		    	ArrayList<Join> joins = new ArrayList<Join>();
+		    	joins.addAll(query.getSqlQuery().getJoins());
+		    	
+		    	ArrayList<SQLconditionpart> parts = new ArrayList<SQLconditionpart>();
+		    	parts.addAll(query.getSqlQuery().getWhere().getCondition().getParts());
+		    	parts.addAll(query.getSqlQuery().getOrder().getClause().getParts());
+		    	
+		    	ArrayList<String> otherAlias = new ArrayList<String>();
+		    	ArrayList<Entity> otherEntities = new ArrayList<Entity>();
+		    	for(Join join : joins) {
+		    		otherAlias.add(join.getAlias());
+		    		otherEntities.add(join.getEntity());
+		    		if (join.getJoinCondition() != null)
+		    			parts.addAll(join.getJoinCondition().getParts());
+		    	}
+//		    	System.out.println("Parts contained in query: " + parts.size());
+//				for(SQLconditionpart part : parts) {
+//					System.out.println("\t" + part.getValue().getAlias() + " with attribute " + part.getValue().getAttribute());
+//					System.out.println("\t" + part.getValue().getMethodAttribute());
+//				}
+		    	
+		        for(SQLconditionpart part : parts) {
+		        	ReferenceValue refVal = part.getValue();
+		        	String methodAttr = refVal.getMethodAttribute();
+//			        System.out.println(alias + " with attribute " + attribute);
+		        	if (methodAttr != null && !methodAttr.contentEquals("") && !methodAttr.isEmpty()) {
 		        		
 		        		boolean methodAttributeDefined = false;
 		        		for (Param param : params) {
@@ -138,13 +171,23 @@ public class SocialRequestValidator extends AbstractSocialRequestValidator {
 		        for (Param param : params) {
 //		        	System.out.println("Param name: " + param.getName());
 		        	if (!containesParams.contains(param.getName())) {
-		        		error("Parameter " + param.getName() + " is not used within the query", param.eContainer(), SocialRequestPackage.Literals.QUERY__PARAMS, 
+		        		warning("Parameter " + param.getName() + " is not used within the query", param.eContainer(), SocialRequestPackage.Literals.QUERY__PARAMS, 
 		    					i);
 		        	}
 		        	i++;
 		        }
 	    	}
-	    	else {
+	    } catch (Exception e) {
+	    	System.out.println("Error" + e.getClass()+ "occurred with message:" + e.getMessage());
+	    	e.printStackTrace();
+	    }
+    }
+    
+    @Check
+    public void checkParamsAreUsedInQueryWithoutSQL(Query query) {
+	    try {
+//	    	System.out.println("Checking query " + query.getName());
+	    	if (query.getSqlQuery() == null) {	
 	    		if (query.getParams() != null) {
 	    			ArrayList<Param> params = new ArrayList<Param>();
 			    	params.addAll(query.getParams());
@@ -179,8 +222,6 @@ public class SocialRequestValidator extends AbstractSocialRequestValidator {
 	    	e.printStackTrace();
 	    }
     }
-    
-    
     
     
 }
