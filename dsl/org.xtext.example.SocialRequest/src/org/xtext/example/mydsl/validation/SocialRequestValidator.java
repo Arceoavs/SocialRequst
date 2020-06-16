@@ -37,11 +37,17 @@ public class SocialRequestValidator extends AbstractSocialRequestValidator {
         params.addAll(query.getParams());
 
         ArrayList<Join> joins = new ArrayList<Join>();
-        joins.addAll(query.getSqlQuery().getJoins());
+        if (query.getSqlQuery().getJoins() != null) {
+          joins.addAll(query.getSqlQuery().getJoins());
+        }
 
         ArrayList<SQLPart> parts = new ArrayList<SQLPart>();
-        parts.addAll(query.getSqlQuery().getWhere().getCondition().getParts());
-        parts.addAll(query.getSqlQuery().getOrder().getClause().getParts());
+        if (query.getSqlQuery().getWhere() != null) {
+          parts.addAll(query.getSqlQuery().getWhere().getCondition().getParts());
+        }
+        if (query.getSqlQuery().getOrder() != null) {
+          parts.addAll(query.getSqlQuery().getOrder().getClause().getParts());
+        }
 
         ArrayList<String> joinAliases = new ArrayList<String>();
         ArrayList<Entity> joinEntities = new ArrayList<Entity>();
@@ -114,7 +120,7 @@ public class SocialRequestValidator extends AbstractSocialRequestValidator {
   @Check
   public void checkParamsAreUsedInAQuery(Query query) {
     try {
-      if (query.getSqlQuery() != null) {
+      if (query.getSqlQuery() != null && query.getSqlQuery().getWhere() != null) {
         ArrayList<Param> params = new ArrayList<Param>();
         params.addAll(query.getParams());
 
@@ -123,19 +129,6 @@ public class SocialRequestValidator extends AbstractSocialRequestValidator {
           if (part.getQueryParam() != null) {
             usedParams.add(part.getQueryParam());
           }
-        }
-
-        ArrayList<Join> joins = new ArrayList<Join>();
-        joins.addAll(query.getSqlQuery().getJoins());
-
-        ArrayList<SQLConditionPart> parts = new ArrayList<SQLConditionPart>();
-        parts.addAll(query.getSqlQuery().getWhere().getCondition().getParts());
-
-        ArrayList<String> joinAliases = new ArrayList<String>();
-        ArrayList<Entity> joinEntities = new ArrayList<Entity>();
-        for(Join join : joins) {
-          joinAliases.add(join.getAlias());
-          joinEntities.add(join.getEntity());
         }
 
         int index = 0;
@@ -160,7 +153,7 @@ public class SocialRequestValidator extends AbstractSocialRequestValidator {
   @Check
   public void checkParamsAreUsedInAQueryWithoutSQL(Query query) {
     try {
-      if (query.getSqlQuery() == null && query.getParams() != null) {
+      if ((query.getSqlQuery() == null || query.getSqlQuery().getWhere() == null) && query.getParams() != null) {
         Entity entity = null;
         int index = 0;
 
