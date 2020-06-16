@@ -146,6 +146,7 @@ package de.wwu.acse2020.socialrequest.data {
 			}
 		}
 	}
+
 	package repo {
 		Repository RequestRepository on model.Request {
 			query findAllByFulfillmentIsNullOrderByCreatedAtDesc: list
@@ -192,6 +193,27 @@ package de.wwu.acse2020.socialrequest.data {
 				LEFT OUTER JOIN { model.Fulfillment f } ON { f.request "=" r }
 				WHERE { f.id "IS NULL AND" t.name "IN (SELECT" t.name "FROM Topic t JOIN" t.users "u WHERE u =" :user ")" }
 				ORDER BY { r.createdAt "DESC" }
+			}
+		}
+
+		Repository UserRepository on model.User {
+			query existsByUsername: boolean {
+				params {
+					username: String
+				}
+			}
+		}
+
+		Repository FulfillmentRepository on model.Fulfillment {
+			query findOneByUserAndRequest {
+				params {
+					user: model.User
+					request: model.Request
+				}
+
+				SELECT { f }
+				FROM { Fulfillment f }
+				WHERE { f.user "=" :user "AND" f.request "=" :request }
 			}
 		}
 	}
