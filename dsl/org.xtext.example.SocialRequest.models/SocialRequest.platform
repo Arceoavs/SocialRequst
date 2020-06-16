@@ -188,8 +188,8 @@ package de.wwu.acse2020.socialrequest.data {
 
 				SELECT DISTINCT { r }
 				FROM { model.Request r }
-				JOIN { model.Topic t } ON { t.request "=" r }
-				LEFT OUTER JOIN { model.Fulfillment f }
+				JOIN { model.Topic t }
+				LEFT OUTER JOIN { model.Fulfillment f } ON { f.request "=" r }
 				WHERE { f.id "IS NULL AND" t.name "IN (SELECT" t.name "FROM Topic t JOIN" t.users "u WHERE u =" :user ")" }
 				ORDER BY { r.createdAt "DESC" }
 			}
