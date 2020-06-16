@@ -22,6 +22,10 @@ PointSeparatedID:
 	ID('.'ID)*
 ;
 
+FullPackageName hidden():
+	ID('.' ID)*
+;
+
 Entity:
 	'Entity' name=ID (hasUserDetails?='implements' 'UserDetails')? '{'
 		attributes+=Attribute+
@@ -115,58 +119,86 @@ SQLQuery:
 	(order=Order)?
 ;
 
-Select:
-	'SELECT' (isDistinct?='DISTINCT')? '{' clause=ReferenceValue '}'
-;
-
-From:
-	'FROM' '{' entity=[Entity|FullPackageName] alias=ID '}'
-;
-
-Join:
-	joinType=JoinType '{' entity=[Entity|FullPackageName] alias=ID '}' ('ON' '{' joinCondition=SQLClause '}')?
-;
-
-enum JoinType:
-	LEFT_JOIN='LEFT JOIN' | LEFT_OUTER_JOIN='LEFT OUTER JOIN' | CROSS_JOIN='CROSS JOIN' | JOIN='JOIN'
-;
-
-SQLString:
-	SQLClause | SQLCondition
-;
-
-SQLPart:
-	SQLClausePart | SQLConditionPart
-;
-
-SQLClause:
-	parts+=SQLClausePart+
-;
-
-SQLClausePart:
-	(leftString=STRING)? referenceValue=ReferenceValue (rightString=STRING)?
-;
-
-Where:
-	'WHERE' '{' condition=SQLCondition '}'
-;
-
-SQLCondition:
-	parts+=SQLConditionPart+
-;
-
-SQLConditionPart:
-	(leftString=STRING)? (referenceValue=ReferenceValue | ':'queryParam=[Param]) (rightString=STRING)?
+AbstractReferenceValue:
+	ReferenceValue | JoinReferenceValue
 ;
 
 ReferenceValue:
 	alias=ID('.'attribute=ID)?
 ;
 
-Order:
-	'ORDER' 'BY' '{' clause=SQLClause '}' 
+Select:
+	'SELECT' (isDistinct?='DISTINCT')? clause=ReferenceValue
 ;
 
-FullPackageName hidden():
-	ID('.' ID)*
+From:
+	'FROM' entity=[Entity|FullPackageName] alias=ID
+;
+
+Join:
+	joinType=JoinType (entity=[Entity|FullPackageName] | '$'reference=JoinReferenceValue) alias=ID ('ON' joinCondition=PrimaryJoinCondition joinConditions+=AdditionalJoinCondition*)?
+;
+
+JoinCondition:
+	PrimaryJoinCondition | AdditionalJoinCondition
+;
+
+JoinReferenceValue:
+	alias=ID'.'attribute=ID
+;
+
+PrimaryJoinCondition:
+	leftReferenceValue=ReferenceValue '=' rightReferenceValue=ReferenceValue
+;
+
+AdditionalJoinCondition:
+	linkage=ConditionLinkage leftReferenceValue=ReferenceValue '=' rightReferenceValue=ReferenceValue
+;
+
+enum JoinType:
+	LEFT_JOIN='LEFT JOIN' | LEFT_OUTER_JOIN='LEFT OUTER JOIN' | CROSS_JOIN='CROSS JOIN' | JOIN='JOIN'
+;
+
+Where:
+	'WHERE' condition=WhereCondition additionalConditions+=AdditionalWhereCondition*
+;
+
+SQLCondition:
+	WhereCondition | AdditionalWhereCondition
+;
+
+WhereCondition:
+	parts+=SQLConditionPart+
+;
+
+AdditionalWhereCondition:
+	linkage=ConditionLinkage parts+=SQLConditionPart+
+;
+
+enum ConditionLinkage:
+	AND | OR
+;
+
+SQLConditionPart:
+	leftString=STRING? (referenceValue=ReferenceValue | ':'queryParam=[Param] | '('subquery=SQLQuery')') rightString=STRING?
+;
+
+Order:
+	'ORDER' 'BY' clause=OrderClause additionalClauses+=AdditionalOrderClause*
+;
+
+AbstractOrderClause:
+	OrderClause | AdditionalOrderClause
+;
+
+OrderClause:
+	referenceValue=ReferenceValue order=SQL_SORT_TYPE?
+;
+
+AdditionalOrderClause:
+	',' referenceValue=ReferenceValue order=SQL_SORT_TYPE?
+;
+
+enum SQL_SORT_TYPE:
+	ASC | DESC
 ;
