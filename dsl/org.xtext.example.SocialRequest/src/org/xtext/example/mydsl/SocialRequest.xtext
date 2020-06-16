@@ -61,7 +61,7 @@ Validation:
 		'pattern:' regex=STRING | validator=BASIC_VALIDATION | (unique?='unique')
 ;
 
-BASIC_VALIDATION:
+terminal BASIC_VALIDATION:
 	'NotNull' | 'NotBlank' | 'Past' | 'Email'
 ;
 
@@ -77,7 +77,7 @@ terminal FETCH_TYPE:
 	'EAGER' | 'LAZY'
 ;
 	
-ASSOCIATION:
+terminal ASSOCIATION:
 	'OneToMany' | 'ManyToOne' | 'OneToOne' | 'ManyToMany'
 ;
 
