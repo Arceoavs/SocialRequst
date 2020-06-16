@@ -11,10 +11,12 @@ import org.eclipse.xtext.validation.ValidationMessageAcceptor;
 import org.xtext.example.mydsl.socialRequest.Attribute;
 import org.xtext.example.mydsl.socialRequest.Entity;
 import org.xtext.example.mydsl.socialRequest.EntityTypeReference;
+import org.xtext.example.mydsl.socialRequest.From;
 import org.xtext.example.mydsl.socialRequest.Join;
 import org.xtext.example.mydsl.socialRequest.Param;
 import org.xtext.example.mydsl.socialRequest.Query;
 import org.xtext.example.mydsl.socialRequest.ReferenceValue;
+import org.xtext.example.mydsl.socialRequest.Repository;
 import org.xtext.example.mydsl.socialRequest.SQLPart;
 import org.xtext.example.mydsl.socialRequest.SQLConditionPart;
 import org.xtext.example.mydsl.socialRequest.SocialRequestPackage;
@@ -34,6 +36,19 @@ public class SocialRequestValidator extends AbstractSocialRequestValidator {
 
     } catch (Exception e) {
       handleException(e);
+    }
+  }
+
+  @Check
+  public void checkEntityInFromClauseEqualsEntityOfRepository(From from) {
+    Repository repository = (Repository) from.eContainer().eContainer().eContainer();
+    if (!repository.getEntity().getName().contentEquals(from.getEntity().getName())) {
+      error(
+        "The entity " + from.getEntity().getName() + " specified in the From clause does not correspond to the entity of its repository",
+        from,
+        SocialRequestPackage.Literals.FROM__ENTITY,
+        ValidationMessageAcceptor.INSIGNIFICANT_INDEX
+      );
     }
   }
 
