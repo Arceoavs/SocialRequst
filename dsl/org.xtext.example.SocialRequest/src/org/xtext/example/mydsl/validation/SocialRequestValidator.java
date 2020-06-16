@@ -27,6 +27,17 @@ import org.xtext.example.mydsl.socialRequest.SocialRequestPackage;
 public class SocialRequestValidator extends AbstractSocialRequestValidator {
 
   @Check
+  public void checkEntitiesAreUsedWithinAQuery(Query query) {
+    try {
+      if (query.getSqlQuery() == null) return;
+
+
+    } catch (Exception e) {
+      handleException(e);
+    }
+  }
+
+  @Check
   public void checkAttributesInQueryAreCorrect(Query query) {
     try {
       if (query.getSqlQuery() != null) {
@@ -50,10 +61,8 @@ public class SocialRequestValidator extends AbstractSocialRequestValidator {
         }
 
         ArrayList<String> joinAliases = new ArrayList<String>();
-        ArrayList<Entity> joinEntities = new ArrayList<Entity>();
         for(Join join : joins) {
           joinAliases.add(join.getAlias());
-          joinEntities.add(join.getEntity());
           if (join.getJoinCondition() != null) {
             parts.addAll(join.getJoinCondition().getParts());
           }
