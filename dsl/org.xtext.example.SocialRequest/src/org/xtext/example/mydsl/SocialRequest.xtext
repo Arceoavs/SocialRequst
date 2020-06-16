@@ -13,14 +13,15 @@ AbstractElement:
 ;
 
 Package:
-    'package' name=PointSeperatedID '{'
-        (elements+=AbstractElement)*
-    '}';
-    
-PointSeperatedID:
+	'package' name=PointSeparatedID '{'
+		(elements+=AbstractElement)*
+	'}'
+;
+
+PointSeparatedID:
 	ID('.'ID)*
 ;
-	
+
 Entity:
 	'Entity' name=ID (hasUserDetails?='implements' 'UserDetails')? '{'
 		attributes+=Attribute+
@@ -31,7 +32,7 @@ Attribute:
 	(association=ASSOCIATION)? name=ID ':' typeRef=TypeReference (modifier=Modifier)? ('{'
 			(
 				('mappedBy:' mappedBy=ID)? &
-				('fetch:' fetchType=FETCHTYPE)? &
+				('fetch:' fetchType=FETCH_TYPE)? &
 				('validations' '{'
 					validations+=Validation+
 				'}')?
@@ -52,15 +53,15 @@ DataTypeReference:
 ;
 
 Modifier:
-	isLOB?='LOB' | isTransient?='TRANSIENT' | isID?='ID'('('IDGenerationType=GENERATIONTYPE')')?
+	isLOB?='LOB' | isTransient?='TRANSIENT' | isID?='ID'('('IDGenerationType=GENERATION_TYPE')')?
 ;
 
 Validation:
 	'min:' (min=POSSIBLY_SIGNED_INT) | 'max:' (max=POSSIBLY_SIGNED_INT) |
-	  'pattern:' regex=STRING | validator=BASICVALIDATION | (unique?='unique')
+		'pattern:' regex=STRING | validator=BASIC_VALIDATION | (unique?='unique')
 ;
 
-BASICVALIDATION:
+BASIC_VALIDATION:
 	'NotNull' | 'NotBlank' | 'Past' | 'Email'
 ;
 
@@ -68,11 +69,11 @@ terminal POSSIBLY_SIGNED_INT returns ecore::EBigDecimal:
 	'-'?INT
 ;
 
-terminal GENERATIONTYPE:
+terminal GENERATION_TYPE:
 	'AUTO' | 'TABLE' | 'IDENTITY' | 'SEQUENCE'
 ;
 
-terminal FETCHTYPE:
+terminal FETCH_TYPE:
 	'EAGER' | 'LAZY'
 ;
 	
@@ -123,30 +124,47 @@ From:
 ;
 
 Join:
-	joinType=JoinType '{' entity=[Entity|FullPackageName] alias=ID '}' ('ON' '{' joinCondition=SQLcondition '}')?
+	joinType=JoinType '{' entity=[Entity|FullPackageName] alias=ID '}' ('ON' '{' joinCondition=SQLClause '}')?
 ;
 
 enum JoinType:
 	LEFT_JOIN='LEFT JOIN' | LEFT_OUTER_JOIN='LEFT OUTER JOIN' | CROSS_JOIN='CROSS JOIN' | JOIN='JOIN'
 ;
 
+SQLString:
+	SQLClause | SQLCondition
+;
+
+SQLPart:
+	SQLClausePart | SQLConditionPart
+;
+
+SQLClause:
+	parts+=SQLClausePart+
+;
+
+SQLClausePart:
+	(leftString=STRING)? referenceValue=ReferenceValue (rightString=STRING)?
+;
+
 Where:
-	'WHERE' '{' condition=SQLcondition '}'
+	'WHERE' '{' condition=SQLCondition '}'
 ;
 
-SQLcondition:
-	parts+=SQLconditionpart+
+SQLCondition:
+	parts+=SQLConditionPart+
 ;
 
-SQLconditionpart:
-	(leftString=STRING)? value=ReferenceValue (rightString=STRING)?;
+SQLConditionPart:
+	(leftString=STRING)? (referenceValue=ReferenceValue | ':'queryParam=[Param]) (rightString=STRING)?
+;
 
 ReferenceValue:
-	(alias=ID('.'attribute=ID)? | {ReferenceValue} ':'methodAttribute=ID)
+	alias=ID('.'attribute=ID)?
 ;
 
 Order:
-	'ORDER' 'BY' '{' clause=SQLcondition '}' 
+	'ORDER' 'BY' '{' clause=SQLClause '}' 
 ;
 
 FullPackageName hidden():
