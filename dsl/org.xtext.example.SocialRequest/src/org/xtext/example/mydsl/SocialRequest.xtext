@@ -152,7 +152,7 @@ PrimaryJoinCondition:
 ;
 
 AdditionalJoinCondition:
-	linkage=ConditionLinkage leftReferenceValue=ReferenceValue '=' rightReferenceValue=ReferenceValue
+	linkage=CONDITION_LINKAGE leftReferenceValue=ReferenceValue '=' rightReferenceValue=ReferenceValue
 ;
 
 enum JoinType:
@@ -172,11 +172,11 @@ WhereCondition:
 ;
 
 AdditionalWhereCondition:
-	linkage=ConditionLinkage parts+=SQLConditionPart+
+	linkage=CONDITION_LINKAGE parts+=SQLConditionPart+
 ;
 
-enum ConditionLinkage:
-	AND | OR
+terminal CONDITION_LINKAGE:
+	'AND' | 'OR'
 ;
 
 SQLConditionPart:

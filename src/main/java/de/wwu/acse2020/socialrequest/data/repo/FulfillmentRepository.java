@@ -14,7 +14,7 @@ public interface FulfillmentRepository extends JpaRepository<Fulfillment, Long> 
 	@Query(
 		"SELECT f " +
 		"FROM Fulfillment f " +
-		"WHERE f.user =  :user f.request =  :request  "
+		"WHERE f.user = :user AND f.request = :request "
 	)
 	Fulfillment findOneByUserAndRequest(@Param("user") User user, @Param("request") Request request);
 	

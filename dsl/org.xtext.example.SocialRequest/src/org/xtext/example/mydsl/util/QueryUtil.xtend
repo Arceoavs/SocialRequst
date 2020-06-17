@@ -38,7 +38,7 @@ class QueryUtil {
 	private static def generateJoinCondition(JoinCondition joinCondition) {
 		switch (joinCondition) {
 			case AdditionalJoinCondition:
-				''' «(joinCondition as AdditionalJoinCondition).linkage.literal» «joinCondition.leftReferenceValue.generateReferenceValue» = «joinCondition.rightReferenceValue.generateReferenceValue»'''
+				''' «(joinCondition as AdditionalJoinCondition).linkage» «joinCondition.leftReferenceValue.generateReferenceValue» = «joinCondition.rightReferenceValue.generateReferenceValue»'''
 			default:
 				'''«joinCondition.leftReferenceValue.generateReferenceValue» = «joinCondition.rightReferenceValue.generateReferenceValue»'''
 		}
@@ -49,11 +49,11 @@ class QueryUtil {
 	private static def generateWhereClause(SQLQuery query)'''WHERE «query.where.condition.generateWhereCondition»«IF query.where.additionalConditions !== null»«FOR condition : query.where.additionalConditions»«condition.generateWhereCondition»«ENDFOR»«ENDIF»'''
 	
 	private static def generateWhereCondition(SQLCondition condition) {
-		switch (condition) {
-			case AdditionalWhereCondition:
-				'''«(condition as AdditionalWhereCondition).linkage.literal» «FOR part : condition.parts»«part.generateSQLPart» «ENDFOR»'''
+		switch (condition.class) {
+			case org.xtext.example.mydsl.socialRequest.impl.AdditionalWhereConditionImpl:
+				'''«(condition as AdditionalWhereCondition).linkage» «FOR part : condition.parts»«part.generateSQLPart»«ENDFOR»'''
 			default:
-				'''«FOR part : condition.parts»«part.generateSQLPart» «ENDFOR»'''
+				'''«FOR part : condition.parts»«part.generateSQLPart»«ENDFOR» '''
 		}
 	}
 	
