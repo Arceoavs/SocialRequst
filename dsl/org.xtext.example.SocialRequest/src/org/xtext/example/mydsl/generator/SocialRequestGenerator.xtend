@@ -63,7 +63,8 @@ class SocialRequestGenerator extends AbstractGenerator {
         «ENDIF»
 
 		«entity.generateImports»
-
+		
+		@Entity
 		public class «entity.name» implements «IF entity.hasUserDetails»UserDetails«ELSE»Serializable«ENDIF» {
 			private static final long serialVersionUID = 1L;
 
@@ -169,7 +170,7 @@ class SocialRequestGenerator extends AbstractGenerator {
 	«IF modifier.isID»
 		@Id
 		«IF modifier.IDGenerationType !== null»
-			@GeneratedValue(GenerationType.«modifier.IDGenerationType»)
+			@GeneratedValue(strategy = GenerationType.«modifier.IDGenerationType»)
 		«ENDIF»
 	«ELSEIF modifier.isLOB»
 		@Lob
@@ -229,7 +230,7 @@ class SocialRequestGenerator extends AbstractGenerator {
 
 		«repository.generateImports»
 		
-		public interface RequestRepository extends JpaRepository<Request, Long> {
+		public interface «repository.name» extends JpaRepository<«repository.entity.name», Long> {
 			«FOR query : repository.queries»
 				«query.compile»
 			«ENDFOR»
@@ -274,7 +275,7 @@ class SocialRequestGenerator extends AbstractGenerator {
 	
 	private def generateJpqlQuery(SQLQuery sqlQuery)'''
 		@Query(
-			«sqlQuery.generateJPQL»
+			«sqlQuery.generateJPQL» 	
 		)
 	'''
 	

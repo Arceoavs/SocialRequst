@@ -202,6 +202,12 @@ package de.wwu.acse2020.socialrequest.data {
 					username: String
 				}
 			}
+			
+			query findByUsername {
+				params {
+					username: String
+				}
+			}			
 		}
 
 		Repository FulfillmentRepository on model.Fulfillment {
@@ -214,6 +220,18 @@ package de.wwu.acse2020.socialrequest.data {
 				SELECT f
 				FROM model.Fulfillment f
 				WHERE f.user "=" :user AND f.request "=" :request
+			}
+			
+			query findAllByUserOrderByCreatedAtDesc: list {
+				params {
+					user: model.User
+				}
+			}
+			
+			query existsByRequest: boolean {
+				params {
+					request: model.Request
+				}
 			}
 		}
 	}

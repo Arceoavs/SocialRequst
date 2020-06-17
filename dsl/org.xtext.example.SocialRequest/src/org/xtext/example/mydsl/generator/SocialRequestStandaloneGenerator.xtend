@@ -29,7 +29,7 @@ class SocialRequestStandaloneGenerator {
 		val resourceSet = injector.getInstance(XtextResourceSet)
 		val fsa = injector.getInstance(JavaIoFileSystemAccess)
 		
-		fsa.setOutputPath("../src-gen/")
+		fsa.setOutputPath("../../src/main/java/")
 		val generator = injector.getInstance(GeneratorDelegate)
 		val s = '../org.xtext.example.SocialRequest.models/SocialRequest.platform'
 		val resource = try{

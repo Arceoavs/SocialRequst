@@ -14,18 +14,18 @@ import org.xtext.example.mydsl.socialRequest.SQLQuery
 class QueryUtil {
 
 	static def generateJPQL(SQLQuery query)'''
-		"«query.generateSelectClause»" +
-		"«query.generateFromClause»"«IF !query.joins.empty || query.where !== null || query.order !== null» +«ENDIF»
+		"«query.generateSelectClause» " +
+		"«query.generateFromClause» "«IF !query.joins.empty || query.where !== null || query.order !== null» +«ENDIF»
 		«IF query.joins !== null»
 			«FOR join : query.joins»
-				"«join.generateJoin»"«query.joins.indexOf(join) !== query.joins.length || query.where !== null || query.order !== null ? ' +' : ''»
+				"«join.generateJoin» "«query.joins.indexOf(join) !== query.joins.length || query.where !== null || query.order !== null ? ' +' : ''»
 			«ENDFOR»
 		«ENDIF»
 		«IF query.where !== null»
-			"«query.generateWhereClause»"«IF query.order !== null» +«ENDIF»
+			"«query.generateWhereClause» "«IF query.order !== null» +«ENDIF»
 		«ENDIF»
 		«IF query.order !== null»
-			"«query.generateOrderByClause»"
+			"«query.generateOrderByClause» "
 		«ENDIF»
 	'''
 	
@@ -51,9 +51,9 @@ class QueryUtil {
 	private static def generateWhereCondition(SQLCondition condition) {
 		switch (condition) {
 			case AdditionalWhereCondition:
-				''' «(condition as AdditionalWhereCondition).linkage.literal» «FOR part : condition.parts»«part.generateSQLPart»«ENDFOR»'''
+				'''«(condition as AdditionalWhereCondition).linkage.literal» «FOR part : condition.parts»«part.generateSQLPart» «ENDFOR»'''
 			default:
-				'''«FOR part : condition.parts»«part.generateSQLPart»«ENDFOR»'''
+				'''«FOR part : condition.parts»«part.generateSQLPart» «ENDFOR»'''
 		}
 	}
 	
