@@ -5,9 +5,27 @@ generate socialRequest "http://www.xtext.org/example/mydsl/SocialRequest"
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
 Model:
-	entities+=Entity* repositories+=Repository*
+	elements+=AbstractElement+
 ;
-	
+
+AbstractElement:
+	Package | Entity | Repository
+;
+
+Package:
+	'package' name=PointSeparatedID '{'
+		(elements+=AbstractElement)*
+	'}'
+;
+
+PointSeparatedID:
+	ID('.'ID)*
+;
+
+FullPackageName hidden():
+	ID('.' ID)*
+;
+
 Entity:
 	'Entity' name=ID (hasUserDetails?='implements' 'UserDetails')? '{'
 		attributes+=Attribute+
@@ -15,10 +33,10 @@ Entity:
 ;
 
 Attribute:
-	(association=Association)? name=ID ':' typeRef=TypeReference (modifier=Modifier)? ('{'
+	(association=ASSOCIATION)? name=ID ':' typeRef=TypeReference (modifier=Modifier)? ('{'
 			(
 				('mappedBy:' mappedBy=ID)? &
-				('fetch:' fetchType=FetchType)? &
+				('fetch:' fetchType=FETCH_TYPE)? &
 				('validations' '{'
 					validations+=Validation+
 				'}')?
@@ -31,7 +49,7 @@ TypeReference:
 ;
 
 EntityTypeReference:
-	type=[Entity]
+	type=[Entity|FullPackageName]
 ;
 
 DataTypeReference:
@@ -39,32 +57,32 @@ DataTypeReference:
 ;
 
 Modifier:
-	isLOB?='LOB' | isTransient?='TRANSIENT' | isID?='ID'('('IDGenerationType=GenerationType')')?
+	isLOB?='LOB' | isTransient?='TRANSIENT' | isID?='ID'('('IDGenerationType=GENERATION_TYPE')')?
 ;
 
 Validation:
 	'min:' (min=POSSIBLY_SIGNED_INT) | 'max:' (max=POSSIBLY_SIGNED_INT) |
-	  'pattern:' regex=STRING | validator=BasicValidation
+		'pattern:' regex=STRING | validator=BASIC_VALIDATION | (unique?='unique')
 ;
 
-enum BasicValidation:
-	NOT_NULL='NotNull' | NOT_BLANK='NotBlank' | PAST='Past' | UNIQUE='Unique' | EMAIL='Email'
+terminal BASIC_VALIDATION:
+	'NotNull' | 'NotBlank' | 'Past' | 'Email'
 ;
 
 terminal POSSIBLY_SIGNED_INT returns ecore::EBigDecimal:
 	'-'?INT
 ;
 
-enum GenerationType:
-	AUTO='AUTO' | TABLE='TABLE' | IDENTITY='IDENTITY' | SEQUENCE='SEQUENCE'
+terminal GENERATION_TYPE:
+	'AUTO' | 'TABLE' | 'IDENTITY' | 'SEQUENCE'
 ;
 
-enum FetchType:
-	EAGER='EAGER' | LAZY='LAZY'
+terminal FETCH_TYPE:
+	'EAGER' | 'LAZY'
 ;
 	
-enum Association:
-	ONE_TO_MANY='OneToMany' | MANY_TO_ONE='ManyToOne' | ONE_TO_ONE='OneToOne' | MANY_TO_MANY='ManyToMany'
+terminal ASSOCIATION:
+	'OneToMany' | 'ManyToOne' | 'OneToOne' | 'ManyToMany'
 ;
 
 enum DataType:
@@ -74,19 +92,19 @@ enum DataType:
 // Repository
 
 Repository:
-	'Repository' entity=[Entity] '{'
+	'Repository' name=ID 'on' entity=[Entity|FullPackageName] '{'
 		queries+=Query+
 	'}'
 ;
 
 Query:
-	'query' name=ID(isList?=':' 'list')? ('{'
+	'query' name=ID(returnsList?=':' 'list' | returnsBoolean?=':' 'boolean')? ('{'
 		('params' '{'
 			params+=Param*
 		'}')?
 		
 		(sqlQuery=SQLQuery)?
-	'}')
+	'}')?
 ;
 
 Param:
@@ -101,16 +119,40 @@ SQLQuery:
 	(order=Order)?
 ;
 
+AbstractReferenceValue:
+	ReferenceValue | JoinReferenceValue
+;
+
+ReferenceValue:
+	alias=ID('.'attribute=ID)?
+;
+
 Select:
-	'SELECT' (isDistinct?='DISTINCT')? '{' clause=STRING '}'
+	'SELECT' (isDistinct?='DISTINCT')? clause=ReferenceValue
 ;
 
 From:
-	'FROM' '{' entity=[Entity] alias=ID '}'
+	'FROM' entity=[Entity|FullPackageName] alias=ID
 ;
 
 Join:
-	joinType=JoinType '{' entity=[Entity] alias=ID '}' ('ON' '{' joinCondition=STRING '}')?
+	joinType=JoinType (entity=[Entity|FullPackageName] | '$'reference=JoinReferenceValue) alias=ID ('ON' joinCondition=PrimaryJoinCondition joinConditions+=AdditionalJoinCondition*)?
+;
+
+JoinCondition:
+	PrimaryJoinCondition | AdditionalJoinCondition
+;
+
+JoinReferenceValue:
+	alias=ID'.'attribute=ID
+;
+
+PrimaryJoinCondition:
+	leftReferenceValue=ReferenceValue '=' rightReferenceValue=ReferenceValue
+;
+
+AdditionalJoinCondition:
+	linkage=CONDITION_LINKAGE leftReferenceValue=ReferenceValue '=' rightReferenceValue=ReferenceValue
 ;
 
 enum JoinType:
@@ -118,9 +160,45 @@ enum JoinType:
 ;
 
 Where:
-	'WHERE' '{' condition=STRING '}'
+	'WHERE' condition=WhereCondition additionalConditions+=AdditionalWhereCondition*
+;
+
+SQLCondition:
+	WhereCondition | AdditionalWhereCondition
+;
+
+WhereCondition:
+	parts+=SQLConditionPart+
+;
+
+AdditionalWhereCondition:
+	linkage=CONDITION_LINKAGE parts+=SQLConditionPart+
+;
+
+terminal CONDITION_LINKAGE:
+	'AND' | 'OR'
+;
+
+SQLConditionPart:
+	leftString=STRING? (referenceValue=ReferenceValue | ':'queryParam=[Param] | '('subquery=SQLQuery')') rightString=STRING?
 ;
 
 Order:
-	'ORDER BY' '{' order=STRING '}' 
+	'ORDER' 'BY' clause=OrderClause additionalClauses+=AdditionalOrderClause*
+;
+
+AbstractOrderClause:
+	OrderClause | AdditionalOrderClause
+;
+
+OrderClause:
+	referenceValue=ReferenceValue order=SQL_SORT_TYPE?
+;
+
+AdditionalOrderClause:
+	',' referenceValue=ReferenceValue order=SQL_SORT_TYPE?
+;
+
+enum SQL_SORT_TYPE:
+	ASC | DESC
 ;
