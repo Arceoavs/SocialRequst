@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Location Input</title>
+</head>
+<body>
+  <div th:fragment="location_input">
+    <script type="text/javascript" src="/js/locationInput.js"></script>
+
+    <div class="field">
+      <div id="map" class="map" style="height: 330px; width: 100%; margin-bottom: 1rem;"></div>
+    </div>
+
+    <div class="field">
+      <label class="label">Latitude</label>
+      <div class="control has-icons-left">
+        <input th:field="*{lat}" id="latitude" class="input" type="text">
+        <span class="icon is-small is-left">
+          <i class="fas fa-map-marker"></i>
+        </span>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Longitude</label>
+      <div class="control has-icons-left">
+        <input th:field="*{lng}" id="longitude" class="input" type="text">
+        <span class="icon is-small is-left">
+          <i class="fas fa-map-marker"></i>
+        </span>
+      </div>
+    </div>
+
+    <div class="field is-grouped">
+      <div class="control">
+        <a id="geolocator" onclick="getDeviceLocation()" class="button is-info">
+          Locate Device
+        </a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
