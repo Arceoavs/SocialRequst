@@ -32,3 +32,6 @@ build/
 
 ### IntelliJ ###
 .idea/
+
+### System Files ###
+.DS_Store
