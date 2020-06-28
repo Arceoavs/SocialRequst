@@ -1,4 +1,4 @@
-package com.group6.group6.model;
+package de.wwu.acse.maps.model;
 
 import javax.validation.constraints.NotNull;
 

@@ -1,6 +1,6 @@
-package com.group6.group6.model;
+package de.wwu.acse.maps.model;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.validation.constraints.NotNull;
@@ -31,7 +31,7 @@ public class Route {
   
   public void addInstructions(Instruction instructions) {
     if (this.instructions == null) {
-      this.instructions = new HashSet<>();
+      this.instructions = new LinkedHashSet<>();
     }
 		this.instructions.add(instructions);
 	}

@@ -1,4 +1,4 @@
-package com.group6.group6.service.impl;
+package de.wwu.acse.maps.service.impl;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,20 +7,23 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.group6.group6.service.TTApiService;
-import com.group6.group6.model.Coordinates;
-import com.group6.group6.model.Route;
-import com.group6.group6.model.Instruction;
 
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import de.wwu.acse.maps.model.Coordinates;
+import de.wwu.acse.maps.model.Instruction;
+import de.wwu.acse.maps.model.Route;
+import de.wwu.acse.maps.service.TTApiService;
+
+@Service
 public class TTApiServiceImpl implements TTApiService {
 
   private final String TT_API_URL = "https://api.tomtom.com/";
   private final String API_KEY = System.getenv("API_KEY");
   private final RestTemplate restTemplate = new RestTemplate();
 
-  public Coordinates getCoordinates (String query) {
+  public Coordinates getCoordinates(String query) {
     Map<String, String> uriVariables = new HashMap<String, String>();
     uriVariables.put("key", API_KEY);
     ObjectMapper mapper = new ObjectMapper();
