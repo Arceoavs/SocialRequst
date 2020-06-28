@@ -6,7 +6,7 @@ import java.util.Date;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-@Table(name = "fulfillments", uniqueConstraints = @UniqueConstraint(columnNames = { "request_id", "user_id" }))
+@Table(name = "fulfillments")
 @Entity
 public class Fulfillment implements Serializable {
 
@@ -17,34 +17,46 @@ public class Fulfillment implements Serializable {
   private Long id;
 
   @NotNull
-  private Date createdAt;
+  private String username;
 
-  private Long requestId;
+  @NotNull(message = "Distance in kilometres is required")
+  private float distance;
 
-  private Long userId;
+  @NotNull
+  private Date fulfilledAt;
+
+  public Fulfillment(String username, float distance, Date fulfilledAt) {
+    this.username = username;
+    this.distance = distance;
+    this.fulfilledAt = fulfilledAt;
+  }
 
   public Long getId() {
-    return this.id;
+    return id;
   }
 
-  public Date getCreatedAt() {
-    return this.createdAt;
+  public float getDistance() {
+    return distance;
   }
 
-  public Request getRequest() {
-    return this.request;
+  public void setDistance(float distance) {
+    this.distance = distance;
   }
 
-  public void setRequest(Request request) {
-    this.request = request;
+  public String getUsername() {
+    return username;
   }
 
-  public User getUser() {
-    return user;
+  public void setUsername(String username) {
+    this.username = username;
   }
 
-  public void setUser(User user) {
-    this.user = user;
+  public Date getFulfilledAt() {
+    return fulfilledAt;
+  }
+
+  public void setFulfilledAt(Date fulfilledAt) {
+    this.fulfilledAt = fulfilledAt;
   }
 
 }
