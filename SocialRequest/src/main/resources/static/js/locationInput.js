@@ -100,3 +100,36 @@ function initializeMapEventListeners() {
     movePinToCoordinates(L.latLng(latitude, longitude), panToCoordinates = true);
   });
 }
+
+function initializeAddressSearch() {
+  const $btn = document.getElementById("btnSearchAddress")
+
+  if ($btn != null) {
+    $btn.addEventListener('click', async (e) => {
+      const addressString = document.getElementById('locationString').value;
+
+      // set url of location service
+      let url = new URL('');
+
+      url.search = new URLSearchParams({ q: query , raw: 'true'});
+
+      try {
+        const response = await fetch(url);
+
+        // get coordinates
+        const res = await response.json();
+
+        console.log(res);
+
+        const lat = res.lat;
+        const lng = res.lng;
+        if (lat && lng) {
+          movePinToCoordinates(L.latLng(lat, lng), true);
+        }
+      } catch(error) {
+        console.log('Something went wrong', error);
+        createFlashMessage('error', `Something went wrong: ${error}`)
+      }
+    });
+  }
+}
