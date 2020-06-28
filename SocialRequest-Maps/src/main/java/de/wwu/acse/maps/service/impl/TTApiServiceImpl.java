@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import de.wwu.acse.maps.model.Coordinates;
+import de.wwu.acse.maps.model.Distance;
 import de.wwu.acse.maps.model.Instruction;
 import de.wwu.acse.maps.model.Route;
 import de.wwu.acse.maps.service.TTApiService;
@@ -52,6 +53,7 @@ public class TTApiServiceImpl implements TTApiService {
     uriVariables.put("key", API_KEY);
     String request = restTemplate.getForObject(TT_API_URL+"routing/1/calculateRoute/"+parameter+"/json?maxAlternatives=0&instructionsType=text&routeRepresentation=summaryOnly&avoid=unpavedRoads&travelMode=bicycle&key={key}", 
       String.class, uriVariables);
+
     try {
       JsonNode node = mapper.readTree(request);
       ArrayNode jsonRoute = (ArrayNode) node.get("routes");
@@ -66,5 +68,26 @@ public class TTApiServiceImpl implements TTApiService {
       e.printStackTrace();
     }
     return route;
+  }
+
+  public Distance getDistance(Coordinates origin, Coordinates destination){
+    Distance distance = new Distance();
+    ObjectMapper mapper = new ObjectMapper();
+
+    String parameter = String.format("%s,%s:%s,%s;", origin.getLat(), origin.getLon(), destination.getLat(), destination.getLon());
+    Map<String, String> uriVariables = new HashMap<String, String>();
+    uriVariables.put("key", API_KEY);
+    String request = restTemplate.getForObject(TT_API_URL+"routing/1/calculateRoute/"+parameter+"/json?maxAlternatives=0&instructionsType=text&routeRepresentation=summaryOnly&avoid=unpavedRoads&travelMode=bicycle&key={key}", 
+      String.class, uriVariables);
+      
+    try {
+      JsonNode node = mapper.readTree(request);
+      ArrayNode jsonRoute = (ArrayNode) node.get("routes");
+      distance.setLengthInMeters(jsonRoute.get(0).get("summary").get("lengthInMeters").asInt());
+    }
+    catch (JsonProcessingException e) {
+      e.printStackTrace();
+    }
+    return distance;
   }
 }
