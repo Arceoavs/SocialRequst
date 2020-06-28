@@ -5,6 +5,7 @@ stages:
   - build
 
 before_script:
+  - cd SocialRequest
   - chmod +x mvnw
 
 test:
