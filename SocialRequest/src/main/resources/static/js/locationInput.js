@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (lat && lng) mapCoordinates = [lat, lng];
   createMap();
   initializeMapEventListeners();
+  initializeAddressSearch();
 });
 
 function createMap() {
@@ -109,20 +110,23 @@ function initializeAddressSearch() {
       const addressString = document.getElementById('locationString').value;
 
       // set url of location service
-      let url = new URL('');
+      let url = new URL('http://localhost:8081/geocode/' + addressString);
 
-      url.search = new URLSearchParams({ q: query , raw: 'true'});
+      // url.search = new URLSearchParams({ q: query , raw: 'true'});
 
       try {
-        const response = await fetch(url);
+        const response = await fetch(url, {
+          method: 'get',
+          headers: {
+            'Accept': 'application/json'
+          },
+        });
 
         // get coordinates
         const res = await response.json();
 
-        console.log(res);
-
         const lat = res.lat;
-        const lng = res.lng;
+        const lng = res.lon;
         if (lat && lng) {
           movePinToCoordinates(L.latLng(lat, lng), true);
         }
