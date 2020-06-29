@@ -26,10 +26,12 @@ public class MapsServiceImpl {
   UserRepository userRepository;
 
   public List<Instruction> getDirections(float requestLat, float requestLng) {
+    // get current users data
     User user = userRepository.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 
     RestTemplate restTemplate = new RestTemplate();
 
+    // API url
     String url = "http://localhost:8081/route";
 
     // create headers
@@ -38,19 +40,19 @@ public class MapsServiceImpl {
     // create a post object
     Coordinates start = new Coordinates(String.valueOf(user.getLat()), String.valueOf(user.getLng()));
     Coordinates dest = new Coordinates(String.valueOf(requestLat), String.valueOf(requestLng));
-
     RouteCoordinates routeCoordinates = new RouteCoordinates();
     routeCoordinates.setOrigin(start);
     routeCoordinates.setDestination(dest);
 
-    // build the request
+    // build the request header and body
     HttpEntity<RouteCoordinates> entity = new HttpEntity<RouteCoordinates>(routeCoordinates, headers);
 
+    // perform the request
     ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
 
     // check response status code
     if (response.getStatusCode() == HttpStatus.OK) {
-      System.out.println(response.getBody());
+      // try to read the response body
       try {
         InstructionsResult instructionsResult = new InstructionsResult();
         ObjectMapper mapper = new ObjectMapper();
