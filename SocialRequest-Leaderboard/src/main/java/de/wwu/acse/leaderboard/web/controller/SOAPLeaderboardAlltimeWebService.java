@@ -13,7 +13,7 @@ import de.wwu.acse.leaderboard.soap.GetAlltimeRequest;
 
 @Endpoint
 public class SOAPLeaderboardAlltimeWebService {
-  private static final String NAMESPACE = "soap.leaderboard.acse.group6.wwu.de";
+  private static final String NAMESPACE = "soap.leaderboard.acse.wwu.de";
   private FulfillmentRepository fulfillmentRepository;
 
   @Autowired
@@ -25,9 +25,7 @@ public class SOAPLeaderboardAlltimeWebService {
   @ResponsePayload
   public GetAlltimeResponse getLeaderboard(@RequestPayload GetAlltimeRequest request) {
     GetAlltimeResponse response = new GetAlltimeResponse();
-    // TODO
     response.setAlltimeLeaderboard(new Leaderboard());
     return response;
   }
-
 }
