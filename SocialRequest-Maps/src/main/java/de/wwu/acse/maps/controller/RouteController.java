@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import de.wwu.acse.maps.model.Coordinates;
+import de.wwu.acse.maps.model.Address;
 import de.wwu.acse.maps.model.Distance;
 import de.wwu.acse.maps.model.Route;
 import de.wwu.acse.maps.model.RouteCoordinates;
@@ -24,9 +25,9 @@ public class RouteController {
   @Autowired
   TTApiService ttService;
 
-  @GetMapping(value = "/geocode/{address}", produces = "application/json")
-  public Coordinates getCoordinates(@PathVariable(value="address") String address) {
-    return ttService.getCoordinates(address);
+  @GetMapping(value = "/geocode", consumes = "application/json", produces = "application/json")
+  public Coordinates getCoordinates(@Valid @RequestBody Address address, BindingResult bindingResult) {
+    return ttService.getCoordinates(address.getAddress());
   }
 
   @GetMapping(value = "/route", consumes = "application/json", produces = "application/json")
