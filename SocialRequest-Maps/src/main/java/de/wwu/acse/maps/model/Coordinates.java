@@ -5,25 +5,25 @@ import javax.validation.constraints.NotNull;
 public class Coordinates {
 
   @NotNull
-  private String lat;
+  private float lat;
 
   @NotNull
-  private String lon;
+  private float lon;
 
-	public String getLat() {
-		return this.lat;
-	}
+  public float getLat() {
+    return this.lat;
+  }
 
-	public void setLat(String lat) {
-		this.lat = lat;
-	}
+  public void setLat(float lat) {
+    this.lat = lat;
+  }
 
-	public String getLon() {
-		return this.lon;
-	}
+  public float getLon() {
+    return this.lon;
+  }
 
-	public void setLon(String lon) {
-		this.lon = lon;
-	}
+  public void setLon(float lon) {
+    this.lon = lon;
+  }
 
 }

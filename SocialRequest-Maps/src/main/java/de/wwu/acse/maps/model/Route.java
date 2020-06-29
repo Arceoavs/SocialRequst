@@ -21,12 +21,12 @@ public class Route {
     this.travelTimeInSeconds = travelTimeInSeconds;
   }
 
-	public Set<Instruction> getInstructions() {
-		return this.instructions;
+  public Set<Instruction> getInstructions() {
+    return this.instructions;
   }
 
-	public void setInstructions(Set<Instruction> instructions) {
-		this.instructions = instructions;
+  public void setInstructions(Set<Instruction> instructions) {
+    this.instructions = instructions;
   }
   
   public void addInstructions(Instruction instructions) {

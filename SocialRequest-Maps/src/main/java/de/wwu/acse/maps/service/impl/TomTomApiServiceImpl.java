@@ -15,10 +15,10 @@ import de.wwu.acse.maps.model.Coordinates;
 import de.wwu.acse.maps.model.Distance;
 import de.wwu.acse.maps.model.Instruction;
 import de.wwu.acse.maps.model.Route;
-import de.wwu.acse.maps.service.TTApiService;
+import de.wwu.acse.maps.service.TomTomApiService;
 
 @Service
-public class TTApiServiceImpl implements TTApiService {
+public class TomTomApiServiceImpl implements TomTomApiService {
 
   private final String TT_API_URL = "https://api.tomtom.com/";
   private final String API_KEY = System.getenv("API_KEY");

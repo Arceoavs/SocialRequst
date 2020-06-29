@@ -17,28 +17,37 @@ import de.wwu.acse.maps.model.Address;
 import de.wwu.acse.maps.model.Distance;
 import de.wwu.acse.maps.model.Route;
 import de.wwu.acse.maps.model.RouteCoordinates;
-import de.wwu.acse.maps.service.TTApiService;
+import de.wwu.acse.maps.service.TomTomApiService;
 
 @RestController
 @RequestMapping("")
 public class RouteController {
   
   @Autowired
-  TTApiService ttService;
+  TomTomApiService ttService;
 
   @CrossOrigin(origins = "http://localhost:8080")
   @PostMapping(value = "/geocode", consumes = "application/json", produces = "application/json")
   public Coordinates getCoordinates(@Valid @RequestBody Address address, BindingResult bindingResult) {
+    if (bindingResult.hasErrors()){
+
+    }
     return ttService.getCoordinates(address.getAddress());
   }
 
   @PostMapping(value = "/route", consumes = "application/json", produces = "application/json")
   public Route getRoute(@Valid @RequestBody RouteCoordinates routeCoordinates, BindingResult bindingResult){
+    if (bindingResult.hasErrors()){
+      
+    }
     return ttService.getRoute(routeCoordinates.getOrigin(), routeCoordinates.getDestination());
   }
 
   @PostMapping(value = "/distance", consumes = "application/json", produces = "application/json")
   public Distance getDistance(@Valid @RequestBody RouteCoordinates routeCoordinates, BindingResult bindingResult){
+    if (bindingResult.hasErrors()){
+      
+    }
     return ttService.getDistance(routeCoordinates.getOrigin(), routeCoordinates.getDestination());
   }
 }

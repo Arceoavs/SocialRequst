@@ -4,7 +4,7 @@ import de.wwu.acse.maps.model.Coordinates;
 import de.wwu.acse.maps.model.Distance;
 import de.wwu.acse.maps.model.Route;
 
-public interface TTApiService {
+public interface TomTomApiService {
 
   public Coordinates getCoordinates (String query);
 
