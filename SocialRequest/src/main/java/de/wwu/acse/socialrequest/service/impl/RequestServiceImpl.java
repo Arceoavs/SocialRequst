@@ -1,7 +1,7 @@
 package de.wwu.acse.socialrequest.service.impl;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+
 
 import de.wwu.acse.socialrequest.model.Request;
 import de.wwu.acse.socialrequest.model.Topic;

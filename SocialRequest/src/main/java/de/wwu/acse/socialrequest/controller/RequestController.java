@@ -14,6 +14,7 @@ import de.wwu.acse.socialrequest.model.Request;
 import de.wwu.acse.socialrequest.model.User;
 import de.wwu.acse.socialrequest.repository.UserRepository;
 import de.wwu.acse.socialrequest.service.FulfillmentService;
+import de.wwu.acse.socialrequest.service.impl.MapsServiceImpl;
 import de.wwu.acse.socialrequest.service.RequestService;
 import de.wwu.acse.socialrequest.service.TopicService;
 
@@ -41,6 +42,9 @@ public class RequestController extends ApplicationController {
 
   @Autowired
   FulfillmentService fulfillmentService;
+
+  @Autowired
+  MapsServiceImpl mapsService;
 
   @Autowired
   UserRepository userRepository;
@@ -79,7 +83,9 @@ public class RequestController extends ApplicationController {
   @GetMapping("/{id}")
   public String showRequest(@PathVariable String id, Model model) {
     try {
-      model.addAttribute("request", requestService.getRequest(id));
+      Request request = requestService.getRequest(id);
+      model.addAttribute("request", request);
+      model.addAttribute("directions", mapsService.getDirections(request.getLat(), request.getLng()));
       return "request/show";
     } catch (NumberFormatException e) {
       throw new NoRequestException(String.format("ID %s is no number", id));

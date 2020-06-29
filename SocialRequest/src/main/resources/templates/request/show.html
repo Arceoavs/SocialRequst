@@ -31,6 +31,10 @@
                 <div class="field">
                   <div id="map" class="map" style="height: 330px; width: 100%;" th:attr="data-lat=${request.lat},data-lng=${request.lng}"></div>
                 </div>
+                <h3 class="title is-4">Directions</h3>
+                <div class="field" th:each="direction : ${directions}">
+                  <p th:text="${direction.message}">title</p>
+                </div>
               </div>
             </div>
 
