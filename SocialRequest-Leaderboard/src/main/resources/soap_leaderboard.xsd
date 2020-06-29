@@ -1,0 +1,39 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="soap.leaderboard.acse.wwu.de" targetNamespace="soap.leaderboard.acse.wwu.de" elementFormDefault="qualified">
+  <!-- Adjusted from https://spring.io/guides/gs/producing-web-service/ -->
+  <xs:element name="getAlltimeRequest">
+    <xs:complexType>
+      <xs:sequence></xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="getAlltimeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="alltimeLeaderboard" type="tns:leaderboard" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="getMonthlyRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="month" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="getMonthlyResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="monthlyLeaderboard" type="tns:leaderboard" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="leaderboard">
+    <xs:sequence>
+      <xs:element maxOccurs="10" name="fulfillment" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
