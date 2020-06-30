@@ -2,11 +2,8 @@ package de.wwu.acse.socialrequest.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import de.wwu.acse.socialrequest.model.Request;
 
-@Service
 public interface QueryService {
 
   /**

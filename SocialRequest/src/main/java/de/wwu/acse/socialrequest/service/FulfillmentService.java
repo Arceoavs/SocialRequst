@@ -1,13 +1,10 @@
 package de.wwu.acse.socialrequest.service;
 
-import org.springframework.stereotype.Service;
-
 import de.wwu.acse.socialrequest.exception.RequestAlreadyFulfilledException;
 import de.wwu.acse.socialrequest.exception.RequestCannotBeFulfilledBySameUser;
 import de.wwu.acse.socialrequest.model.Request;
 import de.wwu.acse.socialrequest.model.User;
 
-@Service
 public interface FulfillmentService {
 
   /**
