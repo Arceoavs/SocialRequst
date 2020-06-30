@@ -4,6 +4,10 @@ public class Distance {
 
   private int lengthInMeters;
 
+  public Distance(int lengthInMeters) {
+    this.lengthInMeters = lengthInMeters;
+  }
+
   public int getLengthInMeters() {
     return lengthInMeters;
   }
