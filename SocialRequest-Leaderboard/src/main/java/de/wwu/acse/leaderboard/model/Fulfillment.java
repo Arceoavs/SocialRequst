@@ -28,6 +28,8 @@ public class Fulfillment implements Serializable {
   @NotNull
   private Date fulfilledAt;
 
+  public Fulfillment() {}
+
   public Fulfillment(String username, Long requestId, float distance, Date fulfilledAt) {
     this.username = username;
     this.requestId = requestId;
