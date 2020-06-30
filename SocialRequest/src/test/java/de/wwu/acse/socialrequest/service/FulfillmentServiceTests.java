@@ -10,6 +10,7 @@ import de.wwu.acse.socialrequest.model.Fulfillment;
 import de.wwu.acse.socialrequest.model.Request;
 import de.wwu.acse.socialrequest.model.User;
 import de.wwu.acse.socialrequest.repository.FulfillmentRepository;
+import de.wwu.acse.socialrequest.service.impl.FulfillmentServiceImpl;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,7 +33,7 @@ public class FulfillmentServiceTests {
 
     @Bean
     public FulfillmentService fulfillmentService() {
-      return new FulfillmentService();
+      return new FulfillmentServiceImpl();
     }
 
   }
@@ -54,22 +55,16 @@ public class FulfillmentServiceTests {
     // create request
     User user = new User("john.doe", "john@doe.com", "test123");
     entityManager.persistAndFlush(user);
-    Request request = new Request(
-      "Walk my dog",
-      "Please take my cute dog for a walk",
-      ((float) 51.975959),
-      ((float) 7.60186),
-      user
-    );
+    Request request = new Request("Walk my dog", "Please take my cute dog for a walk", ((float) 51.975959),
+        ((float) 7.60186), user);
     entityManager.persistAndFlush(request);
 
     // create fulfilling user
     User anotherUser = new User("jane.doe", "jane@doe.com", "test123");
     entityManager.persistAndFlush(anotherUser);
 
-    Mockito
-      .when(fulfillmentRepository.save(any(Fulfillment.class)))
-      .thenReturn(entityManager.persistAndFlush(new Fulfillment(request, anotherUser)));
+    Mockito.when(fulfillmentRepository.save(any(Fulfillment.class)))
+        .thenReturn(entityManager.persistAndFlush(new Fulfillment(request, anotherUser)));
 
     assertFalse(request.isFulfilled());
 
@@ -87,13 +82,8 @@ public class FulfillmentServiceTests {
       // create request
       User user = new User("john.doe", "john@doe.com", "test123");
       entityManager.persistAndFlush(user);
-      Request request = new Request(
-        "Walk my dog",
-        "Please take my cute dog for a walk",
-        ((float) 51.975959),
-        ((float) 7.60186),
-        user
-      );
+      Request request = new Request("Walk my dog", "Please take my cute dog for a walk", ((float) 51.975959),
+          ((float) 7.60186), user);
       entityManager.persistAndFlush(request);
 
       // create fulfilling user
