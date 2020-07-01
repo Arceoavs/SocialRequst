@@ -50,4 +50,12 @@ public class Instruction implements Serializable {
     this.travelTime = travelTime;
   }
 
+  public String getFormattedTravelTime() {
+    int hours = travelTime / 3600;
+    int minutes = (travelTime % 3600) / 60;
+    int seconds = travelTime % 60;
+
+    return String.format("%02d:%02d:%02d", hours, minutes, seconds);
+  }
+
 }

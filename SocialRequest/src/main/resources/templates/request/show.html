@@ -65,8 +65,8 @@
                     <tr>
                       <th></th>
                       <th>Instruction</th>
-                      <th>Distance (in m)</th>
-                      <th>Time (in s)</th>
+                      <th>Travel Distance (in m)</th>
+                      <th>Travel Time (in h)</th>
                       <th>Street name</th>
                     </tr>
                   </thead>
@@ -75,7 +75,7 @@
                       <td><i class="fas fa-map-signs" aria-hidden="true"></i></td>
                       <td th:text="${direction.message}"></td>
                       <td th:text="${direction.distance}"></td>
-                      <td th:text="${direction.travelTime}"></td>
+                      <td th:text="${direction.formattedTravelTime}"></td>
                       <td th:text="${direction.street}"></td>
                     </tr>
                   </tbody>
