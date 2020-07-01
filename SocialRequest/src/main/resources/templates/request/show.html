@@ -59,11 +59,27 @@
               <p class="panel-heading" style="margin:0;">
                 How to get to the Request's Location?
               </p>
-              <div class="panel-block is-active" th:each="direction : ${directions}">
-                <span class="panel-icon">
-                  <i class="fas fa-map-signs" aria-hidden="true"></i>
-                </span>
-                <p th:text="${direction.message}">Direction</p>
+              <div class="panel-block is-active">
+                <table class="table is-hoverable is-fullwidth">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Instruction</th>
+                      <th>Distance (in m)</th>
+                      <th>Time (in s)</th>
+                      <th>Street name</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr th:each="direction : ${directions}">
+                      <td><i class="fas fa-map-signs" aria-hidden="true"></i></td>
+                      <td th:text="${direction.message}">Instruction</td>
+                      <td th:text="${direction.distanceInMeters}">Instruction</td>
+                      <td th:text="${direction.travelTimeInSeconds}">Instruction</td>
+                      <td th:text="${direction.street}">Instruction</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </article>
 

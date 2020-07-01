@@ -12,13 +12,6 @@ public class InstructionsResult {
     this.instructions = instructions;
   }
 
-  public void addInstruction(Instruction instruction) {
-    if (this.instructions == null) {
-      this.instructions = new ArrayList<Instruction>();
-    }
-    this.instructions.add(instruction);
-  }
-
   public void setTravelTimeInSeconds(int travelTimeInSeconds) {
     this.travelTimeInSeconds = travelTimeInSeconds;
   }
