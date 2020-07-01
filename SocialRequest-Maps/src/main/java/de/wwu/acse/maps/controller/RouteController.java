@@ -28,23 +28,23 @@ public class RouteController {
   @CrossOrigin(origins = "http://localhost:8080")
   @PostMapping(value = "/geocode", consumes = "application/json", produces = "application/json")
   public Coordinates getCoordinates(@Valid @RequestBody Address address, BindingResult bindingResult) {
-    if (bindingResult.hasErrors()){
+    if (bindingResult.hasErrors()) {
       throw new UnprocessableEntityException();
     }
     return tomTomService.getCoordinates(address.getAddress());
   }
 
   @PostMapping(value = "/route", consumes = "application/json", produces = "application/json")
-  public Route getRoute(@Valid @RequestBody RouteCoordinates routeCoordinates, BindingResult bindingResult){
-    if (bindingResult.hasErrors()){
+  public Route getRoute(@Valid @RequestBody RouteCoordinates routeCoordinates, BindingResult bindingResult) {
+    if (bindingResult.hasErrors()) {
       throw new UnprocessableEntityException();
     }
     return tomTomService.getRoute(routeCoordinates.getOrigin(), routeCoordinates.getDestination());
   }
 
   @PostMapping(value = "/distance", consumes = "application/json", produces = "application/json")
-  public Distance getDistance(@Valid @RequestBody RouteCoordinates routeCoordinates, BindingResult bindingResult){
-    if (bindingResult.hasErrors()){
+  public Distance getDistance(@Valid @RequestBody RouteCoordinates routeCoordinates, BindingResult bindingResult) {
+    if (bindingResult.hasErrors()) {
       throw new UnprocessableEntityException();
     }
     return tomTomService.getDistance(routeCoordinates.getOrigin(), routeCoordinates.getDestination());
