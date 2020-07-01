@@ -7,11 +7,11 @@ public class RouteCoordinates {
 
   @NotNull
   @Valid
-  Coordinates origin;
+  private Coordinates origin;
 
   @NotNull
   @Valid
-  Coordinates destination;
+  private Coordinates destination;
 
   public Coordinates getOrigin() {
     return this.origin;

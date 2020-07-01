@@ -5,10 +5,10 @@ import javax.validation.constraints.NotNull;
 public class Coordinates {
 
   @NotNull
-  Float lat;
+  private Float lat;
 
   @NotNull
-  Float lon;
+  private Float lon;
 
   public Float getLat() {
     return this.lat;

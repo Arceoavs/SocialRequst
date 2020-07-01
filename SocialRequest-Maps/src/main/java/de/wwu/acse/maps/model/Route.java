@@ -8,10 +8,10 @@ import javax.validation.constraints.NotNull;
 public class Route {
 
   @NotNull
-  Set<Instruction> instructions; 
+  private Set<Instruction> instructions;
 
   @NotNull
-  int travelTimeInSeconds;
+  private int travelTimeInSeconds;
 
   public int getTravelTimeInSeconds() {
     return this.travelTimeInSeconds;
@@ -28,7 +28,7 @@ public class Route {
   public void setInstructions(Set<Instruction> instructions) {
     this.instructions = instructions;
   }
-  
+
   public void addInstructions(Instruction instructions) {
     if (this.instructions == null) {
       this.instructions = new LinkedHashSet<>();

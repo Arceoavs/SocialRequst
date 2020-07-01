@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 public class Address {
 
   @NotNull
-  String address;
+  private String address;
 
   public String getAddress() {
     return this.address;
