@@ -6,7 +6,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,9 +21,9 @@ import de.wwu.acse.maps.service.TomTomApiService;
 @RestController
 @RequestMapping("")
 public class RouteController {
-  
+
   @Autowired
-  TomTomApiService ttService;
+  TomTomApiService tomTomService;
 
   @CrossOrigin(origins = "http://localhost:8080")
   @PostMapping(value = "/geocode", consumes = "application/json", produces = "application/json")
@@ -32,7 +31,7 @@ public class RouteController {
     if (bindingResult.hasErrors()){
 
     }
-    return ttService.getCoordinates(address.getAddress());
+    return tomTomService.getCoordinates(address.getAddress());
   }
 
   @PostMapping(value = "/route", consumes = "application/json", produces = "application/json")
@@ -40,7 +39,7 @@ public class RouteController {
     if (bindingResult.hasErrors()){
       
     }
-    return ttService.getRoute(routeCoordinates.getOrigin(), routeCoordinates.getDestination());
+    return tomTomService.getRoute(routeCoordinates.getOrigin(), routeCoordinates.getDestination());
   }
 
   @PostMapping(value = "/distance", consumes = "application/json", produces = "application/json")
@@ -48,6 +47,7 @@ public class RouteController {
     if (bindingResult.hasErrors()){
       
     }
-    return ttService.getDistance(routeCoordinates.getOrigin(), routeCoordinates.getDestination());
+    return tomTomService.getDistance(routeCoordinates.getOrigin(), routeCoordinates.getDestination());
   }
+
 }

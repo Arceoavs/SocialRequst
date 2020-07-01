@@ -11,4 +11,5 @@ public interface TomTomApiService {
   public Route getRoute(Coordinates origin, Coordinates destination);
 
   public Distance getDistance(Coordinates origin, Coordinates destination);
+
 }

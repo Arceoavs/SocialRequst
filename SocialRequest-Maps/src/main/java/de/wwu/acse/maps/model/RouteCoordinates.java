@@ -3,6 +3,7 @@ package de.wwu.acse.maps.model;
 import javax.validation.constraints.NotNull;
 
 public class RouteCoordinates {
+
   @NotNull
   Coordinates origin;
 
