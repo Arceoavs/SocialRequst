@@ -72,6 +72,7 @@ public class TomTomApiServiceImpl implements TomTomApiService {
       JsonNode node = mapper.readTree(response);
       ArrayNode jsonRoute = (ArrayNode) node.get("routes");
       route.setTravelTimeInSeconds(jsonRoute.get(0).get("summary").get("travelTimeInSeconds").asInt());
+      route.setTravelDistanceInMeters(jsonRoute.get(0).get("summary").get("lengthInMeters").asInt());
       ArrayNode jsonInstructions = (ArrayNode) jsonRoute.get(0).get("guidance").get("instructions");
       int lastDistance = 0;
       int index = 1;

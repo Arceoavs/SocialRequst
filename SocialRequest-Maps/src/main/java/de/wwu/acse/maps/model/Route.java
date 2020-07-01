@@ -13,12 +13,23 @@ public class Route {
   @NotNull
   private int travelTimeInSeconds;
 
+  @NotNull
+  private int travelDistanceInMeters;
+
   public int getTravelTimeInSeconds() {
     return this.travelTimeInSeconds;
   }
 
   public void setTravelTimeInSeconds(int travelTimeInSeconds) {
     this.travelTimeInSeconds = travelTimeInSeconds;
+  }
+
+  public int getTravelDistanceInMeters() {
+    return travelDistanceInMeters;
+  }
+
+  public void setTravelDistanceInMeters(int travelDistanceInMeters) {
+    this.travelDistanceInMeters = travelDistanceInMeters;
   }
 
   public Set<Instruction> getInstructions() {
