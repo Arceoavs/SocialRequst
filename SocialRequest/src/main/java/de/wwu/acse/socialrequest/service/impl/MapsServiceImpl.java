@@ -26,56 +26,57 @@ public class MapsServiceImpl {
   UserRepository userRepository;
 
   public List<Instruction> getDirections(float requestLat, float requestLng) {
-    // get current users data
-    User user = userRepository.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+    try {
+      // get current users data
+      User user = userRepository.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 
-    RestTemplate restTemplate = new RestTemplate();
+      RestTemplate restTemplate = new RestTemplate();
 
-    // API url
-    String url = "http://localhost:8081/route";
+      // API url
+      String url = "http://localhost:8081/route";
 
-    // create headers
-    HttpHeaders headers = new HttpHeaders();
+      // create headers
+      HttpHeaders headers = new HttpHeaders();
 
-    // create a post object
-    Coordinates start = new Coordinates(String.valueOf(user.getLat()), String.valueOf(user.getLng()));
-    Coordinates dest = new Coordinates(String.valueOf(requestLat), String.valueOf(requestLng));
-    RouteCoordinates routeCoordinates = new RouteCoordinates();
-    routeCoordinates.setOrigin(start);
-    routeCoordinates.setDestination(dest);
+      // create a post object
+      Coordinates start = new Coordinates(String.valueOf(user.getLat()), String.valueOf(user.getLng()));
+      Coordinates dest = new Coordinates(String.valueOf(requestLat), String.valueOf(requestLng));
+      RouteCoordinates routeCoordinates = new RouteCoordinates();
+      routeCoordinates.setOrigin(start);
+      routeCoordinates.setDestination(dest);
 
-    // build the request header and body
-    HttpEntity<RouteCoordinates> entity = new HttpEntity<RouteCoordinates>(routeCoordinates, headers);
+      // build the request header and body
+      HttpEntity<RouteCoordinates> entity = new HttpEntity<RouteCoordinates>(routeCoordinates, headers);
 
-    // perform the request
-    ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+      // perform the request
+      ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
 
-    // check response status code
-    if (response.getStatusCode() == HttpStatus.OK) {
-      // try to read the response body
-      try {
-        InstructionsResult instructionsResult = new InstructionsResult();
-        ObjectMapper mapper = new ObjectMapper();
-        JsonNode node = mapper.readTree(response.getBody());
+      // check response status code
+      if (response.getStatusCode() == HttpStatus.OK) {
+        // try to read the response body
+        try {
+          InstructionsResult instructionsResult = new InstructionsResult();
+          ObjectMapper mapper = new ObjectMapper();
+          JsonNode node = mapper.readTree(response.getBody());
 
-        IntNode jsonRoute = (IntNode) node.get("travelTimeInSeconds");
-        instructionsResult.setTravelTimeInSeconds(jsonRoute.asInt());
+          IntNode jsonRoute = (IntNode) node.get("travelTimeInSeconds");
+          instructionsResult.setTravelTimeInSeconds(jsonRoute.asInt());
 
-        ArrayNode jsonInstructions = (ArrayNode) node.get("instructions");
-        for (JsonNode inst : jsonInstructions) {
-          Instruction instruction = mapper.treeToValue(inst.get("message"), Instruction.class);
-          instructionsResult.addInstruction(instruction);
+          ArrayNode jsonInstructions = (ArrayNode) node.get("instructions");
+          for (JsonNode inst : jsonInstructions) {
+            Instruction instruction = mapper.treeToValue(inst.get("message"), Instruction.class);
+            instructionsResult.addInstruction(instruction);
+          }
+
+          return instructionsResult.getInstructions();
+        } catch (JsonProcessingException e) {
+          e.printStackTrace();
         }
-
-        return instructionsResult.getInstructions();
       }
-      catch (JsonProcessingException e) {
-        e.printStackTrace();
-      }
-      return null;
-      //return response.getBody().getInstructions();
-    } else {
-      return null;
+    } catch (Exception e) {
+      e.printStackTrace();
     }
+
+    return null;
   }
 }

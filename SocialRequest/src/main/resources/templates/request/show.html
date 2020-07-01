@@ -31,10 +31,6 @@
                 <div class="field">
                   <div id="map" class="map" style="height: 330px; width: 100%;" th:attr="data-lat=${request.lat},data-lng=${request.lng}"></div>
                 </div>
-                <h3 class="title is-4">Directions</h3>
-                <div class="field" th:each="direction : ${directions}">
-                  <p th:text="${direction.message}">title</p>
-                </div>
               </div>
             </div>
 
@@ -57,6 +53,20 @@
                 ></button>
               </th:block>
             </div>
+
+            <!-- Directions -->
+            <article class="panel is-info" th:if="${directions != null}">
+              <p class="panel-heading" style="margin:0;">
+                How to get to the Request's Location?
+              </p>
+              <div class="panel-block is-active" th:each="direction : ${directions}">
+                <span class="panel-icon">
+                  <i class="fas fa-map-signs" aria-hidden="true"></i>
+                </span>
+                <p th:text="${direction.message}">Direction</p>
+              </div>
+            </article>
+
           </div>
         </div>
       </div>
