@@ -74,21 +74,23 @@ public class TomTomApiServiceImpl implements TomTomApiService {
       route.setTravelTimeInSeconds(jsonRoute.get(0).get("summary").get("travelTimeInSeconds").asInt());
       route.setTravelDistanceInMeters(jsonRoute.get(0).get("summary").get("lengthInMeters").asInt());
       ArrayNode jsonInstructions = (ArrayNode) jsonRoute.get(0).get("guidance").get("instructions");
-      int lastDistance = 0;
-      int index = 1;
-      for (JsonNode inst : jsonInstructions) {
+
+      int lastTravelDistance = 0;
+      int lastTravelTime = 0;
+
+      for (JsonNode jsonInstruction : jsonInstructions) {
         Instruction instruction = new Instruction();
-        try {
-          int distance = jsonInstructions.get(index).get("routeOffsetInMeters").asInt();
-          instruction.setDistance(distance - lastDistance);
-          lastDistance = distance;
-          index++;
-        }
-        catch (NullPointerException e){
-          instruction.setDistance(0);
-        }
-        instruction.setStreet(inst.get("street").asText());
-        instruction.setMessage(inst.get("message").asText());
+
+        int travelDistance = jsonInstruction.get("routeOffsetInMeters").asInt();
+        instruction.setDistance(travelDistance - lastTravelDistance);
+        lastTravelDistance = travelDistance;
+
+        int travelTime = jsonInstruction.get("travelTimeInSeconds").asInt();
+        instruction.setTravelTime(travelTime - lastTravelTime);
+        lastTravelTime = travelTime;
+
+        instruction.setStreet(jsonInstruction.get("street").asText());
+        instruction.setMessage(jsonInstruction.get("message").asText());
         route.addInstructions(instruction);
       }
     }
@@ -99,7 +101,7 @@ public class TomTomApiServiceImpl implements TomTomApiService {
     return route;
   }
 
-  public Distance getDistance(Coordinates origin, Coordinates destination){
+  public Distance getDistance(Coordinates origin, Coordinates destination) {
     Distance distance = new Distance();
     ObjectMapper mapper = new ObjectMapper();
 
@@ -127,4 +129,5 @@ public class TomTomApiServiceImpl implements TomTomApiService {
   private String getApiKey() {
     return dotenv.get("API_KEY");
   }
+
 }

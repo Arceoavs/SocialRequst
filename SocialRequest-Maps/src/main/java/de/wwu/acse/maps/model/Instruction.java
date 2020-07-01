@@ -13,6 +13,9 @@ public class Instruction {
   @NotNull
   private Integer distance;
 
+  @NotNull
+  private Integer travelTime;
+
   public String getMessage() {
     return this.message;
   }
@@ -35,6 +38,14 @@ public class Instruction {
 
   public void setStreet(String street) {
     this.street = street;
+  }
+
+  public Integer getTravelTime() {
+    return travelTime;
+  }
+
+  public void setTravelTime(Integer travelTime) {
+    this.travelTime = travelTime;
   }
 
 }
