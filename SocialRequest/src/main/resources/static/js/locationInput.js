@@ -108,18 +108,21 @@ function initializeAddressSearch() {
   if ($btn != null) {
     $btn.addEventListener('click', async (e) => {
       const addressString = document.getElementById('locationString').value;
+      const addressObj = {address: addressString};
 
       // set url of location service
-      let url = new URL('http://localhost:8081/geocode/' + addressString);
+      const url = new URL('http://localhost:8081/geocode');
 
       // url.search = new URLSearchParams({ q: query , raw: 'true'});
 
       try {
         const response = await fetch(url, {
-          method: 'get',
+          method: 'post',
           headers: {
+            'Content-Type': 'application/json',
             'Accept': 'application/json'
           },
+          body: JSON.stringify(addressObj)
         });
 
         // get coordinates
