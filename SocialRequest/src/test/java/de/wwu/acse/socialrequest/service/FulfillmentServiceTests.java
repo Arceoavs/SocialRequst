@@ -20,7 +20,6 @@ import de.wwu.acse.socialrequest.service.impl.MapsApiServiceImpl;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -81,11 +80,6 @@ public class FulfillmentServiceTests {
   @Mock
   private JmsTemplate jmsTemplate;
 
-  @BeforeEach
-  public void setUp() {
-    Mockito.when(mapsApiService.getDistance(any(), any())).thenReturn(new Distance(1200));
-  }
-
   /**
    * Tests if a request can be fulfilled successfully
    */
@@ -93,6 +87,7 @@ public class FulfillmentServiceTests {
   public void testFulfillingARequest() {
     Mockito.when(mapsApiService.getDistance(any(), any())).thenReturn(new Distance(1200));
     Mockito.doNothing().when(jmsTemplate).convertAndSend(anyString(), any(FulfillmentDto.class));
+
     // create request
     User user = new User("john.doe", "john@doe.com", "test123");
     entityManager.persistAndFlush(user);
@@ -106,8 +101,9 @@ public class FulfillmentServiceTests {
 
     assertFalse(request.isFulfilled());
 
-    Mockito.when(fulfillmentRepository.save(any()))
-        .thenReturn(entityManager.persistAndFlush(new Fulfillment(request, anotherUser)));
+    Mockito
+      .when(fulfillmentRepository.save(any()))
+      .thenReturn(entityManager.persistAndFlush(new Fulfillment(request, anotherUser)));
 
     fulfillmentService.fulfillRequest(request, anotherUser);
     request = entityManager.refresh(request);
