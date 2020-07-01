@@ -12,16 +12,24 @@ public class Instruction implements Serializable {
   String street;
 
   @NotNull
-  Long distanceInMeters;
+  int distance;
 
   @NotNull
-  Long travelTimeInSeconds;
+  int time;
 
-  public Instruction(String message, String street, Long distanceInMeters, Long travelTimeInSeconds) {
+  public Instruction(@NotNull String message, @NotNull String street, @NotNull int distance, @NotNull int time) {
     this.message = message;
     this.street = street;
-    this.distanceInMeters = distanceInMeters;
-    this.travelTimeInSeconds = travelTimeInSeconds;
+    this.distance = distance;
+    this.time = time;
+  }
+
+  public String getMessage() {
+    return message;
+  }
+
+  public void setMessage(String message) {
+    this.message = message;
   }
 
   public String getStreet() {
@@ -32,28 +40,19 @@ public class Instruction implements Serializable {
     this.street = street;
   }
 
-  public Long getDistanceInMeters() {
-    return distanceInMeters;
+  public int getDistance() {
+    return distance;
   }
 
-  public void setDistanceInMeters(Long distanceInMeters) {
-    this.distanceInMeters = distanceInMeters;
+  public void setDistance(int distance) {
+    this.distance = distance;
   }
 
-  public Long getTravelTimeInSeconds() {
-    return travelTimeInSeconds;
+  public int getTime() {
+    return time;
   }
 
-  public void setTravelTimeInSeconds(Long travelTimeInSeconds) {
-    this.travelTimeInSeconds = travelTimeInSeconds;
+  public void setTime(int time) {
+    this.time = time;
   }
-
-  public String getMessage() {
-    return this.message;
-  }
-
-  public void setMessage(String message) {
-    this.message = message;
-  }
-
 }

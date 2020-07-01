@@ -64,22 +64,13 @@ public class MapsServiceImpl {
           instructionsResult.setTravelTimeInSeconds(jsonRoute.asInt());
 
           ArrayNode jsonInstructions = (ArrayNode) node.get("instructions");
-          List<Instruction> cumulativeInstructions = new ArrayList<>();
+          List<Instruction> instructions = new ArrayList<>();
           for (JsonNode inst : jsonInstructions) {
-            Instruction instruction = new Instruction(inst.get("message").textValue(), inst.get("street").textValue(), inst.get("distanceInMeters").asLong(), inst.get("travelTimeInSeconds").asLong());
-            cumulativeInstructions.add(instruction);
+            Instruction instruction = new Instruction(inst.get("message").textValue(), inst.get("street").textValue(), inst.get("distance").asInt(), inst.get("time").asInt());
+            instructions.add(instruction);
           }
 
-          // calculate durations and distances of each step
-          for(int i = cumulativeInstructions.size() - 1; i > 1; i--) {
-            Instruction instruction = cumulativeInstructions.get(i);
-            Instruction lastInstruction = cumulativeInstructions.get(i - 1);
-
-            cumulativeInstructions.get(i).setDistanceInMeters(instruction.getDistanceInMeters() - lastInstruction.getDistanceInMeters());
-            cumulativeInstructions.get(i).setTravelTimeInSeconds(instruction.getTravelTimeInSeconds() - lastInstruction.getTravelTimeInSeconds());
-          }
-
-          instructionsResult.setInstructions(cumulativeInstructions);
+          instructionsResult.setInstructions(instructions);
 
           return instructionsResult.getInstructions();
         } catch (JsonProcessingException e) {
