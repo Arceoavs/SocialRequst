@@ -5,11 +5,13 @@ import javax.validation.constraints.NotNull;
 public class Instruction {
   
   @NotNull
-  String message;
+  int distance;
 
-  public Instruction(String message) {
-    this.message = message;
-  }
+  @NotNull
+  String street;
+
+  @NotNull
+  String message;
 
   public String getMessage() {
     return this.message;
@@ -17,6 +19,22 @@ public class Instruction {
 
   public void setMessage(String message) {
     this.message = message;
+  }
+
+  public int getDistance() {
+    return this.distance;
+  }
+
+  public void setDistance(int distance) {
+    this.distance = distance;
+  }
+
+  public String getStreet() {
+    return this.street;
+  }
+
+  public void setStreet(String street) {
+    this.street = street;
   }
 
 }

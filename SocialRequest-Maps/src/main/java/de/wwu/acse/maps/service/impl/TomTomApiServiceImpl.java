@@ -30,11 +30,17 @@ public class TomTomApiServiceImpl implements TomTomApiService {
     ObjectMapper mapper = new ObjectMapper();
     Coordinates coordinates = null;
 
-    String request = restTemplate.getForObject(TT_API_URL+"search/2/geocode/"+query+".json?key={key}&limit=1", String.class, uriVariables);
+    String request = restTemplate.getForObject(TT_API_URL+"search/2/geocode/"+query+".json?key={key}&countrySet=DE", String.class, uriVariables);
     try {
       JsonNode node = mapper.readTree(request);
       ArrayNode results = (ArrayNode) node.get("results");
-      JsonNode position = results.get(0).get("position");
+      JsonNode result = null;
+      for (JsonNode res : results){
+        if (result == null || res.get("score").asDouble() > result.get("score").asDouble()) {
+          result = res;
+        }
+      }
+      JsonNode position = result.get("position");
       coordinates = mapper.treeToValue(position, Coordinates.class);
     }
     catch (JsonProcessingException e) {
@@ -59,8 +65,21 @@ public class TomTomApiServiceImpl implements TomTomApiService {
       ArrayNode jsonRoute = (ArrayNode) node.get("routes");
       route.setTravelTimeInSeconds(jsonRoute.get(0).get("summary").get("travelTimeInSeconds").asInt());
       ArrayNode jsonInstructions = (ArrayNode) jsonRoute.get(0).get("guidance").get("instructions");
+      int lastDistance = 0;
+      int index = 1;
       for (JsonNode inst : jsonInstructions) {
-        Instruction instruction = mapper.treeToValue(inst.get("message"), Instruction.class);
+        Instruction instruction = new Instruction();
+        try {
+          int distance = jsonInstructions.get(index).get("routeOffsetInMeters").asInt();
+          instruction.setDistance(distance - lastDistance);
+          lastDistance = distance;
+          index++;
+        }
+        catch (NullPointerException e){
+          instruction.setDistance(0);
+        }
+        instruction.setStreet(inst.get("street").asText());
+        instruction.setMessage(inst.get("message").asText());
         route.addInstructions(instruction);
       }
     }
