@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 public class Distance {
 
   @NotNull
-  int lengthInMeters;
+  private int lengthInMeters;
 
   public int getLengthInMeters() {
     return this.lengthInMeters;

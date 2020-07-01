@@ -1,14 +1,17 @@
 package de.wwu.acse.maps.model;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 public class RouteCoordinates {
 
   @NotNull
-  Coordinates origin;
+  @Valid
+  private Coordinates origin;
 
   @NotNull
-  Coordinates destination;
+  @Valid
+  private Coordinates destination;
 
   public Coordinates getOrigin() {
     return this.origin;

@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 public class Instruction {
 
   @NotNull
-  String message;
+  private String message;
 
   public Instruction(String message) {
     this.message = message;
