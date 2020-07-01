@@ -1,11 +1,11 @@
 package de.wwu.acse.socialrequest.service;
 
-import de.wwu.acse.socialrequest.model.Maps.Instruction;
-import de.wwu.acse.socialrequest.model.Request;
+import de.wwu.acse.socialrequest.model.maps.Coordinates;
+import de.wwu.acse.socialrequest.model.maps.Instruction;
 
 import java.util.List;
 
-public interface MapsService {
+public interface MapsApiService {
 
   /**
    * Method to get a list of instructions to go to a destination
@@ -14,6 +14,6 @@ public interface MapsService {
    * @param requestLng longitude of the destination
    * @return list of instructions
    */
-  public List<Instruction> getDirections(float requestLat, float requestLng);
+  public List<Instruction> getDirections(Coordinates origin, Coordinates destination);
 
 }

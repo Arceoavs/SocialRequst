@@ -108,12 +108,9 @@ function initializeAddressSearch() {
   if ($btn != null) {
     $btn.addEventListener('click', async (e) => {
       const addressString = document.getElementById('locationString').value;
-      const addressObj = {address: addressString};
+      const addressObj = { address: addressString };
 
-      // set url of location service
       const url = new URL('http://localhost:8081/geocode');
-
-      // url.search = new URLSearchParams({ q: query , raw: 'true'});
 
       try {
         const response = await fetch(url, {

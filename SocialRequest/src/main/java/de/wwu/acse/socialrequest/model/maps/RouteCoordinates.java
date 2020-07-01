@@ -1,14 +1,22 @@
-package de.wwu.acse.socialrequest.model.Maps;
+package de.wwu.acse.socialrequest.model.maps;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 public class RouteCoordinates implements Serializable {
-  @NotNull
-  Coordinates origin;
+
+  private static final long serialVersionUID = 1L;
 
   @NotNull
-  Coordinates destination;
+  private Coordinates origin;
+
+  @NotNull
+  private Coordinates destination;
+
+  public RouteCoordinates(Coordinates origin, Coordinates destination) {
+    this.origin = origin;
+    this.destination = destination;
+  }
 
   public Coordinates getOrigin() {
     return this.origin;
