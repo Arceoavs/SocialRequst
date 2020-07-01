@@ -10,7 +10,6 @@ public class Instruction implements Serializable {
   @NotNull
   private String message;
 
-  @NotNull
   private String street;
 
   @NotNull
