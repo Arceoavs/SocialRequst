@@ -8,10 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
-<<<<<<< HEAD
-
-=======
->>>>>>> c4469fe1c419244aa6771a8fdb334fc7dbf1a769
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,19 +29,21 @@ public class RouteController {
 
   @CrossOrigin(origins = "http://localhost:8080")
   @PostMapping(value = "/geocode", consumes = "application/json", produces = "application/json")
-  public Coordinates getCoordinates(@Valid @RequestBody Address address, BindingResult bindingResult) {
+  public ResponseEntity<?> getCoordinates(@Valid @RequestBody Address address, BindingResult bindingResult) {
     if (bindingResult.hasErrors()){
-
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
-    return tomTomService.getCoordinates(address.getAddress());
+    Coordinates coordinates = tomTomService.getCoordinates(address.getAddress());
+    return ResponseEntity.ok(coordinates);
   }
 
   @PostMapping(value = "/route", consumes = "application/json", produces = "application/json")
-  public Route getRoute(@Valid @RequestBody RouteCoordinates routeCoordinates, BindingResult bindingResult){
+  public ResponseEntity<?> getRoute(@Valid @RequestBody RouteCoordinates routeCoordinates, BindingResult bindingResult){
     if (bindingResult.hasErrors()){
-      
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
-    return tomTomService.getRoute(routeCoordinates.getOrigin(), routeCoordinates.getDestination());
+    Route route = tomTomService.getRoute(routeCoordinates.getOrigin(), routeCoordinates.getDestination());
+    return ResponseEntity.ok(route);
   }
 
   @PostMapping(value = "/distance", consumes = "application/json", produces = "application/json")

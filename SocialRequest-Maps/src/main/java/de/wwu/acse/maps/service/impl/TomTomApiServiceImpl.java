@@ -36,15 +36,9 @@ public class TomTomApiServiceImpl implements TomTomApiService {
     ObjectMapper mapper = new ObjectMapper();
     Coordinates coordinates = null;
 
-<<<<<<< HEAD
-    String request = restTemplate.getForObject(TT_API_URL+"search/2/geocode/"+query+".json?key={key}&countrySet=DE", String.class, uriVariables);
-=======
-    String requestUrl = API_URL + "search/2/geocode/{query}.json?key={key}&limit=1";
-    String response = restTemplate.getForObject(requestUrl, String.class, uriVariables);
-
->>>>>>> c4469fe1c419244aa6771a8fdb334fc7dbf1a769
+    String request = restTemplate.getForObject(API_URL+"search/2/geocode/"+query+".json?key={key}&countrySet=DE", String.class, uriVariables);
     try {
-      JsonNode node = mapper.readTree(response);
+      JsonNode node = mapper.readTree(request);
       ArrayNode results = (ArrayNode) node.get("results");
       JsonNode result = null;
       for (JsonNode res : results){
