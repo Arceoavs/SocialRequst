@@ -8,7 +8,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
+<<<<<<< HEAD
 
+=======
+>>>>>>> c4469fe1c419244aa6771a8fdb334fc7dbf1a769
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,9 +27,9 @@ import de.wwu.acse.maps.service.TomTomApiService;
 @RestController
 @RequestMapping("")
 public class RouteController {
-  
+
   @Autowired
-  TomTomApiService ttService;
+  TomTomApiService tomTomService;
 
   @CrossOrigin(origins = "http://localhost:8080")
   @PostMapping(value = "/geocode", consumes = "application/json", produces = "application/json")
@@ -34,7 +37,7 @@ public class RouteController {
     if (bindingResult.hasErrors()){
 
     }
-    return ttService.getCoordinates(address.getAddress());
+    return tomTomService.getCoordinates(address.getAddress());
   }
 
   @PostMapping(value = "/route", consumes = "application/json", produces = "application/json")
@@ -42,7 +45,7 @@ public class RouteController {
     if (bindingResult.hasErrors()){
       
     }
-    return ttService.getRoute(routeCoordinates.getOrigin(), routeCoordinates.getDestination());
+    return tomTomService.getRoute(routeCoordinates.getOrigin(), routeCoordinates.getDestination());
   }
 
   @PostMapping(value = "/distance", consumes = "application/json", produces = "application/json")
@@ -50,8 +53,8 @@ public class RouteController {
     if (bindingResult.hasErrors()){
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
-    Distance distance = ttService.getDistance(routeCoordinates.getOrigin(), routeCoordinates.getDestination());
-    return ResponseEntity.ok(distance);  
+    Distance distance = tomTomService.getDistance(routeCoordinates.getOrigin(), routeCoordinates.getDestination());
+    return ResponseEntity.ok(distance);
   }
 
 }

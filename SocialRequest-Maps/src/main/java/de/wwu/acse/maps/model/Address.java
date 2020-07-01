@@ -3,9 +3,9 @@ package de.wwu.acse.maps.model;
 import javax.validation.constraints.NotNull;
 
 public class Address {
-  
+
   @NotNull
-  String address; 
+  String address;
 
   public String getAddress() {
     return this.address;
