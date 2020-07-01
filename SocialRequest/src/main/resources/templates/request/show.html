@@ -73,10 +73,10 @@
                   <tbody>
                     <tr th:each="direction : ${directions}">
                       <td><i class="fas fa-map-signs" aria-hidden="true"></i></td>
-                      <td th:text="${direction.message}">Instruction</td>
-                      <td th:text="${direction.distance}">Instruction</td>
-                      <td th:text="${direction.time}">Instruction</td>
-                      <td th:text="${direction.street}">Instruction</td>
+                      <td th:text="${direction.message}"></td>
+                      <td th:text="${direction.distance}"></td>
+                      <td th:text="${direction.travelTime}"></td>
+                      <td th:text="${direction.street}"></td>
                     </tr>
                   </tbody>
                 </table>
