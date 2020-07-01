@@ -6,7 +6,7 @@ import java.util.Date;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-@Table(name = "fulfillments", uniqueConstraints = @UniqueConstraint(columnNames = { "request_id", "username" }))
+@Table(name = "fulfillments", uniqueConstraints = @UniqueConstraint(columnNames = { "requestId", "username" }))
 @Entity
 public class Fulfillment implements Serializable {
 
