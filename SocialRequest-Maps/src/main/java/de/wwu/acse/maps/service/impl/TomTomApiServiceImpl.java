@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -16,23 +17,30 @@ import de.wwu.acse.maps.model.Distance;
 import de.wwu.acse.maps.model.Instruction;
 import de.wwu.acse.maps.model.Route;
 import de.wwu.acse.maps.service.TomTomApiService;
+import io.github.cdimascio.dotenv.Dotenv;
 
 @Service
 public class TomTomApiServiceImpl implements TomTomApiService {
 
-  private final String TT_API_URL = "https://api.tomtom.com/";
-  private final String API_KEY = System.getenv("API_KEY");
+  @Autowired
+  private Dotenv dotenv;
+
+  private final String API_URL = "https://api.tomtom.com/";
   private final RestTemplate restTemplate = new RestTemplate();
 
   public Coordinates getCoordinates(String query) {
     Map<String, String> uriVariables = new HashMap<String, String>();
-    uriVariables.put("key", API_KEY);
+    uriVariables.put("key", getApiKey());
+    uriVariables.put("query", query);
+
     ObjectMapper mapper = new ObjectMapper();
     Coordinates coordinates = null;
 
-    String request = restTemplate.getForObject(TT_API_URL+"search/2/geocode/"+query+".json?key={key}&limit=1", String.class, uriVariables);
+    String requestUrl = API_URL + "search/2/geocode/{query}.json?key={key}&limit=1";
+    String response = restTemplate.getForObject(requestUrl, String.class, uriVariables);
+
     try {
-      JsonNode node = mapper.readTree(request);
+      JsonNode node = mapper.readTree(response);
       ArrayNode results = (ArrayNode) node.get("results");
       JsonNode position = results.get(0).get("position");
       coordinates = mapper.treeToValue(position, Coordinates.class);
@@ -40,7 +48,7 @@ public class TomTomApiServiceImpl implements TomTomApiService {
     catch (JsonProcessingException e) {
       e.printStackTrace();
     }
-    
+
     return coordinates;
   }
 
@@ -48,14 +56,16 @@ public class TomTomApiServiceImpl implements TomTomApiService {
     Route route = new Route();
     ObjectMapper mapper = new ObjectMapper();
 
-    String parameter = String.format("%s,%s:%s,%s;", origin.getLat(), origin.getLon(), destination.getLat(), destination.getLon());
+    String coordinates = String.format("%s,%s:%s,%s;", origin.getLat(), origin.getLon(), destination.getLat(), destination.getLon());
     Map<String, String> uriVariables = new HashMap<String, String>();
-    uriVariables.put("key", API_KEY);
-    String request = restTemplate.getForObject(TT_API_URL+"routing/1/calculateRoute/"+parameter+"/json?maxAlternatives=0&instructionsType=text&routeRepresentation=summaryOnly&avoid=unpavedRoads&travelMode=bicycle&key={key}", 
-      String.class, uriVariables);
+    uriVariables.put("key", getApiKey());
+    uriVariables.put("coordinates", coordinates);
+
+    String requestUrl = API_URL + "routing/1/calculateRoute/{coordinates}/json?maxAlternatives=0&instructionsType=text&routeRepresentation=summaryOnly&avoid=unpavedRoads&travelMode=bicycle&key={key}";
+    String response = restTemplate.getForObject(requestUrl, String.class, uriVariables);
 
     try {
-      JsonNode node = mapper.readTree(request);
+      JsonNode node = mapper.readTree(response);
       ArrayNode jsonRoute = (ArrayNode) node.get("routes");
       route.setTravelTimeInSeconds(jsonRoute.get(0).get("summary").get("travelTimeInSeconds").asInt());
       ArrayNode jsonInstructions = (ArrayNode) jsonRoute.get(0).get("guidance").get("instructions");
@@ -67,6 +77,7 @@ public class TomTomApiServiceImpl implements TomTomApiService {
     catch (JsonProcessingException e) {
       e.printStackTrace();
     }
+
     return route;
   }
 
@@ -74,20 +85,28 @@ public class TomTomApiServiceImpl implements TomTomApiService {
     Distance distance = new Distance();
     ObjectMapper mapper = new ObjectMapper();
 
-    String parameter = String.format("%s,%s:%s,%s;", origin.getLat(), origin.getLon(), destination.getLat(), destination.getLon());
+    String coordinates = String.format("%s,%s:%s,%s;", origin.getLat(), origin.getLon(), destination.getLat(), destination.getLon());
     Map<String, String> uriVariables = new HashMap<String, String>();
-    uriVariables.put("key", API_KEY);
-    String request = restTemplate.getForObject(TT_API_URL+"routing/1/calculateRoute/"+parameter+"/json?maxAlternatives=0&instructionsType=text&routeRepresentation=summaryOnly&avoid=unpavedRoads&travelMode=bicycle&key={key}", 
-      String.class, uriVariables);
-      
+    uriVariables.put("key", getApiKey());
+    uriVariables.put("coordinates", coordinates);
+    uriVariables.put("url", API_URL);
+
+    String requestUrl = API_URL + "routing/1/calculateRoute/{coordinates}/json?maxAlternatives=0&instructionsType=text&routeRepresentation=summaryOnly&avoid=unpavedRoads&travelMode=bicycle&key={key}";
+    String response = restTemplate.getForObject(requestUrl, String.class, uriVariables);
+
     try {
-      JsonNode node = mapper.readTree(request);
+      JsonNode node = mapper.readTree(response);
       ArrayNode jsonRoute = (ArrayNode) node.get("routes");
       distance.setLengthInMeters(jsonRoute.get(0).get("summary").get("lengthInMeters").asInt());
     }
     catch (JsonProcessingException e) {
       e.printStackTrace();
     }
+
     return distance;
+  }
+
+  private String getApiKey() {
+    return dotenv.get("API_KEY");
   }
 }
