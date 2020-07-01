@@ -66,7 +66,7 @@ public class MapsServiceImpl {
           ArrayNode jsonInstructions = (ArrayNode) node.get("instructions");
           List<Instruction> instructions = new ArrayList<>();
           for (JsonNode inst : jsonInstructions) {
-            Instruction instruction = new Instruction(inst.get("message").textValue(), inst.get("street").textValue(), inst.get("distance").asInt(), inst.get("time").asInt());
+            Instruction instruction = new Instruction(inst.get("message").textValue(), inst.get("street").textValue(), inst.get("distance").asInt(), inst.get("travelTime").asInt());
             instructions.add(instruction);
           }
 
