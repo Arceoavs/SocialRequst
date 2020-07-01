@@ -89,7 +89,11 @@ public class TomTomApiServiceImpl implements TomTomApiService {
         instruction.setTravelTime(travelTime - lastTravelTime);
         lastTravelTime = travelTime;
 
-        instruction.setStreet(jsonInstruction.get("street").asText());
+        // Sometimes, the given street can be NULL
+        if (jsonInstruction.get("street") != null) {
+          instruction.setStreet(jsonInstruction.get("street").asText());
+        }
+
         instruction.setMessage(jsonInstruction.get("message").asText());
         route.addInstructions(instruction);
       }

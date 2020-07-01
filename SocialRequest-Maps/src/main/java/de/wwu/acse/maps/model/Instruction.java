@@ -7,7 +7,6 @@ public class Instruction {
   @NotNull
   private String message;
 
-  @NotNull
   private String street;
 
   @NotNull
