@@ -1,28 +1,26 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="soap.leaderboard.acse.wwu.de" targetNamespace="soap.leaderboard.acse.wwu.de" elementFormDefault="qualified">
   <!-- Adjusted from https://spring.io/guides/gs/producing-web-service/ -->
-  <xs:element name="getAlltimeRequest">
+  <xs:element name="getAllTimeLeaderboardRequest">
     <xs:complexType>
-      <xs:sequence></xs:sequence>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
 
-  <xs:element name="getAlltimeResponse">
+  <xs:element name="getAllTimeLeaderboardResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="alltimeLeaderboard" type="tns:leaderboard" />
+        <xs:element name="allTimeLeaderboard" type="tns:leaderboard" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
 
-  <xs:element name="getMonthlyRequest">
+  <xs:element name="getMonthlyLeaderboardRequest">
     <xs:complexType>
-      <xs:sequence>
-        <xs:element name="month" type="xs:string" />
-      </xs:sequence>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
 
-  <xs:element name="getMonthlyResponse">
+  <xs:element name="getMonthlyLeaderboardResponse">
     <xs:complexType>
       <xs:sequence>
         <xs:element name="monthlyLeaderboard" type="tns:leaderboard" />
@@ -32,14 +30,15 @@
 
   <xs:complexType name="leaderboard">
     <xs:sequence>
-      <xs:element name="leaderboard_places"  minOccurs="0" maxOccurs="10" type="tns:leaderboard_place" />
+      <xs:element name="leaderboardPlaces" minOccurs="0" maxOccurs="10" type="tns:leaderboardPlace" />
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="leaderboard_place">
+  <xs:complexType name="leaderboardPlace">
     <xs:sequence>
+      <xs:element name="rank" type="xs:int" />
       <xs:element name="user" type="xs:string" />
-      <xs:element name="kilometers" type="xs:float" />
+      <xs:element name="kilometers" type="xs:double" />
     </xs:sequence>
   </xs:complexType>
 </xs:schema>
