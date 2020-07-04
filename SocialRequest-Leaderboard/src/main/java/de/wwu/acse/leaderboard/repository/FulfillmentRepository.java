@@ -47,7 +47,7 @@ public interface FulfillmentRepository extends JpaRepository<Fulfillment, Long> 
    * @return list of kilometeres traveled
    */
   @Query("SELECT SUM(f.distance) from Fulfillment f " +
-    "WHERE MONTH( f.fulfilledAt ) = MONTH( CURRENT_TIMESTAMP ) " +
+    "WHERE MONTH(f.fulfilledAt) = MONTH(CURRENT_TIMESTAMP) " +
     "GROUP BY f.username " +
     "ORDER BY SUM(f.distance) DESC")
   public List<Float> monthlyLeaderboardKilometers();
