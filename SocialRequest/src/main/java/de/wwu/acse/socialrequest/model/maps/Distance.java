@@ -16,8 +16,8 @@ public class Distance {
     this.lengthInMeters = lengthInMeters;
   }
 
-  public float getLengthInKilometers() {
-    return (float) (lengthInMeters / 1000.0);
+  public double getLengthInKilometers() {
+    return lengthInMeters / 1000.0;
   }
 
 }

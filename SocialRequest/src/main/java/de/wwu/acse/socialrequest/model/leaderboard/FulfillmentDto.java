@@ -8,22 +8,22 @@ public class FulfillmentDto {
 
   private Long requestId;
 
-  private float distance;
+  private Double distance;
 
   private Date fulfilledAt;
 
-  public FulfillmentDto(String username, Long requestId, float distance, Date fulfilledAt) {
+  public FulfillmentDto(String username, Long requestId, Double distance, Date fulfilledAt) {
     this.username = username;
     this.requestId = requestId;
     this.distance = distance;
     this.fulfilledAt = fulfilledAt;
   }
 
-  public float getDistance() {
+  public Double getDistance() {
     return distance;
   }
 
-  public void setDistance(float distance) {
+  public void setDistance(Double distance) {
     this.distance = distance;
   }
 
