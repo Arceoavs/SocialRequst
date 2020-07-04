@@ -23,12 +23,12 @@ public class Fulfillment implements Serializable {
   private Long requestId;
 
   @NotNull(message = "Distance in kilometres is required")
-  private float distance;
+  private double distance;
 
   @NotNull
   private Date fulfilledAt;
 
-  public Fulfillment(String username, Long requestId, float distance, Date fulfilledAt) {
+  public Fulfillment(String username, Long requestId, double distance, Date fulfilledAt) {
     this.username = username;
     this.requestId = requestId;
     this.distance = distance;
@@ -39,11 +39,11 @@ public class Fulfillment implements Serializable {
     return id;
   }
 
-  public float getDistance() {
+  public double getDistance() {
     return distance;
   }
 
-  public void setDistance(float distance) {
+  public void setDistance(double distance) {
     this.distance = distance;
   }
 
