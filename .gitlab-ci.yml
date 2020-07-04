@@ -21,8 +21,8 @@ stages:
     expire_in: 1 day
     paths:
       - target/$PROJECT_NAME-*-SNAPSHOT.jar
-  only:
-    - master
+  # only:
+  #   - master
 
 test:SocialRequest:
   extends: .test
