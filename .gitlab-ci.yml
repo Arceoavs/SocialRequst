@@ -20,7 +20,7 @@ stages:
   artifacts:
     expire_in: 1 day
     paths:
-      - target/*.jar
+      - $FOLDER_NAME/target/*.jar
   # only:
   #   - master
 
