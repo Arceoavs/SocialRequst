@@ -21,8 +21,8 @@ stages:
     expire_in: 1 day
     paths:
       - $FOLDER_NAME/target/*.jar
-  # only:
-  #   - master
+  only:
+    - master
 
 test:SocialRequest:
   extends: .test
