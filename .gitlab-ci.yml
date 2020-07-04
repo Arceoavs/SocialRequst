@@ -51,7 +51,7 @@ test:SocialRequest-Leaderboard:
   variables:
     FOLDER_NAME: SocialRequest-Leaderboard
 
-build:SocialRequest:
+build:SocialRequest-Leaderboard:
   extends: .build
   variables:
     FOLDER_NAME: SocialRequest-Leaderboard
