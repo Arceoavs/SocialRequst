@@ -20,7 +20,7 @@ stages:
   artifacts:
     expire_in: 1 day
     paths:
-      - target/$PROJECT_NAME-*-SNAPSHOT.jar
+      - target/*.jar
   # only:
   #   - master
 
@@ -33,7 +33,6 @@ build:SocialRequest:
   extends: .build
   variables:
     FOLDER_NAME: SocialRequest
-    PROJECT_NAME: socialrequest
 
 test:SocialRequest-Maps:
   extends: .test
@@ -44,7 +43,6 @@ build:SocialRequest-Maps:
   extends: .build
   variables:
     FOLDER_NAME: SocialRequest-Maps
-    PROJECT_NAME: maps
 
 test:SocialRequest-Leaderboard:
   extends: .test
@@ -55,4 +53,3 @@ build:SocialRequest-Leaderboard:
   extends: .build
   variables:
     FOLDER_NAME: SocialRequest-Leaderboard
-    PROJECT_NAME: leaderboard
