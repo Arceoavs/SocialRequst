@@ -15,15 +15,17 @@ import org.springframework.xml.xsd.XsdSchema;
 @EnableWs
 @Configuration
 public class WebServiceConfig extends WsConfigurerAdapter {
-  // Following https://spring.io/guides/gs/producing-web-service/
+
+  // Following https:// spring.io/guides/gs/producing-web-service/
+
   @Bean
   public ServletRegistrationBean<MessageDispatcherServlet> messageDispatcherServlet(
       ApplicationContext applicationContext) {
     Boolean transformWsdLocations = true;
-
     MessageDispatcherServlet servlet = new MessageDispatcherServlet();
     servlet.setApplicationContext(applicationContext);
     servlet.setTransformWsdlLocations(transformWsdLocations);
+
     return new ServletRegistrationBean<>(servlet, "/ws/*");
   }
 
@@ -34,6 +36,7 @@ public class WebServiceConfig extends WsConfigurerAdapter {
     wsdl11Definition.setLocationUri("/ws");
     wsdl11Definition.setTargetNamespace("soap.leaderboard.acse.wwu.de");
     wsdl11Definition.setSchema(leaderboardSchema);
+
     return wsdl11Definition;
   }
 
@@ -41,4 +44,5 @@ public class WebServiceConfig extends WsConfigurerAdapter {
   public XsdSchema leaderboardSchema() {
     return new SimpleXsdSchema(new ClassPathResource("soap_leaderboard.xsd"));
   }
+
 }
