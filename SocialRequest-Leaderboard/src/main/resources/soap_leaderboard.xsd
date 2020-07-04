@@ -32,8 +32,14 @@
 
   <xs:complexType name="leaderboard">
     <xs:sequence>
-      <xs:element maxOccurs="10" name="fulfillment" type="xs:string" />
+      <xs:element name="leaderboard_places"  minOccurs="0" maxOccurs="10" type="tns:leaderboard_place" />
     </xs:sequence>
   </xs:complexType>
 
+  <xs:complexType name="leaderboard_place">
+    <xs:sequence>
+      <xs:element name="user" type="xs:string" />
+      <xs:element name="kilometers" type="xs:float" />
+    </xs:sequence>
+  </xs:complexType>
 </xs:schema>

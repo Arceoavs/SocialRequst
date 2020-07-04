@@ -1,5 +1,6 @@
 package de.wwu.acse.leaderboard.web.controller;
 
+import de.wwu.acse.leaderboard.soap.LeaderboardPlace;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -10,6 +11,8 @@ import de.wwu.acse.leaderboard.repository.FulfillmentRepository;
 import de.wwu.acse.leaderboard.soap.GetAlltimeResponse;
 import de.wwu.acse.leaderboard.soap.Leaderboard;
 import de.wwu.acse.leaderboard.soap.GetAlltimeRequest;
+
+import java.util.List;
 
 @Endpoint
 public class SOAPLeaderboardAlltimeWebService {
@@ -25,7 +28,18 @@ public class SOAPLeaderboardAlltimeWebService {
   @ResponsePayload
   public GetAlltimeResponse getLeaderboard(@RequestPayload GetAlltimeRequest request) {
     GetAlltimeResponse response = new GetAlltimeResponse();
-    response.setAlltimeLeaderboard(new Leaderboard());
+    Leaderboard leaderboard = new Leaderboard();
+    List<LeaderboardPlace> leaderboardPlaces = leaderboard.getLeaderboardPlaces();
+    List<String> leaderboard_users = fulfillmentRepository.allTimeLeaderboardUsers();
+    List<Float> leaderboard_kilometers = fulfillmentRepository.allTimeLeaderboardKilometers();
+    int leaderboard_length = Math.min(leaderboard_users.size(), 10);
+    for (int i = 0; i < leaderboard_length; i++) {
+      LeaderboardPlace leaderboardPlace = new LeaderboardPlace();
+      leaderboardPlace.setUser(leaderboard_users.get(i));
+      leaderboardPlace.setKilometers(leaderboard_kilometers.get(i));
+      leaderboardPlaces.add(leaderboardPlace);
+    }
+    response.setAlltimeLeaderboard(leaderboard);
     return response;
   }
 }

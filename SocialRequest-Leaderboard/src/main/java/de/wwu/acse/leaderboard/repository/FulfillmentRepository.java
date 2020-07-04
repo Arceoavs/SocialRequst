@@ -16,7 +16,7 @@ public interface FulfillmentRepository extends JpaRepository<Fulfillment, Long> 
   @Query("SELECT f.username FROM Fulfillment f " +
     "GROUP BY f.username " +
     "ORDER BY SUM(f.distance) DESC")
-  public List<String> totalLeaderboardUsers();
+  public List<String> allTimeLeaderboardUsers();
 
   /**
    * Searches for the amount of kilometeres traveled by useres that fullfiled requests ordered by the sum of the kilometeres traveled
@@ -25,7 +25,7 @@ public interface FulfillmentRepository extends JpaRepository<Fulfillment, Long> 
   @Query("SELECT SUM(f.distance) from Fulfillment f " +
     "GROUP BY f.username " +
     "ORDER BY SUM(f.distance) DESC")
-  public List<Float> totalLeaderboardKilometers();
+  public List<Float> allTimeLeaderboardKilometers();
 
 
 
