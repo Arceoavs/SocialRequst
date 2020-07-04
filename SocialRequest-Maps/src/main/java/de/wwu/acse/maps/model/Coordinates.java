@@ -1,22 +1,14 @@
-package de.wwu.acse.socialrequest.model.maps;
+package de.wwu.acse.maps.model;
 
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 
-public class Coordinates implements Serializable {
-
-  private static final long serialVersionUID = 1L;
+public class Coordinates {
 
   @NotNull
   private Float lat;
 
   @NotNull
   private Float lon;
-
-  public Coordinates(Float lat, Float lon) {
-    this.lat = lat;
-    this.lon = lon;
-  }
 
   public Float getLat() {
     return this.lat;
