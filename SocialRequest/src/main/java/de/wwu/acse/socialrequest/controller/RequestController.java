@@ -17,7 +17,7 @@ import de.wwu.acse.socialrequest.model.maps.Coordinates;
 import de.wwu.acse.socialrequest.model.maps.Instruction;
 import de.wwu.acse.socialrequest.repository.UserRepository;
 import de.wwu.acse.socialrequest.service.FulfillmentService;
-import de.wwu.acse.socialrequest.service.MapsApiService;
+import de.wwu.acse.socialrequest.consumer.MapsApiClient;
 import de.wwu.acse.socialrequest.service.RequestService;
 import de.wwu.acse.socialrequest.service.TopicService;
 
@@ -47,7 +47,7 @@ public class RequestController extends ApplicationController {
   FulfillmentService fulfillmentService;
 
   @Autowired
-  MapsApiService mapsApiService;
+  MapsApiClient mapsApiClient;
 
   @Autowired
   UserRepository userRepository;
@@ -91,7 +91,7 @@ public class RequestController extends ApplicationController {
 
       Coordinates origin = new Coordinates(user.getLat(), user.getLng());
       Coordinates destination = new Coordinates(request.getLat(), request.getLng());
-      List<Instruction> directions = mapsApiService.getDirections(origin, destination);
+      List<Instruction> directions = mapsApiClient.getDirections(origin, destination);
 
       model.addAttribute("request", request);
       model.addAttribute("directions", directions);
