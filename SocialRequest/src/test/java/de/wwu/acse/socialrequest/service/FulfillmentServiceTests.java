@@ -85,7 +85,7 @@ public class FulfillmentServiceTests {
    */
   @Test
   public void testFulfillingARequest() {
-    Mockito.when(mapsApiService.getDistance(any(), any())).thenReturn(new Distance(1200));
+    Mockito.when(mapsApiService.getDistance(any(), any())).thenReturn(mockDistance());
     Mockito.doNothing().when(jmsTemplate).convertAndSend(anyString(), any(FulfillmentDto.class));
 
     // create request
@@ -136,6 +136,12 @@ public class FulfillmentServiceTests {
 
       fulfillmentService.fulfillRequest(request, anotherUser);
     });
+  }
+
+  private Distance mockDistance() {
+    Distance distance = new Distance();
+    distance.setLengthInMeters(1200);
+    return distance;
   }
 
 }
