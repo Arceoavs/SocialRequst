@@ -1,0 +1,2 @@
+PUBLIC "http://localhost:8082/ws/leaderboard.wsdl" "./leaderboard.xsd"
+REWRITE_SYSTEM "http://localhost:8082/ws" "."
