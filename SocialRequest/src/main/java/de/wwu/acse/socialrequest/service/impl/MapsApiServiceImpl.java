@@ -1,18 +1,19 @@
 package de.wwu.acse.socialrequest.service.impl;
 
-import de.wwu.acse.socialrequest.model.maps.Coordinates;
-import de.wwu.acse.socialrequest.model.maps.Instruction;
-import de.wwu.acse.socialrequest.model.maps.Route;
-import de.wwu.acse.socialrequest.model.maps.RouteCoordinates;
-import de.wwu.acse.socialrequest.repository.UserRepository;
-import de.wwu.acse.socialrequest.service.MapsApiService;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
+import de.wwu.acse.socialrequest.model.maps.Coordinates;
+import de.wwu.acse.socialrequest.model.maps.Distance;
+import de.wwu.acse.socialrequest.model.maps.Instruction;
+import de.wwu.acse.socialrequest.model.maps.Route;
+import de.wwu.acse.socialrequest.model.maps.RouteCoordinates;
+import de.wwu.acse.socialrequest.repository.UserRepository;
+import de.wwu.acse.socialrequest.service.MapsApiService;
 
 @Service
 public class MapsApiServiceImpl implements MapsApiService {
@@ -23,6 +24,15 @@ public class MapsApiServiceImpl implements MapsApiService {
 
   @Autowired
   UserRepository userRepository;
+
+  @Override
+  public Distance getDistance(Coordinates origin, Coordinates destination) {
+    String resourceUrl = API_URL + "distance";
+    HttpEntity<RouteCoordinates> request = new HttpEntity<RouteCoordinates>(new RouteCoordinates(origin, destination));
+    Distance distance = restTemplate.postForObject(resourceUrl, request, Distance.class);
+
+    return distance;
+  }
 
   @Override
   public List<Instruction> getDirections(Coordinates origin, Coordinates destination) {

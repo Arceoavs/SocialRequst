@@ -4,4 +4,8 @@ import de.wwu.acse.leaderboard.model.Fulfillment;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface FulfillmentRepository extends JpaRepository<Fulfillment, Long> {}
+public interface FulfillmentRepository extends JpaRepository<Fulfillment, Long> {
+
+  public boolean existsByUsernameAndRequestId(String username, Long requestId);
+
+}

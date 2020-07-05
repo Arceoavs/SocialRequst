@@ -4,21 +4,52 @@ stages:
   - test
   - build
 
-before_script:
-  - cd SocialRequest
-  - chmod +x mvnw
-
-test:
+.test: &test_config
   stage: test
+  before_script:
+    - cd $FOLDER_NAME
+    - chmod +x mvnw
   script: ./mvnw test
 
-build:
+.build: &build_config
   stage: build
+  before_script:
+    - cd $FOLDER_NAME
+    - chmod +x mvnw
   script: ./mvnw package
   artifacts:
     expire_in: 1 day
     paths:
-      - target/socialrequest-0.0.1-SNAPSHOT.jar
+      - $FOLDER_NAME/target/*.jar
   only:
     - master
-    - develop
+
+test:SocialRequest:
+  extends: .test
+  variables:
+    FOLDER_NAME: SocialRequest
+
+build:SocialRequest:
+  extends: .build
+  variables:
+    FOLDER_NAME: SocialRequest
+
+test:SocialRequest-Maps:
+  extends: .test
+  variables:
+    FOLDER_NAME: SocialRequest-Maps
+
+build:SocialRequest-Maps:
+  extends: .build
+  variables:
+    FOLDER_NAME: SocialRequest-Maps
+
+test:SocialRequest-Leaderboard:
+  extends: .test
+  variables:
+    FOLDER_NAME: SocialRequest-Leaderboard
+
+build:SocialRequest-Leaderboard:
+  extends: .build
+  variables:
+    FOLDER_NAME: SocialRequest-Leaderboard

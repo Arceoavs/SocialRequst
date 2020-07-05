@@ -1,44 +1,22 @@
-package de.wwu.acse.leaderboard.model;
+package de.wwu.acse.socialrequest.model.leaderboard;
 
-import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+public class FulfillmentDto {
 
-@Table(name = "fulfillments", uniqueConstraints = @UniqueConstraint(columnNames = { "requestId", "username" }))
-@Entity
-public class Fulfillment implements Serializable {
-
-  private static final long serialVersionUID = 6087808644310117815L;
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
-
-  @NotNull
   private String username;
 
-  @NotNull
   private Long requestId;
 
-  @NotNull(message = "Distance in kilometres is required")
   private Double distance;
 
-  @NotNull
   private Date fulfilledAt;
 
-  public Fulfillment() {}
-
-  public Fulfillment(String username, Long requestId, Double distance, Date fulfilledAt) {
+  public FulfillmentDto(String username, Long requestId, Double distance, Date fulfilledAt) {
     this.username = username;
     this.requestId = requestId;
     this.distance = distance;
     this.fulfilledAt = fulfilledAt;
-  }
-
-  public Long getId() {
-    return id;
   }
 
   public Double getDistance() {
