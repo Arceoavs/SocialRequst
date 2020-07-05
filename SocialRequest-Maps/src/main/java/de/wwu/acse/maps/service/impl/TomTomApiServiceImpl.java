@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.client.HttpClientErrorException;
 
 import de.wwu.acse.maps.model.Coordinates;
 import de.wwu.acse.maps.model.Distance;
@@ -36,20 +37,22 @@ public class TomTomApiServiceImpl implements TomTomApiService {
     ObjectMapper mapper = new ObjectMapper();
     Coordinates coordinates = null;
 
-    String request = restTemplate.getForObject(API_URL+"search/2/geocode/"+query+".json?key={key}&countrySet=DE", String.class, uriVariables);
+    String requestUrl = API_URL +
+        "search/2/geocode/{query}.json?key={key}&countrySet=DE";
+
     try {
-      JsonNode node = mapper.readTree(request);
+      String response = restTemplate.getForObject(requestUrl, String.class, uriVariables);
+      JsonNode node = mapper.readTree(response);
       ArrayNode results = (ArrayNode) node.get("results");
       JsonNode result = null;
-      for (JsonNode res : results){
+      for (JsonNode res : results) {
         if (result == null || res.get("score").asDouble() > result.get("score").asDouble()) {
           result = res;
         }
       }
       JsonNode position = result.get("position");
       coordinates = mapper.treeToValue(position, Coordinates.class);
-    }
-    catch (JsonProcessingException e) {
+    } catch (HttpClientErrorException | JsonProcessingException e) {
       e.printStackTrace();
     }
 
@@ -66,9 +69,10 @@ public class TomTomApiServiceImpl implements TomTomApiService {
     uriVariables.put("coordinates", coordinates);
 
     String requestUrl = API_URL + "routing/1/calculateRoute/{coordinates}/json?maxAlternatives=0&instructionsType=text&routeRepresentation=summaryOnly&avoid=unpavedRoads&travelMode=bicycle&key={key}";
-    String response = restTemplate.getForObject(requestUrl, String.class, uriVariables);
 
     try {
+      String response = restTemplate.getForObject(requestUrl, String.class, uriVariables);
+
       JsonNode node = mapper.readTree(response);
       ArrayNode jsonRoute = (ArrayNode) node.get("routes");
       route.setTravelTimeInSeconds(jsonRoute.get(0).get("summary").get("travelTimeInSeconds").asInt());
@@ -97,8 +101,7 @@ public class TomTomApiServiceImpl implements TomTomApiService {
         instruction.setMessage(jsonInstruction.get("message").asText());
         route.addInstructions(instruction);
       }
-    }
-    catch (JsonProcessingException e) {
+    } catch(HttpClientErrorException | JsonProcessingException e) {
       e.printStackTrace();
     }
 
@@ -109,21 +112,22 @@ public class TomTomApiServiceImpl implements TomTomApiService {
     Distance distance = new Distance();
     ObjectMapper mapper = new ObjectMapper();
 
-    String coordinates = String.format("%s,%s:%s,%s;", origin.getLat(), origin.getLon(), destination.getLat(), destination.getLon());
+    String coordinates = String.format("%s,%s:%s,%s;", origin.getLat(), origin.getLon(), destination.getLat(),
+        destination.getLon());
     Map<String, String> uriVariables = new HashMap<String, String>();
     uriVariables.put("key", getApiKey());
     uriVariables.put("coordinates", coordinates);
     uriVariables.put("url", API_URL);
 
-    String requestUrl = API_URL + "routing/1/calculateRoute/{coordinates}/json?maxAlternatives=0&instructionsType=text&routeRepresentation=summaryOnly&avoid=unpavedRoads&travelMode=bicycle&key={key}";
-    String response = restTemplate.getForObject(requestUrl, String.class, uriVariables);
+    String requestUrl = API_URL
+        + "routing/1/calculateRoute/{coordinates}/json?maxAlternatives=0&instructionsType=text&routeRepresentation=summaryOnly&avoid=unpavedRoads&travelMode=bicycle&key={key}";
 
     try {
+      String response = restTemplate.getForObject(requestUrl, String.class, uriVariables);
       JsonNode node = mapper.readTree(response);
       ArrayNode jsonRoute = (ArrayNode) node.get("routes");
       distance.setLengthInMeters(jsonRoute.get(0).get("summary").get("lengthInMeters").asInt());
-    }
-    catch (JsonProcessingException e) {
+    } catch (HttpClientErrorException | JsonProcessingException e) {
       e.printStackTrace();
     }
 
