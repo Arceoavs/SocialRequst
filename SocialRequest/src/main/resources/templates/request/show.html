@@ -53,6 +53,36 @@
                 ></button>
               </th:block>
             </div>
+
+            <!-- Directions -->
+            <article class="panel is-info" th:if="${directions != null}">
+              <p class="panel-heading" style="margin:0;">
+                How to get to the Request's Location?
+              </p>
+              <div class="panel-block is-active">
+                <table class="table is-hoverable is-fullwidth">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Instruction</th>
+                      <th>Travel Distance (in m)</th>
+                      <th>Travel Time (in h)</th>
+                      <th>Street name</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr th:each="direction : ${directions}">
+                      <td><i class="fas fa-map-signs" aria-hidden="true"></i></td>
+                      <td th:text="${direction.message}"></td>
+                      <td th:text="${direction.distance}"></td>
+                      <td th:text="${direction.formattedTravelTime}"></td>
+                      <td th:text="${direction.street}"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </article>
+
           </div>
         </div>
       </div>

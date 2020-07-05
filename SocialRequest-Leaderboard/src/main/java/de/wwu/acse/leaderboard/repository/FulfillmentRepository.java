@@ -10,6 +10,8 @@ import java.util.List;
 
 public interface FulfillmentRepository extends JpaRepository<Fulfillment, Long> {
 
+  public boolean existsByUsernameAndRequestId(String username, Long requestId);
+
   /**
    * Searches for the users who fullfiled requests
    * ordered by the sum of the kilometeres travelled
