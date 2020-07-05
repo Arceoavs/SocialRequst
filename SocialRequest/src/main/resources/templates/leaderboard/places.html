@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <th:block th:fragment="leaderboard_places(leaderboardPlaces)">
+    <div th:if="${leaderboardPlaces == null or leaderboardPlaces.empty}" class="notification is-warning is-light has-text-centered">
+      No user fulfilled any request yet. Hence, there is no leaderboard. Check again later!
+    </div>
+
+    <div th:if="${leaderboardPlaces != null and not leaderboardPlaces.empty}">
+      <th:block th:each="place : ${leaderboardPlaces}">
+        <div th:replace="leaderboard/place :: leaderboard_place(place = ${place})"></div>
+      </th:block>
+    </div>
+  </th:block>
+</body>
+</html>
