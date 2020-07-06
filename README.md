@@ -27,7 +27,7 @@ Please follow the instructions in the separate `README.md` files in the describe
 1. First, start the ActiveMQ instance: `docker-compose up`
 2. Then, start the Maps application: `cd SocialRequest-Maps && ./mvnw spring-boot:run`
 3. Then, start the Leaderboard application: `cd SocialRequest-Leaderboard && ./mvnw spring-boot:run`
-4. Last, start the main application: `cd SocialReqeust && ./mvnw spring-boot:run`
+4. Last, start the main application: `cd SocialRequest && ./mvnw spring-boot:run`
 
 ## Help
 
