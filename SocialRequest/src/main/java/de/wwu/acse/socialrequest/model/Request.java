@@ -1,5 +1,6 @@
 package de.wwu.acse.socialrequest.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
@@ -13,7 +14,9 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "requests")
-public class Request {
+public class Request implements Serializable {
+
+  private static final long serialVersionUID = 1L;
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

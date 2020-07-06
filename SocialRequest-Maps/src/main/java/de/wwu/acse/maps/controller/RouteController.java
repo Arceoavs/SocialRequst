@@ -16,14 +16,14 @@ import de.wwu.acse.maps.model.Address;
 import de.wwu.acse.maps.model.Distance;
 import de.wwu.acse.maps.model.Route;
 import de.wwu.acse.maps.model.RouteCoordinates;
-import de.wwu.acse.maps.service.TomTomApiService;
+import de.wwu.acse.maps.consumer.TomTomApiClient;
 
 @RestController
 @RequestMapping("")
 public class RouteController {
 
   @Autowired
-  TomTomApiService tomTomService;
+  TomTomApiClient tomTomApiClient;
 
   @CrossOrigin(origins = "http://localhost:8080")
   @PostMapping(value = "/geocode", consumes = "application/json", produces = "application/json")
@@ -31,7 +31,7 @@ public class RouteController {
     if (bindingResult.hasErrors()) {
       throw new UnprocessableEntityException();
     }
-    return tomTomService.getCoordinates(address.getAddress());
+    return tomTomApiClient.getCoordinates(address.getAddress());
   }
 
   @PostMapping(value = "/route", consumes = "application/json", produces = "application/json")
@@ -39,7 +39,7 @@ public class RouteController {
     if (bindingResult.hasErrors()) {
       throw new UnprocessableEntityException();
     }
-    return tomTomService.getRoute(routeCoordinates.getOrigin(), routeCoordinates.getDestination());
+    return tomTomApiClient.getRoute(routeCoordinates.getOrigin(), routeCoordinates.getDestination());
   }
 
   @PostMapping(value = "/distance", consumes = "application/json", produces = "application/json")
@@ -47,7 +47,7 @@ public class RouteController {
     if (bindingResult.hasErrors()) {
       throw new UnprocessableEntityException();
     }
-    return tomTomService.getDistance(routeCoordinates.getOrigin(), routeCoordinates.getDestination());
+    return tomTomApiClient.getDistance(routeCoordinates.getOrigin(), routeCoordinates.getDestination());
   }
 
 }

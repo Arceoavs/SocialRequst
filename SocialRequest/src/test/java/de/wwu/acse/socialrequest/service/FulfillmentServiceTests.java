@@ -8,6 +8,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 
 import javax.jms.ConnectionFactory;
 
+import de.wwu.acse.socialrequest.consumer.MapsApiClient;
 import de.wwu.acse.socialrequest.exception.RequestAlreadyFulfilledException;
 import de.wwu.acse.socialrequest.model.Fulfillment;
 import de.wwu.acse.socialrequest.model.Request;
@@ -16,7 +17,6 @@ import de.wwu.acse.socialrequest.model.leaderboard.FulfillmentDto;
 import de.wwu.acse.socialrequest.model.maps.Distance;
 import de.wwu.acse.socialrequest.repository.FulfillmentRepository;
 import de.wwu.acse.socialrequest.service.impl.FulfillmentServiceImpl;
-import de.wwu.acse.socialrequest.service.impl.MapsApiServiceImpl;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.junit.Test;
@@ -59,8 +59,8 @@ public class FulfillmentServiceTests {
     }
 
     @Bean
-    public MapsApiService mapsApiService() {
-      return new MapsApiServiceImpl();
+    public MapsApiClient mapsApiClient() {
+      return new MapsApiClient();
     }
 
   }
@@ -75,7 +75,7 @@ public class FulfillmentServiceTests {
   private FulfillmentRepository fulfillmentRepository;
 
   @Mock
-  private MapsApiService mapsApiService;
+  private MapsApiClient mapsApiClient;
 
   @Mock
   private JmsTemplate jmsTemplate;
@@ -85,7 +85,7 @@ public class FulfillmentServiceTests {
    */
   @Test
   public void testFulfillingARequest() {
-    Mockito.when(mapsApiService.getDistance(any(), any())).thenReturn(mockDistance());
+    Mockito.when(mapsApiClient.getDistance(any(), any())).thenReturn(mockDistance());
     Mockito.doNothing().when(jmsTemplate).convertAndSend(anyString(), any(FulfillmentDto.class));
 
     // create request

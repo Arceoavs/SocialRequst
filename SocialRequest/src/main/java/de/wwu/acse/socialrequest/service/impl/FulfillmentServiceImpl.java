@@ -1,5 +1,6 @@
 package de.wwu.acse.socialrequest.service.impl;
 
+import de.wwu.acse.socialrequest.consumer.MapsApiClient;
 import de.wwu.acse.socialrequest.exception.RequestAlreadyFulfilledException;
 import de.wwu.acse.socialrequest.exception.RequestCannotBeFulfilledBySameUser;
 import de.wwu.acse.socialrequest.model.Fulfillment;
@@ -10,7 +11,6 @@ import de.wwu.acse.socialrequest.model.maps.Coordinates;
 import de.wwu.acse.socialrequest.model.maps.Distance;
 import de.wwu.acse.socialrequest.repository.FulfillmentRepository;
 import de.wwu.acse.socialrequest.service.FulfillmentService;
-import de.wwu.acse.socialrequest.service.MapsApiService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
@@ -26,7 +26,7 @@ public class FulfillmentServiceImpl implements FulfillmentService {
   private JmsTemplate jmsTemplate;
 
   @Autowired
-  private MapsApiService mapsApiService;
+  private MapsApiClient mapsApiClient;
 
   @Override
   public void fulfillRequest(Request request, User user)
@@ -67,7 +67,7 @@ public class FulfillmentServiceImpl implements FulfillmentService {
    */
   private void transmitFulfillmentViaJms(Fulfillment fulfillment) {
     // call the Maps application to retrieve the distance.
-    Distance distance = mapsApiService.getDistance(
+    Distance distance = mapsApiClient.getDistance(
       new Coordinates(fulfillment.getUser().getLat(), fulfillment.getUser().getLng()),
       new Coordinates(fulfillment.getRequest().getLat(), fulfillment.getRequest().getLng())
     );

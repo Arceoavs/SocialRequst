@@ -1,4 +1,4 @@
-package de.wwu.acse.maps.service.impl;
+package de.wwu.acse.maps.consumer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.client.HttpClientErrorException;
 
@@ -17,11 +17,10 @@ import de.wwu.acse.maps.model.Coordinates;
 import de.wwu.acse.maps.model.Distance;
 import de.wwu.acse.maps.model.Instruction;
 import de.wwu.acse.maps.model.Route;
-import de.wwu.acse.maps.service.TomTomApiService;
 import io.github.cdimascio.dotenv.Dotenv;
 
-@Service
-public class TomTomApiServiceImpl implements TomTomApiService {
+@Component
+public class TomTomApiClient {
 
   @Autowired
   private Dotenv dotenv;

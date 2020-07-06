@@ -1,0 +1,16 @@
+.leaderboard {
+  padding-top: 20px;
+}
+
+.leaderboard-place {
+  align-items: center;
+  align-content: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.leaderboard-place--rank,
+.leaderboard-place--user,
+.leaderboard-place--distance {
+  margin: auto !important;
+}
