@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (lat && lng) mapCoordinates = [lat, lng];
   createMap();
   initializeMapEventListeners();
-  initializeAddressSearch();
 });
 
 function createMap() {
@@ -100,40 +99,4 @@ function initializeMapEventListeners() {
 
     movePinToCoordinates(L.latLng(latitude, longitude), panToCoordinates = true);
   });
-}
-
-function initializeAddressSearch() {
-  const $btn = document.getElementById("btnSearchAddress")
-
-  if ($btn != null) {
-    $btn.addEventListener('click', async (e) => {
-      const addressString = document.getElementById('locationString').value;
-      const addressObj = { address: addressString };
-
-      const url = new URL('http://localhost:8081/geocode');
-
-      try {
-        const response = await fetch(url, {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify(addressObj)
-        });
-
-        // get coordinates
-        const res = await response.json();
-
-        const lat = res.lat;
-        const lng = res.lon;
-        if (lat && lng) {
-          movePinToCoordinates(L.latLng(lat, lng), true);
-        }
-      } catch(error) {
-        console.log('Something went wrong', error);
-        createFlashMessage('error', `Something went wrong: ${error}`)
-      }
-    });
-  }
 }

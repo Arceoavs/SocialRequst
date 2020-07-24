@@ -4,21 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
 
-import javax.jms.ConnectionFactory;
-
-import de.wwu.acse.socialrequest.consumer.MapsApiClient;
 import de.wwu.acse.socialrequest.exception.RequestAlreadyFulfilledException;
 import de.wwu.acse.socialrequest.model.Fulfillment;
 import de.wwu.acse.socialrequest.model.Request;
 import de.wwu.acse.socialrequest.model.User;
-import de.wwu.acse.socialrequest.model.leaderboard.FulfillmentDto;
-import de.wwu.acse.socialrequest.model.maps.Distance;
 import de.wwu.acse.socialrequest.repository.FulfillmentRepository;
 import de.wwu.acse.socialrequest.service.impl.FulfillmentServiceImpl;
 
-import org.apache.activemq.ActiveMQConnectionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -29,7 +22,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.jms.core.JmsTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
@@ -44,25 +36,6 @@ public class FulfillmentServiceTests {
       return new FulfillmentServiceImpl();
     }
 
-    @Bean
-    public ConnectionFactory connectionFactory() {
-      ConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
-      return connectionFactory;
-    }
-
-    @Bean
-    public JmsTemplate jmsTemplate() {
-      JmsTemplate template = new JmsTemplate();
-      template.setConnectionFactory(connectionFactory());
-      template.setPubSubDomain(false);
-      return template;
-    }
-
-    @Bean
-    public MapsApiClient mapsApiClient() {
-      return new MapsApiClient();
-    }
-
   }
 
   @Autowired
@@ -74,20 +47,11 @@ public class FulfillmentServiceTests {
   @Mock
   private FulfillmentRepository fulfillmentRepository;
 
-  @Mock
-  private MapsApiClient mapsApiClient;
-
-  @Mock
-  private JmsTemplate jmsTemplate;
-
   /**
    * Tests if a request can be fulfilled successfully
    */
   @Test
   public void testFulfillingARequest() {
-    Mockito.when(mapsApiClient.getDistance(any(), any())).thenReturn(mockDistance());
-    Mockito.doNothing().when(jmsTemplate).convertAndSend(anyString(), any(FulfillmentDto.class));
-
     // create request
     User user = new User("john.doe", "john@doe.com", "test123");
     entityManager.persistAndFlush(user);
@@ -136,12 +100,6 @@ public class FulfillmentServiceTests {
 
       fulfillmentService.fulfillRequest(request, anotherUser);
     });
-  }
-
-  private Distance mockDistance() {
-    Distance distance = new Distance();
-    distance.setLengthInMeters(1200);
-    return distance;
   }
 
 }

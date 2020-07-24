@@ -1,6 +1,5 @@
 package de.wwu.acse.socialrequest.controller;
 
-import java.util.List;
 import java.util.NoSuchElementException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,11 +12,8 @@ import de.wwu.acse.socialrequest.exception.RequestAlreadyFulfilledException;
 import de.wwu.acse.socialrequest.exception.RequestCannotBeFulfilledBySameUser;
 import de.wwu.acse.socialrequest.model.Request;
 import de.wwu.acse.socialrequest.model.User;
-import de.wwu.acse.socialrequest.model.maps.Coordinates;
-import de.wwu.acse.socialrequest.model.maps.Instruction;
 import de.wwu.acse.socialrequest.repository.UserRepository;
 import de.wwu.acse.socialrequest.service.FulfillmentService;
-import de.wwu.acse.socialrequest.consumer.MapsApiClient;
 import de.wwu.acse.socialrequest.service.RequestService;
 import de.wwu.acse.socialrequest.service.TopicService;
 
@@ -33,7 +29,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
 @Controller
 @RequestMapping("/requests")
 public class RequestController extends ApplicationController {
@@ -45,9 +40,6 @@ public class RequestController extends ApplicationController {
 
   @Autowired
   FulfillmentService fulfillmentService;
-
-  @Autowired
-  MapsApiClient mapsApiClient;
 
   @Autowired
   UserRepository userRepository;
@@ -87,14 +79,7 @@ public class RequestController extends ApplicationController {
   public String showRequest(@PathVariable String id, Model model) {
     try {
       Request request = requestService.getRequest(id);
-      User user = ((CurrentUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser();
-
-      Coordinates origin = new Coordinates(user.getLat(), user.getLng());
-      Coordinates destination = new Coordinates(request.getLat(), request.getLng());
-      List<Instruction> directions = mapsApiClient.getDirections(origin, destination);
-
       model.addAttribute("request", request);
-      model.addAttribute("directions", directions);
 
       return "request/show";
     } catch (NumberFormatException e) {
