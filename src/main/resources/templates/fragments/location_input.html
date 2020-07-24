@@ -14,22 +14,30 @@
 
     <div class="field">
       <label class="label">Latitude</label>
-      <div class="control has-icons-left">
-        <input th:field="*{lat}" id="latitude" class="input" type="text">
+      <div class="control has-icons-left" th:classappend="${#fields.hasErrors('lat') ? 'has-icons-right' : ''}">
+        <input id="latitude" class="input" type="text" th:field="*{lat}" th:classappend="${#fields.hasErrors('lat') ? 'is-danger' : ''}">
         <span class="icon is-small is-left">
           <i class="fas fa-map-marker"></i>
         </span>
+        <span th:if="${#fields.hasErrors('lat')}" class="icon is-small is-right">
+          <i class="fas fa-exclamation-triangle"></i>
+        </span>
       </div>
+      <p th:if="${#fields.hasErrors('lat')}" th:errors="*{lat}" class="help is-danger"></p>
     </div>
 
     <div class="field">
       <label class="label">Longitude</label>
-      <div class="control has-icons-left">
-        <input th:field="*{lng}" id="longitude" class="input" type="text">
+      <div class="control has-icons-left" th:classappend="${#fields.hasErrors('lng') ? 'has-icons-right' : ''}">
+        <input id="longitude" class="input" type="text" th:field="*{lng}" th:classappend="${#fields.hasErrors('lng') ? 'is-danger' : ''}">
         <span class="icon is-small is-left">
           <i class="fas fa-map-marker"></i>
         </span>
+        <span th:if="${#fields.hasErrors('lng')}" class="icon is-small is-right">
+          <i class="fas fa-exclamation-triangle"></i>
+        </span>
       </div>
+      <p th:if="${#fields.hasErrors('lng')}" th:errors="*{lng}" class="help is-danger"></p>
     </div>
 
     <div class="field is-grouped">

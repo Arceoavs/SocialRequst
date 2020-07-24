@@ -10,6 +10,7 @@ import de.wwu.acse.socialrequest.auth.CurrentUser;
 import de.wwu.acse.socialrequest.exception.NoRequestException;
 import de.wwu.acse.socialrequest.exception.RequestAlreadyFulfilledException;
 import de.wwu.acse.socialrequest.exception.RequestCannotBeFulfilledBySameUser;
+import de.wwu.acse.socialrequest.form.RequestForm;
 import de.wwu.acse.socialrequest.model.Request;
 import de.wwu.acse.socialrequest.model.User;
 import de.wwu.acse.socialrequest.repository.UserRepository;
@@ -23,6 +24,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,14 +48,14 @@ public class RequestController extends ApplicationController {
 
   @GetMapping("/new")
   public String request(WebRequest request, Model model) {
-    model.addAttribute("request", new Request());
+    model.addAttribute("requestForm", new RequestForm());
     model.addAttribute("availableTopics", topicService.getAllTopics());
 
     return "request/new";
   }
 
   @PostMapping
-  public String createRequest(@Valid Request request, BindingResult bindingResult, HttpServletRequest webRequest, Model model, RedirectAttributes redirectAttributes) {
+  public String createRequest(@ModelAttribute("requestForm") @Valid RequestForm requestForm, BindingResult bindingResult, HttpServletRequest webRequest, Model model, RedirectAttributes redirectAttributes) {
     // if the only error is regarding topics, handle the topic validation in the service and skip re-render
     if (bindingResult.hasErrors() && !(bindingResult.hasFieldErrors("topics") && bindingResult.getErrorCount() == 1)) {
       model.addAttribute("availableTopics", topicService.getAllTopics());
@@ -63,7 +65,7 @@ public class RequestController extends ApplicationController {
 
     String [] topics = webRequest.getParameterValues("topics");
     try {
-      request = requestService.createRequest(request, topics);
+      Request request = requestService.createRequest(requestForm, topics);
       redirectAttributes.addFlashAttribute("message", String.format("You have successfully created the request '%s'.", request.getTitle()));
       redirectAttributes.addFlashAttribute("messageType", "success");
 

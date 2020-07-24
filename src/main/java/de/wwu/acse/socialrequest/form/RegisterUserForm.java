@@ -1,6 +1,7 @@
 package de.wwu.acse.socialrequest.form;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import de.wwu.acse.socialrequest.lib.UniversalGetter;
 import de.wwu.acse.socialrequest.validator.annotation.PasswordMatches;
@@ -21,8 +22,11 @@ public class RegisterUserForm implements UniversalGetter {
 
   private String passwordConfirmation;
 
-  private float lat;
-  private float lng;
+  @NotNull(message = "Latitude required")
+  private Float lat;
+
+  @NotNull(message = "Longitude required")
+  private Float lng;
 
   public RegisterUserForm() {}
 
@@ -71,28 +75,28 @@ public class RegisterUserForm implements UniversalGetter {
   /**
    * @return the lat
    */
-  public float getLat() {
+  public Float getLat() {
     return lat;
   }
 
   /**
    * @param lat the lat to set
    */
-  public void setLat(float lat) {
+  public void setLat(Float lat) {
     this.lat = lat;
   }
 
   /**
    * @return the lng
    */
-  public float getLng() {
+  public Float getLng() {
     return lng;
   }
 
   /**
    * @param lng the lng to set
    */
-  public void setLng(float lng) {
+  public void setLng(Float lng) {
     this.lng = lng;
   }
 
