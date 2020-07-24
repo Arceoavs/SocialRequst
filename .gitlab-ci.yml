@@ -23,21 +23,14 @@ build:
   only:
     - master
 
-# docker-build:
-#   image: docker:latest
-#   services:
-#     - docker:dind
-#   stage: docker-build
-#   before_script:
-#     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-#   script:
-#     - docker build --pull -t "$CI_REGISTRY_IMAGE" .
-#     - docker push "$CI_REGISTRY_IMAGE"
+docker-build:
+  stage: docker-build
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - docker build --pull -t "$CI_REGISTRY_IMAGE" .
+    - docker push "$CI_REGISTRY_IMAGE"
 #   only:
 #     - master
-
-# To set up an automatic push to docker hub, configure the pipeline env settings, the following way:
-# CI_REGISTRY_USER=username
-# CI_REGISTRY_PASSWORD=********
-# CI_REGISTRY=docker.io
-# CI_REGISTRY_IMAGE=index.docker.io/<username>/<image_name>
