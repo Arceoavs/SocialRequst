@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layouts/default(messageType=${messageType}, message=${message})}"
+>
+  <head>
+    <script type="text/javascript" src="/js/selectTopics.js"></script>
+    <title>SocialRequest - Create a Request</title>
+  </head>
+  <body>
+    <div layout:fragment="content">
+      <section class="hero is-fullheight-with-navbar">
+        <div class="hero-body" style="display: block;">
+          <div class="container">
+            <h1 class="title is-1">Create a Request</h1>
+            <form action="#" th:action="@{/requests}" th:object="${requestForm}" method="post">
+              <div class="columns">
+                <div class="column">
+                  <div class="field">
+                    <label class="label">Title</label>
+                    <div class="control" th:classappend="${#fields.hasErrors('title') ? 'has-icons-right' : ''}">
+                      <input class="input" type="text" placeholder="Title" th:field="*{title}" th:classappend="${#fields.hasErrors('title') ? 'is-danger' : ''}">
+                      <span th:if="${#fields.hasErrors('title')}" class="icon is-small is-right">
+                        <i class="fas fa-exclamation-triangle"></i>
+                      </span>
+                    </div>
+                    <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="help is-danger"></p>
+                  </div>
+
+                  <div class="field">
+                    <label class="label">Description</label>
+                    <div class="control" th:classappend="${#fields.hasErrors('description') ? 'has-icons-right' : ''}">
+                      <textarea class="textarea is-medium" type="text" placeholder="Description" th:field="*{description}" th:classappend="${#fields.hasErrors('description') ? 'is-danger' : ''}"></textarea>
+                      <span th:if="${#fields.hasErrors('description')}" class="icon is-small is-right">
+                        <i class="fas fa-exclamation-triangle"></i>
+                      </span>
+                    </div>
+                    <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="help is-danger"></p>
+                  </div>
+
+                  <select hidden th:field="*{user}">
+                    <option selected th:value="${{#authentication.principal.user}}">current user</option>
+                  </select>
+
+                  <div class="field">
+                    <label class="label">Topics</label>
+                    <div class="control">
+                      <select id="select-topics" th:field="*{topics}" multiple>
+                        <option
+                          th:each="topic : ${availableTopics}"
+                          th:value="${topic.id}"
+                          th:text="${topic.name}"
+                        >
+                          topic X
+                        </option>
+                      </select>
+                    </div>
+                    <p th:if="${#fields.hasErrors('topics')}" class="help is-danger">Topics must be lowercase, alphanumeric and without whitespace</p>
+                    <ul class="help help-list">
+                      <li>
+                        Only lowercase
+                      </li>
+                      <li>
+                        Only alphanumeric characters
+                      </li>
+                      <li>
+                        No whitespace
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="column">
+                  <div th:replace="fragments/location_input :: location_input"></div>
+                </div>
+              </div>
+
+              <div class="field">
+                <div class="control">
+                  <button type="submit" class="button is-success">Create Request</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
