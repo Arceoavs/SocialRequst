@@ -4,52 +4,20 @@ stages:
   - test
   - build
 
-.test: &test_config
+test:
   stage: test
   before_script:
-    - cd $FOLDER_NAME
     - chmod +x mvnw
   script: ./mvnw test
 
-.build: &build_config
+build:
   stage: build
   before_script:
-    - cd $FOLDER_NAME
     - chmod +x mvnw
   script: ./mvnw package
   artifacts:
     expire_in: 1 day
     paths:
-      - $FOLDER_NAME/target/*.jar
+      - target/*.jar
   only:
     - master
-
-test:SocialRequest:
-  extends: .test
-  variables:
-    FOLDER_NAME: SocialRequest
-
-build:SocialRequest:
-  extends: .build
-  variables:
-    FOLDER_NAME: SocialRequest
-
-test:SocialRequest-Maps:
-  extends: .test
-  variables:
-    FOLDER_NAME: SocialRequest-Maps
-
-build:SocialRequest-Maps:
-  extends: .build
-  variables:
-    FOLDER_NAME: SocialRequest-Maps
-
-test:SocialRequest-Leaderboard:
-  extends: .test
-  variables:
-    FOLDER_NAME: SocialRequest-Leaderboard
-
-build:SocialRequest-Leaderboard:
-  extends: .build
-  variables:
-    FOLDER_NAME: SocialRequest-Leaderboard
