@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    restart: always
+    depends_on:
+      - db
+    links:
+      - db
+    ports:
+      - "80:8080"
+
+  db:
+    image: mysql:5.7
+    command: --default-storage-engine=InnoDB --character-set-server=utf8
+    environment:
+      MYSQL_DATABASE: social_request
+      MYSQL_USER: social_requestor
+      MYSQL_PASSWORD: social_requestor
+      MYSQL_ROOT_PASSWORD: root
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+
+volumes:
+  db-data:
