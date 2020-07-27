@@ -35,3 +35,9 @@ build/
 
 ### System Files ###
 .DS_Store
+
+### terraform for windows ###
+terraform.exe
+aws/.terraform
+aws/terraform.tfstate
+aws/terraform.tfstate.backup
