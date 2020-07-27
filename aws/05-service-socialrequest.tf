@@ -132,9 +132,9 @@ resource "aws_lb_listener" "socialrequest" {
 ### DNS Record
 
 # Of cause a public DNS record could be configured in the same way
-resource "aws_route53_record" "wordpress_socialrequest_local" {
+resource "aws_route53_record" "socialrequest_local" {
   zone_id = aws_route53_zone.socialrequest_local.zone_id
-  name    = "wordpress"
+  name    = "socialrequest"
   type    = "A"
 
   alias {
