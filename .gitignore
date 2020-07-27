@@ -36,7 +36,7 @@ build/
 ### System Files ###
 .DS_Store
 
-### terraform for windows ###
+### Terraform ###
 terraform.exe
 aws/.terraform
 aws/terraform.tfstate
