@@ -35,9 +35,3 @@ build/
 
 ### System Files ###
 .DS_Store
-
-### Terraform ###
-terraform.exe
-aws/.terraform
-aws/terraform.tfstate
-aws/terraform.tfstate.backup
