@@ -29,7 +29,8 @@ resource "aws_ecs_task_definition" "socialrequest" {
       "portMappings": [
         {
           "containerPort": 80,
-          "protocol": "tcp"
+          "protocol": "tcp",
+          "hostPort": 8080
         }
       ],
       "logConfiguration": {
