@@ -103,9 +103,9 @@ resource "aws_lb_target_group" "socialrequest" {
 
   health_check {
     enabled  = true
-    interval = 10
+    interval = 30
     protocol = "HTTP"
-    port     = 80
+    port     = 8080
     path     = "/"
     matcher  = "200-399"
   }
