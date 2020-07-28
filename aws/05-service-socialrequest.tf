@@ -24,13 +24,13 @@ resource "aws_ecs_task_definition" "socialrequest" {
       "memory": 2048,
       "memoryReservation": 2048,
       "environment": [
-        { "name": "DB_HOST",     "value": "${aws_route53_record.mysql_socialrequest_local.fqdn}" }
+        { "name": "DB_HOST", "value": "${aws_route53_record.mysql_socialrequest_local.fqdn}" }
       ],
       "portMappings": [
         {
-          "containerPort": 80,
+          "containerPort": 8080,
           "protocol": "tcp",
-          "hostPort": 80
+          "hostPort": 8080
         }
       ],
       "logConfiguration": {
@@ -54,7 +54,7 @@ resource "aws_security_group" "socialrequest" {
 
   ingress {
     from_port   = 80
-    to_port     = 80
+    to_port     = 8080
     protocol    = "tcp"
     cidr_blocks = [aws_vpc.socialrequest.cidr_block]
   }
@@ -73,7 +73,7 @@ resource "aws_security_group" "socialrequest-lb" {
 
   ingress {
     from_port   = 80
-    to_port     = 80
+    to_port     = 8080
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -167,7 +167,7 @@ resource "aws_ecs_service" "socialrequest" {
   load_balancer {
     target_group_arn = aws_lb_target_group.socialrequest.arn
     container_name   = "socialrequest"
-    container_port   = 80
+    container_port   = 8080
   }
 
   depends_on = [aws_lb.socialrequest]
