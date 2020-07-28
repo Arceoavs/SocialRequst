@@ -29,8 +29,7 @@ resource "aws_ecs_task_definition" "socialrequest" {
       "portMappings": [
         {
           "containerPort": 8080,
-          "protocol": "tcp",
-          "hostPort": 8080
+          "protocol": "tcp"
         }
       ],
       "logConfiguration": {
@@ -53,7 +52,7 @@ resource "aws_security_group" "socialrequest" {
   vpc_id = aws_vpc.socialrequest.id
 
   ingress {
-    from_port   = 80
+    from_port   = 8080
     to_port     = 8080
     protocol    = "tcp"
     cidr_blocks = [aws_vpc.socialrequest.cidr_block]
@@ -73,7 +72,7 @@ resource "aws_security_group" "socialrequest-lb" {
 
   ingress {
     from_port   = 80
-    to_port     = 8080
+    to_port     = 80
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
