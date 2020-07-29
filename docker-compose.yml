@@ -4,6 +4,11 @@ services:
   web:
     build: .
     restart: always
+    environment:
+      DB_NAME: social_request
+      DB_HOST: db
+      DB_USERNAME: social_requestor
+      DB_PASSWORD: social_requestor
     depends_on:
       - db
     links:
