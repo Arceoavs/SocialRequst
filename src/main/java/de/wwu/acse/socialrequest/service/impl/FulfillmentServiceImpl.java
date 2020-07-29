@@ -26,7 +26,7 @@ public class FulfillmentServiceImpl implements FulfillmentService {
       throw new RequestCannotBeFulfilledBySameUser();
     } else {
       Fulfillment fulfillment = new Fulfillment(request, user);
-      fulfillmentRepository.saveAndFlush(fulfillment);
+      fulfillmentRepository.save(fulfillment);
     }
   }
 
