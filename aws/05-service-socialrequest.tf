@@ -24,7 +24,10 @@ resource "aws_ecs_task_definition" "socialrequest" {
       "memory": 2048,
       "memoryReservation": 2048,
       "environment": [
-        { "name": "DB_HOST", "value": "${aws_route53_record.mysql_socialrequest_local.fqdn}" }
+        { "name": "DB_NAME",     "value": "${var.database_name}" },
+        { "name": "DB_HOST",     "value": "${aws_route53_record.mysql_socialrequest_local.fqdn}" },
+        { "name": "DB_USERNAME", "value": "${var.database_username}" },
+        { "name": "DB_PASSWORD", "value": "${var.database_password}" }
       ],
       "portMappings": [
         {

@@ -20,13 +20,14 @@ resource "aws_ecs_task_definition" "socialrequest-mysql" {
       "name": "mysql",
       "image": "mysql:5.7",
       "essential": true,
+      "command": ["--default-storage-engine=InnoDB", "--character-set-server=utf8"],
       "cpu": 1024,
       "memory": 2048,
       "memoryReservation": 2048,
       "environment": [
-        { "name": "MYSQL_DATABASE",             "value": "social_request" },
-        { "name": "MYSQL_USER",                 "value": "social_requestor" },
-        { "name": "MYSQL_PASSWORD",             "value": "social_requestor" },
+        { "name": "MYSQL_DATABASE",             "value": "${var.database_name}" },
+        { "name": "MYSQL_USER",                 "value": "${var.database_username}" },
+        { "name": "MYSQL_PASSWORD",             "value": "${var.database_password}" },
         { "name": "MYSQL_RANDOM_ROOT_PASSWORD", "value": "'1'" }
       ],
       "portMappings": [
