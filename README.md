@@ -1,13 +1,12 @@
 # SocialRequest (Group 6)
 
-## Installation
+## Setup
 
-1. Install Java8
-2. Install Maven (optional)
-3. Run with `./mvnw spring-boot:run` or simply (if you have Maven installed) `mvn spring-boot:run`
-4. You can access the application on `http://localhost:8080`
-
-Run tests with `mvn test` or (for a single test) `mvn -Dtest=FulfillmentTests test`
+1. Install Docker
+2. Install Docker-Compose
+3. run `docker-compose build`
+4. Run with `docker-compose up`
+5. You can access the application on `http://localhost`
 
 ## Hints
 
